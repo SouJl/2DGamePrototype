@@ -16,7 +16,7 @@ namespace PixelGame
         private void Start()
         {
             _animatorController = new SpriteAnimatorController(_animationConfig);
-            _animatorController.StartAnimation(_playerView.SpriteRenderer, AnimaState.Run, true, 10);
+            _animatorController.StartAnimation(_playerView.SpriteRenderer, AnimaState.Idle, true, 10);
         }
 
         private void Update()

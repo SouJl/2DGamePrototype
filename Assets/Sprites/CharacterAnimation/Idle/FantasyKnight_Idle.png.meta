@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea50f9a6153081143904a0134bc7f87f
+guid: 96a49dd2beeec664b9463c87ad88c1a6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 18
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run_0
+      name: FantasyKnight_Idle_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 45
         y: 0
-        width: 48
-        height: 61
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f400fd4cf86fb5c4999dd98c4b909c07
-      internalID: 1759648629
+      spriteID: 66819eb99f1270045870b52bb43e0937
+      internalID: -1153554595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_1
+      name: FantasyKnight_Idle_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 165
         y: 0
-        width: 54
-        height: 59
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf6d8775a0182ba458c4e7d00ee24394
-      internalID: 1687626095
+      spriteID: fe6d89bec98e2d443a6357c447571abe
+      internalID: 546811556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_2
+      name: FantasyKnight_Idle_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 285
         y: 0
-        width: 49
-        height: 62
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e78ff86c6c574d14ab064f864893e94d
-      internalID: -1436910250
+      spriteID: 3cb9e164c14b6de41a4ae7f41d2f9d1e
+      internalID: 556825431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_3
+      name: FantasyKnight_Idle_3
       rect:
         serializedVersion: 2
-        x: 394
+        x: 405
         y: 0
-        width: 51
-        height: 63
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82d4ead557762264d8920c31116abc98
-      internalID: -110777259
+      spriteID: 085934c97efb8264b99d3cbc9e362c32
+      internalID: -1363266487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_4
+      name: FantasyKnight_Idle_4
       rect:
         serializedVersion: 2
-        x: 532
+        x: 525
         y: 0
-        width: 48
-        height: 60
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfb1a446995f0cf4ba4109449256c1e0
-      internalID: -1631427130
+      spriteID: 6db7d4f54c3bfd34a981c5f256129cfb
+      internalID: -542644659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_5
+      name: FantasyKnight_Idle_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 645
         y: 0
-        width: 54
-        height: 59
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91bd34310d474dc4d91b872814263d0c
-      internalID: -125358883
+      spriteID: 84556313e70b2194194436b55b29e85e
+      internalID: -1633763530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_6
+      name: FantasyKnight_Idle_6
       rect:
         serializedVersion: 2
-        x: 770
+        x: 765
         y: 0
-        width: 48
-        height: 62
+        width: 19
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,8 +257,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bfab415dadab2b45b7b0ff9f85de1b6
-      internalID: 1446858102
+      spriteID: c8535e2d6533c2347a846bb377b246e1
+      internalID: -1103035178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FantasyKnight_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 0
+        width: 19
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fb5e411652361b4fa7f0c8c94f9b7b0
+      internalID: -2111338194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FantasyKnight_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 0
+        width: 19
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aedc5d889e36764a8eb58437bb8362b
+      internalID: -2043476664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FantasyKnight_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 0
+        width: 19
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4867c2915c7a8884183dc38e51976c43
+      internalID: -1574081639
       vertices: []
       indices: 
       edges: []
@@ -274,13 +337,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Run_6: 1446858102
-      Run_2: -1436910250
-      Run_1: 1687626095
-      Run_3: -110777259
-      Run_4: -1631427130
-      Run_0: 1759648629
-      Run_5: -125358883
+      FantasyKnight_Idle_2: 556825431
+      FantasyKnight_Idle_1: 546811556
+      FantasyKnight_Idle_0: -1153554595
+      FantasyKnight_Idle_7: -2111338194
+      FantasyKnight_Idle_8: -2043476664
+      FantasyKnight_Idle_5: -1633763530
+      FantasyKnight_Idle_6: -1103035178
+      FantasyKnight_Idle_9: -1574081639
+      FantasyKnight_Idle_3: -1363266487
+      FantasyKnight_Idle_4: -542644659
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

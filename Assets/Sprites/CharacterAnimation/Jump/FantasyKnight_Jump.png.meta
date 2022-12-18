@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea50f9a6153081143904a0134bc7f87f
+guid: cc6feb89391582d4cb4c0e50f9e60c32
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 18
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run_0
+      name: FantasyKnight_Jump_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 45
         y: 0
-        width: 48
-        height: 61
+        width: 23
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f400fd4cf86fb5c4999dd98c4b909c07
-      internalID: 1759648629
+      spriteID: da6c4596cc5717740a7fd3b446187dcf
+      internalID: -1356780663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_1
+      name: FantasyKnight_Jump_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 165
         y: 0
-        width: 54
-        height: 59
+        width: 23
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf6d8775a0182ba458c4e7d00ee24394
-      internalID: 1687626095
+      spriteID: 523c2114ba281554ca2303862bce781a
+      internalID: -1187425628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run_2
+      name: FantasyKnight_Jump_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 285
         y: 0
-        width: 49
-        height: 62
+        width: 23
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,92 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e78ff86c6c574d14ab064f864893e94d
-      internalID: -1436910250
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run_3
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 0
-        width: 51
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82d4ead557762264d8920c31116abc98
-      internalID: -110777259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run_4
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 0
-        width: 48
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfb1a446995f0cf4ba4109449256c1e0
-      internalID: -1631427130
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 54
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91bd34310d474dc4d91b872814263d0c
-      internalID: -125358883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run_6
-      rect:
-        serializedVersion: 2
-        x: 770
-        y: 0
-        width: 48
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bfab415dadab2b45b7b0ff9f85de1b6
-      internalID: 1446858102
+      spriteID: e72b53caad39e4647918497708542618
+      internalID: -827313057
       vertices: []
       indices: 
       edges: []
@@ -274,13 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Run_6: 1446858102
-      Run_2: -1436910250
-      Run_1: 1687626095
-      Run_3: -110777259
-      Run_4: -1631427130
-      Run_0: 1759648629
-      Run_5: -125358883
+      FantasyKnight_Jump_1: -1187425628
+      FantasyKnight_Jump_0: -1356780663
+      FantasyKnight_Jump_2: -827313057
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

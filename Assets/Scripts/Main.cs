@@ -12,21 +12,16 @@ namespace PixelGame
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private AnimationConfig _animationConfig;
 
-        private SpriteAnimatorController _animatorController;
         private PlayerController _playerController;
+
         private void Start()
         {
-            _animatorController = new SpriteAnimatorController(_playerView.AnimationConfig);
-            _animatorController.StartAnimation(_playerView.SpriteRenderer, AnimaState.Run, true, _playerView.AnimationSpeed);
-
-            var playerModel = new PlayerModel(_playerView.Rigidbody, _playerView.MaxHealth, _playerView.Speed);
-
-            _playerController = new PlayerController(playerModel, _animatorController);
+            _playerController = new PlayerController(_playerView);
         }
 
         private void Update()
         {
-            _animatorController.Update();
+            _playerController.Execute();
         }
 
         private void FixedUpdate()

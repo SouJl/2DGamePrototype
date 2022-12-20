@@ -5,6 +5,7 @@ namespace PixelGame.View
     [RequireComponent(typeof(SpriteRenderer))]
     public class LevelObjectView : MonoBehaviour
     {
+        [Header("Object base settings")]
         [SerializeField] private Transform _transform;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Collider2D _collider;
@@ -15,10 +16,18 @@ namespace PixelGame.View
         public Collider2D Collider { get => _collider;}
         public Rigidbody2D Rigidbody { get => _rigidbody; }
 
-        private void Awake()
+        public virtual void Awake()
         {
             _transform = GetComponent<Transform>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            if(TryGetComponent(out Collider2D collider)) 
+            {
+                _collider = collider;
+            }
+            if (TryGetComponent(out Rigidbody2D rigidbody))
+            {
+                _rigidbody = rigidbody;
+            }
         }
     }
 }

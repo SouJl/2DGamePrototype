@@ -671,8 +671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805545141}
+  - component: {fileID: 805545144}
   - component: {fileID: 805545140}
-  - component: {fileID: 805545139}
   - component: {fileID: 805545143}
   - component: {fileID: 805545142}
   m_Layer: 0
@@ -682,22 +682,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &805545139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805545138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8a6caec62a88d6429c601dc40f120ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transform: {fileID: 0}
-  _spriteRenderer: {fileID: 0}
-  _collider: {fileID: 0}
-  _rigidbody: {fileID: 0}
 --- !u!212 &805545140
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -738,7 +722,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -812,6 +796,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &805545144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805545138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057983c35b4da9f4e8035f505503a448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _collider: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _maxHealth: 100
+  _speed: 2
+  _animationSpeed: 10
+  _animationConfig: {fileID: 11400000, guid: 5403b78581cf20943b8fcfce850a5d81, type: 2}
 --- !u!1 &858357322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1412,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 7
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -4700,7 +4704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b782f63217fe92847b4b83fd10d4b953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerView: {fileID: 805545139}
+  _playerView: {fileID: 805545144}
   _animationConfig: {fileID: 11400000, guid: 5403b78581cf20943b8fcfce850a5d81, type: 2}
 --- !u!1 &1361017436
 GameObject:

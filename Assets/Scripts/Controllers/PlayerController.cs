@@ -1,8 +1,8 @@
 ﻿using PixelGame.Enumerators;
 using PixelGame.Interfaces;
 using PixelGame.Model;
+using PixelGame.Model.StateMachines;
 using PixelGame.View;
-using UnityEngine;
 
 namespace PixelGame.Controllers
 {
@@ -13,20 +13,30 @@ namespace PixelGame.Controllers
 
         public PlayerController(PlayerView view) 
         {
-            _playerModel = new PlayerModel(view.Rigidbody, view.MaxHealth, view.Speed);
+            _playerModel = new PlayerModel(view.SpriteRenderer, view.Speed, view.Rigidbody, view.MaxHealth);
 
             _animatorController = new SpriteAnimatorController(view.AnimationConfig);
-            _animatorController.StartAnimation(view.SpriteRenderer, AnimaState.Run, true, view.AnimationSpeed);
+
+            InitStateMachine();
+        }
+
+        private void InitStateMachine() 
+        {
+            _playerModel.UnitMovementSM = new StateMachine();
+            _playerModel.Idle = new PlayerIdleState(_playerModel, _playerModel.UnitMovementSM, _animatorController, 0.01f);
+            _playerModel.Run = new PlayerRunState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
+            _playerModel.UnitMovementSM.Initialize(_playerModel.Idle);
         }
 
         public void Execute()
         {
-            _animatorController.Update();
+            _playerModel.UnitMovementSM.CurrentState.InputData();
+            _playerModel.UnitMovementSM.CurrentState.LogicUpdate();
         }
 
         public void FixedExecute()
         {
-            _playerModel.Move(Vector3.right);
+            _playerModel.UnitMovementSM.CurrentState.PhysicsUpdate();
         }
     }
 }

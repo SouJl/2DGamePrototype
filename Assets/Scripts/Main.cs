@@ -1,16 +1,13 @@
 using PixelGame.View;
 using PixelGame.Controllers;
 using UnityEngine;
-using PixelGame.Configs;
-using PixelGame.Enumerators;
-using PixelGame.Model;
 
 namespace PixelGame 
 {
     public class Main : MonoBehaviour
     {
+        [Header("Game Objects")]
         [SerializeField] private PlayerView _playerView;
-        [SerializeField] private AnimationConfig _animationConfig;
 
         private PlayerController _playerController;
 

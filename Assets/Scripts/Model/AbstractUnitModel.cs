@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public abstract class AbstractUnitModel : IMove
+    public abstract class AbstractUnitModel
     {
         public StateMachine UnitMovementSM { get; set; }
         public State Idle { get; set; }
@@ -13,25 +13,25 @@ namespace PixelGame.Model
         public State Jump { get; set; }
 
         private SpriteRenderer _spriteRenderer;
-        private float _speed;
+        private IMove _moveModel;
 
-        public float Speed 
-        { 
-            get => _speed; 
-            set => _speed = value; 
-        }
         public SpriteRenderer SpriteRenderer 
         { 
             get => _spriteRenderer; 
             set => _spriteRenderer = value; 
         }
-
-        public AbstractUnitModel(SpriteRenderer spriteRenderer, float speed) 
-        {
-            _spriteRenderer = spriteRenderer;
-            _speed = speed;
+     
+        public IMove MoveModel 
+        { 
+            get => _moveModel; 
+            set => _moveModel = value; 
         }
 
-        public abstract void Move(Vector2 input);
+ 
+        public AbstractUnitModel(SpriteRenderer spriteRenderer, IMove movementModel) 
+        {
+            _spriteRenderer = spriteRenderer;
+            _moveModel = movementModel;
+        }
     }
 }

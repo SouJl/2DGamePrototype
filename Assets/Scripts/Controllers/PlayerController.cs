@@ -13,9 +13,11 @@ namespace PixelGame.Controllers
 
         public PlayerController(PlayerView view) 
         {
-            _playerModel = new PlayerModel(view.SpriteRenderer, view.Speed, view.Rigidbody, view.MaxHealth);
+            var moveModel = new PlayerMovementModel(view.Rigidbody, view.Speed, view.MoveThresh);
+            var jumpModel = new PlayerJumpModel(view.Rigidbody, view.JumpForce);
+            _playerModel = new PlayerModel(view.SpriteRenderer, moveModel, jumpModel, view.MaxHealth);
 
-            _animatorController = new SpriteAnimatorController(view.AnimationConfig);
+            _animatorController = new SpriteAnimatorController(view.AnimationConfig, view.AnimationSpeed);
 
             InitStateMachine();
         }
@@ -23,7 +25,7 @@ namespace PixelGame.Controllers
         private void InitStateMachine() 
         {
             _playerModel.UnitMovementSM = new StateMachine();
-            _playerModel.Idle = new PlayerIdleState(_playerModel, _playerModel.UnitMovementSM, _animatorController, 0.01f);
+            _playerModel.Idle = new PlayerIdleState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
             _playerModel.Run = new PlayerRunState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
             _playerModel.UnitMovementSM.Initialize(_playerModel.Idle);
         }

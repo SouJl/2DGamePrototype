@@ -5,22 +5,16 @@ namespace PixelGame.Model
 {
     public class PlayerModel: AbstractUnitModel
     {
-        private Rigidbody2D _rgdBody;
+        private IJump _jumpModel;
         private float _maxHealth;
-
-  
-        public Rigidbody2D RgdBody { get => _rgdBody; set => _rgdBody = value; }
+        
         public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+        public IJump JumpModel { get => _jumpModel; set => _jumpModel = value; }
 
-        public PlayerModel(SpriteRenderer spriteRenderer, float speed, Rigidbody2D rgdbody, float maxHealth) : base(spriteRenderer, speed)
+        public PlayerModel(SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, float maxHealth) : base(spriteRenderer, movementModel)
         {
-            _rgdBody = rgdbody;
+            _jumpModel = jumpModel;
             _maxHealth = maxHealth;
-        }
-
-        public override void Move(Vector2 input)
-        {
-            RgdBody.MovePosition(RgdBody.position + input * Speed * Time.fixedDeltaTime);
         }
     }
 }

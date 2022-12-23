@@ -24,7 +24,7 @@ namespace PixelGame.Model.StateMachines
             _isStay = false;
             _isStay = false;
             
-            animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Run, true, 10);
+            animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Run, true);
         }
 
         public override void InputData()
@@ -49,7 +49,10 @@ namespace PixelGame.Model.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            unit.Move(_horizontalInput);
+            
+            unit.SpriteRenderer.flipX = _horizontalInput.x < 0;
+
+            unit.MoveModel.Move(_horizontalInput);
         }
 
 

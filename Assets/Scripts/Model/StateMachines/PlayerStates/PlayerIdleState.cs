@@ -11,11 +11,10 @@ namespace PixelGame.Model.StateMachines
         private bool _isJump;
         private bool _isRun;
 
-        private float _movingThresh;
 
-        public PlayerIdleState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController, float movingThresh) : base(unit, stateMachine, animatorController)
+        public PlayerIdleState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
         {
-            _movingThresh = movingThresh;
+
         }
 
         public override void Enter()
@@ -23,14 +22,14 @@ namespace PixelGame.Model.StateMachines
             base.Enter();
             _isJump = false;
             _isRun = false;
-            animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Idle, true, 10);
+            animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Idle, true);
         }
 
         public override void InputData()
         {
             base.InputData();
             _xAxisInput = Input.GetAxis("Horizontal");
-            _isRun = Mathf.Abs(_xAxisInput) > _movingThresh;
+            _isRun = Mathf.Abs(_xAxisInput) > unit.MoveModel.MovingThresh;
 
             _isJump = Input.GetKeyDown(KeyCode.Space);
         }

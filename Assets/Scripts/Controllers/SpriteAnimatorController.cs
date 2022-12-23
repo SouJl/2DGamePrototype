@@ -39,18 +39,20 @@ namespace PixelGame.Controllers
         private AnimationConfig _config;
         private Dictionary<SpriteRenderer, Animation> _activeAnimations = new Dictionary<SpriteRenderer, Animation>();
 
+        private float _animationSpeed;
 
-        public SpriteAnimatorController(AnimationConfig config) 
+        public SpriteAnimatorController(AnimationConfig config, float animationSpeed) 
         {
             _config = config;
+            _animationSpeed = animationSpeed;
         }
 
-        public void StartAnimation(SpriteRenderer spriteRenderer, AnimaState state, bool loop, float speed)
+        public void StartAnimation(SpriteRenderer spriteRenderer, AnimaState state, bool loop)
         {
             if (_activeAnimations.TryGetValue(spriteRenderer, out var animation))
             {
                 animation.Loop = loop;
-                animation.Speed = speed;
+                animation.Speed = _animationSpeed;
                 animation.Sleeps = false;
                 if (animation.State != state)
                 {
@@ -66,7 +68,7 @@ namespace PixelGame.Controllers
                     State = state,
                     Sprites = _config.SpriteSequences.Find(sequence => sequence.State == state).Sprites,
                     Loop = loop,
-                    Speed = speed
+                    Speed = _animationSpeed
                 });
             }
         }

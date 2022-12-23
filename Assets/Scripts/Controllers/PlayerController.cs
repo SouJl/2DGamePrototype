@@ -27,6 +27,8 @@ namespace PixelGame.Controllers
             _playerModel.UnitMovementSM = new StateMachine();
             _playerModel.Idle = new PlayerIdleState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
             _playerModel.Run = new PlayerRunState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
+            _playerModel.Jump = new PlayerJumpState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
+
             _playerModel.UnitMovementSM.Initialize(_playerModel.Idle);
         }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
-    public class PlayerJumpState : State
+    public class PlayerJumpState : State 
     {
         private Vector2 _horizontalInput;
         private bool _isGround;

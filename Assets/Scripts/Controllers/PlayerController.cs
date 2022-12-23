@@ -15,7 +15,7 @@ namespace PixelGame.Controllers
         {
             var moveModel = new PlayerMovementModel(view.Rigidbody, view.Speed, view.MoveThresh);
             var jumpModel = new PlayerJumpModel(view.Rigidbody, view.JumpForce);
-            _playerModel = new PlayerModel(view.SpriteRenderer, moveModel, jumpModel, view.MaxHealth);
+            _playerModel = new PlayerModel(view.SpriteRenderer, view.Collider , moveModel, jumpModel, view.MaxHealth);
 
             _animatorController = new SpriteAnimatorController(view.AnimationConfig, view.AnimationSpeed);
 
@@ -38,6 +38,7 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
+            _playerModel.ContactsPoller.Update();
             _playerModel.UnitMovementSM.CurrentState.PhysicsUpdate();
         }
     }

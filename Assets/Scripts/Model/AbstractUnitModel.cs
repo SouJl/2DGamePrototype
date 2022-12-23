@@ -13,6 +13,7 @@ namespace PixelGame.Model
         public State Jump { get; set; }
 
         private SpriteRenderer _spriteRenderer;
+        private ContactsPollerModel _contactsPoller;
         private IMove _moveModel;
 
         public SpriteRenderer SpriteRenderer 
@@ -20,17 +21,24 @@ namespace PixelGame.Model
             get => _spriteRenderer; 
             set => _spriteRenderer = value; 
         }
-     
+        
+        public ContactsPollerModel ContactsPoller
+        {
+            get => _contactsPoller;
+            set => _contactsPoller = value;
+        }
+
         public IMove MoveModel 
         { 
             get => _moveModel; 
             set => _moveModel = value; 
         }
+       
 
- 
-        public AbstractUnitModel(SpriteRenderer spriteRenderer, IMove movementModel) 
+        public AbstractUnitModel(SpriteRenderer spriteRenderer, Collider2D collider2D,  IMove movementModel) 
         {
             _spriteRenderer = spriteRenderer;
+            _contactsPoller = new ContactsPollerModel(collider2D);
             _moveModel = movementModel;
         }
     }

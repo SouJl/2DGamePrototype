@@ -9,16 +9,13 @@ namespace PixelGame.Model.StateMachines
     {
         private IMove _moveModel;
         private float _xAxisInput;
-        private bool _isRun;
 
-        private IJump _jumpModel;
-        private bool _doJump;
+        private bool _isRun;
         private bool _isJump;
       
         public PlayerIdleState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
         {
             _moveModel = unit.MoveModel;
-            _jumpModel = unit.JumpModel;
         }
 
         public override void Enter()
@@ -32,9 +29,10 @@ namespace PixelGame.Model.StateMachines
         public override void InputData()
         {
             base.InputData();
+
+            _isJump = Input.GetAxis("Vertical") > 0;
             _xAxisInput = Input.GetAxis("Horizontal");
             _isRun = Mathf.Abs(_xAxisInput) > _moveModel.MovingThresh;
-            _doJump = Input.GetKey(KeyCode.Space);
         }
 
 
@@ -50,23 +48,13 @@ namespace PixelGame.Model.StateMachines
             base.PhysicsUpdate();
 
             unit.SpriteRenderer.flipX = _xAxisInput < 0;
-
-            if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)
-            {
-                _jumpModel.Jump();
-            }
-
-            if (!unit.ContactsPoller.IsGrounded && _doJump)
-            {
-                _isJump = true;
-            }
+       
         }
 
         public override void Exit()
         {
             base.Exit();
             _isJump = false;
-            _doJump = false;
             _isRun = false;
             animatorController.StopAnimation(unit.SpriteRenderer);
         }

@@ -8,6 +8,8 @@ namespace PixelGame.Model.StateMachines
     {
         private float _xAxisInput;
 
+        private bool _doJump;
+
         private bool _isJump;
         private bool _isRun;
 
@@ -30,27 +32,40 @@ namespace PixelGame.Model.StateMachines
             base.InputData();
             _xAxisInput = Input.GetAxis("Horizontal");
             _isRun = Mathf.Abs(_xAxisInput) > unit.MoveModel.MovingThresh;
-
-            _isJump = Input.GetKeyDown(KeyCode.Space);
+            _doJump = Input.GetKey(KeyCode.Space);
         }
 
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            if (_isJump) stateMachine.ChangeState(unit.Jump);
-            if (_isRun) stateMachine.ChangeState(unit.Run);
+            if(_isRun) stateMachine.ChangeState(unit.RunState);
+            if(_isJump) stateMachine.ChangeState(unit.JumpState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+
+            unit.SpriteRenderer.flipX = _xAxisInput < 0;
+
+            if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(unit.JumpModel.GetVelocity().y) <= 0.2f)
+            {
+                unit.JumpModel.Jump();
+            }
+
+            if (!unit.ContactsPoller.IsGrounded && _doJump)
+            {
+                _isJump = true;
+            }
         }
 
         public override void Exit()
         {
             base.Exit();
+            _isJump = false;
+            _doJump = false;
+            _isRun = false;
             animatorController.StopAnimation(unit.SpriteRenderer);
         }
 

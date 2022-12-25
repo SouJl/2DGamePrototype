@@ -789,7 +789,7 @@ MonoBehaviour:
   _maxHealth: 100
   _speed: 100
   _moveThresh: 0.01
-  _jumpForce: 10
+  _jumpForce: 250
   _animationSpeed: 10
   _animationConfig: {fileID: 11400000, guid: 5403b78581cf20943b8fcfce850a5d81, type: 2}
 --- !u!70 &805545145

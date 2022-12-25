@@ -7,8 +7,10 @@ namespace PixelGame.Model.StateMachines
     public class PlayerRunState : State
     {
         private Vector2 _horizontalInput;
-        
+
+        private bool _doJump;
         private bool _isJump;
+
         private bool _isStay;
 
 
@@ -20,10 +22,8 @@ namespace PixelGame.Model.StateMachines
         public override void Enter()
         {
             base.Enter();
-
-            _isStay = false;
-            _isStay = false;
-            
+            _isJump = false;
+            _isStay = false;            
             animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Run, true);
         }
 
@@ -32,18 +32,18 @@ namespace PixelGame.Model.StateMachines
             base.InputData();
 
             _horizontalInput.x = Input.GetAxis("Horizontal");
-            
-            _isJump = Input.GetKeyDown(KeyCode.Space);
 
-            _isStay = _horizontalInput.magnitude == 0 && !_isJump ? true : false;  
+            _doJump = Input.GetKey(KeyCode.Space);
+
+            _isStay = _horizontalInput.magnitude == 0 && !_doJump ? true : false;  
         }
 
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isJump) stateMachine.ChangeState(unit.Jump);
-            if (_isStay) stateMachine.ChangeState(unit.Idle);
+            if (_isJump) stateMachine.ChangeState(unit.JumpState);
+            if (_isStay) stateMachine.ChangeState(unit.IdleState);
         }
 
         public override void PhysicsUpdate()
@@ -53,12 +53,25 @@ namespace PixelGame.Model.StateMachines
             unit.SpriteRenderer.flipX = _horizontalInput.x < 0;
 
             unit.MoveModel.Move(_horizontalInput);
+
+
+            if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(unit.JumpModel.GetVelocity().y) <= 0.2f)
+            {
+                unit.JumpModel.Jump();
+            }
+
+            if (!unit.ContactsPoller.IsGrounded && _doJump)
+            {
+                _isJump = true;
+            }
         }
 
 
         public override void Exit()
         {
             base.Exit();
+            _isJump = false;
+            _doJump = false;
             animatorController.StopAnimation(unit.SpriteRenderer);
         }
 

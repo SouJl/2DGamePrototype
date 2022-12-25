@@ -18,5 +18,10 @@ namespace PixelGame.Model
         }
 
         public abstract void Jump();
+
+        public Vector2 GetVelocity() => Rgdbody.velocity;
+
+        public float GetPosition() => Rgdbody.position.y;
+
     }
 }

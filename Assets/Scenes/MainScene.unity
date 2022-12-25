@@ -803,7 +803,7 @@ MonoBehaviour:
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
   _maxHealth: 100
-  _speed: 250
+  _speed: 200
   _moveThresh: 0.01
   _jumpForce: 300
   _jumpThreshold: 0.2

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4a925e9c5207c854a898353ba596f6df
+guid: 3842a76028d40a644994e304b8293023
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,118 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FantasyKnight_Run_0
+      name: Knight_Roll_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 1
-        width: 27
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fb6669866b48884f87c1fe2c53bb3c0
-      internalID: -208557491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasyKnight_Run_1
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 0
-        width: 24
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4b528aab138cf04e9b7057b2be90643
-      internalID: -2083853578
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasyKnight_Run_2
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 0
-        width: 16
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eab93100da22d074bb7eea9a77cc9d98
-      internalID: -1350733501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasyKnight_Run_3
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 1
-        width: 17
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 536a3e20134b5f042adabcc7a8c00468
-      internalID: -1622328144
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasyKnight_Run_4
-      rect:
-        serializedVersion: 2
-        x: 524
-        y: 4
-        width: 24
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79c0d511fa6327e43b00c5326194e491
-      internalID: -1352867891
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasyKnight_Run_5
-      rect:
-        serializedVersion: 2
-        x: 641
+        x: 51
         y: 2
-        width: 28
-        height: 35
+        width: 22
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +131,188 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c1aa1efc0ba8784dbbff39e80e0d2e1
-      internalID: -1688635171
+      spriteID: aee8a46981c04e44da18fb67a74c667b
+      internalID: -731114903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FantasyKnight_Run_6
+      name: Knight_Roll_1
       rect:
         serializedVersion: 2
-        x: 764
+        x: 164
+        y: 6
+        width: 35
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1355cf857a7965648b3ec1427eca531b
+      internalID: -1690187067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_2
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 9
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9da4d8cc2009a9040b50e18e3553f6ad
+      internalID: -683395268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_3
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 13
+        width: 41
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69ed7362baaa69744826564dbf67d61b
+      internalID: -901031350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_4
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 13
+        width: 40
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a02d758ae8f1f4fbcccac90c014c89
+      internalID: -1145945175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 8
+        width: 42
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319a5e8456cf39044a0206ee378c4a87
+      internalID: 790445445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe31a12b4e940d4e82d53f9da10e5cd
+      internalID: 846855183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_7
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 0
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87dc527a1ce5a1345b9ab38aa9746983
+      internalID: 774573546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_8
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 0
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b0e8881e33e96479517a354c8ddb3d
+      internalID: 1141570147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Roll_9
+      rect:
+        serializedVersion: 2
+        x: 1130
         y: 0
         width: 24
-        height: 36
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +320,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be0044b321e23ad4683be2e0f1f976e0
-      internalID: -476871604
+      spriteID: 294e544d6e28a5a438c4102b26cc3f0e
+      internalID: 577699825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FantasyKnight_Run_7
+      name: Knight_Roll_10
       rect:
         serializedVersion: 2
-        x: 887
+        x: 1250
         y: 0
-        width: 16
-        height: 36
+        width: 20
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,41 +341,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b209a37b568d8c04db72fadf9025594b
-      internalID: -1475025542
+      spriteID: 50286dab3c7a217428611e0ea016680b
+      internalID: -167221326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FantasyKnight_Run_8
+      name: Knight_Roll_11
       rect:
         serializedVersion: 2
-        x: 1007
-        y: 1
-        width: 16
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d5c54934c934ef478fc80f84f8d042a
-      internalID: -1363601814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasyKnight_Run_9
-      rect:
-        serializedVersion: 2
-        x: 1123
-        y: 4
+        x: 1366
+        y: 0
         width: 25
-        height: 34
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,8 +362,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 472d07b326549444da08ec3e6814b83d
-      internalID: -1552435967
+      spriteID: 94c03bec036a10946bbc6660a6d40257
+      internalID: 2020564193
       vertices: []
       indices: 
       edges: []
@@ -337,16 +379,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FantasyKnight_Run_6: -476871604
-      FantasyKnight_Run_2: -1350733501
-      FantasyKnight_Run_4: -1352867891
-      FantasyKnight_Run_5: -1688635171
-      FantasyKnight_Run_0: -208557491
-      FantasyKnight_Run_9: -1552435967
-      FantasyKnight_Run_3: -1622328144
-      FantasyKnight_Run_8: -1363601814
-      FantasyKnight_Run_7: -1475025542
-      FantasyKnight_Run_1: -2083853578
+      Knight_Roll_6: 846855183
+      Knight_Roll_1: -1690187067
+      Knight_Roll_5: 790445445
+      Knight_Roll_0: -731114903
+      Knight_Roll_4: -1145945175
+      Knight_Roll_8: 1141570147
+      Knight_Roll_11: 2020564193
+      Knight_Roll_10: -167221326
+      Knight_Roll_3: -901031350
+      Knight_Roll_2: -683395268
+      Knight_Roll_9: 577699825
+      Knight_Roll_7: 774573546
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

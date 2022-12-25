@@ -1,10 +1,13 @@
 using PixelGame.Interfaces;
+using PixelGame.Model.StateMachines;
 using UnityEngine;
 
 namespace PixelGame.Model 
 {
     public class PlayerModel: AbstractUnitModel
     {
+        public State RollState { get; set; }
+
         private float _maxHealth;
 
         public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
-    public class PlayerJumpState : State 
+    public class PlayerJumpState : PlayerState
     {
         private IMove _moveModel;
         private float _xAxisInput;
@@ -16,15 +16,14 @@ namespace PixelGame.Model.StateMachines
 
         public PlayerJumpState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
         {
-            _moveModel = unit.MoveModel;
-            _jumpModel = unit.JumpModel;
+            _moveModel = player.MoveModel;
+            _jumpModel = player.JumpModel;
         }
 
         public override void Enter()
         {
             base.Enter();
-            _doJump = true;
-            _isGround = false;
+            _xAxisInput = 0f;
         }
 
         public override void InputData()
@@ -36,29 +35,29 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isGround) stateMachine.ChangeState(unit.IdleState);
+            if (_isGround) stateMachine.ChangeState(player.IdleState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
 
-            unit.SpriteRenderer.flipX = _xAxisInput < 0;
+            player.SpriteRenderer.flipX = _xAxisInput < 0;
 
             _moveModel.Move(_xAxisInput);
 
-            if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)
+            if (player.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)
             {
                 _jumpModel.Jump();
             }
 
-            if (unit.ContactsPoller.IsGrounded)
+            if (player.ContactsPoller.IsGrounded)
             {
                 _isGround = true;
             }
             else if (Mathf.Abs(_jumpModel.GetVelocity().y) > 1f) 
             {
-                animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Jump, true);
+                animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Jump, true);
                 _doJump = false;
             }
         }
@@ -67,8 +66,9 @@ namespace PixelGame.Model.StateMachines
         {
             base.Exit();
             _xAxisInput = 0f;
+            _doJump = true;
             _isGround = false;
-            animatorController.StopAnimation(unit.SpriteRenderer);
+            animatorController.StopAnimation(player.SpriteRenderer);
         }
     }
 }

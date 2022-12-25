@@ -1,5 +1,4 @@
-﻿using PixelGame.Enumerators;
-using PixelGame.Interfaces;
+﻿using PixelGame.Interfaces;
 using PixelGame.Model;
 using PixelGame.Model.StateMachines;
 using PixelGame.View;
@@ -9,15 +8,17 @@ namespace PixelGame.Controllers
     public class PlayerController: IExecute
     {
         private PlayerModel _playerModel;
+        private PlayerView _view;
         private SpriteAnimatorController _animatorController;
 
         public PlayerController(PlayerView view) 
         {
-            var moveModel = new PlayerMovementModel(view.Rigidbody, view.Speed, view.MoveThresh);
-            var jumpModel = new PlayerJumpModel(view.Rigidbody, view.JumpForce, view.JumpThreshold);
-            _playerModel = new PlayerModel(view.SpriteRenderer, view.Collider , moveModel, jumpModel, view.MaxHealth);
+            _view = view;
+            var moveModel = new PlayerMovementModel(_view.Rigidbody, _view.Speed, _view.MoveThresh);
+            var jumpModel = new PlayerJumpModel(_view.Rigidbody, _view.JumpForce, _view.JumpThreshold);
+            _playerModel = new PlayerModel(_view.SpriteRenderer, _view.Collider , moveModel, jumpModel, _view.MaxHealth);
 
-            _animatorController = new SpriteAnimatorController(view.AnimationConfig, view.AnimationSpeed);
+            _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);
 
             InitStateMachine();
         }
@@ -28,6 +29,7 @@ namespace PixelGame.Controllers
             _playerModel.IdleState = new PlayerIdleState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
             _playerModel.RunState = new PlayerRunState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
             _playerModel.JumpState = new PlayerJumpState(_playerModel, _playerModel.UnitMovementSM, _animatorController);
+            _playerModel.RollState = new PlayerRollState(_playerModel, _playerModel.UnitMovementSM, _animatorController, _view.RollFrames, _view.AnimationSpeed);
 
             _playerModel.UnitMovementSM.Initialize(_playerModel.IdleState);
         }

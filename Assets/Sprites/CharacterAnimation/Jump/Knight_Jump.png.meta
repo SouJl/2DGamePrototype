@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FantasyKnight_Jump_0
+      name: Knight_Jump_0
       rect:
         serializedVersion: 2
         x: 45
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da6c4596cc5717740a7fd3b446187dcf
-      internalID: -1356780663
+      spriteID: 04b36e53a23865747986c37a2837f68b
+      internalID: 1341412211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FantasyKnight_Jump_1
+      name: Knight_Jump_1
       rect:
         serializedVersion: 2
         x: 165
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 523c2114ba281554ca2303862bce781a
-      internalID: -1187425628
+      spriteID: a4f088b77d98ec14e82de4076e1fdcb2
+      internalID: -146544651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FantasyKnight_Jump_2
+      name: Knight_Jump_2
       rect:
         serializedVersion: 2
         x: 285
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e72b53caad39e4647918497708542618
-      internalID: -827313057
+      spriteID: 1f6e963f5c3e88b45ab3bb6e4c6cc1ed
+      internalID: 1133196509
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FantasyKnight_Jump_1: -1187425628
-      FantasyKnight_Jump_0: -1356780663
-      FantasyKnight_Jump_2: -827313057
+      Knight_Jump_0: 1341412211
+      Knight_Jump_2: 1133196509
+      Knight_Jump_1: -146544651
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

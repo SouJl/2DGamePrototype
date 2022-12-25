@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
-    public class PlayerIdleState : State
+    public class PlayerIdleState : PlayerState
     {
         private IMove _moveModel;
         private float _xAxisInput;
@@ -15,15 +15,14 @@ namespace PixelGame.Model.StateMachines
       
         public PlayerIdleState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
         {
-            _moveModel = unit.MoveModel;
+            _moveModel = player.MoveModel;
         }
 
         public override void Enter()
         {
             base.Enter();
-            _isJump = false;
-            _isRun = false;
-            animatorController.StartAnimation(unit.SpriteRenderer, AnimaState.Idle, true);
+            _xAxisInput = 0f;
+            animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Idle, true);
         }
 
         public override void InputData()
@@ -39,16 +38,13 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(_isRun) stateMachine.ChangeState(unit.RunState);
-            if(_isJump) stateMachine.ChangeState(unit.JumpState);
+            if(_isRun) stateMachine.ChangeState(player.RunState);
+            if(_isJump) stateMachine.ChangeState(player.JumpState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
-            unit.SpriteRenderer.flipX = _xAxisInput < 0;
-       
         }
 
         public override void Exit()
@@ -56,7 +52,7 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             _isJump = false;
             _isRun = false;
-            animatorController.StopAnimation(unit.SpriteRenderer);
+            animatorController.StopAnimation(player.SpriteRenderer);
         }
 
     }

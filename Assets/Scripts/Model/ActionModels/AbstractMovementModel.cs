@@ -20,6 +20,6 @@ namespace PixelGame.Model
             _movingThresh = movingThresh;
         }
 
-        public abstract void Move(Vector2 input);
+        public abstract void Move(float inpitValue);
     }
 }

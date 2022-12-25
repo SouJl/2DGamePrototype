@@ -54,7 +54,7 @@ namespace PixelGame.Model.StateMachines
             
             unit.SpriteRenderer.flipX = _xAxisInput < 0;
 
-            _moveModel.Move(new Vector2(_xAxisInput, 0));
+            _moveModel.Move(_xAxisInput);
 
 
             if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)

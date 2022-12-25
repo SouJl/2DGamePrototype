@@ -6,6 +6,6 @@ namespace PixelGame.Interfaces
     {
         float Speed { get; set; }
         float MovingThresh { get; set; }
-        void Move(Vector2 input);
+        void Move(float inpitValue);
     }
 }

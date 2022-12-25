@@ -8,7 +8,7 @@ namespace PixelGame.Model
         public float Speed { get; set; }
         public float MovingThresh { get; set; }
 
-        public void Move(Vector2 input)
+        public void Move(float inpitValue)
         {
             Debug.Log("[NoneMoveModel] - Unit can't move!");
         }

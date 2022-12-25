@@ -16,6 +16,7 @@ namespace PixelGame.View
         [SerializeField] private float _moveThresh = 0.01f;
         [SerializeField] private float _jumpForce = 10f;
         [SerializeField] private float _jumpThreshold = 0.2f;
+        [SerializeField] private float _flyThreshold = 1f;
         [SerializeField] private int _rollFrames = 12;
 
         [Space(10)]
@@ -30,10 +31,12 @@ namespace PixelGame.View
         public float MoveThresh { get => _moveThresh;}
         public float JumpForce { get => _jumpForce;}
         public float JumpThreshold { get => _jumpThreshold; }
+        public float FlyThreshold { get => _flyThreshold;}
         public int RollFrames { get => _rollFrames; }
 
         public int AnimationSpeed { get => _animationSpeed;}
         public AnimationConfig AnimationConfig { get => _animationConfig; }
+       
 
         public override void Awake()
         {

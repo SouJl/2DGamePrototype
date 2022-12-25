@@ -7,6 +7,7 @@ namespace PixelGame.Model
     {
         public float JumpForse { get; set; }
         public float JumpThershold { get; set; }
+        public float FlyThershold { get; set; }
 
         public void Jump()
         {

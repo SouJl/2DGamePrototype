@@ -1,22 +1,24 @@
 ﻿using PixelGame.Controllers;
 using PixelGame.Enumerators;
+using PixelGame.Interfaces;
 using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
     public class PlayerIdleState : State
     {
+        private IMove _moveModel;
         private float _xAxisInput;
-
-        private bool _doJump;
-
-        private bool _isJump;
         private bool _isRun;
 
-
+        private IJump _jumpModel;
+        private bool _doJump;
+        private bool _isJump;
+      
         public PlayerIdleState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
         {
-
+            _moveModel = unit.MoveModel;
+            _jumpModel = unit.JumpModel;
         }
 
         public override void Enter()
@@ -31,7 +33,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
             _xAxisInput = Input.GetAxis("Horizontal");
-            _isRun = Mathf.Abs(_xAxisInput) > unit.MoveModel.MovingThresh;
+            _isRun = Mathf.Abs(_xAxisInput) > _moveModel.MovingThresh;
             _doJump = Input.GetKey(KeyCode.Space);
         }
 
@@ -49,9 +51,9 @@ namespace PixelGame.Model.StateMachines
 
             unit.SpriteRenderer.flipX = _xAxisInput < 0;
 
-            if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(unit.JumpModel.GetVelocity().y) <= 0.2f)
+            if (unit.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)
             {
-                unit.JumpModel.Jump();
+                _jumpModel.Jump();
             }
 
             if (!unit.ContactsPoller.IsGrounded && _doJump)

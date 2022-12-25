@@ -7,14 +7,17 @@ namespace PixelGame.Model
     {
         private Rigidbody2D _rgdbody;
         private float _jumpForse;
+        private float _jumpThershold;
 
         public float JumpForse { get => _jumpForse; set => _jumpForse = value; }
         public Rigidbody2D Rgdbody { get => _rgdbody; }
+        public float JumpThershold { get => _jumpThershold; set => _jumpThershold = value; }
 
-        public AbstractJumpModel(Rigidbody2D rigidbody, float jumpForce) 
+        public AbstractJumpModel(Rigidbody2D rigidbody, float jumpForce, float jumpThershold) 
         {
             _rgdbody = rigidbody;
             _jumpForse = jumpForce;
+            _jumpThershold = jumpThershold;
         }
 
         public abstract void Jump();

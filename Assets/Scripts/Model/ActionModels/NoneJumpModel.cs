@@ -6,6 +6,7 @@ namespace PixelGame.Model
     public sealed class NoneJumpModel : IJump
     {
         public float JumpForse { get; set; }
+        public float JumpThershold { get; set; }
 
         public void Jump()
         {

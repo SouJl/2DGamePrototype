@@ -15,6 +15,7 @@ namespace PixelGame.View
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _moveThresh = 0.01f;
         [SerializeField] private float _jumpForce = 10f;
+        [SerializeField] private float _jumpThreshold = 0.2f;
 
         [Space(10)]
 
@@ -25,8 +26,9 @@ namespace PixelGame.View
         public float MaxHealth { get => _maxHealth;}
       
         public float Speed { get => _speed;}
-        public float MoveThresh { get => _moveThresh; set => _moveThresh = value; }
-        public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
+        public float MoveThresh { get => _moveThresh;}
+        public float JumpForce { get => _jumpForce;}
+        public float JumpThreshold { get => _jumpThreshold; }
 
         public int AnimationSpeed { get => _animationSpeed;}
         public AnimationConfig AnimationConfig { get => _animationConfig; }

@@ -6,6 +6,8 @@ namespace PixelGame.Interfaces
     {
         float JumpForse { get; set; }
 
+        float JumpThershold { get; set; }
+
         void Jump();
 
         Vector2 GetVelocity();

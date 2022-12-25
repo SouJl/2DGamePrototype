@@ -14,7 +14,7 @@ namespace PixelGame.Controllers
         public PlayerController(PlayerView view) 
         {
             var moveModel = new PlayerMovementModel(view.Rigidbody, view.Speed, view.MoveThresh);
-            var jumpModel = new PlayerJumpModel(view.Rigidbody, view.JumpForce);
+            var jumpModel = new PlayerJumpModel(view.Rigidbody, view.JumpForce, view.JumpThreshold);
             _playerModel = new PlayerModel(view.SpriteRenderer, view.Collider , moveModel, jumpModel, view.MaxHealth);
 
             _animatorController = new SpriteAnimatorController(view.AnimationConfig, view.AnimationSpeed);

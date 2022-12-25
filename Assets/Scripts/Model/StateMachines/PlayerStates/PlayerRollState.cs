@@ -57,6 +57,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.Exit();
             _isEnd = false;
+            _moveModel.Move(0);
             animatorController.StopAnimation(player.SpriteRenderer);
         }
     }

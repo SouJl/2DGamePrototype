@@ -34,7 +34,7 @@ namespace PixelGame.Model.StateMachines
             _xAxisInput = Input.GetAxis("Horizontal");
             _isStay = _xAxisInput == 0 && !_isJump ? true : false;
 
-            _isRoll = Input.GetKeyDown(KeyCode.Space);
+            _isRoll = Input.GetKey(KeyCode.Space);
         }
 
 

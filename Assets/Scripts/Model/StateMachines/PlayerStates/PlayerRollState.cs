@@ -1,14 +1,11 @@
 ﻿using PixelGame.Controllers;
 using PixelGame.Enumerators;
-using PixelGame.Interfaces;
 using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
     public class PlayerRollState : PlayerState
     {
-        private IMove _moveModel;
-
         private float _rollFrames;
         private float _animationSpeed;
         private float _frameCount;
@@ -19,7 +16,6 @@ namespace PixelGame.Model.StateMachines
         {
             _rollFrames = rollFrames;
             _animationSpeed = animationSpeed;
-            _moveModel = player.MoveModel;
         }
 
         public override void Enter()

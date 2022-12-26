@@ -7,29 +7,23 @@ namespace PixelGame.Model.StateMachines
 {
     public class PlayerJumpState : PlayerState
     {
-        private IMove _moveModel;
-        private float _xAxisInput;
-
         private IJump _jumpModel;
         private bool _doJump;
         private bool _isGround;
 
         public PlayerJumpState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
         {
-            _moveModel = player.MoveModel;
             _jumpModel = player.JumpModel;
         }
 
         public override void Enter()
         {
             base.Enter();
-            _xAxisInput = 0f;
         }
 
         public override void InputData()
         {
             base.InputData();
-            _xAxisInput = Input.GetAxis("Horizontal");
         }
 
         public override void LogicUpdate()
@@ -65,7 +59,6 @@ namespace PixelGame.Model.StateMachines
         public override void Exit()
         {
             base.Exit();
-            _xAxisInput = 0f;
             _doJump = true;
             _isGround = false;
             animatorController.StopAnimation(player.SpriteRenderer);

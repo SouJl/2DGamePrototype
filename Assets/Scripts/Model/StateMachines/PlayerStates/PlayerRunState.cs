@@ -1,28 +1,22 @@
 ﻿using PixelGame.Controllers;
 using PixelGame.Enumerators;
-using PixelGame.Interfaces;
 using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
     public class PlayerRunState : PlayerState
     {
-        private IMove _moveModel;
-        private float _xAxisInput;
-
         private bool _isStay;
         private bool _isJump;
         private bool _isRoll;
 
         public PlayerRunState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController) 
         {
-            _moveModel = player.MoveModel;
         }
 
         public override void Enter()
         {
             base.Enter();
-            _xAxisInput = 0f;
             animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Run, true);
         }
 
@@ -30,8 +24,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
 
-            _isJump = Input.GetAxis("Vertical") > 0;
-            _xAxisInput = Input.GetAxis("Horizontal");
+            _isJump = _yAxisInput > 0;
             _isStay = _xAxisInput == 0 && !_isJump ? true : false;
 
             _isRoll = Input.GetKey(KeyCode.Space);

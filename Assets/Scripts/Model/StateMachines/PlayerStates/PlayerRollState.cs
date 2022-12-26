@@ -12,7 +12,7 @@ namespace PixelGame.Model.StateMachines
 
         private bool _isEnd;
 
-        public PlayerRollState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController, int rollFrames, float animationSpeed) : base(unit, stateMachine, animatorController)
+        public PlayerRollState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, int rollFrames, float animationSpeed) : base(stateMachine, animatorController, unit)
         {
             _rollFrames = rollFrames;
             _animationSpeed = animationSpeed;

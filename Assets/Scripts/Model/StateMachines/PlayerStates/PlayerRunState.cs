@@ -10,7 +10,7 @@ namespace PixelGame.Model.StateMachines
         private bool _isJump;
         private bool _isRoll;
 
-        public PlayerRunState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController) 
+        public PlayerRunState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
         {
         }
 

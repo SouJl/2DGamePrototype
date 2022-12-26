@@ -11,7 +11,7 @@ namespace PixelGame.Model.StateMachines
         private bool _doJump;
         private bool _isGround;
 
-        public PlayerJumpState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
+        public PlayerJumpState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
         {
             _jumpModel = player.JumpModel;
         }
@@ -19,6 +19,7 @@ namespace PixelGame.Model.StateMachines
         public override void Enter()
         {
             base.Enter();
+            _doJump = true;
         }
 
         public override void InputData()
@@ -59,7 +60,6 @@ namespace PixelGame.Model.StateMachines
         public override void Exit()
         {
             base.Exit();
-            _doJump = true;
             _isGround = false;
             animatorController.StopAnimation(player.SpriteRenderer);
         }

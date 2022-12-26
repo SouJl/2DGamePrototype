@@ -7,13 +7,14 @@ namespace PixelGame.Model.StateMachines
     public class PlayerState : State
     {
         protected PlayerModel player;
+
         protected IMove _moveModel;
         protected float _xAxisInput;
         protected float _yAxisInput;
 
-        protected PlayerState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
+        public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController)
         {
-            player = unit as PlayerModel;
+            player = unit;
             _moveModel = unit.MoveModel;
         }
 

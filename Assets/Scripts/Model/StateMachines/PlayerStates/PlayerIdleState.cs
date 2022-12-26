@@ -8,8 +8,8 @@ namespace PixelGame.Model.StateMachines
     {
         private bool _isRun;
         private bool _isJump;
-      
-        public PlayerIdleState(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController) : base(unit, stateMachine, animatorController)
+
+        public PlayerIdleState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
         {
         }
 

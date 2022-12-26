@@ -4,13 +4,11 @@ namespace PixelGame.Model.StateMachines
 {
     public class State
     {
-        protected AbstractUnitModel unit;
         protected StateMachine stateMachine;
         protected SpriteAnimatorController animatorController;
 
-        protected State(AbstractUnitModel unit, StateMachine stateMachine, SpriteAnimatorController animatorController)
+        protected State(StateMachine stateMachine, SpriteAnimatorController animatorController)
         {
-            this.unit = unit;
             this.stateMachine = stateMachine;
             this.animatorController = animatorController;
         }

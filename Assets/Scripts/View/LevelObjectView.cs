@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace PixelGame.View 
@@ -16,6 +17,9 @@ namespace PixelGame.View
         public Collider2D Collider { get => _collider;}
         public Rigidbody2D Rigidbody { get => _rigidbody; }
 
+
+        public Action<LevelObjectView> OnLevelObjectContact { get; set; }
+
         public virtual void Awake()
         {
             _transform = GetComponent<Transform>();
@@ -28,6 +32,13 @@ namespace PixelGame.View
             {
                 _rigidbody = rigidbody;
             }
+
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            var collideObject = collision.gameObject.GetComponent<LevelObjectView>();
+            OnLevelObjectContact?.Invoke(collideObject);
         }
     }
 }

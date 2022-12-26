@@ -9,8 +9,6 @@ namespace PixelGame.Model
     {
         public StateMachine UnitMovementSM { get; set; }
         public State IdleState { get; set; }
-        public State RunState { get; set; }
-        public State JumpState { get; set; }
 
         private SpriteRenderer _spriteRenderer;
         private ContactsPollerModel _contactsPoller;

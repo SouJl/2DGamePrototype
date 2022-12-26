@@ -1,13 +1,14 @@
-﻿using PixelGame.Configs;
+﻿using PixelGame.Components;
+using PixelGame.Configs;
 using UnityEngine;
 
 namespace PixelGame.View
 {
     public class EnemyView:LevelObjectView
     {
-        [Header("Player Settings")]
+        [Header("Enemy Settings")]
         [SerializeField] private float _maxHealth = 50f;
-
+        [SerializeField] private LocatorComponent _locator;
 
         [Space(10)]
 
@@ -26,6 +27,7 @@ namespace PixelGame.View
         public float MoveThresh { get => _moveThresh; }
         public int AnimationSpeed { get => _animationSpeed; }
         public AnimationConfig AnimationConfig { get => _animationConfig;}
+        public LocatorComponent Locator { get => _locator;}
 
         public override void Awake()
         {

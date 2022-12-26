@@ -6,6 +6,8 @@ namespace PixelGame.Model
 {
     public class PlayerModel: AbstractUnitModel
     {
+        public State RunState { get; set; }
+        public State JumpState { get; set; }
         public State FallState { get; set; }
         public State RollState { get; set; }
 

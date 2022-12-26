@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f79d21c72790fd6419cef5e9b3de9302
-      internalID: 912550103
+      spriteID: 35df778907526f141bb2e3f0a06c230e
+      internalID: 777991720
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29fadea35676c00439bf5d692eab00a6
-      internalID: 1083367026
+      spriteID: c44ece12c81e2af49a5e88414a342a34
+      internalID: 270829633
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71ffb7dc630cea8499a54ddeafbcbadc
-      internalID: -1272733286
+      spriteID: 6acb203428c2f154c9b3a2bc0139912c
+      internalID: -1839967504
       vertices: []
       indices: 
       edges: []
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f4e4f0b9435d994b9dee20ce9ab58f7
-      internalID: -1643787084
+      spriteID: 401e4a1a0b5caf54fa3314e7db143e8e
+      internalID: 787042146
       vertices: []
       indices: 
       edges: []
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cfe9c0e292c57245a80d70c55c29ab9
-      internalID: 1219458110
+      spriteID: 91331d80fe3af804abab4b6b23873346
+      internalID: 922893450
       vertices: []
       indices: 
       edges: []
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d461ed14c20121e4097114f7f13acd7f
-      internalID: -130843454
+      spriteID: d16837fe7e367ea4ab6ed5bc8282866c
+      internalID: -1849014748
       vertices: []
       indices: 
       edges: []
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5f1bebedef47d34c884a8bd1b244f1f
-      internalID: -940369261
+      spriteID: 9a7134dcf7f06b349bda4dbe9c56f7bd
+      internalID: -23794858
       vertices: []
       indices: 
       edges: []
@@ -274,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bat_fly_2: -1272733286
-      Bat_fly_4: 1219458110
-      Bat_fly_6: -940369261
-      Bat_fly_3: -1643787084
-      Bat_fly_5: -130843454
-      Bat_fly_1: 1083367026
-      Bat_fly_0: 912550103
+      Bat_fly_2: -1839967504
+      Bat_fly_4: 922893450
+      Bat_fly_6: -23794858
+      Bat_fly_3: 787042146
+      Bat_fly_5: -1849014748
+      Bat_fly_1: 270829633
+      Bat_fly_0: 777991720
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

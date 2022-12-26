@@ -807,6 +807,8 @@ MonoBehaviour:
   _moveThresh: 0.01
   _jumpForce: 300
   _jumpThreshold: 0.2
+  _flyThreshold: 3
+  _rollFrames: 12
   _animationSpeed: 10
   _animationConfig: {fileID: 11400000, guid: 5403b78581cf20943b8fcfce850a5d81, type: 2}
 --- !u!70 &805545145

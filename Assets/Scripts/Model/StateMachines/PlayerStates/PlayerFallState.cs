@@ -1,23 +1,21 @@
 ﻿using PixelGame.Controllers;
 using PixelGame.Enumerators;
-using PixelGame.Interfaces;
-using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
-    public class PlayerJumpState : PlayerState
+    public class PlayerFallState : PlayerState
     {
-        private bool _doJump;
         private bool _isGround;
 
-        public PlayerJumpState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
-        { 
+        public PlayerFallState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
+        {
         }
 
         public override void Enter()
         {
             base.Enter();
-            _doJump = true;
+            _isGround = false;
+            animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Fall, true);
         }
 
         public override void InputData()
@@ -34,25 +32,10 @@ namespace PixelGame.Model.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
             player.SpriteRenderer.flipX = _xAxisInput < 0;
-
             _moveModel.Move(_xAxisInput);
 
-            if (player.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)
-            {
-                _jumpModel.Jump();
-            }
-
-            if (player.ContactsPoller.IsGrounded)
-            {
-                _isGround = true;
-            }
-            else if (Mathf.Abs(_jumpModel.GetVelocity().y) > 1f) 
-            {
-                animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Jump, true);
-                _doJump = false;
-            }
+            _isGround = player.ContactsPoller.IsGrounded;
         }
 
         public override void Exit()

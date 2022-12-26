@@ -44,6 +44,11 @@ MonoBehaviour:
     - {fileID: 1133196509, guid: cc6feb89391582d4cb4c0e50f9e60c32, type: 3}
   - State: 3
     Sprites:
+    - {fileID: 624034854, guid: b7bc9fc8dc33d7348be07eab0c18ad92, type: 3}
+    - {fileID: -835386239, guid: b7bc9fc8dc33d7348be07eab0c18ad92, type: 3}
+    - {fileID: 1867098807, guid: b7bc9fc8dc33d7348be07eab0c18ad92, type: 3}
+  - State: 4
+    Sprites:
     - {fileID: -731114903, guid: 3842a76028d40a644994e304b8293023, type: 3}
     - {fileID: -1690187067, guid: 3842a76028d40a644994e304b8293023, type: 3}
     - {fileID: -683395268, guid: 3842a76028d40a644994e304b8293023, type: 3}

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace PixelGame.Controllers
 {
-    public class EnemyController : IExecute, IDisposable
+    public class BatEnemyController : IExecute, IDisposable
     {
         private EnemyModel _enemy;
         private BatEnemyView _view;
@@ -17,7 +17,7 @@ namespace PixelGame.Controllers
         private IWeapon _weapon;
         private float _lastAtackTime;
 
-        public EnemyController(BatEnemyView view) 
+        public BatEnemyController(BatEnemyView view) 
         {
             _view = view;
             _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);

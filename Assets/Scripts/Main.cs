@@ -2,6 +2,7 @@ using PixelGame.View;
 using PixelGame.Controllers;
 using UnityEngine;
 using PixelGame.Interfaces;
+using System.Collections.Generic;
 
 namespace PixelGame 
 {
@@ -9,21 +10,21 @@ namespace PixelGame
     {
         [Header("Game Objects")]
         [SerializeField] private PlayerView _playerView;
-        [SerializeField] private BatEnemyView _enemyView;
+        [SerializeField] private List<EnemyView> _enemyViews;
 
         private ListExecuteController _executeController;
 
         private PlayerController _playerController;
-        private EnemyController _enemyController;
+        private EnemyLevelController _enemyLevelController;
         
         private void Start()
         {
             _executeController = new ListExecuteController();
             _playerController = new PlayerController(_playerView);
-            _enemyController = new EnemyController(_enemyView);
+            _enemyLevelController = new EnemyLevelController(_enemyViews);
 
             _executeController.AddExecuteObject(_playerController);
-            _executeController.AddExecuteObject(_enemyController);
+            _executeController.AddExecuteObject(_enemyLevelController);
         }
 
         private void Update()

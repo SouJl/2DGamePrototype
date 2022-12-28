@@ -9,7 +9,7 @@ namespace PixelGame
     {
         [Header("Game Objects")]
         [SerializeField] private PlayerView _playerView;
-        [SerializeField] private EnemyView _enemyView;
+        [SerializeField] private BatEnemyView _enemyView;
 
         private ListExecuteController _executeController;
 

@@ -7,27 +7,19 @@ namespace PixelGame.Components
     public class LocatorComponent:MonoBehaviour
     {
         [SerializeField] private float _radius = 2f;
+        [SerializeField] private float _updateDelay = 3f;
         [SerializeField] private LayerMask _layerMask;
 
         public Action<LevelObjectView> OnLacatorContact { get; set; }
 
-        private bool _isHit;
-
-        private void Awake()
+        private void FixedUpdate()
         {
-            _isHit = false;
-        }
-
-        private void Update()
-        {
-            if (_isHit) return;
-
             var hit = Physics2D.OverlapCircle(transform.position, _radius, _layerMask);
-            if (hit) 
+            if (hit)
             {
                 var collideObject = hit.gameObject.GetComponent<LevelObjectView>();
                 OnLacatorContact?.Invoke(collideObject);
-                _isHit = true;
+
             }
         }
 

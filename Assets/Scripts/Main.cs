@@ -21,7 +21,7 @@ namespace PixelGame
         {
             _executeController = new ListExecuteController();
             _playerController = new PlayerController(_playerView);
-            _enemyLevelController = new EnemyLevelController(_enemyViews);
+            _enemyLevelController = new EnemyLevelController(_enemyViews, _playerView.Transform);
 
             _executeController.AddExecuteObject(_playerController);
             _executeController.AddExecuteObject(_enemyLevelController);

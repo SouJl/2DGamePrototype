@@ -1,6 +1,7 @@
 ﻿using PixelGame.Interfaces;
 using PixelGame.View;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelGame.Controllers
 {
@@ -9,9 +10,9 @@ namespace PixelGame.Controllers
         private EnemyControllerFactory _enemyControllerFactory;
         private List<IExecute> _enemyControllers;
 
-        public EnemyLevelController(List<EnemyView> enemies) 
+        public EnemyLevelController(List<EnemyView> enemies, Transform playerTransform) 
         {
-            _enemyControllerFactory = new EnemyControllerFactory();
+            _enemyControllerFactory = new EnemyControllerFactory(playerTransform);
             _enemyControllers = new List<IExecute>();
 
             foreach(var eView in enemies) 

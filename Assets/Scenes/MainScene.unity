@@ -1014,7 +1014,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 843241386}
-  - component: {fileID: 843241385}
   - component: {fileID: 843241384}
   m_Layer: 9
   m_Name: Locator
@@ -1040,22 +1039,6 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
---- !u!58 &843241385
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843241383}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!4 &843241386
 Transform:
   m_ObjectHideFlags: 0
@@ -5359,7 +5342,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1691703494}
-  - component: {fileID: 1691703495}
   - component: {fileID: 1691703496}
   m_Layer: 9
   m_Name: Locator
@@ -5383,22 +5365,6 @@ Transform:
   m_Father: {fileID: 387626536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1691703495
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691703493}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!114 &1691703496
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -824,7 +824,7 @@ MonoBehaviour:
   _shootPower: 5
   _forceMode: 1
   _muzzle: {fileID: 425978909}
-  _projectile: {fileID: 7949695715414565534, guid: 5ef140bce3241674aa02406158a24805, type: 3}
+  _projectileType: 0
 --- !u!1 &805545138
 GameObject:
   m_ObjectHideFlags: 0
@@ -5316,7 +5316,7 @@ MonoBehaviour:
   _shootPower: 5
   _forceMode: 1
   _muzzle: {fileID: 830906586}
-  _projectile: {fileID: 7949695715414565534, guid: 5ef140bce3241674aa02406158a24805, type: 3}
+  _projectileType: 1
 --- !u!4 &1426929538
 Transform:
   m_ObjectHideFlags: 0

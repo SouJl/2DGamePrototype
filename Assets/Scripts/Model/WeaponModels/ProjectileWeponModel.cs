@@ -1,4 +1,5 @@
-﻿using PixelGame.View;
+﻿using PixelGame.Enumerators;
+using PixelGame.View;
 using UnityEngine;
 
 namespace PixelGame.Model
@@ -14,12 +15,17 @@ namespace PixelGame.Model
         public float ShootPower { get => _shootPower; set => _shootPower = value; }
         public ForceMode2D ForceMode { get => _forceMode; set => _forceMode = value; }
 
-        public ProjectileWeponModel(float damage, float attackDelay, Transform muzzle, LevelObjectView projectile, float shootPower, ForceMode2D forceMode) : base(damage, attackDelay)
+        public ProjectileWeponModel(float damage, float attackDelay, Transform muzzle, float shootPower, ForceMode2D forceMode, ProjectileType projectileType) : base(damage, attackDelay)
         {
             _muzzle = muzzle;
-            _projectile = projectile;
             _shootPower = shootPower;
             _forceMode = forceMode;
+
+            _projectile = Resources.Load<LevelObjectView>($"{projectileType}Projectile");
+            if (!_projectile) 
+            {
+                Debug.LogError($"Can't find Resource {projectileType}Projectile");
+            }
         }
 
         public override void Attack()

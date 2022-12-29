@@ -25,7 +25,7 @@ namespace PixelGame.Controllers
                 case BatEnemyView batEnemy: 
                     {
                         var weaponView = batEnemy.Weapon;
-                        var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.Projectile, weaponView.ShootPower, weaponView.ForceMode);
+                        var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, weaponView.ProjectileType);
                         var enemyModel = new BatEnemyModel(_playerTransform, batEnemy.SpriteRenderer, batEnemy.Collider, new NoneMoveModel(), weapon, weaponView.Muzzle);
                         return new BatEnemyController(batEnemy, enemyModel);
                     }

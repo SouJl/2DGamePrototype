@@ -7,6 +7,7 @@ namespace PixelGame.Components
     public class CameraFollow:MonoBehaviour
     {
         [SerializeField] private LevelObjectView _followTarget;
+        [SerializeField] private float _levelLength = 100;
         [SerializeField] private float _xOffset = 0f;
         [SerializeField] private float _smoothTime = 0.25f;
 
@@ -16,7 +17,8 @@ namespace PixelGame.Components
         {
             if (!_followTarget) return;
 
-            var targetPos = new Vector3(_followTarget.transform.position.x + _xOffset, transform.position.y, transform.position.z);
+            var clampPos = Mathf.Clamp(_followTarget.transform.position.x + _xOffset, 0, _levelLength);
+            var targetPos = new Vector3(clampPos, transform.position.y, transform.position.z);
             transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, _smoothTime);
         }
     }

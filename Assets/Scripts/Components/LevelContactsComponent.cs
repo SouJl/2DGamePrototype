@@ -1,0 +1,17 @@
+﻿using PixelGame.View;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace PixelGame.Components
+{
+    public class LevelContactsComponent : MonoBehaviour
+    {
+        [SerializeField] private Vector3 _startPostion;
+        [SerializeField] private LevelObjectView _levelEndZone;
+        [SerializeField] private List<LevelObjectView> _deathZones;
+
+        public Vector3 StartPostion { get => _startPostion;}
+        public LevelObjectView LevelEndZone { get => _levelEndZone; }
+        public List<LevelObjectView> DeathZones { get => _deathZones; }
+    }
+}

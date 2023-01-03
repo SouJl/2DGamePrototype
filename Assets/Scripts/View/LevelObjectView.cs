@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace PixelGame.View 
 {
-    [RequireComponent(typeof(SpriteRenderer))]
     public class LevelObjectView : MonoBehaviour
     {
         [Header("Object base settings")]
@@ -23,7 +22,10 @@ namespace PixelGame.View
         public virtual void Awake()
         {
             _transform = GetComponent<Transform>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            if (TryGetComponent(out SpriteRenderer spriteRenderer))
+            {
+                _spriteRenderer = spriteRenderer;
+            }
             if(TryGetComponent(out Collider2D collider)) 
             {
                 _collider = collider;
@@ -32,7 +34,6 @@ namespace PixelGame.View
             {
                 _rigidbody = rigidbody;
             }
-
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

@@ -5,6 +5,7 @@ namespace PixelGame.Model
     public class ContactsPollerModel
     {
         private const float _collisionThresh = 0.5f;
+        private const int _minCollSideContatcs = 2;
         private ContactPoint2D[] _contacts = new ContactPoint2D[10];
         private int _contactsCount;
         private readonly Collider2D _collider2D;
@@ -24,15 +25,21 @@ namespace PixelGame.Model
             HasLeftContacts = false;
             HasRightContacts = false;
             _contactsCount = _collider2D.GetContacts(_contacts);
+
             for (int i = 0; i < _contactsCount; i++)
             {
                 var normal = _contacts[i].normal;
                 var rigidBody = _contacts[i].rigidbody;
                 if (normal.y > _collisionThresh) IsGrounded = true;
-                if (normal.x > _collisionThresh && rigidBody == null)
-                    HasLeftContacts = true;
-                if (normal.x < -_collisionThresh && rigidBody == null)
-                    HasRightContacts = true;
+                
+                if(_contactsCount > _minCollSideContatcs) 
+                {
+                    if (normal.x > _collisionThresh && rigidBody == null)
+                        HasLeftContacts = true;
+
+                    if (normal.x < -_collisionThresh && rigidBody == null)
+                        HasRightContacts = true;
+                }
             }
 
         }

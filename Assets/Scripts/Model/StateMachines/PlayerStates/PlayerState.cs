@@ -1,25 +1,24 @@
 ﻿using PixelGame.Controllers;
-using PixelGame.Interfaces;
 using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
     public class PlayerState : State
     {
-        protected PlayerModel player;
+        protected PlayerModel _player;
 
-        protected IMove _moveModel;
-        protected IJump _jumpModel;
+        protected PlayerMovementModel _moveModel;
+
+        protected PlayerJumpModel _jumpModel;
+
         protected float _xAxisInput;
         protected float _yAxisInput;
 
-        private bool _isFall;
-
         public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController)
         {
-            player = unit;
-            _moveModel = unit.MoveModel;
-            _jumpModel = unit.JumpModel;
+            _player = unit;
+            _moveModel = unit.MoveModel as PlayerMovementModel;
+            _jumpModel = unit.JumpModel as PlayerJumpModel;
         }
 
         public override void Enter()
@@ -39,17 +38,11 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isFall) stateMachine.ChangeState(player.FallState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
-            if (!player.ContactsPoller.IsGrounded && _jumpModel.GetVelocity().y < -_jumpModel.FlyThershold)
-            {
-                _isFall = true;
-            }
         }
 
         public override void Exit()
@@ -57,7 +50,6 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             _xAxisInput = 0f;
             _yAxisInput = 0f;
-            _isFall = false;
         }
     }
 }

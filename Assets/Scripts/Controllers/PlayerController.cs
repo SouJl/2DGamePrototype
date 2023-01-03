@@ -16,7 +16,7 @@ namespace PixelGame.Controllers
             _view = view;
             var moveModel = new PlayerMovementModel(_view.Rigidbody, _view.Speed, _view.MoveThresh);
             var jumpModel = new PlayerJumpModel(_view.Rigidbody, _view.JumpForce, _view.JumpThreshold, _view.FlyThreshold);
-            _playerModel = new PlayerModel(_view.SpriteRenderer, _view.Collider , moveModel, jumpModel, _view.MaxHealth);
+            _playerModel = new PlayerModel(_view.Rigidbody, _view.SpriteRenderer, _view.Collider , moveModel, jumpModel, _view.MaxHealth);
 
             _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);
 
@@ -31,6 +31,7 @@ namespace PixelGame.Controllers
             _playerModel.JumpState = new PlayerJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel);
             _playerModel.FallState = new PlayerFallState(_playerModel.UnitMovementSM, _animatorController, _playerModel);
             _playerModel.RollState = new PlayerRollState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.RollFrames, _view.AnimationSpeed);
+            _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.WallSlideSpeed);
 
             _playerModel.UnitMovementSM.Initialize(_playerModel.IdleState);
         }

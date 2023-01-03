@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PixelGame.Enumerators;
+using UnityEngine;
 
 namespace PixelGame.Interfaces
 {
@@ -10,10 +11,8 @@ namespace PixelGame.Interfaces
 
         float FlyThershold { get; set; }
 
+        Vector2 Direction { get; set; }
+
         void Jump();
-
-        Vector2 GetVelocity();
-
-        float GetPosition();
     }
 }

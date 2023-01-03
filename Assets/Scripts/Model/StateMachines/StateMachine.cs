@@ -1,4 +1,6 @@
-﻿namespace PixelGame.Model.StateMachines
+﻿using UnityEngine;
+
+namespace PixelGame.Model.StateMachines
 {
     public class StateMachine
     {
@@ -13,7 +15,6 @@
         public void ChangeState(State newState)
         {
             CurrentState.Exit();
-
             CurrentState = newState;
             newState.Enter();
         }

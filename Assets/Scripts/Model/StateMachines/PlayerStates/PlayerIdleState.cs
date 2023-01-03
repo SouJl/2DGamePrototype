@@ -16,7 +16,7 @@ namespace PixelGame.Model.StateMachines
         public override void Enter()
         {
             base.Enter();
-            animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Idle, true);
+            animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Idle, true);
         }
 
         public override void InputData()
@@ -32,8 +32,8 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(_isRun) stateMachine.ChangeState(player.RunState);
-            if(_isJump) stateMachine.ChangeState(player.JumpState);
+            if(_isRun) stateMachine.ChangeState(_player.RunState);
+            if(_isJump) stateMachine.ChangeState(_player.JumpState);
         }
 
         public override void PhysicsUpdate()
@@ -46,7 +46,8 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             _isJump = false;
             _isRun = false;
-            animatorController.StopAnimation(player.SpriteRenderer);
+            _player.JumpModel.Direction = Vector2.up;
+            animatorController.StopAnimation(_player.SpriteRenderer);
         }
 
     }

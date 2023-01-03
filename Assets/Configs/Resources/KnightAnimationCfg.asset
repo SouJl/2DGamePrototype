@@ -61,3 +61,8 @@ MonoBehaviour:
     - {fileID: 577699825, guid: 3842a76028d40a644994e304b8293023, type: 3}
     - {fileID: -167221326, guid: 3842a76028d40a644994e304b8293023, type: 3}
     - {fileID: 2020564193, guid: 3842a76028d40a644994e304b8293023, type: 3}
+  - State: 5
+    Sprites:
+    - {fileID: -76864899, guid: 6b375d616be87c6469e3015fec78ee99, type: 3}
+    - {fileID: 2099106330, guid: 6b375d616be87c6469e3015fec78ee99, type: 3}
+    - {fileID: 245415889, guid: 6b375d616be87c6469e3015fec78ee99, type: 3}

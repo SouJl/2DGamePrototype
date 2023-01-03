@@ -10,6 +10,9 @@ namespace PixelGame.Model.StateMachines
         private bool _doJump;
         private bool _isGround;
 
+        private bool _isWallSlide;
+        private bool _isFall;
+
         public PlayerJumpState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
         { 
         }
@@ -18,6 +21,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.Enter();
             _doJump = true;
+            _isWallSlide = false;
         }
 
         public override void InputData()
@@ -28,38 +32,49 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isGround) stateMachine.ChangeState(player.IdleState);
+            if (_isGround) stateMachine.ChangeState(_player.IdleState);
+            if (_isWallSlide) stateMachine.ChangeState(_player.WallSlideState);
+            if (_isFall) stateMachine.ChangeState(_player.FallState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
 
-            player.SpriteRenderer.flipX = _xAxisInput < 0;
-
-            _moveModel.Move(_xAxisInput);
-
-            if (player.ContactsPoller.IsGrounded && _doJump && Mathf.Abs(_jumpModel.GetVelocity().y) <= _jumpModel.JumpThershold)
+            if (_doJump && Mathf.Abs(_player.RgBody.velocity.y) <= _jumpModel.JumpThershold)
             {
                 _jumpModel.Jump();
             }
-
-            if (player.ContactsPoller.IsGrounded)
+            
+            if (_player.ContactsPoller.IsGrounded)
             {
                 _isGround = true;
             }
-            else if (Mathf.Abs(_jumpModel.GetVelocity().y) > 1f) 
+            else if (Mathf.Abs(_player.RgBody.velocity.y) > _jumpModel.FlyThershold) 
             {
-                animatorController.StartAnimation(player.SpriteRenderer, AnimaState.Jump, true);
+                animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Jump, true);
                 _doJump = false;
             }
+
+            if (!_jumpModel.IsWallJump && !_player.ContactsPoller.IsGrounded && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
+            {
+                _isWallSlide = true;
+            }
+
+            if (!_player.ContactsPoller.IsGrounded && _player.RgBody.velocity.y < -_jumpModel.FlyThershold)
+            {
+                _isFall = true;
+            }
+
         }
 
         public override void Exit()
         {
             base.Exit();
             _isGround = false;
-            animatorController.StopAnimation(player.SpriteRenderer);
+            _isWallSlide = false;
+            _isFall = false;
+            animatorController.StopAnimation(_player.SpriteRenderer);
         }
     }
 }

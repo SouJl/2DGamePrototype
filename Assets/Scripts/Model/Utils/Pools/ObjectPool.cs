@@ -16,6 +16,7 @@ namespace PixelGame.Model.Utils
         {
             _prefab = prefab;
             _root = new GameObject($"[{_prefab.name}]").transform;
+            _root.position = root.position;
             _root.SetParent(root);
         }
 
@@ -25,7 +26,6 @@ namespace PixelGame.Model.Utils
             if (_stack.Count == 0)
             {
                 go = Object.Instantiate(_prefab);
-
                 go.name = _prefab.name;
             }
             else
@@ -33,6 +33,7 @@ namespace PixelGame.Model.Utils
                 go = _stack.Pop();
             }
             go.SetActive(true);
+            go.OnStartExecute();
             go.transform.SetParent(null);
             return go;
         }
@@ -40,6 +41,7 @@ namespace PixelGame.Model.Utils
         public void Push(LevelObjectView go)
         {
             _stack.Push(go);
+            go.transform.position = _root.position;
             go.transform.SetParent(_root);
             go.SetActive(false);
         }

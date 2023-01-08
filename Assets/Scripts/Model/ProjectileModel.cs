@@ -1,24 +1,24 @@
 ﻿using System;
 using PixelGame.View;
-using Object = UnityEngine.Object;
 
 namespace PixelGame.Model
 {
     public class ProjectileModel : IDisposable
     {
         private float _damage;
-        private LevelObjectView _view;
+        private ProjectileView _view;
 
         public float Damage { get => _damage; set => _damage = value; }
         public LevelObjectView View { get => _view;}
 
         private Action<ProjectileModel> _onDestoy;
 
-        public ProjectileModel(float damage, LevelObjectView view, Action<ProjectileModel> onDestroy) 
+        public ProjectileModel(float damage, ProjectileView view, Action<ProjectileModel> onDestroy) 
         {
             _damage = damage;
             _view = view;
-            View.OnLevelObjectContact += OnLevelObjectContact;
+            _view.OnLevelObjectContact += OnLevelObjectContact;
+            _view.onEndLifeTime += OnEndLifeTime;
             _onDestoy = onDestroy;
         }
 
@@ -30,10 +30,12 @@ namespace PixelGame.Model
             }
         }
 
+        private void OnEndLifeTime() => _onDestoy?.Invoke(this);
 
         public void Dispose()
         {
-            View.OnLevelObjectContact -= OnLevelObjectContact;
+            _view.OnLevelObjectContact -= OnLevelObjectContact;
+            _view.onEndLifeTime -= OnEndLifeTime;
             _onDestoy = null;
         }
     }

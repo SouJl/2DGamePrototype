@@ -7,7 +7,6 @@ namespace PixelGame.Components
     public class LocatorComponent:MonoBehaviour
     {
         [SerializeField] private float _radius = 2f;
-        [SerializeField] private float _updateDelay = 3f;
         [SerializeField] private LayerMask _layerMask;
 
         public Action<LevelObjectView> OnLacatorContact { get; set; }

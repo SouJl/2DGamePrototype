@@ -36,6 +36,8 @@ namespace PixelGame.View
             }
         }
 
+        public void SetActive(bool state) => gameObject.SetActive(state);
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             var collideObject = collision.gameObject.GetComponent<LevelObjectView>();

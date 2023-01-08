@@ -10,6 +10,7 @@ namespace PixelGame.Model
         private LevelObjectView _view;
 
         public float Damage { get => _damage; set => _damage = value; }
+        public LevelObjectView View { get => _view;}
 
         private Action<ProjectileModel> _onDestoy;
 
@@ -17,7 +18,7 @@ namespace PixelGame.Model
         {
             _damage = damage;
             _view = view;
-            _view.OnLevelObjectContact += OnLevelObjectContact;
+            View.OnLevelObjectContact += OnLevelObjectContact;
             _onDestoy = onDestroy;
         }
 
@@ -25,7 +26,6 @@ namespace PixelGame.Model
         {
             if (levelObject.gameObject.tag == "Player") 
             {
-               Object.Destroy(_view.gameObject);
                 _onDestoy?.Invoke(this);
             }
         }
@@ -33,7 +33,7 @@ namespace PixelGame.Model
 
         public void Dispose()
         {
-            _view.OnLevelObjectContact -= OnLevelObjectContact;
+            View.OnLevelObjectContact -= OnLevelObjectContact;
             _onDestoy = null;
         }
     }

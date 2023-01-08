@@ -1,4 +1,5 @@
 ﻿using PixelGame.Enumerators;
+using PixelGame.Model.Utils;
 using PixelGame.View;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,9 @@ namespace PixelGame.Model
         public float ShootPower { get => _shootPower; set => _shootPower = value; }
         public ForceMode2D ForceMode { get => _forceMode; set => _forceMode = value; }
 
-        private List<ProjectileModel> projectiles;
+        private List<ProjectileModel> _projectiles;
 
+        private ProjectileViewService _projectileViewService;
 
         public ProjectileWeponModel(float damage, float attackDelay, Transform muzzle, float shootPower, ForceMode2D forceMode, ProjectileType projectileType) : base(damage, attackDelay)
         {
@@ -25,7 +27,7 @@ namespace PixelGame.Model
             _shootPower = shootPower;
             _forceMode = forceMode;
             
-            projectiles = new List<ProjectileModel>();
+            _projectiles = new List<ProjectileModel>();
 
             _projectile = Resources.Load<LevelObjectView>($"{projectileType}Projectile");
             
@@ -33,13 +35,17 @@ namespace PixelGame.Model
             {
                 Debug.LogError($"Can't find Resource {projectileType}Projectile");
             }
+
+            _projectileViewService = new ProjectileViewService(_muzzle);
         }
 
         public override void Attack()
         {
-            var prjOb = Object.Instantiate(_projectile, _muzzle.position, _muzzle.rotation);        
-            
-            projectiles.Add(new ProjectileModel(Damage, prjOb.GetComponent<ProjectileView>(), OnDestroyProjectile));
+            var prjOb = _projectileViewService.Instantiate<LevelObjectView>(_projectile);
+            prjOb.transform.position = _muzzle.position;
+            prjOb.transform.rotation = _muzzle.rotation;
+
+            _projectiles.Add(new ProjectileModel(Damage, prjOb.GetComponent<ProjectileView>(), OnDestroyProjectile));
             
             var rgb = prjOb.Rigidbody;
             
@@ -48,7 +54,8 @@ namespace PixelGame.Model
 
         private void OnDestroyProjectile(ProjectileModel projectile) 
         {
-            projectiles.Remove(projectile);
+            _projectiles.Remove(projectile);
+            _projectileViewService.Destroy(projectile.View);
             projectile.Dispose();
         }
     }

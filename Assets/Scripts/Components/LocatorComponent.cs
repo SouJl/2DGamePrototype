@@ -1,5 +1,6 @@
 ﻿using PixelGame.View;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PixelGame.Components
@@ -16,9 +17,17 @@ namespace PixelGame.Components
             var hit = Physics2D.OverlapCircle(transform.position, _radius, _layerMask);
             if (hit)
             {
-                var collideObject = hit.gameObject.GetComponent<LevelObjectView>();
-                OnLacatorContact?.Invoke(collideObject);
-
+                bool isEmptyTrail = true;
+                var onTrailHits = Physics2D.LinecastAll(transform.position, hit.transform.position);
+                foreach (var onTrailHit in onTrailHits) 
+                {
+                    if (onTrailHit.collider.tag == "Ground") isEmptyTrail = false;
+                }
+                if (isEmptyTrail) 
+                {
+                    var collideObject = hit.gameObject.GetComponent<LevelObjectView>();
+                    OnLacatorContact?.Invoke(collideObject);
+                }            
             }
         }
 

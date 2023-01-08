@@ -464,7 +464,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 777991720, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -11437,7 +11437,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -11547,7 +11547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 5
-  _updateDelay: 3
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -11928,7 +11927,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 777991720, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -17290,7 +17289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 5
-  _updateDelay: 3
   _layerMask:
     serializedVersion: 2
     m_Bits: 256

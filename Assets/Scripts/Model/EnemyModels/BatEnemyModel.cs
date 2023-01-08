@@ -23,10 +23,13 @@ namespace PixelGame.Model
 
         public override void Rotate()
         {
-            var flipVector = new Vector3(0, SpriteRenderer.flipX ? 180 : 0, 0);
+            var selfDir = SpriteRenderer.transform.position;
+
+            SpriteRenderer.flipX = selfDir.x > PlayerTransform.position.x ? true : false;
+            var flipVector = new Vector3(0, 180, 0);
             var dir = PlayerTransform.position - _muzzle.position;
-            var angle = Vector3.Angle(flipVector, dir);
-            var axis = Vector3.Cross(flipVector, dir);
+            var angle = Vector3.Angle(Vector3.right + flipVector, dir);
+            var axis = Vector3.Cross(Vector3.right + flipVector, dir);
             _muzzle.rotation = Quaternion.AngleAxis(angle, axis);
         }
 

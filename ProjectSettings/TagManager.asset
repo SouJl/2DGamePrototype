@@ -22,7 +22,7 @@ TagManager:
   - Enemy
   - LevelContacts
   - Projectiles
-  - 
+  - Items
   - 
   - 
   - 
@@ -54,4 +54,7 @@ TagManager:
     locked: 0
   - name: Projectiles
     uniqueID: 1944512747
+    locked: 0
+  - name: Items
+    uniqueID: 1502322299
     locked: 0

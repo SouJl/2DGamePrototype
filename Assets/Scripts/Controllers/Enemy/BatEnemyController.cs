@@ -47,7 +47,7 @@ namespace PixelGame.Controllers
 
         public void OnCloseContact(LevelObjectView target)
         {
-            Debug.Log($"{this} close contact {target.gameObject.tag}");
+            
         }
 
         public void Dispose()

@@ -44,8 +44,8 @@ namespace PixelGame.Model.Utils
         {
             _stack.Push(go);
             go.transform.position = _root.position;
-            go.transform.SetParent(_root);
             go.SetActive(false);
+            go.transform.SetParent(_root);
         }
 
         public void Dispose()

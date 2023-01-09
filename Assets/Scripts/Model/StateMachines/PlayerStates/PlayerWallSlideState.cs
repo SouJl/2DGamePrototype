@@ -68,12 +68,13 @@ namespace PixelGame.Model.StateMachines
                 _player.SpriteRenderer.flipX = false;
                 _wallDirection = WallDirection.Left;
             }
-            else 
-            {
+            else if (_player.RgBody.velocity.y < -_jumpModel.FlyThershold)
+            {         
                 _isFall = true;
             }
 
             _player.RgBody.velocity = new Vector2(_player.RgBody.velocity.x, Mathf.Clamp(_player.RgBody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
+
 
             _isGround = _player.ContactsPoller.IsGrounded;
         }

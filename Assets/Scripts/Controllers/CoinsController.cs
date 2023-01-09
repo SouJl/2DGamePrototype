@@ -28,6 +28,7 @@ namespace PixelGame.Controllers
             var coinPrefab = Resources.Load<LevelObjectView>($"SoulItem");
             var _rootPosition = new GameObject($"[CoinsPosition]").transform;
             _rootPosition.SetParent(coinsView.transform);
+
             foreach (var coin in coinsView.CoinsPosition) 
             {
                 var coinObj =_viewService.Instantiate<LevelObjectView>(coinPrefab);

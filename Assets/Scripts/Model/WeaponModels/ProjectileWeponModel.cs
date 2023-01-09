@@ -19,7 +19,7 @@ namespace PixelGame.Model
 
         private List<ProjectileModel> _projectiles;
 
-        private ProjectileViewService _projectileViewService;
+        private ViewService _projectileViewService;
 
         public ProjectileWeponModel(float damage, float attackDelay, Transform muzzle, float shootPower, ForceMode2D forceMode, ProjectileType projectileType) : base(damage, attackDelay)
         {
@@ -36,7 +36,7 @@ namespace PixelGame.Model
                 Debug.LogError($"Can't find Resource {projectileType}Projectile");
             }
 
-            _projectileViewService = new ProjectileViewService(_muzzle);
+            _projectileViewService = new ViewService(_muzzle);
         }
 
         public override void Attack()

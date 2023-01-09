@@ -13,12 +13,12 @@ namespace PixelGame.Model.Utils
         private readonly Transform _mainRoot;
         private readonly Transform _root;
 
-        public ObjectPool(LevelObjectView prefab, Transform root)
+        public ObjectPool(LevelObjectView prefab, Transform mainRoot)
         {
             _prefab = prefab;
-            _mainRoot = root;
+            _mainRoot = mainRoot;
             _root = new GameObject($"[{_prefab.name}]").transform;
-            _root.position = root.position;
+            _root.position = mainRoot.position;
             _root.SetParent(_mainRoot);
         }
 

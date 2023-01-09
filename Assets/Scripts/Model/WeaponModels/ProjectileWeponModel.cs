@@ -41,15 +41,17 @@ namespace PixelGame.Model
 
         public override void Attack()
         {
-            var prjOb = _projectileViewService.Instantiate<LevelObjectView>(_projectile);
-            prjOb.transform.position = _muzzle.position;
-            prjOb.transform.rotation = _muzzle.rotation;
+            var prjOb = _projectileViewService.Instantiate<ProjectileView>(_projectile);
 
-            _projectiles.Add(new ProjectileModel(Damage, prjOb.GetComponent<ProjectileView>(), OnDestroyProjectile));
-            
-            var rgb = prjOb.Rigidbody;
-            
-            rgb.AddForce(_muzzle.up * _shootPower, _forceMode);
+            ProjectileModel prjmodel = new ProjectileModel(Damage, prjOb, OnDestroyProjectile);
+
+            prjmodel.Transform.position = _muzzle.position;
+            prjmodel.Transform.rotation = _muzzle.rotation;
+
+            _projectiles.Add(prjmodel);
+
+            prjmodel.Rgdbody.AddForce(_muzzle.up * _shootPower, _forceMode);
+
         }
 
         private void OnDestroyProjectile(ProjectileModel projectile) 

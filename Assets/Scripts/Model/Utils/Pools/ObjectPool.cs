@@ -10,14 +10,16 @@ namespace PixelGame.Model.Utils
     {
         private readonly Stack<LevelObjectView> _stack = new Stack<LevelObjectView>();
         private readonly LevelObjectView  _prefab;
+        private readonly Transform _mainRoot;
         private readonly Transform _root;
 
         public ObjectPool(LevelObjectView prefab, Transform root)
         {
             _prefab = prefab;
+            _mainRoot = root;
             _root = new GameObject($"[{_prefab.name}]").transform;
             _root.position = root.position;
-            _root.SetParent(root);
+            _root.SetParent(_mainRoot);
         }
 
         public LevelObjectView Pop()
@@ -34,7 +36,7 @@ namespace PixelGame.Model.Utils
             }
             go.SetActive(true);
             go.OnStartExecute();
-            go.transform.SetParent(null);
+            go.transform.SetParent(_mainRoot);
             return go;
         }
 

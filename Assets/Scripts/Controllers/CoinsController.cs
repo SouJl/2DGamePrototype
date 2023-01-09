@@ -24,8 +24,10 @@ namespace PixelGame.Controllers
             _viewService = new ViewService(coinsView.transform);
             _animatorController = new SpriteAnimatorController(coinsView.AnimationConfig, coinsView.AnimationSpeed);
             _coinViews = new List<LevelObjectView>();
+            
             var coinPrefab = Resources.Load<LevelObjectView>($"SoulItem");
-
+            var _rootPosition = new GameObject($"[CoinsPosition]").transform;
+            _rootPosition.SetParent(coinsView.transform);
             foreach (var coin in coinsView.CoinsPosition) 
             {
                 var coinObj =_viewService.Instantiate<LevelObjectView>(coinPrefab);
@@ -33,6 +35,9 @@ namespace PixelGame.Controllers
                 coinObj.Transform.rotation = Quaternion.identity;
                 _coinViews.Add(coinObj);
                 _animatorController.StartAnimation(coinObj.SpriteRenderer, Enumerators.AnimaState.Idle, true);
+               
+                coin.SetParent(_rootPosition);
+                coin.gameObject.SetActive(false);
             }
         }
 

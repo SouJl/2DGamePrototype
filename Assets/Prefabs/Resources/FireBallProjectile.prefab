@@ -52,7 +52,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _lifeTime: 3
+  _lifeTime: 4
 --- !u!50 &7949695715414565533
 Rigidbody2D:
   serializedVersion: 4
@@ -201,7 +201,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.65000004
+        time: 0.53999996
         value: 0
         inSlope: 0
         outSlope: 0

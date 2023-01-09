@@ -35,8 +35,8 @@ namespace PixelGame.Model.Utils
                 go = _stack.Pop();
             }
             go.SetActive(true);
-            go.OnStartExecute();
             go.transform.SetParent(_mainRoot);
+            go.OnStartExecute();
             return go;
         }
 

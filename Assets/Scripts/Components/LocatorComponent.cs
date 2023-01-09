@@ -1,6 +1,5 @@
 ﻿using PixelGame.View;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PixelGame.Components

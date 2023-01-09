@@ -37,6 +37,7 @@ namespace PixelGame.Model
             }
 
             _projectileViewService = new ViewService(_muzzle);
+
         }
 
         public override void Attack()

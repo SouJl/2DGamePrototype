@@ -1,7 +1,4 @@
-﻿using PixelGame.Enumerators;
-using PixelGame.Model.Utils;
-using PixelGame.View;
-using System.Collections.Generic;
+﻿using PixelGame.Controllers;
 using UnityEngine;
 
 namespace PixelGame.Model
@@ -9,7 +6,6 @@ namespace PixelGame.Model
     public class ProjectileWeponModel : AbstractWeaponModel
     {
         private Transform _muzzle;
-        private LevelObjectView _projectile;
 
         private float _shootPower;
         private ForceMode2D _forceMode;
@@ -17,49 +13,34 @@ namespace PixelGame.Model
         public float ShootPower { get => _shootPower; set => _shootPower = value; }
         public ForceMode2D ForceMode { get => _forceMode; set => _forceMode = value; }
 
-        private List<ProjectileModel> _projectiles;
+        private float _lastAtackTime;
 
-        private ViewService _projectileViewService;
+        private ProjectilesController _projectilesController;
 
-        public ProjectileWeponModel(float damage, float attackDelay, Transform muzzle, float shootPower, ForceMode2D forceMode, ProjectileType projectileType) : base(damage, attackDelay)
+        public ProjectileWeponModel(float damage, float attackDelay, Transform muzzle, float shootPower, ForceMode2D forceMode, ProjectilesController controller) : base(damage, attackDelay)
         {
             _muzzle = muzzle;
             _shootPower = shootPower;
             _forceMode = forceMode;
-            
-            _projectiles = new List<ProjectileModel>();
 
-            _projectile = Resources.Load<LevelObjectView>($"{projectileType}Projectile");
-            
-            if (!_projectile) 
-            {
-                Debug.LogError($"Can't find Resource {projectileType}Projectile");
-            }
-
-            _projectileViewService = new ViewService(_muzzle);
-
+            _projectilesController = controller;
         }
 
-        public override void Attack()
+        public override void Attack(Vector3 target)
         {
-            var prjOb = _projectileViewService.Instantiate<ProjectileView>(_projectile);
+            if (!CanAttack()) return;
 
-            ProjectileModel prjmodel = new ProjectileModel(Damage, prjOb, OnDestroyProjectile);
+            var flipVector = new Vector3(0, 180, 0);
+            var dir = target - _muzzle.position;
+            var angle = Vector3.Angle(Vector3.right + flipVector, dir);
+            var axis = Vector3.Cross(Vector3.right + flipVector, dir);
+            _muzzle.rotation = Quaternion.AngleAxis(angle, axis);
 
-            prjmodel.Transform.position = _muzzle.position;
-            prjmodel.Transform.rotation = _muzzle.rotation;
-
-            _projectiles.Add(prjmodel);
-
+            var prjmodel = _projectilesController.Add(Damage);
             prjmodel.Rgdbody.AddForce(_muzzle.up * _shootPower, _forceMode);
-
+            _lastAtackTime = Time.time;
         }
 
-        private void OnDestroyProjectile(ProjectileModel projectile) 
-        {
-            _projectiles.Remove(projectile);
-            _projectileViewService.Destroy(projectile.View);
-            projectile.Dispose();
-        }
+        private bool CanAttack() => Time.time - _lastAtackTime >= AttackDelay;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PixelGame.Interfaces;
+using UnityEngine;
 
 namespace PixelGame.Model
 {
@@ -16,6 +17,6 @@ namespace PixelGame.Model
             _attackDelay = attackDelay;
         }
 
-        public abstract void Attack();
+        public abstract void Attack(Vector3 target);
     }
 }

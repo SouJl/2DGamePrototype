@@ -27,7 +27,7 @@ namespace PixelGame.Model.Utils
             LevelObjectView go;
             if (_stack.Count == 0)
             {
-                go = Object.Instantiate(_prefab);
+                go = Object.Instantiate(_prefab, _mainRoot.position, Quaternion.identity);
                 go.name = _prefab.name;
             }
             else

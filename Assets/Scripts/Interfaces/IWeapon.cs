@@ -1,4 +1,6 @@
-﻿namespace PixelGame.Interfaces
+﻿using UnityEngine;
+
+namespace PixelGame.Interfaces
 {
     public interface IWeapon
     {
@@ -6,6 +8,6 @@
 
         float AttackDelay { get; set; }
         
-        void Attack();
+        void Attack(Vector3 target);
     }
 }

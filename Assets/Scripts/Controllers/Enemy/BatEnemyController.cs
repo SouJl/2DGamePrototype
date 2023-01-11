@@ -9,12 +9,15 @@ namespace PixelGame.Controllers
 {
     public class BatEnemyController : IExecute, IDisposable
     {
+        private Transform _player;
         private AbstractEnemyModel _enemy;
         private BatEnemyView _view;
+        private IWeapon _weapon;
         private SpriteAnimatorController _animatorController;
 
-        public BatEnemyController(BatEnemyView view, AbstractEnemyModel enemyModel) 
+        public BatEnemyController(Transform player, BatEnemyView view, AbstractEnemyModel enemyModel, IWeapon weapon) 
         {
+            _player = player;
             _view = view;
             _enemy = enemyModel;
 
@@ -23,6 +26,8 @@ namespace PixelGame.Controllers
 
             _view.OnLevelObjectContact += OnCloseContact;
             _view.Locator.OnLacatorContact += OnLocatorContact;
+
+            _weapon = weapon;
         }
 
         public void Execute()
@@ -37,12 +42,9 @@ namespace PixelGame.Controllers
 
         public void OnLocatorContact(LevelObjectView target)
         {
-            _enemy.Rotate();
+            _enemy.Rotate(_player.position);
 
-            if (_enemy.CanAttack())
-            {
-                _enemy.Attack();         
-            }
+            _weapon.Attack(_player.position);
         }
 
         public void OnCloseContact(LevelObjectView target)

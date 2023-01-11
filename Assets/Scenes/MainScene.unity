@@ -995,11 +995,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _attackDelay: 3
+  _attackDelay: 2
   _shootPower: 5
   _forceMode: 1
   _muzzle: {fileID: 576306936}
   _projectileType: 1
+  _projectileLifeTime: 3.5
 --- !u!4 &533523187
 Transform:
   m_ObjectHideFlags: 0
@@ -11640,6 +11641,7 @@ MonoBehaviour:
   _forceMode: 1
   _muzzle: {fileID: 425978909}
   _projectileType: 0
+  _projectileLifeTime: 3
 --- !u!1 &805545138
 GameObject:
   m_ObjectHideFlags: 0
@@ -17637,6 +17639,7 @@ MonoBehaviour:
   _forceMode: 1
   _muzzle: {fileID: 830906586}
   _projectileType: 1
+  _projectileLifeTime: 3
 --- !u!4 &1426929538
 Transform:
   m_ObjectHideFlags: 0

@@ -25,6 +25,8 @@ namespace PixelGame.Model
 
             _projectilesController = controller;
         }
+        
+        private bool CanAttack() => Time.time - _lastAtackTime >= AttackDelay;
 
         public override void Attack(Vector3 target)
         {
@@ -40,7 +42,10 @@ namespace PixelGame.Model
             prjmodel.Rgdbody.AddForce(_muzzle.up * _shootPower, _forceMode);
             _lastAtackTime = Time.time;
         }
-
-        private bool CanAttack() => Time.time - _lastAtackTime >= AttackDelay;
+     
+        public override void Update(float time)
+        {
+            _projectilesController.Update(time);
+        }
     }
 }

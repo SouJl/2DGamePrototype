@@ -7,7 +7,9 @@ namespace PixelGame.Interfaces
         float Damage { get; set; }
 
         float AttackDelay { get; set; }
-        
+
+        void Update(float time);
+
         void Attack(Vector3 target);
     }
 }

@@ -18,5 +18,7 @@ namespace PixelGame.Model
         }
 
         public abstract void Attack(Vector3 target);
+
+        public abstract void Update(float time);
     }
 }

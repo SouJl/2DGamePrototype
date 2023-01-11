@@ -15,7 +15,9 @@ namespace PixelGame.Controllers
 
         private ViewService _projectileViewService;
 
-        public ProjectilesController(ProjectileType projectileType, ViewService projectileViewService) 
+        private float _projectilLifeTime;
+
+        public ProjectilesController(ProjectileType projectileType, ViewService projectileViewService, float ptjtLeifeTime) 
         {
             _projectilePrefab = Resources.Load<ProjectileView>($"{projectileType}Projectile");
 
@@ -27,8 +29,21 @@ namespace PixelGame.Controllers
             _projectileViewService = projectileViewService;
 
             _projectiles = new List<ProjectileModel>();
+
+            _projectilLifeTime = ptjtLeifeTime;
         }
 
+        public void Update(float time) 
+        {
+            foreach(var projectile in _projectiles.ToArray()) 
+            {
+                if(projectile.LifeTime > _projectilLifeTime) 
+                {
+                    Remove(projectile);
+                }
+                projectile.LifeTime += time;
+            }
+        }
 
         public ProjectileModel Add(float damage) 
         {

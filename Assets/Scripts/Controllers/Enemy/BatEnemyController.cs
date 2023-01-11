@@ -37,7 +37,7 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
-            
+            _weapon.Update(Time.fixedDeltaTime);
         }
 
         public void OnLocatorContact(LevelObjectView target)

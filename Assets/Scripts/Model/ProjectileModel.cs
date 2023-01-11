@@ -6,30 +6,28 @@ namespace PixelGame.Model
 {
     public class ProjectileModel : IDisposable
     {
-        private Transform _transform;
         private Rigidbody2D _rgdbody;
-
         private float _damage;
         private ProjectileView _view;
+        private float _lifeTime;
 
         public float Damage { get => _damage; set => _damage = value; }
         public ProjectileView View { get => _view;}
 
-        public Transform Transform { get => _transform; set => _transform = value; }
         public Rigidbody2D Rgdbody { get => _rgdbody; set => _rgdbody = value; }
+        public float LifeTime { get => _lifeTime; set => _lifeTime = value; }
 
         private Action<ProjectileModel> _onDestroy;
 
         public ProjectileModel(float damage, ProjectileView view, Action<ProjectileModel> onDestroy) 
         {
-            _transform = view.Transform;
             _rgdbody = view.Rigidbody;
 
             _damage = damage;
             _view = view;
             _view.OnLevelObjectContact += OnLevelObjectContact;
-            _view.onEndLifeTime += OnEndLifeTime;
             _onDestroy = onDestroy;
+            _lifeTime = 0;
         }
 
         private void OnLevelObjectContact(LevelObjectView levelObject) 
@@ -40,12 +38,10 @@ namespace PixelGame.Model
             }
         }
 
-        private void OnEndLifeTime() => _onDestroy?.Invoke(this);
-
         public void Dispose()
         {
             _view.OnLevelObjectContact -= OnLevelObjectContact;
-            _view.onEndLifeTime -= OnEndLifeTime;
+            _lifeTime = 0;
             _onDestroy = null;
         }
     }

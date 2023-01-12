@@ -41,7 +41,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
 
-            if (_doJump && Mathf.Abs(_player.RgBody.velocity.y) <= _jumpModel.JumpThershold)
+            if (_doJump && Mathf.Abs(_player.RgBody.velocity.y - _player.ContactsPoller.GroundVelocity.y) <= _jumpModel.JumpThershold)
             {
                 _jumpModel.Jump();
             }

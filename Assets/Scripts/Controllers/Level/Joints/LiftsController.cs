@@ -2,6 +2,7 @@
 using PixelGame.Model;
 using PixelGame.View;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelGame.Controllers
 {
@@ -11,9 +12,11 @@ namespace PixelGame.Controllers
 
         public LiftsController(List<LiftView> liftViews)
         {
+            _lifts = new List<LiftModel>();
+
             foreach (var lift in liftViews) 
             {
-                _lifts.Add(new LiftModel(lift.Joint, lift.Speed));
+                _lifts.Add(new LiftModel(lift, lift.Speed, lift.StayTime));
             }
         }
 
@@ -24,7 +27,10 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
-            
+            foreach(var lift in _lifts)
+            {
+                lift.Upate(Time.fixedDeltaTime);
+            }
         }
     }
 }

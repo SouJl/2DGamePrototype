@@ -9,6 +9,7 @@ TagManager:
   - LevelEnd
   - DeathZone
   - Ground
+  - Joint
   layers:
   - Default
   - TransparentFX

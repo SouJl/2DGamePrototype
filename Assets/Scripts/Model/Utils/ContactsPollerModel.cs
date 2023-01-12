@@ -11,6 +11,7 @@ namespace PixelGame.Model
         private readonly Collider2D _collider2D;
 
         public bool IsGrounded { get; private set; }
+        public Vector2 GroundVelocity { get; private set; }
         public bool HasLeftContacts { get; private set; }
         public bool HasRightContacts { get; private set; }
 
@@ -19,7 +20,7 @@ namespace PixelGame.Model
             _collider2D = collider2D;
         }
 
-        public void Update() 
+        public void Update()
         {
             IsGrounded = false;
             HasLeftContacts = false;
@@ -30,9 +31,14 @@ namespace PixelGame.Model
             {
                 var normal = _contacts[i].normal;
                 var rigidBody = _contacts[i].rigidbody;
-                if (normal.y > _collisionThresh) IsGrounded = true;
                 
-                if(_contactsCount > _minCollSideContatcs) 
+                if (normal.y > _collisionThresh)
+                {
+                    IsGrounded = true;
+                    GroundVelocity = rigidBody == null ? Vector2.zero : rigidBody.velocity;
+                }
+
+                if (_contactsCount > _minCollSideContatcs)
                 {
                     if (normal.x > _collisionThresh && rigidBody == null)
                         HasLeftContacts = true;

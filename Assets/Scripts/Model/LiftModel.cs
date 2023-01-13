@@ -57,6 +57,7 @@ namespace PixelGame.Model
         private void OnTouchTrigger(LevelObjectView levelObject)
         {
             if (levelObject.tag != "Joint") return;
+
             _isChngeDirection = true;
         }
     }

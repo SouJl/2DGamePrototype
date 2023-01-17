@@ -41,7 +41,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
 
-            if (_doJump && Mathf.Abs(_player.RgBody.velocity.y - _player.ContactsPoller.GroundVelocity.y) <= _jumpModel.JumpThershold)
+            if (_doJump && Mathf.Abs(_rgdBody.velocity.y - _player.ContactsPoller.GroundVelocity.y) <= _jumpModel.JumpThershold)
             {
                 _jumpModel.Jump();
             }
@@ -50,7 +50,7 @@ namespace PixelGame.Model.StateMachines
             {
                 _isGround = true;
             }
-            else if (Mathf.Abs(_player.RgBody.velocity.y) > _jumpModel.FlyThershold) 
+            else if (Mathf.Abs(_rgdBody.velocity.y) > _jumpModel.FlyThershold) 
             {
                 animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Jump, true);
                 _doJump = false;
@@ -61,7 +61,7 @@ namespace PixelGame.Model.StateMachines
                 _isWallSlide = true;
             }
 
-            if (!_player.ContactsPoller.IsGrounded && _player.RgBody.velocity.y < -_jumpModel.FlyThershold)
+            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
             {
                 _isFall = true;
             }

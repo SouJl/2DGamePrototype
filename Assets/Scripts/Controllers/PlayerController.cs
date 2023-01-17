@@ -1,6 +1,7 @@
 ﻿using PixelGame.Interfaces;
 using PixelGame.Model;
 using PixelGame.Model.StateMachines;
+using PixelGame.Model.Utils;
 using PixelGame.View;
 
 namespace PixelGame.Controllers
@@ -14,9 +15,11 @@ namespace PixelGame.Controllers
         public PlayerController(PlayerView view) 
         {
             _view = view;
+            var componentsModel = new ComponentsModel(_view.Transform, _view.Rigidbody, _view.Collider);
             var moveModel = new PlayerMovementModel(_view.Rigidbody, _view.Speed, _view.MoveThresh);
-            var jumpModel = new PlayerJumpModel(_view.Rigidbody, _view.JumpForce, _view.JumpThreshold, _view.FlyThreshold);
-            _playerModel = new PlayerModel(_view.Rigidbody, _view.SpriteRenderer, _view.Collider , moveModel, jumpModel, _view.MaxHealth);
+            var jumpModel = new PlayerJumpModel(_view.Rigidbody, _view.JumpForce, _view.JumpThreshold, _view.FlyThreshold); 
+            var slope = new SlopeAnaliser(_view.Rigidbody, _view.Collider, _view.SlopeData.slopeCheckDistance, _view.SlopeData.maxSlopeAngle, _view.SlopeData.layerMask);
+            _playerModel = new PlayerModel(componentsModel, _view.SpriteRenderer, moveModel, jumpModel, _view.MaxHealth, slope);
 
             _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);
 

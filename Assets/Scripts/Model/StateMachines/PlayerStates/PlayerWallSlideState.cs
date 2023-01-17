@@ -29,9 +29,9 @@ namespace PixelGame.Model.StateMachines
         public override void Enter()
         {
             base.Enter();
-            
-            _player.RgBody.velocity = Vector2.zero;
-            _player.RgBody.angularVelocity = 0;
+
+            _rgdBody.velocity = Vector2.zero;
+            _rgdBody.angularVelocity = 0;
 
             _isJump = false;
             _isGround = false;
@@ -68,12 +68,12 @@ namespace PixelGame.Model.StateMachines
                 _player.SpriteRenderer.flipX = false;
                 _wallDirection = WallDirection.Left;
             }
-            else if (_player.RgBody.velocity.y < -_jumpModel.FlyThershold)
+            else if (_rgdBody.velocity.y < -_jumpModel.FlyThershold)
             {         
                 _isFall = true;
             }
 
-            _player.RgBody.velocity = new Vector2(_player.RgBody.velocity.x, Mathf.Clamp(_player.RgBody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
+            _rgdBody.velocity = new Vector2(_rgdBody.velocity.x, Mathf.Clamp(_rgdBody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
 
 
             _isGround = _player.ContactsPoller.IsGrounded;

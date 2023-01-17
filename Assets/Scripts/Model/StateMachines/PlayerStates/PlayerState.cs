@@ -11,14 +11,17 @@ namespace PixelGame.Model.StateMachines
 
         protected PlayerJumpModel _jumpModel;
 
+        protected Rigidbody2D _rgdBody;
+
         protected float _xAxisInput;
         protected float _yAxisInput;
-
+        
         public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController)
         {
             _player = unit;
             _moveModel = unit.MoveModel as PlayerMovementModel;
             _jumpModel = unit.JumpModel as PlayerJumpModel;
+            _rgdBody = _player.UnitComponents.RgdBody;
         }
 
         public override void Enter()
@@ -43,6 +46,7 @@ namespace PixelGame.Model.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+            _player.Slope.SlopeCheck();
         }
 
         public override void Exit()

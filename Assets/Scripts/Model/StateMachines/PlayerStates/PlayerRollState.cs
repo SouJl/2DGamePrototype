@@ -60,7 +60,7 @@ namespace PixelGame.Model.StateMachines
                 _isWallSlide = true;
             }
 
-            if (!_player.ContactsPoller.IsGrounded && _player.RgBody.velocity.y < -_jumpModel.FlyThershold)
+            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
             {
                 _isFall = true;
             }
@@ -73,8 +73,8 @@ namespace PixelGame.Model.StateMachines
             _isWallSlide = false;
             _isFall = false;
 
-            _player.RgBody.velocity = Vector2.zero;
-            _player.RgBody.angularVelocity = 0;
+            _rgdBody.velocity = Vector2.zero;
+            _rgdBody.angularVelocity = 0;
             
             animatorController.StopAnimation(_player.SpriteRenderer);
         }

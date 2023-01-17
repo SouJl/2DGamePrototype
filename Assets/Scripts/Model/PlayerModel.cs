@@ -1,5 +1,6 @@
 using PixelGame.Interfaces;
 using PixelGame.Model.StateMachines;
+using PixelGame.Model.Utils;
 using UnityEngine;
 
 namespace PixelGame.Model 
@@ -13,14 +14,16 @@ namespace PixelGame.Model
         public State WallSlideState { get; set; }
 
         private float _maxHealth;
+        private SlopeAnaliser _slope;
 
         public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+        public SlopeAnaliser Slope { get => _slope; set => _slope = value; }
 
-        public PlayerModel(Rigidbody2D rigidbody, SpriteRenderer spriteRenderer, Collider2D collider2D, IMove movementModel, IJump jumpModel, float maxHealth) : base(rigidbody, spriteRenderer, collider2D, movementModel, jumpModel)
+        public PlayerModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, float maxHealth, SlopeAnaliser slope) : base(components, spriteRenderer, movementModel, jumpModel)
         {
             _maxHealth = maxHealth;
+            _slope = slope;
         }
-
     }
 }
 

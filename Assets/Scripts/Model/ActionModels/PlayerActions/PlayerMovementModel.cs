@@ -12,5 +12,10 @@ namespace PixelGame.Model
             var xVelocity = inpitValue * Speed * Time.fixedDeltaTime;
             Rgdbody.velocity = new Vector2(xVelocity, Rgdbody.velocity.y);
         }
+
+        public void Move(Vector2 input) 
+        {
+            Rgdbody.velocity = input * Speed * Time.fixedDeltaTime;
+        }
     }
 }

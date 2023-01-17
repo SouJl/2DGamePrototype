@@ -55,14 +55,22 @@ namespace PixelGame.Model.StateMachines
 
             _player.SpriteRenderer.flipX = _xAxisInput < 0;
 
-            _moveModel.Move(_xAxisInput);
+            if (!_player.Slope.IsOnSlope) 
+            {
+                _moveModel.Move(_xAxisInput);
+            }
+            else if (_player.Slope.IsOnSlope && _player.Slope.CanWalkOnSlope)
+            {
+                var newVel = new Vector2(_player.Slope.SlopeNormalPerp.x * -_xAxisInput, _player.Slope.SlopeNormalPerp.y * -_xAxisInput);
+                _moveModel.Move(newVel);
+            }
             
             if (!_jumpModel.IsWallJump && !_player.ContactsPoller.IsGrounded && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
             {
                 _isWallSlide = true;
             }
 
-            if (!_player.ContactsPoller.IsGrounded && _player.RgBody.velocity.y < -_jumpModel.FlyThershold)
+            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
             {
                 _isFall = true;
             }

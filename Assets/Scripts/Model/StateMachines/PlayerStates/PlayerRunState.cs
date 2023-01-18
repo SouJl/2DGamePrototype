@@ -51,10 +51,14 @@ namespace PixelGame.Model.StateMachines
 
         public override void PhysicsUpdate()
         {
-
             base.PhysicsUpdate();
-            
-            if(_xAxisInput != 0)
+
+            if (!_player.Slope.IsOnSlope && !_player.Slope.CanWalkOnSlope)
+            {
+                _rgdBody.sharedMaterial = _noneFriction;
+            }
+
+            if (_xAxisInput != 0)
                 _player.SpriteRenderer.flipX = _xAxisInput < 0;
 
             if (!_player.Slope.IsOnSlope) 

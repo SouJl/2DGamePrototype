@@ -10,8 +10,10 @@ namespace PixelGame.Model.StateMachines
         private bool _isJump;
         private bool _isFall;
 
+
         public PlayerIdleState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
         {
+            
         }
 
         public override void Enter()
@@ -45,6 +47,9 @@ namespace PixelGame.Model.StateMachines
             {
                 _isFall = true;
             }
+
+            _rgdBody.sharedMaterial = _fullFriction;
+         
         }
 
         public override void Exit()

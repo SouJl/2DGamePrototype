@@ -61,7 +61,7 @@ namespace PixelGame.Model.StateMachines
                 _isWallSlide = true;
             }
 
-            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
+            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FallThershold)
             {
                 _isFall = true;
             }

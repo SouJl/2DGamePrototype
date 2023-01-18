@@ -55,8 +55,11 @@ namespace PixelGame.Model.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-         
-            _moveModel.Move(_xAxisInput);
+
+            _rgdBody.sharedMaterial = _noneFriction;
+
+
+            _wallDirection = WallDirection.None;
 
             if (_player.ContactsPoller.HasRightContacts)
             {
@@ -68,15 +71,19 @@ namespace PixelGame.Model.StateMachines
                 _player.SpriteRenderer.flipX = false;
                 _wallDirection = WallDirection.Left;
             }
-            else if (_rgdBody.velocity.y < -_jumpModel.FlyThershold)
-            {         
+            else if (_rgdBody.velocity.y < -_jumpModel.FallThershold)
+            {
                 _isFall = true;
             }
 
-            _rgdBody.velocity = new Vector2(_rgdBody.velocity.x, Mathf.Clamp(_rgdBody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
-
-
             _isGround = _player.ContactsPoller.IsGrounded;
+
+            _moveModel.Move(_xAxisInput);
+
+            if (_wallDirection != WallDirection.None && !_isGround && _xAxisInput != 0)
+            {
+                _rgdBody.velocity = new Vector2(_rgdBody.velocity.x, Mathf.Clamp(_rgdBody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
+            }
         }
 
 
@@ -91,9 +98,11 @@ namespace PixelGame.Model.StateMachines
             switch (_wallDirection)
             {
                 case WallDirection.Right:
+                    _player.SpriteRenderer.flipX = true;
                     _player.JumpModel.Direction = new Vector2(-1, 1);
                     break;
                 case WallDirection.Left:
+                    _player.SpriteRenderer.flipX = false;
                     _player.JumpModel.Direction = new Vector2(1, 1);
                     break;
             }

@@ -41,13 +41,13 @@ namespace PixelGame.Controllers
 
         public void Execute()
         {
+            _playerModel.UnitMovementSM.CurrentState.InputData();
             _playerModel.UnitMovementSM.CurrentState.LogicUpdate();
         }
 
         public void FixedExecute()
         {
             _playerModel.ContactsPoller.Update();
-            _playerModel.UnitMovementSM.CurrentState.InputData();
             _playerModel.UnitMovementSM.CurrentState.PhysicsUpdate();
         }
     }

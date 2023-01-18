@@ -15,13 +15,19 @@ namespace PixelGame.Model.StateMachines
 
         protected float _xAxisInput;
         protected float _yAxisInput;
-        
+
+        protected PhysicsMaterial2D _fullFriction;
+        protected PhysicsMaterial2D _noneFriction;
+
         public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController)
         {
             _player = unit;
             _moveModel = unit.MoveModel as PlayerMovementModel;
             _jumpModel = unit.JumpModel as PlayerJumpModel;
             _rgdBody = _player.UnitComponents.RgdBody;
+
+            _fullFriction = Resources.Load<PhysicsMaterial2D>("FullFrictionMaterial");
+            _noneFriction = Resources.Load<PhysicsMaterial2D>("ZeroFrictionMaterial");
         }
 
         public override void Enter()
@@ -48,15 +54,7 @@ namespace PixelGame.Model.StateMachines
             base.PhysicsUpdate();
             _player.Slope.SlopeCheck();
 
-
-            if (_player.Slope.IsOnSlope && _player.Slope.CanWalkOnSlope && _xAxisInput == 0.0f)
-            {
-               _rgdBody.sharedMaterial = _player.FullFriction;
-            }
-            else
-            {
-                _rgdBody.sharedMaterial = _player.NoneFriction; 
-            }
+            _rgdBody.sharedMaterial = _player.MainMaterial;
         }
 
         public override void Exit()

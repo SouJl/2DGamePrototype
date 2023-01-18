@@ -15,22 +15,20 @@ namespace PixelGame.Model
 
         private float _maxHealth;
         private SlopeAnaliser _slope;
-        private PhysicsMaterial2D _fullFriction;
-        private PhysicsMaterial2D _noneFriction;
+
+        private PhysicsMaterial2D _mainMaterial;
 
         public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
         public SlopeAnaliser Slope { get => _slope; set => _slope = value; }
-        
-        public PhysicsMaterial2D FullFriction { get => _fullFriction; private set => _fullFriction = value; }
-        public PhysicsMaterial2D NoneFriction { get => _noneFriction; private set => _noneFriction = value; }
+
+        public PhysicsMaterial2D MainMaterial { get => _mainMaterial; private set => _mainMaterial = value; }
 
         public PlayerModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, float maxHealth, SlopeAnaliser slope) : base(components, spriteRenderer, movementModel, jumpModel)
         {
             _maxHealth = maxHealth;
             _slope = slope;
 
-            FullFriction = Resources.Load<PhysicsMaterial2D>("FullFrictionMaterial");
-            NoneFriction = Resources.Load<PhysicsMaterial2D>("ZeroFrictionMaterial");
+            MainMaterial = Resources.Load<PhysicsMaterial2D>("PlayerPhysicsMaterial");
         }
     }
 }

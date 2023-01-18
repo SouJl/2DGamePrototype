@@ -51,6 +51,7 @@ namespace PixelGame.Model.StateMachines
 
         public override void PhysicsUpdate()
         {
+
             base.PhysicsUpdate();
 
             _player.SpriteRenderer.flipX = _xAxisInput < 0;
@@ -70,7 +71,7 @@ namespace PixelGame.Model.StateMachines
                 _isWallSlide = true;
             }
 
-            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
+            if (_rgdBody.velocity.y < -_jumpModel.FallThershold || (!_player.ContactsPoller.IsGrounded && !_player.Slope.CanWalkOnSlope)) 
             {
                 _isFall = true;
             }

@@ -17,7 +17,7 @@ namespace PixelGame.Controllers
             _view = view;
             var componentsModel = new ComponentsModel(_view.Transform, _view.Rigidbody, _view.Collider);
             var moveModel = new PlayerMovementModel(_view.Rigidbody, _view.Speed, _view.MoveThresh);
-            var jumpModel = new PlayerJumpModel(_view.Rigidbody, _view.JumpForce, _view.JumpThreshold, _view.FlyThreshold); 
+            var jumpModel = new PlayerJumpModel(_view.Rigidbody, _view.JumpForce, _view.JumpThreshold, _view.FlyThreshold, _view.FallThreshold); 
             var slope = new SlopeAnaliser(_view.Rigidbody, _view.Collider, _view.SlopeData.slopeCheckDistance, _view.SlopeData.maxSlopeAngle, _view.SlopeData.layerMask);
             _playerModel = new PlayerModel(componentsModel, _view.SpriteRenderer, moveModel, jumpModel, _view.MaxHealth, slope);
 

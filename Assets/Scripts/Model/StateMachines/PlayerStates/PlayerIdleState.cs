@@ -8,6 +8,7 @@ namespace PixelGame.Model.StateMachines
     {
         private bool _isRun;
         private bool _isJump;
+        private bool _isFall;
 
         public PlayerIdleState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
         {
@@ -34,11 +35,17 @@ namespace PixelGame.Model.StateMachines
             base.LogicUpdate();
             if(_isRun) stateMachine.ChangeState(_player.RunState);
             if(_isJump) stateMachine.ChangeState(_player.JumpState);
+            if (_isFall) stateMachine.ChangeState(_player.FallState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+
+            if (!_player.ContactsPoller.IsGrounded && !_player.Slope.IsOnSlope && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
+            {
+                _isFall = true;
+            }
         }
 
         public override void Exit()
@@ -46,6 +53,7 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             _isJump = false;
             _isRun = false;
+            _isFall = false;
             _player.JumpModel.Direction = Vector2.up;
             animatorController.StopAnimation(_player.SpriteRenderer);
         }

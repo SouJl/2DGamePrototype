@@ -27,10 +27,10 @@ namespace PixelGame.Model.StateMachines
         public override void InputData()
         {
             base.InputData();
-
-            _isJump = _yAxisInput > 0;
+            _isJump = Input.GetKey(KeyCode.Space);
+           // _isJump = _yAxisInput > 0;
             _isStay = _xAxisInput == 0 && !_isJump ? true : false;
-            _isRoll = Input.GetKey(KeyCode.Space);
+            _isRoll = Input.GetKey(KeyCode.LeftShift);
         }
 
 
@@ -53,8 +53,9 @@ namespace PixelGame.Model.StateMachines
         {
 
             base.PhysicsUpdate();
-
-            _player.SpriteRenderer.flipX = _xAxisInput < 0;
+            
+            if(_xAxisInput != 0)
+                _player.SpriteRenderer.flipX = _xAxisInput < 0;
 
             if (!_player.Slope.IsOnSlope) 
             {

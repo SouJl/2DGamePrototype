@@ -24,8 +24,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
 
-            _isJump = _yAxisInput > 0;
-
+            _isJump = Input.GetKey(KeyCode.Space);
             _isRun = Mathf.Abs(_xAxisInput) > _moveModel.MovingThresh;
         }
 
@@ -35,7 +34,7 @@ namespace PixelGame.Model.StateMachines
             base.LogicUpdate();
             if(_isRun) stateMachine.ChangeState(_player.RunState);
             if(_isJump) stateMachine.ChangeState(_player.JumpState);
-            if (_isFall) stateMachine.ChangeState(_player.FallState);
+            if(_isFall) stateMachine.ChangeState(_player.FallState);
         }
 
         public override void PhysicsUpdate()

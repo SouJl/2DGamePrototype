@@ -47,6 +47,16 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
             _player.Slope.SlopeCheck();
+
+
+            if (_player.Slope.IsOnSlope && _player.Slope.CanWalkOnSlope && _xAxisInput == 0.0f)
+            {
+               _rgdBody.sharedMaterial = _player.FullFriction;
+            }
+            else
+            {
+                _rgdBody.sharedMaterial = _player.NoneFriction; 
+            }
         }
 
         public override void Exit()

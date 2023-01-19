@@ -22,6 +22,8 @@ namespace PixelGame.Controllers
             _lastTime = Time.time;
         }
 
+        public IHealth HealthModel { get => _healthModel; }
+
         public void Execute()
         {
             if (_healthModel.CurrentHealth == 0) return;

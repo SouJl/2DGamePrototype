@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4046165424002819449}
   - component: {fileID: 439348386866632744}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: tileset1_32 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8077246734338054804}
   - component: {fileID: 2942537936296666492}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: tileset1_33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6700530093835615316}
   - component: {fileID: 2390851171225896318}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: tileset1_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 5616881894398784214}
   - component: {fileID: 2840233010739623264}
   - component: {fileID: -4714066007291263287}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: 1x2_PlatformN
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using PixelGame.Enumerators;
+﻿using Pathfinding;
+using PixelGame.Enumerators;
 using PixelGame.Interfaces;
 using PixelGame.Model;
 using PixelGame.View;
@@ -15,6 +16,8 @@ namespace PixelGame.Controllers
         private IWeapon _weapon;
         private SpriteAnimatorController _animatorController;
 
+        private float lastTimeAiUpdate;
+
         public BatEnemyController(Transform player, BatEnemyView view, AbstractEnemyModel enemyModel, IWeapon weapon) 
         {
             _player = player;
@@ -28,6 +31,8 @@ namespace PixelGame.Controllers
             _view.Locator.OnLacatorContact += OnLocatorContact;
 
             _weapon = weapon;
+
+            lastTimeAiUpdate = _enemy.LogicAI.UpdateFrameRate;
         }
 
         public void Execute()
@@ -38,6 +43,19 @@ namespace PixelGame.Controllers
         public void FixedExecute()
         {
             _weapon.Update(Time.fixedDeltaTime);
+
+            var newVel = _enemy.LogicAI.CalculatePath(_view.Transform.position);
+            _enemy.MoveModel.Move(newVel);
+
+            if (lastTimeAiUpdate > _enemy.LogicAI.UpdateFrameRate) 
+            {
+                RecalculatePath();
+                lastTimeAiUpdate = 0;
+            }
+            else 
+            {
+                lastTimeAiUpdate += Time.fixedDeltaTime;
+            }
         }
 
         public void OnLocatorContact(LevelObjectView target)
@@ -50,6 +68,20 @@ namespace PixelGame.Controllers
         public void OnCloseContact(LevelObjectView target)
         {
             
+        }
+
+        public void RecalculatePath()
+        {
+            if (_enemy.LogicAI.Seeker.IsDone())
+            {
+                _enemy.LogicAI.Seeker.StartPath(_view.Rigidbody.position, _player.position, OnPathComplete);
+            }
+        }
+
+        private void OnPathComplete(Path p)
+        {
+            if (p.error) return;
+            _enemy.LogicAI.OnPathComplete(p);
         }
 
         public void Dispose()

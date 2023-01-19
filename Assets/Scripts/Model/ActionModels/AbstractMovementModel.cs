@@ -21,5 +21,7 @@ namespace PixelGame.Model
         }
 
         public abstract void Move(float inpitValue);
+
+        public abstract void Move(Vector2 vector);
     }
 }

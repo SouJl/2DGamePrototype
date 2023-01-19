@@ -7,7 +7,7 @@ namespace PixelGame.Model.StateMachines
     {
         protected PlayerModel _player;
 
-        protected PlayerMovementModel _moveModel;
+        protected SimplePhysicsMove _moveModel;
 
         protected PlayerJumpModel _jumpModel;
 
@@ -22,7 +22,7 @@ namespace PixelGame.Model.StateMachines
         public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController)
         {
             _player = unit;
-            _moveModel = unit.MoveModel as PlayerMovementModel;
+            _moveModel = unit.MoveModel as SimplePhysicsMove;
             _jumpModel = unit.JumpModel as PlayerJumpModel;
             _rgdBody = _player.UnitComponents.RgdBody;
 

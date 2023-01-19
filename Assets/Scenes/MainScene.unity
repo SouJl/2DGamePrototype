@@ -1334,8 +1334,6 @@ GameObject:
   - component: {fileID: 387626539}
   - component: {fileID: 387626540}
   - component: {fileID: 387626543}
-  - component: {fileID: 387626542}
-  - component: {fileID: 387626541}
   m_Layer: 9
   m_Name: Bat_Enemy
   m_TagString: Enemy
@@ -1441,7 +1439,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1467,67 +1465,12 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _maxHealth: 50
   _locator: {fileID: 1691703496}
-  _speed: 5
+  _speed: 50
   _moveThresh: 0.01
   _animationSpeed: 8
   _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
   _weapon: {fileID: 783482042}
---- !u!114 &387626541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387626534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 805545141}
---- !u!114 &387626542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387626534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
-  radius: 0.5
-  height: 2
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 1
-  enableRotation: 0
-  autoRepath:
-    mode: 2
-    interval: 0.5
-    sensitivity: 10
-    maximumInterval: 0.5
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 1.2
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 0
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
+  _seeker: {fileID: 0}
 --- !u!114 &387626543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30520,6 +30463,7 @@ GameObject:
   - component: {fileID: 892918005}
   - component: {fileID: 892918004}
   - component: {fileID: 892918003}
+  - component: {fileID: 892918008}
   m_Layer: 9
   m_Name: Bat_Enemy (2)
   m_TagString: Enemy
@@ -30550,6 +30494,7 @@ MonoBehaviour:
   _animationSpeed: 8
   _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
   _weapon: {fileID: 533523186}
+  _seeker: {fileID: 0}
 --- !u!50 &892918004
 Rigidbody2D:
   serializedVersion: 4
@@ -30563,7 +30508,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -30656,6 +30601,34 @@ Transform:
   m_Father: {fileID: 987680241}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892918008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892918002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &896022718
 GameObject:
   m_ObjectHideFlags: 0
@@ -30721,6 +30694,7 @@ GameObject:
   - component: {fileID: 924124181}
   - component: {fileID: 924124180}
   - component: {fileID: 924124179}
+  - component: {fileID: 924124184}
   m_Layer: 9
   m_Name: Bat_Enemy (1)
   m_TagString: Enemy
@@ -30751,6 +30725,7 @@ MonoBehaviour:
   _animationSpeed: 8
   _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
   _weapon: {fileID: 1426929537}
+  _seeker: {fileID: 0}
 --- !u!50 &924124180
 Rigidbody2D:
   serializedVersion: 4
@@ -30764,7 +30739,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -30857,6 +30832,34 @@ Transform:
   m_Father: {fileID: 987680241}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924124184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924124178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &925196193
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,5 +12,10 @@ namespace PixelGame.Model
         {
             Debug.Log("[NoneMoveModel] - Unit can't move!");
         }
+
+        public void Move(Vector2 vector)
+        {
+            Debug.Log("[NoneMoveModel] - Unit can't move!");
+        }
     }
 }

@@ -12,7 +12,9 @@ namespace PixelGame.Controllers
         private PlayerView _view;
         private SpriteAnimatorController _animatorController;
 
-        public PlayerController(PlayerView view) 
+        private HealthController _healthController;
+
+        public PlayerController(PlayerView view, HealhBarView healhBar) 
         {
             _view = view;
             var componentsModel = new ComponentsModel(_view.Transform, _view.Rigidbody, _view.Collider);
@@ -22,6 +24,7 @@ namespace PixelGame.Controllers
             _playerModel = new PlayerModel(componentsModel, _view.SpriteRenderer, moveModel, jumpModel, _view.MaxHealth, slope);
 
             _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);
+            _healthController = new HealthController(_playerModel.MaxHealth, healhBar);
 
             InitStateMachine();
         }
@@ -43,6 +46,7 @@ namespace PixelGame.Controllers
         {
             _playerModel.UnitMovementSM.CurrentState.InputData();
             _playerModel.UnitMovementSM.CurrentState.LogicUpdate();
+            _healthController.Execute();
         }
 
         public void FixedExecute()

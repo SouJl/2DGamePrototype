@@ -15,6 +15,7 @@ namespace PixelGame
         [SerializeField] private CoinsView _coinsView;
         [SerializeField] private LevelContactsComponent _levelContacts;
         [SerializeField] private JointsCollectionView _jointsCollection;
+        [SerializeField] private GUIView _guiView;
 
         private ListExecuteController _executeController;
 
@@ -28,7 +29,7 @@ namespace PixelGame
         private void Start()
         {
             _executeController = new ListExecuteController();
-            _playerController = new PlayerController(_playerView);
+            _playerController = new PlayerController(_playerView, _guiView.HealhBar);
             _enemyLevelController = new EnemyLevelController(_enemyViews, _playerView.Transform);
             _coinsController = new CoinsController(_playerView, _coinsView);
             _levelContactsController = new LevelContactsController(_playerView, _levelContacts.LevelEndZone, _levelContacts.DeathZones, _levelContacts.StartPostion);

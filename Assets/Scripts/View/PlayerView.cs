@@ -32,6 +32,9 @@ namespace PixelGame.View
         [Header("Slope Settings")]
         [SerializeField] SlopeDataComponent _slopeData;
 
+
+        [SerializeField] private GroundCheckComponent _groundCheck;
+
         public float MaxHealth { get => _maxHealth;}
       
         public float Speed { get => _speed;}
@@ -47,6 +50,7 @@ namespace PixelGame.View
         public int AnimationSpeed { get => _animationSpeed;}
         public AnimationConfig AnimationConfig { get => _animationConfig; }
         public SlopeDataComponent SlopeData { get => _slopeData; }
+        public GroundCheckComponent GroundCheck { get => _groundCheck;  }
 
         public override void Awake()
         {

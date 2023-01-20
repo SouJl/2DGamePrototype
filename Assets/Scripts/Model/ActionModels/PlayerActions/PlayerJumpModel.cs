@@ -19,7 +19,7 @@ namespace PixelGame.Model
 
         public override void Jump()
         {
-            Rgdbody.AddForce(Direction * JumpForse);
+            Rgdbody.AddForce(Direction * JumpForse, ForceMode2D.Impulse);
         }
 
         public bool IsWallJump 

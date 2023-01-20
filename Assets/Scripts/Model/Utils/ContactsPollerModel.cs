@@ -4,7 +4,7 @@ namespace PixelGame.Model
 {
     public class ContactsPollerModel
     {
-        private const float _collisionThresh = 0.5f;
+        private const float _collisionThresh = 0.3f;
         private const int _minCollSideContatcs = 2;
         private ContactPoint2D[] _contacts = new ContactPoint2D[10];
         private int _contactsCount;
@@ -14,6 +14,8 @@ namespace PixelGame.Model
         public Vector2 GroundVelocity { get; private set; }
         public bool HasLeftContacts { get; private set; }
         public bool HasRightContacts { get; private set; }
+
+        private Transform _groundCheck;
 
         public ContactsPollerModel(Collider2D collider2D)
         {

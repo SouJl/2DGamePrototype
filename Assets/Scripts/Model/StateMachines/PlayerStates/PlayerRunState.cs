@@ -27,7 +27,7 @@ namespace PixelGame.Model.StateMachines
         public override void InputData()
         {
             base.InputData();
-            _isJump = Input.GetKey(KeyCode.Space);
+            _isJump = Input.GetKeyDown(KeyCode.Space);
            // _isJump = _yAxisInput > 0;
             _isStay = _xAxisInput == 0 && !_isJump ? true : false;
             _isRoll = Input.GetKey(KeyCode.LeftShift);

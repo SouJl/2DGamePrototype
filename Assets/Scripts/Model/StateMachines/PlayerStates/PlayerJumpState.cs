@@ -14,14 +14,15 @@ namespace PixelGame.Model.StateMachines
         private bool _isFall;
 
         public PlayerJumpState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController, unit)
-        { 
+        {
+            
         }
 
         public override void Enter()
         {
             base.Enter();
-            _doJump = true;
             _isWallSlide = false;
+            Jump();
         }
 
         public override void InputData()
@@ -41,29 +42,22 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
 
-            if (_doJump && Mathf.Abs(_rgdBody.velocity.y - _player.ContactsPoller.GroundVelocity.y) <= _jumpModel.JumpThershold)
-            {
-                _jumpModel.Jump();
-            }
-            
             if (_player.ContactsPoller.IsGrounded)
             {
                 _isGround = true;
-            }
-            else if (Mathf.Abs(_rgdBody.velocity.y) > _jumpModel.FlyThershold) 
-            {
-                animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Jump, true);
-                _doJump = false;
+                return;
             }
 
             if (!_jumpModel.IsWallJump && !_player.ContactsPoller.IsGrounded && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
             {
                 _isWallSlide = true;
+                return;
             }
 
             if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FallThershold)
             {
                 _isFall = true;
+                return;
             }
 
         }
@@ -75,6 +69,12 @@ namespace PixelGame.Model.StateMachines
             _isWallSlide = false;
             _isFall = false;
             animatorController.StopAnimation(_player.SpriteRenderer);
+        }
+
+        private void Jump() 
+        {
+            animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Jump, true);
+            _jumpModel.Jump();
         }
     }
 }

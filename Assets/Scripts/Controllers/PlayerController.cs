@@ -51,8 +51,8 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
-            _playerModel.ContactsPoller.Update();
             _playerModel.UnitMovementSM.CurrentState.PhysicsUpdate();
+            _playerModel.ContactsPoller.Update();
         }
     }
 }

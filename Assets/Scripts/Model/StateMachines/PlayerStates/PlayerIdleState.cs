@@ -26,7 +26,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
 
-            _isJump = Input.GetKey(KeyCode.Space);
+            _isJump = Input.GetKeyDown(KeyCode.Space);
             _isRun = Mathf.Abs(_xAxisInput) > _moveModel.MovingThresh;
         }
 

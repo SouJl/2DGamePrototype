@@ -4,9 +4,9 @@ namespace PixelGame.Model.StateMachines
 {
     public class EnemyState : State
     {
-        protected AbstractEnemyModel enemy;
+        protected AbstractAIEnemyModel enemy;
 
-        public EnemyState(StateMachine stateMachine, SpriteAnimatorController animatorController, AbstractEnemyModel enemy) : base(stateMachine, animatorController)
+        public EnemyState(StateMachine stateMachine, SpriteAnimatorController animatorController, AbstractAIEnemyModel enemy) : base(stateMachine, animatorController)
         {
             this.enemy = enemy;
         }

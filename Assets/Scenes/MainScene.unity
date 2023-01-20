@@ -30237,7 +30237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ca15c8f7491f442832bd52f343fcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5
+  _radius: 8
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -30489,7 +30489,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _maxHealth: 50
   _locator: {fileID: 1692858676}
-  _speed: 5
+  _speed: 100
   _moveThresh: 0.01
   _animationSpeed: 8
   _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
@@ -30720,7 +30720,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _maxHealth: 50
   _locator: {fileID: 843241384}
-  _speed: 5
+  _speed: 100
   _moveThresh: 0.01
   _animationSpeed: 8
   _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
@@ -41173,7 +41173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ca15c8f7491f442832bd52f343fcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5
+  _radius: 8
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -41206,7 +41206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ca15c8f7491f442832bd52f343fcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5
+  _radius: 8
   _layerMask:
     serializedVersion: 2
     m_Bits: 256

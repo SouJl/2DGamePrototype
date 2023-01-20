@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public abstract class AbstractUnitModel
+    public abstract class AbstractUnitModel :IUnit
     {
         public StateMachine UnitMovementSM { get; set; }
         public State IdleState { get; set; }
@@ -17,7 +17,7 @@ namespace PixelGame.Model
         private IJump _jumpModel;
 
         public ComponentsModel UnitComponents { get => _unitComponents; }
-        public SpriteRenderer SpriteRenderer { get => _spriteRenderer; set => _spriteRenderer = value; }
+        public SpriteRenderer SpriteRenderer { get => _spriteRenderer;}
         public ContactsPollerModel ContactsPoller { get => _contactsPoller; set => _contactsPoller = value; }
         public IMove MoveModel { get => _moveModel; }
         public IJump JumpModel { get => _jumpModel; }

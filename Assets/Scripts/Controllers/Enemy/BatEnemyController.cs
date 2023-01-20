@@ -11,14 +11,14 @@ namespace PixelGame.Controllers
     public class BatEnemyController : IExecute, IDisposable
     {
         private Transform _player;
-        private AbstractEnemyModel _enemy;
+        private AbstractAIEnemyModel _enemy;
         private BatEnemyView _view;
         private IWeapon _weapon;
         private SpriteAnimatorController _animatorController;
 
         private float lastTimeAiUpdate;
 
-        public BatEnemyController(Transform player, BatEnemyView view, AbstractEnemyModel enemyModel, IWeapon weapon) 
+        public BatEnemyController(Transform player, BatEnemyView view, AbstractAIEnemyModel enemyModel, IWeapon weapon) 
         {
             _player = player;
             _view = view;
@@ -44,44 +44,29 @@ namespace PixelGame.Controllers
         {
             _weapon.Update(Time.fixedDeltaTime);
 
-            var newVel = _enemy.LogicAI.CalculatePath(_view.Transform.position);
-            _enemy.MoveModel.Move(newVel);
-
             if (lastTimeAiUpdate > _enemy.LogicAI.UpdateFrameRate) 
             {
-                RecalculatePath();
+                _enemy.RecalculatePath(_player.position);
                 lastTimeAiUpdate = 0;
             }
             else 
             {
                 lastTimeAiUpdate += Time.fixedDeltaTime;
             }
+
+            var newVel = _enemy.LogicAI.CalculatePath(_enemy.UnitComponents.RgdBody.position);
+            _enemy.MoveModel.Move(newVel);
+            _enemy.Rotate(_player.position);
         }
 
         public void OnLocatorContact(LevelObjectView target)
         {
-            _enemy.Rotate(_player.position);
-
             _weapon.Attack(_player.position);
         }
 
         public void OnCloseContact(LevelObjectView target)
         {
             
-        }
-
-        public void RecalculatePath()
-        {
-            if (_enemy.LogicAI.Seeker.IsDone())
-            {
-                _enemy.LogicAI.Seeker.StartPath(_view.Rigidbody.position, _player.position, OnPathComplete);
-            }
-        }
-
-        private void OnPathComplete(Path p)
-        {
-            if (p.error) return;
-            _enemy.LogicAI.OnPathComplete(p);
         }
 
         public void Dispose()

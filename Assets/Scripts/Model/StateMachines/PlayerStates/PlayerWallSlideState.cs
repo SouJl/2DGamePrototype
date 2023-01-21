@@ -76,14 +76,15 @@ namespace PixelGame.Model.StateMachines
                 _isFall = true;
             }
 
-            _isGround = _player.ContactsPoller.IsGrounded;
-
-            _moveModel.Move(_xAxisInput);
-
             if (_wallDirection != WallDirection.None && !_isGround && _xAxisInput != 0)
             {
                 _rgdBody.velocity = new Vector2(_rgdBody.velocity.x, Mathf.Clamp(_rgdBody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
             }
+
+            _isGround = _player.ContactsPoller.IsGrounded;
+
+
+            _moveModel.Move(_xAxisInput);
         }
 
 

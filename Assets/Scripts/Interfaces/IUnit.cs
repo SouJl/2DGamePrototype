@@ -1,5 +1,4 @@
-﻿using PixelGame.Model;
-using PixelGame.Model.Utils;
+﻿using PixelGame.Model.Utils;
 using UnityEngine;
 
 namespace PixelGame.Interfaces
@@ -8,7 +7,6 @@ namespace PixelGame.Interfaces
     {
         ComponentsModel UnitComponents { get; }
         SpriteRenderer SpriteRenderer { get; }
-        ContactsPollerModel ContactsPoller { get; }
         IMove MoveModel { get; }
     }
 }

@@ -22,13 +22,13 @@ namespace PixelGame.Model
         public IMove MoveModel { get => _moveModel; }
         public IJump JumpModel { get => _jumpModel; }
 
-        public AbstractUnitModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel)
+        public AbstractUnitModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, ContactsPollerModel contactsPoller)
         {
             _unitComponents = components;
             _spriteRenderer = spriteRenderer;
-            _contactsPoller = new ContactsPollerModel(UnitComponents.Collider);
             _moveModel = movementModel;
             _jumpModel = jumpModel;
+            _contactsPoller = contactsPoller;
         }
     }
 }

@@ -13,14 +13,12 @@ namespace PixelGame.Model
 
         private ComponentsModel _unitComponents;
         private SpriteRenderer _spriteRenderer;
-        private ContactsPollerModel _contactsPoller;
         private IMove _moveModel;
         private ILogicAI _logicAI;
 
 
         public ComponentsModel UnitComponents { get => _unitComponents; }
         public SpriteRenderer SpriteRenderer { get => _spriteRenderer; }
-        public ContactsPollerModel ContactsPoller { get => _contactsPoller; set => _contactsPoller = value; }
         
         public IMove MoveModel { get => _moveModel; }
         public ILogicAI LogicAI { get => _logicAI; }
@@ -29,7 +27,6 @@ namespace PixelGame.Model
         {
             _unitComponents = components;
             _spriteRenderer = spriteRenderer;
-            _contactsPoller = new ContactsPollerModel(UnitComponents.Collider);
             _moveModel = movementModel;
             _logicAI = logicAI;
         }

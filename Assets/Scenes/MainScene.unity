@@ -1842,6 +1842,9 @@ MonoBehaviour:
   _groundCheck: {fileID: 512221849}
   _width: 0.8
   _height: 0.2
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 24576
 --- !u!1 &514879495
 GameObject:
   m_ObjectHideFlags: 0
@@ -30085,7 +30088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805545138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 85.85, y: 3.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30147,7 +30150,7 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 8192
-  _groundCheck: {fileID: 0}
+  _groundCheck: {fileID: 512221850}
 --- !u!70 &805545145
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -32457,6 +32460,7 @@ GameObject:
   - component: {fileID: 1099490726}
   - component: {fileID: 1099490728}
   - component: {fileID: 1099490729}
+  - component: {fileID: 1099490730}
   m_Layer: 13
   m_Name: GroundTilemap
   m_TagString: Ground
@@ -38846,6 +38850,27 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
+--- !u!50 &1099490730
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099490724}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1138947087
 GameObject:
   m_ObjectHideFlags: 0

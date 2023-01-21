@@ -22,7 +22,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.Enter();
             _isWallSlide = false;
-            Jump();
+            _doJump = true;
         }
 
         public override void InputData()
@@ -42,7 +42,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
 
-            if (_player.ContactsPoller.IsGrounded)
+            if (!_doJump && _player.ContactsPoller.IsGrounded)
             {
                 _isGround = true;
                 return;
@@ -60,6 +60,12 @@ namespace PixelGame.Model.StateMachines
                 return;
             }
 
+            if (_doJump)
+            {
+                Jump();
+                _doJump = false;
+            }
+
         }
 
         public override void Exit()
@@ -73,6 +79,7 @@ namespace PixelGame.Model.StateMachines
 
         private void Jump() 
         {
+            _player.UnitComponents.Transform.Translate(Vector2.up * (_player.ContactsPoller.GroundCheckSize.y + 0.1f));
             animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Jump, true);
             _jumpModel.Jump();
         }

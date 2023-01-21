@@ -23,13 +23,14 @@ namespace PixelGame.Model
 
         public PhysicsMaterial2D MainMaterial { get => _mainMaterial; private set => _mainMaterial = value; }
 
-        public PlayerModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, float maxHealth, SlopeAnaliser slope) : base(components, spriteRenderer, movementModel, jumpModel)
+        public PlayerModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, ContactsPollerModel contactsPoller, float maxHealth, SlopeAnaliser slope) : base(components, spriteRenderer, movementModel, jumpModel, contactsPoller)
         {
             _maxHealth = maxHealth;
             _slope = slope;
 
             MainMaterial = Resources.Load<PhysicsMaterial2D>("PlayerPhysicsMaterial");
         }
+
     }
 }
 

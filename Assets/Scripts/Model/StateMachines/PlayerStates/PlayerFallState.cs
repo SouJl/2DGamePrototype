@@ -42,12 +42,12 @@ namespace PixelGame.Model.StateMachines
                 _moveModel.Move(_xAxisInput);
             }
 
-            _isGround = _player.ContactsPoller.IsGrounded;
-
-            if (!_jumpModel.IsWallJump && !_player.ContactsPoller.IsGrounded && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
+            if (!_jumpModel.IsWallJump && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
             {
                 _isWallSlide = true;
             }
+
+            _isGround = _player.ContactsPoller.IsGrounded;
 
         }
 

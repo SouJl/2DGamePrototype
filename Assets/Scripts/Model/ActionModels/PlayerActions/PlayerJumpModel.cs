@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PixelGame.Interfaces;
+using UnityEngine;
 
 namespace PixelGame.Model
 {
@@ -10,16 +11,18 @@ namespace PixelGame.Model
 
         public float FallThershold { get => _fallThershold; }
 
-        public PlayerJumpModel(Rigidbody2D rigidbody, float jumpForce, float jumpThershold, float flyThershold, float fallThershold) : base(rigidbody, jumpForce, jumpThershold, flyThershold) 
+        public PlayerJumpModel(IUnit unit, float jumpForce, float jumpThershold, float flyThershold, float fallThershold) : base(unit, jumpForce, jumpThershold, flyThershold) 
         {
             Direction = Vector2.up;
             _wallJumpTime = 0.1f;
             _fallThershold = fallThershold;
         }
 
-        public override void Jump()
+        public override void Jump(float velocity)
         {
-            Rgdbody.AddForce(Direction * JumpForse, ForceMode2D.Impulse);
+            workVelocity.Set(Unit.CurrentVelocity.x, velocity);
+            Unit.UnitComponents.RgdBody.velocity = workVelocity;
+            Unit.CurrentVelocity = workVelocity;
         }
 
         public bool IsWallJump 

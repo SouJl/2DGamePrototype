@@ -8,20 +8,7 @@ namespace PixelGame.View
     {
         [Header("Player Settings")]
         [SerializeField] private float _maxHealth = 100f;
-
-
-        [Space(10)]
-
-        [Header("Action Settings")]
-        [SerializeField] private float _speed = 5f;
-        [SerializeField] private float _moveThresh = 0.01f;
-        [SerializeField] private float _jumpForce = 10f;
-        [SerializeField] private float _jumpThreshold = 0.2f;
-        [SerializeField] private float _flyThreshold = 1f;
-        [SerializeField] private float _fallThreshold = 4f;
-        [SerializeField] private float _wallSlideSpeed = 2f;
-
-        [SerializeField] private int _rollFrames = 12;
+        [SerializeField] private PlayerData _playerData;
 
         [Space(10)]
 
@@ -36,22 +23,13 @@ namespace PixelGame.View
         [SerializeField] private GroundCheckComponent _groundCheck;
 
         public float MaxHealth { get => _maxHealth;}
-      
-        public float Speed { get => _speed;}
-        public float MoveThresh { get => _moveThresh;}
-        public float JumpForce { get => _jumpForce;}        
-        public float JumpThreshold { get => _jumpThreshold;}
-        public float FlyThreshold { get => _flyThreshold;}
-        public float FallThreshold { get => _fallThreshold; }
-        public int RollFrames { get => _rollFrames; }
-        public float WallSlideSpeed { get => _wallSlideSpeed;}
-
+        public PlayerData PlayerData { get => _playerData; }
 
         public int AnimationSpeed { get => _animationSpeed;}
         public AnimationConfig AnimationConfig { get => _animationConfig; }
         public SlopeDataComponent SlopeData { get => _slopeData; }
         public GroundCheckComponent GroundCheck { get => _groundCheck;  }
-
+       
         public override void Awake()
         {
             base.Awake();

@@ -13,22 +13,28 @@ namespace PixelGame.Model
         private ComponentsModel _unitComponents;
         private SpriteRenderer _spriteRenderer;
         private ContactsPollerModel _contactsPoller;
-        private IMove _moveModel;
-        private IJump _jumpModel;
 
         public ComponentsModel UnitComponents { get => _unitComponents; }
         public SpriteRenderer SpriteRenderer { get => _spriteRenderer;}
         public ContactsPollerModel ContactsPoller { get => _contactsPoller; set => _contactsPoller = value; }
-        public IMove MoveModel { get => _moveModel; }
-        public IJump JumpModel { get => _jumpModel; }
+        
+        public Vector2 CurrentVelocity { get; set; }
 
-        public AbstractUnitModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, IJump jumpModel, ContactsPollerModel contactsPoller)
+        public Vector2 WorkVelocity { get; set; }
+
+        public int FacingDirection { get; set; }
+
+        public AbstractUnitModel(ComponentsModel components, SpriteRenderer spriteRenderer, ContactsPollerModel contactsPoller)
         {
             _unitComponents = components;
             _spriteRenderer = spriteRenderer;
-            _moveModel = movementModel;
-            _jumpModel = jumpModel;
             _contactsPoller = contactsPoller;
         }
+
+        public abstract void SetVelocityX(float velocity);
+
+        public abstract void SetVelocityY(float velocity);
+
+        public abstract void CheckFlip(float xInpunt);
     }
 }

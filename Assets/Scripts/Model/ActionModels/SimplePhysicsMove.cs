@@ -1,23 +1,19 @@
-﻿using UnityEngine;
+﻿using PixelGame.Interfaces;
+using UnityEngine;
 
 namespace PixelGame.Model
 {
     public class SimplePhysicsMove : AbstractMovementModel
     {
-        public SimplePhysicsMove(Rigidbody2D rgdbody, float walkSpeed, float movingThresh) : base(rgdbody, walkSpeed, movingThresh)
+        public SimplePhysicsMove(IUnit unit, float walkSpeed, float movingThresh) : base(unit, walkSpeed, movingThresh)
         {
         }
 
-        public override void Move(Vector2 vector) 
+        public override void Move(float velocity)
         {
-            Rgdbody.velocity = vector * Speed * Time.fixedDeltaTime;
-        }
-
-        public override void Move(float inpitValue)
-        {
-
-            var xVelocity = inpitValue * Speed * Time.fixedDeltaTime;
-            Rgdbody.velocity = new Vector2(xVelocity, Rgdbody.velocity.y);
+            workVelocity.Set(velocity * Speed, Unit.CurrentVelocity.y);
+            Unit.UnitComponents.RgdBody.velocity = workVelocity;
+            Unit.CurrentVelocity = workVelocity;
         }
     }
 }

@@ -13,6 +13,6 @@ namespace PixelGame.Interfaces
 
         Vector2 Direction { get; set; }
 
-        void Jump();
+        void Jump(float velocity);
     }
 }

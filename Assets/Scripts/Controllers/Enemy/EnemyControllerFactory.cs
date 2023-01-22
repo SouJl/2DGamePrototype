@@ -31,8 +31,7 @@ namespace PixelGame.Controllers
                         var components = new ComponentsModel(batEnemy.Transform, batEnemy.Rigidbody, batEnemy.Collider);
                         var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, projController);
                         var ai = new StalkerAI(batEnemy.Seeker, Resources.Load<AIConfig>("StalkerAIConfig"));
-                        var move = new SimplePhysicsMove(batEnemy.Rigidbody, batEnemy.Speed, 0f);
-                        var enemyModel = new StalkerEnemyModel(components, batEnemy.SpriteRenderer, move, ai);
+                        var enemyModel = new StalkerEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Speed);
                         return new BatEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
                     }
             }

@@ -1,4 +1,5 @@
 ﻿using PixelGame.Controllers;
+using PixelGame.Enumerators;
 using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
@@ -19,7 +20,12 @@ namespace PixelGame.Model.StateMachines
         protected PhysicsMaterial2D _fullFriction;
         protected PhysicsMaterial2D _noneFriction;
 
-        public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit) : base(stateMachine, animatorController)
+        protected float startTime;
+
+        private AnimaState _animaState;
+
+
+        public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, AnimaState animaState) : base(stateMachine, animatorController)
         {
             _player = unit;
             _moveModel = unit.MoveModel as SimplePhysicsMove;
@@ -28,13 +34,22 @@ namespace PixelGame.Model.StateMachines
 
             _fullFriction = Resources.Load<PhysicsMaterial2D>("FullFrictionMaterial");
             _noneFriction = Resources.Load<PhysicsMaterial2D>("ZeroFrictionMaterial");
+            _animaState = animaState;
         }
 
         public override void Enter()
         {
             base.Enter();
-            _xAxisInput = 0f;
-            _yAxisInput = 0f;
+            DoChecks();
+            startTime = Time.time;
+            animatorController.StartAnimation(_player.SpriteRenderer, _animaState, true);
+        }
+
+
+        public override void Exit()
+        {
+            base.Exit();
+            animatorController.StopAnimation(_player.SpriteRenderer);
         }
 
         public override void InputData()
@@ -53,15 +68,12 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
             _player.Slope.SlopeCheck();
-
             _rgdBody.sharedMaterial = _player.MainMaterial;
+
+            DoChecks();
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-            _xAxisInput = 0f;
-            _yAxisInput = 0f;
-        }
+
+        protected virtual void DoChecks() { }
     }
 }

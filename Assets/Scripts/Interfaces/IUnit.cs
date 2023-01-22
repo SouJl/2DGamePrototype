@@ -7,6 +7,7 @@ namespace PixelGame.Interfaces
     {
         ComponentsModel UnitComponents { get; }
         SpriteRenderer SpriteRenderer { get; }
-        IMove MoveModel { get; }
+
+        Vector2 CurrentVelocity { get; set; }
     }
 }

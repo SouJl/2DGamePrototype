@@ -55,7 +55,7 @@ namespace PixelGame.Controllers
             }
 
             var newVel = _enemy.LogicAI.CalculatePath(_enemy.UnitComponents.RgdBody.position);
-            _enemy.MoveModel.Move(newVel);
+            _enemy.UnitComponents.RgdBody.velocity = newVel;
             _enemy.Rotate(_player.position);
         }
 

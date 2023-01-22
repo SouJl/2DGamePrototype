@@ -5,23 +5,23 @@ namespace PixelGame.Model
 {
     public abstract class AbstractMovementModel : IMove
     {
-        private Rigidbody2D _rgdbody;
+        private IUnit _unit;
         private float _speed;
         private float _movingThresh;
 
-        public Rigidbody2D Rgdbody { get => _rgdbody; }
+        public IUnit Unit { get => _unit; }
         public float Speed { get => _speed; set => _speed = value; }
         public float MovingThresh { get => _movingThresh; set => _movingThresh = value; }
 
-        public AbstractMovementModel(Rigidbody2D rgdbody, float walkSpeed, float movingThresh)
+        protected Vector2 workVelocity;
+
+        public AbstractMovementModel(IUnit unit, float walkSpeed, float movingThresh)
         {
-            _rgdbody = rgdbody;
+            _unit = unit;
             _speed = walkSpeed;
             _movingThresh = movingThresh;
         }
 
-        public abstract void Move(float inpitValue);
-
-        public abstract void Move(Vector2 vector);
+        public abstract void Move(float velocity);
     }
 }

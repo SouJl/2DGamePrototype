@@ -7,8 +7,13 @@ namespace PixelGame.Model
 {
     public class StalkerEnemyModel : AbstractAIEnemyModel
     {
-        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, ILogicAI logicAI) : base(components, spriteRenderer, movementModel, logicAI)
+        private float _speed;
+
+        public float Speed { get => _speed;  }
+
+        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI logicAI, float speed) : base(components, spriteRenderer, logicAI)
         {
+            _speed = speed;
 
         }
 

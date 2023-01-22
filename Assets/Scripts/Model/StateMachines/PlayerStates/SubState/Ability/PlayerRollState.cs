@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
-    public class PlayerRollState : PlayerState
+    public class PlayerRollState : PlayerAbilityState
     {
         private float _rollFrames;
         private float _animationSpeed;
@@ -15,7 +15,7 @@ namespace PixelGame.Model.StateMachines
         private bool _isWallSlide;
         private bool _isFall;
 
-        public PlayerRollState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, int rollFrames, float animationSpeed) : base(stateMachine, animatorController, unit)
+        public PlayerRollState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, AnimaState animaState, int rollFrames, float animationSpeed) : base(stateMachine, animatorController, unit, animaState)
         {
             _rollFrames = rollFrames;
             _animationSpeed = animationSpeed;
@@ -26,7 +26,18 @@ namespace PixelGame.Model.StateMachines
             base.Enter();
             _frameCount = 0;
             _isWallSlide = false;
-            animatorController.StartAnimation(_player.SpriteRenderer, AnimaState.Roll, true);
+        }
+
+
+        public override void Exit()
+        {
+            base.Exit();
+            _isRollEnd = false;
+            _isWallSlide = false;
+            _isFall = false;
+
+            _rgdBody.velocity = Vector2.zero;
+            _rgdBody.angularVelocity = 0;
         }
 
         public override void InputData()
@@ -54,29 +65,18 @@ namespace PixelGame.Model.StateMachines
             else
                 _isRollEnd = true;
 
+            var isGround = _player.ContactsPoller.CheckGround();
 
-            if (!_jumpModel.IsWallJump && !_player.ContactsPoller.IsGrounded && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
+            if (!_jumpModel.IsWallJump && !isGround && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
             {
                 _isWallSlide = true;
             }
 
-            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
+            if (!isGround && _rgdBody.velocity.y < -_jumpModel.FlyThershold)
             {
                 _isFall = true;
             }
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-            _isRollEnd = false;
-            _isWallSlide = false;
-            _isFall = false;
-
-            _rgdBody.velocity = Vector2.zero;
-            _rgdBody.angularVelocity = 0;
-            
-            animatorController.StopAnimation(_player.SpriteRenderer);
-        }
     }
 }

@@ -6,28 +6,29 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public abstract class AbstractAIEnemyModel:IUnit
+    public abstract class AbstractAIEnemyModel: IUnit
     {
         public StateMachine UnitMovementSM { get; set; }
         public State IdleState { get; set; }
 
         private ComponentsModel _unitComponents;
         private SpriteRenderer _spriteRenderer;
-        private IMove _moveModel;
         private ILogicAI _logicAI;
 
 
         public ComponentsModel UnitComponents { get => _unitComponents; }
         public SpriteRenderer SpriteRenderer { get => _spriteRenderer; }
         
-        public IMove MoveModel { get => _moveModel; }
         public ILogicAI LogicAI { get => _logicAI; }
 
-        public AbstractAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, IMove movementModel, ILogicAI logicAI) 
+        public Vector2 CurrentVelocity { get; set; }
+
+        public Vector2 WorkVelocity { get; set; }
+
+        public AbstractAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI logicAI) 
         {
             _unitComponents = components;
             _spriteRenderer = spriteRenderer;
-            _moveModel = movementModel;
             _logicAI = logicAI;
         }
 

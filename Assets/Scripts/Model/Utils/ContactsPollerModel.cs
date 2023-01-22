@@ -11,7 +11,6 @@ namespace PixelGame.Model
         private int _contactsCount;
         private readonly Collider2D _collider2D;
 
-        public bool IsGrounded { get; private set; }
         public Vector2 GroundVelocity { get; private set; }
         public bool HasLeftContacts { get; private set; }
         public bool HasRightContacts { get; private set; }
@@ -32,12 +31,9 @@ namespace PixelGame.Model
 
         public void Update()
         {
-            IsGrounded = false;
             HasLeftContacts = false;
             HasRightContacts = false;
             _contactsCount = _collider2D.GetContacts(_contacts);
-
-            IsGrounded = CheckGround();
 
             for (int i = 0; i < _contactsCount; i++)
             {
@@ -57,7 +53,7 @@ namespace PixelGame.Model
             
         }
 
-        private bool CheckGround() 
+        public bool CheckGround() 
         {
             var hit = Physics2D.OverlapBox(_groundCheckPos.position, _groundCheckSize, 0f, _groundLayerMask);
             
@@ -77,5 +73,7 @@ namespace PixelGame.Model
 
             return hit != null;
         }
+
+        public bool CheckWallTouch() => HasRightContacts || HasLeftContacts;
     }
 }

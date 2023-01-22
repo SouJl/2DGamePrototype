@@ -1,5 +1,4 @@
-﻿using PixelGame.Enumerators;
-using PixelGame.Interfaces;
+﻿using PixelGame.Interfaces;
 using UnityEngine;
 
 namespace PixelGame.Model
@@ -11,7 +10,7 @@ namespace PixelGame.Model
         public float FlyThershold { get; set; }
         public Vector2 Direction { get; set; }
 
-        public void Jump()
+        public void Jump(float velocity)
         {
             Debug.Log("[NoneJumpModel] - Unit can't jump!");
         }

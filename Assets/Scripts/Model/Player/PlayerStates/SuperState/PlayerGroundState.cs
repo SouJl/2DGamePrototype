@@ -41,7 +41,6 @@ namespace PixelGame.Model.StateMachines
             base.LogicUpdate();
             if (_isJump)
             {
-                player.JumpModel.Direction = Vector2.up;
                 stateMachine.ChangeState(player.JumpState);
                 return;
             }

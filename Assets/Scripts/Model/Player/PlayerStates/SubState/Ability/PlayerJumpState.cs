@@ -42,31 +42,11 @@ namespace PixelGame.Model.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
-            /*if (!_doJump && _player.ContactsPoller.IsGrounded)
-            {
-                _isGround = true;
-                return;
-            }*/
-
-            /*if (!_jumpModel.IsWallJump && !_player.ContactsPoller.IsGrounded && (_player.ContactsPoller.HasLeftContacts || _player.ContactsPoller.HasRightContacts))
-            {
-                _isWallSlide = true;
-                return;
-            }
-
-            if (!_player.ContactsPoller.IsGrounded && _rgdBody.velocity.y < -_jumpModel.FallThershold)
-            {
-                _isFall = true;
-                return;
-            }*/
-
         }
 
 
         private void Jump() 
         {
-           // _player.UnitComponents.Transform.Translate(Vector2.up * (_player.ContactsPoller.GroundCheckSize.y + 0.1f));
             animatorController.StartAnimation(player.SpriteRenderer, AnimaState.InAir, true);
             player.SetVelocityY(playerData.jumpForce);
             isAbilityDone = true;

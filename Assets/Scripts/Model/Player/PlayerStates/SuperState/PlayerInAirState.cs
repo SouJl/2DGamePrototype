@@ -66,11 +66,11 @@ namespace PixelGame.Model.StateMachines
         {
             base.PhysicsUpdate();
 
-            if (Mathf.Abs(_xAxisInput) > player.MoveModel.MovingThresh)
+            if (Mathf.Abs(_xAxisInput) > playerData.moveThresh)
             {
                 player.CheckFlip(_xAxisInput);
 
-                player.SetVelocityX(_xAxisInput);
+                player.SetVelocityX(_xAxisInput * playerData.speed);
             }
         }
 

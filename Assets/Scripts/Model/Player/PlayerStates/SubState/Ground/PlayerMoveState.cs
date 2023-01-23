@@ -59,13 +59,13 @@ namespace PixelGame.Model.StateMachines
 
             if (!player.Slope.IsOnSlope)
             {
-                player.SetVelocityX(_xAxisInput);
+                player.SetVelocityX(_xAxisInput * playerData.speed);
 
             }
             else if (player.Slope.IsOnSlope && player.Slope.CanWalkOnSlope)
             {
                 var newVel = new Vector2(player.Slope.SlopeNormalPerp.x * -_xAxisInput, player.Slope.SlopeNormalPerp.y * -_xAxisInput);
-                player.SetVelocityX(newVel.x);
+                player.SetVelocityX(newVel.x * playerData.speed);
                 player.SetVelocityY(newVel.y);
             }
        

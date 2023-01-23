@@ -30,7 +30,8 @@ namespace PixelGame.Model
         private PhysicsMaterial2D _mainMaterial;
 
         private IMove _moveModel;
-        private IJump _jumpModel;
+
+        private Vector2 _workVelocity;
 
         #endregion
 
@@ -40,47 +41,48 @@ namespace PixelGame.Model
         public SlopeAnaliser Slope { get => _slope; set => _slope = value; }
         public PhysicsMaterial2D MainMaterial { get => _mainMaterial; private set => _mainMaterial = value; }
 
-
         public IMove MoveModel { get => _moveModel; }
-        public IJump JumpModel { get => _jumpModel; }
-
+       
+        public bool CanSetVelocity { get; set; }
         public int WallJumpDirection { get; set; }
 
         #endregion
 
-
         public PlayerModel(ComponentsModel components, SpriteRenderer spriteRenderer, ContactsPollerModel contactsPoller, float maxHealth, PlayerData playerData, SlopeAnaliser slope) : base(components, spriteRenderer, contactsPoller)
         {
             _maxHealth = maxHealth;
-            _moveModel = new SimplePhysicsMove(this, playerData.speed, playerData.moveThresh);
-            _jumpModel = new PlayerJumpModel(this, playerData.jumpForce, playerData.jumpThreshold, playerData.flyThreshold, playerData.fallThreshold);
+            _moveModel = new SimplePhysicsMove(this);
             _slope = slope;
 
             MainMaterial = Resources.Load<PhysicsMaterial2D>("PlayerPhysicsMaterial");
             FacingDirection = 1;
+
+            CanSetVelocity = true;
         }
 
-      /*  public void SetVelocity(float velocity, Vector2 angle, int direction)
+        public void SetVelocity(float velocity, Vector2 angle, int direction)
         {
             angle.Normalize();
-            workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+            _workVelocity.Set(angle.x * velocity * direction, angle.y * velocity);
             SetFinalVelocity();
         }
 
         public void SetVelocity(float velocity, Vector2 direction)
         {
-            workspace = direction * velocity;
+            _workVelocity = direction * velocity;
             SetFinalVelocity();
-        }*/
+        }
 
         public override void SetVelocityX(float velocity)
         {
-            _moveModel.Move(velocity);
+            _workVelocity.Set(velocity, CurrentVelocity.y);
+            SetFinalVelocity();
         }
 
         public override void SetVelocityY(float velocity)
         {
-            _jumpModel.Jump(velocity);
+            _workVelocity.Set(CurrentVelocity.x, velocity);
+            SetFinalVelocity();
         }
 
         public override void CheckFlip(float xInpunt)
@@ -95,6 +97,11 @@ namespace PixelGame.Model
         public void DetermineWallJumpDirection(bool isTouchingWall)
         {
             WallJumpDirection = (isTouchingWall ? -1 : 1) * FacingDirection;
+        }
+
+        private void SetFinalVelocity() 
+        {
+            if (CanSetVelocity) MoveModel.Move(_workVelocity);
         }
     }
 }

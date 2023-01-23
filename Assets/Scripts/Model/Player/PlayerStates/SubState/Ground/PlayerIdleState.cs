@@ -25,7 +25,6 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             _isRun = false;
             _isFall = false;
-            player.JumpModel.Direction = Vector2.up;
         }
 
         public override void InputData()

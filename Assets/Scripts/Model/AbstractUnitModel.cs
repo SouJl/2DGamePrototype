@@ -20,8 +20,6 @@ namespace PixelGame.Model
         
         public Vector2 CurrentVelocity { get; set; }
 
-        public Vector2 WorkVelocity { get; set; }
-
         public int FacingDirection { get; set; }
 
         public AbstractUnitModel(ComponentsModel components, SpriteRenderer spriteRenderer, ContactsPollerModel contactsPoller)

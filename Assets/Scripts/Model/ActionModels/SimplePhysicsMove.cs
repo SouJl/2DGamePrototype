@@ -5,15 +5,14 @@ namespace PixelGame.Model
 {
     public class SimplePhysicsMove : AbstractMovementModel
     {
-        public SimplePhysicsMove(IUnit unit, float walkSpeed, float movingThresh) : base(unit, walkSpeed, movingThresh)
+        public SimplePhysicsMove(IUnit unit) : base(unit)
         {
         }
 
-        public override void Move(float velocity)
+        public override void Move(Vector2 resultVelocity)
         {
-            workVelocity.Set(velocity * Speed, Unit.CurrentVelocity.y);
-            Unit.UnitComponents.RgdBody.velocity = workVelocity;
-            Unit.CurrentVelocity = workVelocity;
+            Unit.UnitComponents.RgdBody.velocity = resultVelocity;
+            Unit.CurrentVelocity = resultVelocity;
         }
     }
 }

@@ -32,8 +32,7 @@ namespace PixelGame.Model.StateMachines
             if(isTouchingWall && isGrab) 
             {
                 stateMachine.ChangeState(player.WallGrabState);
-            }
-            
+            }         
         }
 
         public override void PhysicsUpdate()

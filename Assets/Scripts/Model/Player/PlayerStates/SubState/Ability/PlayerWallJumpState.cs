@@ -7,8 +7,6 @@ namespace PixelGame.Model.StateMachines
 {
     public class PlayerWallJumpState : PlayerAbilityState
     {
-        private int _wallJumpDir;
-
         public PlayerWallJumpState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
         {
         }
@@ -16,21 +14,24 @@ namespace PixelGame.Model.StateMachines
         public override void Enter()
         {
             base.Enter();
-            //_player.SetVelocityY(pla)
+            player.SetVelocityX(0f);
+            player.SetVelocity(playerData.wallJumpForce, playerData.wallJumpAngle, player.WallJumpDirection);
+            player.CheckFlip(player.WallJumpDirection);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(Time.time >= startTime + playerData.wallJumpTime) 
-            {
-                isAbilityDone = true;
-            }
+       
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+            if (Time.time >= startTime + playerData.wallJumpTime)
+            {
+                isAbilityDone = true;
+            }
         }
 
 

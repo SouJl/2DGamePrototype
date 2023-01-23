@@ -17,10 +17,9 @@ MonoBehaviour:
   jumpForce: 8
   jumpThreshold: 0.2
   rollFrames: 12
-  wallJumpForce: 20
-  wallJumpTime: 0.4
-  wallJumpAngle: {x: 1, y: 2}
+  wallJumpForce: 10
+  wallJumpTime: 0.6
+  wallJumpAngle: {x: 1.2, y: 2}
   flyThreshold: 0.2
   fallThreshold: 1
   wallSlideSpeed: 2
-  wallClimbSpeed: 3

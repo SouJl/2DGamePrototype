@@ -43,7 +43,6 @@ namespace PixelGame.Model.StateMachines
         {
             base.LogicUpdate();
 
-
             if (_isStay) stateMachine.ChangeState(player.IdleState);
             if (_isRoll) stateMachine.ChangeState(player.RollState);
 
@@ -64,8 +63,8 @@ namespace PixelGame.Model.StateMachines
             }
             else if (player.Slope.IsOnSlope && player.Slope.CanWalkOnSlope)
             {
-                var newVel = new Vector2(player.Slope.SlopeNormalPerp.x * -_xAxisInput, player.Slope.SlopeNormalPerp.y * -_xAxisInput);
-                player.SetVelocityX(newVel.x * playerData.speed);
+                var newVel = new Vector2(player.Slope.SlopeNormalPerp.x * -_xAxisInput, player.Slope.SlopeNormalPerp.y * -_xAxisInput) * playerData.speed;
+                player.SetVelocityX(newVel.x);
                 player.SetVelocityY(newVel.y);
             }
        

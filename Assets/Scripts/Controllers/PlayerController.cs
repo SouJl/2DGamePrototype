@@ -42,6 +42,7 @@ namespace PixelGame.Controllers
             _playerModel.RollState = new PlayerRollState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Roll, _view.AnimationSpeed);
             _playerModel.WallGrabState = new PlayerWallGrabState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallGrab);
             _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallSlide);
+            _playerModel.WallJumpState = new PlayerWallJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
 
             _playerModel.UnitMovementSM.Initialize(_playerModel.IdleState);
         }

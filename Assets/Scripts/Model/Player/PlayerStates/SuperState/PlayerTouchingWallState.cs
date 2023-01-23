@@ -45,6 +45,7 @@ namespace PixelGame.Model.StateMachines
             {
                 player.DetermineWallJumpDirection(isTouchingWall);
                 stateMachine.ChangeState(player.WallJumpState);
+                return;
             }
 
             if (isGrounded && !isGrab)

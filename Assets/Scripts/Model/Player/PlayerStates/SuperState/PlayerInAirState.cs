@@ -7,6 +7,7 @@ namespace PixelGame.Model.StateMachines
 {
     class PlayerInAirState : PlayerState
     {
+        private bool _isJump;
         private bool _isGrounded;
         private bool _isTouchingWall;
         private bool _isGrab;
@@ -32,6 +33,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
             _isGrab = Input.GetKey(KeyCode.LeftControl);
+            _isJump = Input.GetKeyDown(KeyCode.Space);
         }
 
         public override void LogicUpdate()
@@ -43,6 +45,7 @@ namespace PixelGame.Model.StateMachines
                 stateMachine.ChangeState(player.WallGrabState);
                 return;
             }
+            
             if (player.UnitComponents.RgdBody.velocity.y < 0.01f)
             {
                 if (_isGrounded)
@@ -56,10 +59,13 @@ namespace PixelGame.Model.StateMachines
                 return;
             }
 
-            /* else if (_isTouchingWall && (_xAxisInput * _player.FacingDirection) > 0) 
-             {
-                 stateMachine.ChangeState(_player.WallSlideState);
-             }*/
+            if(_isJump && _isTouchingWall)
+            {
+                _isTouchingWall = player.ContactsPoller.CheckWallTouch();
+                player.DetermineWallJumpDirection(_isTouchingWall);
+                stateMachine.ChangeState(player.WallJumpState);
+                return;
+            }
         }
 
         public override void PhysicsUpdate()

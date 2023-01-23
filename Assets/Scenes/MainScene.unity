@@ -1840,7 +1840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCheck: {fileID: 512221849}
-  _width: 0.8
+  _width: 0.3
   _height: 0.2
   _layerMask:
     serializedVersion: 2
@@ -30088,7 +30088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805545138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -1, z: 0}
+  m_LocalPosition: {x: 140.7, y: -15.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30110,12 +30110,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 7bfbf098ec0c6b44db3ee0cac3c988b4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &805545144
 MonoBehaviour:
@@ -44960,7 +44960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2117200422467348817, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2780458671734717937, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_Angle
@@ -45004,7 +45004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3714486578495260811, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5320641956077405960, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45036,11 +45036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117922230126490348, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7366842425637712046, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7809142871773924005, guid: 8b2f85917d0f6c94880468e1b09cd74b, type: 3}
       propertyPath: m_Layer

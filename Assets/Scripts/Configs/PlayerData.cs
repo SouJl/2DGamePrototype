@@ -27,8 +27,5 @@ namespace PixelGame.Configs
 
         [Header("Wall Slide Settings")]
         public float wallSlideSpeed = 2f;
-
-        [Header("Wall Climb Settings")]
-        public float wallClimbSpeed = 3f;
     }
 }

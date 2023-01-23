@@ -5,8 +5,7 @@ namespace PixelGame.Model
 {
     public class ContactsPollerModel
     {
-        private const float _collisionThresh = 0.3f;
-        private const int _minCollSideContatcs = 2;
+        private const float _collisionThresh = 0.5f;
         private ContactPoint2D[] _contacts = new ContactPoint2D[10];
         private int _contactsCount;
         private readonly Collider2D _collider2D;
@@ -29,41 +28,17 @@ namespace PixelGame.Model
             _groundLayerMask = groundCheck.LayerMask;
         }
 
-        public void Update()
-        {
-            HasLeftContacts = false;
-            HasRightContacts = false;
-            _contactsCount = _collider2D.GetContacts(_contacts);
-
-            for (int i = 0; i < _contactsCount; i++)
-            {
-                var normal = _contacts[i].normal;
-                var rigidBody = _contacts[i].rigidbody;
-
-                if (_contactsCount > _minCollSideContatcs)
-                {
-                    if (normal.x > _collisionThresh)
-                        HasLeftContacts = true;
-
-                    if (normal.x < -_collisionThresh)
-                        HasRightContacts = true;
-                }
-            }
-
-            
-        }
-
-        public bool CheckGround() 
+        public bool CheckGround()
         {
             var hit = Physics2D.OverlapBox(_groundCheckPos.position, _groundCheckSize, 0f, _groundLayerMask);
-            
+
             Color rayColor;
             if (hit != null)
             {
                 rayColor = Color.blue;
                 GroundVelocity = hit.attachedRigidbody.velocity;
             }
-            else 
+            else
             {
                 rayColor = Color.red;
                 GroundVelocity = Vector2.zero;
@@ -74,6 +49,23 @@ namespace PixelGame.Model
             return hit != null;
         }
 
-        public bool CheckWallTouch() => HasRightContacts || HasLeftContacts;
+        public bool CheckWallTouch()
+        {
+            HasLeftContacts = false;
+            HasRightContacts = false;
+            _contactsCount = _collider2D.GetContacts(_contacts);
+
+            for (int i = 0; i < _contactsCount; i++)
+            {
+                var normal = _contacts[i].normal;
+                if (normal.x > _collisionThresh)
+                    HasLeftContacts = true;
+
+                if (normal.x < -_collisionThresh)
+                    HasRightContacts = true;
+            }
+
+            return HasRightContacts || HasLeftContacts;
+        }
     }
 }

@@ -33,16 +33,15 @@ namespace PixelGame.Controllers
         private void InitStateMachine() 
         {
             _playerModel.UnitMovementSM = new StateMachine();
-            _playerModel.IdleState = new PlayerIdleState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.Idle);
-            _playerModel.RunState = new PlayerMoveState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.Run);
-            _playerModel.JumpState = new PlayerJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.InAir);
-            _playerModel.InAirState = new PlayerInAirState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.InAir);
-            _playerModel.LandState = new PlayerLandState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.Idle);
-            _playerModel.FallState = new PlayerFallState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.Fall);
-            _playerModel.RollState = new PlayerRollState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.Roll, _view.PlayerData.rollFrames, _view.AnimationSpeed);
-            _playerModel.WallGrabState = new PlayerWallGrabState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.WallGrab);
-            _playerModel.WallClimbState = new PlayerWallClimbState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.WallSlide);
-            _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, AnimaState.WallSlide, _view.PlayerData.wallSlideSpeed);
+            _playerModel.IdleState = new PlayerIdleState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Idle);
+            _playerModel.RunState = new PlayerMoveState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Run);
+            _playerModel.JumpState = new PlayerJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
+            _playerModel.InAirState = new PlayerInAirState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
+            _playerModel.LandState = new PlayerLandState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Idle);
+            _playerModel.FallState = new PlayerFallState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Fall);
+            _playerModel.RollState = new PlayerRollState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Roll, _view.AnimationSpeed);
+            _playerModel.WallGrabState = new PlayerWallGrabState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallGrab);
+            _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallSlide);
 
             _playerModel.UnitMovementSM.Initialize(_playerModel.IdleState);
         }
@@ -59,7 +58,6 @@ namespace PixelGame.Controllers
             _playerModel.CurrentVelocity = _playerModel.UnitComponents.RgdBody.velocity;
 
             _playerModel.UnitMovementSM.CurrentState.PhysicsUpdate();
-            _playerModel.ContactsPoller.Update();
         }
     }
 }

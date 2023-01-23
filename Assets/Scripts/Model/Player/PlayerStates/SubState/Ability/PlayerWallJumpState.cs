@@ -1,6 +1,7 @@
 ﻿using PixelGame.Configs;
 using PixelGame.Controllers;
 using PixelGame.Enumerators;
+using UnityEngine;
 
 namespace PixelGame.Model.StateMachines
 {
@@ -15,13 +16,16 @@ namespace PixelGame.Model.StateMachines
         public override void Enter()
         {
             base.Enter();
-           // _player.SetVelocityY()
+            //_player.SetVelocityY(pla)
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-           // if(Time.time >= startTime + )
+            if(Time.time >= startTime + playerData.wallJumpTime) 
+            {
+                isAbilityDone = true;
+            }
         }
 
         public override void PhysicsUpdate()
@@ -29,10 +33,6 @@ namespace PixelGame.Model.StateMachines
             base.PhysicsUpdate();
         }
 
-        public void DetermineWallJumpDirection(bool isTouchingWall)
-        {
-            _wallJumpDir = (isTouchingWall ? -1 : 1) * player.FacingDirection;
-        }
 
     }
 }

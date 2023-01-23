@@ -11,6 +11,7 @@ namespace PixelGame.Model.StateMachines
         protected bool isGrounded;
         protected bool isTouchingWall;
         protected bool isGrab;
+        protected bool isJump;
 
         public PlayerTouchingWallState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
         {
@@ -33,12 +34,19 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
             isGrab = Input.GetKey(KeyCode.LeftControl);
+            isJump = Input.GetKeyDown(KeyCode.Space);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
+
+            if (isJump) 
+            {
+                player.DetermineWallJumpDirection(isTouchingWall);
+                stateMachine.ChangeState(player.WallJumpState);
+            }
+
             if (isGrounded && !isGrab)
             {
                 stateMachine.ChangeState(player.IdleState);

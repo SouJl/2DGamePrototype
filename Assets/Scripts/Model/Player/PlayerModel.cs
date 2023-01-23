@@ -19,6 +19,7 @@ namespace PixelGame.Model
         public State WallSlideState { get; set; }
         public State WallClimbState { get; set; }
         public State WallGrabState { get; set; }
+        public State WallJumpState { get; set; }
 
         #endregion
 
@@ -43,6 +44,8 @@ namespace PixelGame.Model
         public IMove MoveModel { get => _moveModel; }
         public IJump JumpModel { get => _jumpModel; }
 
+        public int WallJumpDirection { get; set; }
+
         #endregion
 
 
@@ -56,6 +59,19 @@ namespace PixelGame.Model
             MainMaterial = Resources.Load<PhysicsMaterial2D>("PlayerPhysicsMaterial");
             FacingDirection = 1;
         }
+
+      /*  public void SetVelocity(float velocity, Vector2 angle, int direction)
+        {
+            angle.Normalize();
+            workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+            SetFinalVelocity();
+        }
+
+        public void SetVelocity(float velocity, Vector2 direction)
+        {
+            workspace = direction * velocity;
+            SetFinalVelocity();
+        }*/
 
         public override void SetVelocityX(float velocity)
         {
@@ -74,6 +90,11 @@ namespace PixelGame.Model
                 FacingDirection *= -1;
                 UnitComponents.Transform.Rotate(0.0f, 180.0f, 0.0f);
             }
+        }
+
+        public void DetermineWallJumpDirection(bool isTouchingWall)
+        {
+            WallJumpDirection = (isTouchingWall ? -1 : 1) * FacingDirection;
         }
     }
 }

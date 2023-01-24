@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class StalkerEnemyModel : AbstractAIEnemyModel<ILogicAI<Path>>
+    public class StalkerEnemyModel : AbstractAIEnemyModel
     {
         private Seeker _seeker;
 
@@ -15,7 +15,7 @@ namespace PixelGame.Model
 
         public float Speed { get => _speed;  }
 
-        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI<Path> logicAI, Seeker seeker, float speed) : base(components, spriteRenderer, logicAI)
+        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI logicAI, Seeker seeker, float speed) : base(components, spriteRenderer, logicAI)
         {
             _seeker = seeker;
             _speed = speed;

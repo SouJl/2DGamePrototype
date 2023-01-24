@@ -1,6 +1,7 @@
 ﻿using PixelGame.Configs;
 using PixelGame.Interfaces;
 using PixelGame.Model;
+using PixelGame.Model.AIModels;
 using PixelGame.Model.Utils;
 using PixelGame.View;
 using UnityEngine;
@@ -36,12 +37,13 @@ namespace PixelGame.Controllers
                         var enemyModel = new StalkerEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Seeker, batEnemy.Speed);
                         return new BatEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
                     }
-                case WizzardEnemyView wizardEnemy: 
+                    case WizzardEnemyView wizardEnemy: 
                     {
                         var components = new ComponentsModel(wizardEnemy.Transform, wizardEnemy.Rigidbody, wizardEnemy.Collider);
-                        var ai = new PatrolAI(Resources.Load<AIConfig>("PatrolAIConfig"), wizardEnemy.WayPoints);
-                        var enemyModel = new PatrolEnemyModel(components, wizardEnemy.SpriteRenderer, ai);
-                        return new WizardController(_playerTransform, wizardEnemy, enemyModel);
+                        var pathfinding = new PathfinderAIModel(Resources.Load<AIConfig>("PatrolAIConfig"));
+                        var ai = new PatrolAI(wizardEnemy.WayPoints);
+                        var enemyModel = new ProtectorEnemyModel(components, wizardEnemy.Seeker, ai, pathfinding);
+                        return new WizardController(wizardEnemy, enemyModel);
                     }
             }
         }

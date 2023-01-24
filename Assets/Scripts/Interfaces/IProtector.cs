@@ -5,6 +5,6 @@ namespace PixelGame.Interfaces
     public interface IProtector
     {
         void StartProtection(LevelObjectView invader);
-        void FinichProtection(LevelObjectView invader);
+        void FinishProtection(LevelObjectView invader);
     }
 }

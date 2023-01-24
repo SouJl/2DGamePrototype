@@ -3,64 +3,45 @@ using PixelGame.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PixelGame.Model
+namespace PixelGame.Model.AIModels
 {
-    public class PatrolAI : ILogicAI<List<Transform>>
+    public class PatrolAI 
     {
-        private List<Transform> _path;
-        private float _nextWayPointDistance;
-        private int _currentWayPoint;
-        private float _updateFrameRate;
-        private bool _reachedEndOfPath;
+        private List<Transform> _wayPoints;
 
+        public List<Transform> WayPoints { get => _wayPoints; }
 
-        public float NextWayPointDistance { get => _nextWayPointDistance; }
-
-        public int CurrentWayPoint { get => _currentWayPoint; }
-
-        public float UpdateFrameRate { get => _updateFrameRate; }
-
-        public bool ReachedEndOfPath { get => _reachedEndOfPath; set => _reachedEndOfPath = value; }
-
-        public List<Transform> Path { get => _path; }
-
-        public PatrolAI(AIConfig config, List<Transform> patrolWayPoints) 
+        private int _currentPointIndex;
+        public PatrolAI(List<Transform> wayPoints)
         {
-            _updateFrameRate = config.UpdateFrameRate;
-            _nextWayPointDistance = config.NextWayPointDistance;
-            _path = patrolWayPoints;
-
-            _currentWayPoint = 0;
+            _wayPoints = wayPoints;
         }
 
-        public Vector2 CalculatePath(Vector2 fromPosition)
+        public Transform GetNextTarget()
         {
-            if (Path.Count == 0) return Vector2.zero;
-
-            ReachedEndOfPath = false;
-
-            if (_currentWayPoint >= _path.Count)
-            {
-                ReachedEndOfPath = true;
-                return Vector2.zero;
-            }
-
-            Vector2 direction = ((Vector2)_path[_currentWayPoint].position - fromPosition).normalized;
-
-            float distance = Vector2.Distance(fromPosition, _path[_currentWayPoint].position);
-
-            if (distance < NextWayPointDistance)
-            {
-                _currentWayPoint++;
-            }
-
-            return direction;
+            if (_wayPoints == null) return null;
+            _currentPointIndex = (_currentPointIndex + 1) % _wayPoints.Count;
+            return _wayPoints[_currentPointIndex];
         }
 
-        public void OnPathComplete(List<Transform> wayPoints)
+        public Transform GetClosestTarget(Vector2 fromPosition)
         {
-            if(wayPoints != null)
-                _currentWayPoint = 0;
+            if (_wayPoints == null) return null;
+
+            var closestIndex = 0;
+            var closestDistance = 0.0f;
+            for (var i = 0; i < _wayPoints.Count; i++)
+            {
+                var distance = Vector2.Distance(fromPosition,
+                _wayPoints[i].position);
+                if (closestDistance > distance)
+                {
+                    closestDistance = distance;
+                    closestIndex = i;
+                }
+            }
+            _currentPointIndex = closestIndex;
+            return _wayPoints[_currentPointIndex];
         }
     }
 }

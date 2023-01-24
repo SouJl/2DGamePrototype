@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PixelGame.Interfaces
 {
-    public interface ILogicAI
+    public interface IPathfinderAI
     {
         Path Path { get; }
 
@@ -15,9 +15,8 @@ namespace PixelGame.Interfaces
 
         bool ReachedEndOfPath { get; set; }
 
-        void OnPathComplete(Path p);
+        void OnPathComplete(Path path);
 
         Vector2 CalculatePath(Vector2 fromPosition);
-
     }
 }

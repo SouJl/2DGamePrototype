@@ -3,9 +3,9 @@ using PixelGame.Configs;
 using PixelGame.Interfaces;
 using UnityEngine;
 
-namespace PixelGame.Model
+namespace PixelGame.Model.Utils
 {
-    public class StalkerAI : ILogicAI
+    public class PathfinderAIModel: IPathfinderAI
     {
         private Path _path;
         private float _nextWayPointDistance;
@@ -26,7 +26,7 @@ namespace PixelGame.Model
         public bool ReachedEndOfPath { get => _reachedEndOfPath; set => _reachedEndOfPath = value; }
 
 
-        public StalkerAI(AIConfig config) 
+        public PathfinderAIModel(AIConfig config)
         {
             _updateFrameRate = config.UpdateFrameRate;
             _nextWayPointDistance = config.NextWayPointDistance;
@@ -34,13 +34,13 @@ namespace PixelGame.Model
 
         public void OnPathComplete(Path path)
         {
-            if (!path.error) 
+            if (!path.error)
             {
                 _path = path;
                 _currentWayPoint = 0;
             }
         }
- 
+
         public Vector2 CalculatePath(Vector2 fromPosition)
         {
             if (_path == null) return Vector2.zero;

@@ -25,7 +25,7 @@ namespace PixelGame.Model.Utils
 
         private void OnExit(LevelObjectView levelObject) 
         {
-            _protector.FinichProtection(levelObject);
+            _protector.FinishProtection(levelObject);
         }
 
         public void Dispose()

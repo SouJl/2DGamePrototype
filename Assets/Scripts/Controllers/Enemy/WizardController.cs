@@ -1,31 +1,31 @@
 ﻿using PixelGame.Enumerators;
 using PixelGame.Interfaces;
 using PixelGame.Model;
+using PixelGame.Model.Utils;
 using PixelGame.View;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PixelGame.Controllers
 {
     public class WizardController : IExecute
     {
-        private Transform _targetTransform;
-        private WizzardEnemyView enemyView;
+        private WizzardEnemyView _enemyView;
         private SpriteAnimatorController _animatorController;
-        private AbstractAIEnemyModel<ILogicAI<List<Transform>>> _enemy;
-
+        private ProtectorEnemyModel _enemy;
+        private ProtectedZoneModel _protectedZone;
         private float lastTimeAiUpdate;
 
-        public WizardController(Transform player, WizzardEnemyView view, AbstractAIEnemyModel<ILogicAI<List<Transform>>> enemyModel)
+        public WizardController(WizzardEnemyView view, ProtectorEnemyModel enemyModel)
         {
-            _targetTransform = player;
-            enemyView = view;
+            _enemyView = view;
             _enemy = enemyModel;
 
-            _animatorController = new SpriteAnimatorController(enemyView.AnimationConfig, enemyView.AnimationSpeed);
-            _animatorController.StartAnimation(enemyView.SpriteRenderer, AnimaState.Idle, true);
+            _protectedZone = new ProtectedZoneModel(_enemyView.ProtectedZone, _enemy);
 
-            lastTimeAiUpdate = _enemy.LogicAI.UpdateFrameRate;
+            _animatorController = new SpriteAnimatorController(_enemyView.AnimationConfig, _enemyView.AnimationSpeed);
+            _animatorController.StartAnimation(_enemyView.SpriteRenderer, AnimaState.Idle, true);
+
+            lastTimeAiUpdate = _enemy.PathfinderAI.UpdateFrameRate;
         }
 
         public void Execute()
@@ -35,9 +35,9 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
-            if (lastTimeAiUpdate > _enemy.LogicAI.UpdateFrameRate)
+            if (lastTimeAiUpdate > _enemy.PathfinderAI.UpdateFrameRate)
             {
-                _enemy.RecalculatePath(Vector3.zero);
+                _enemy.RecalculatePath();
                 lastTimeAiUpdate = 0;
             }
             else
@@ -45,9 +45,8 @@ namespace PixelGame.Controllers
                 lastTimeAiUpdate += Time.fixedDeltaTime;
             }
 
-            var newVel = _enemy.LogicAI.CalculatePath(_enemy.UnitComponents.RgdBody.position);
-            _enemy.UnitComponents.RgdBody.velocity = newVel;
-            _enemy.Rotate(Vector3.zero);
+            var newVel = _enemy.CalculatePath();
+            _enemy.Components.RgdBody.velocity = newVel;
         }
     }
 }

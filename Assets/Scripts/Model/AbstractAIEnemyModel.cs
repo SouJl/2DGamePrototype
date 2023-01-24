@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public abstract class AbstractAIEnemyModel<ILogicAI> : IUnit
+    public abstract class AbstractAIEnemyModel: IUnit
     {
         public StateMachine UnitMovementSM { get; set; }
         public State IdleState { get; set; }

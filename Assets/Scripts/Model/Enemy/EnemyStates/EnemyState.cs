@@ -4,11 +4,11 @@ namespace PixelGame.Model.StateMachines
 {
     public class EnemyState : State
     {
-        protected AbstractAIEnemyModel enemy;
 
-        public EnemyState(StateMachine stateMachine, SpriteAnimatorController animatorController, AbstractAIEnemyModel enemy) : base(stateMachine, animatorController)
+
+        public EnemyState(StateMachine stateMachine, SpriteAnimatorController animatorController) : base(stateMachine, animatorController)
         {
-            this.enemy = enemy;
+           
         }
 
         public override void Enter()

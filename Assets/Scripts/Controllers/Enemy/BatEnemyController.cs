@@ -11,14 +11,14 @@ namespace PixelGame.Controllers
     public class BatEnemyController : IExecute, IDisposable
     {
         private Transform _player;
-        private AbstractAIEnemyModel _enemy;
+        private AbstractAIEnemyModel<ILogicAI<Path>> _enemy;
         private BatEnemyView _view;
         private IWeapon _weapon;
         private SpriteAnimatorController _animatorController;
 
         private float lastTimeAiUpdate;
 
-        public BatEnemyController(Transform player, BatEnemyView view, AbstractAIEnemyModel enemyModel, IWeapon weapon) 
+        public BatEnemyController(Transform player, BatEnemyView view, AbstractAIEnemyModel<ILogicAI<Path>> enemyModel, IWeapon weapon) 
         {
             _player = player;
             _view = view;

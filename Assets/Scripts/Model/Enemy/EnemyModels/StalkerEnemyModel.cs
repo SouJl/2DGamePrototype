@@ -5,16 +5,20 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class StalkerEnemyModel : AbstractAIEnemyModel
+    public class StalkerEnemyModel : AbstractAIEnemyModel<ILogicAI<Path>>
     {
+        private Seeker _seeker;
+
+        public Seeker Seeker { get => _seeker; }
+        
         private float _speed;
 
         public float Speed { get => _speed;  }
 
-        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI logicAI, float speed) : base(components, spriteRenderer, logicAI)
+        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI<Path> logicAI, Seeker seeker, float speed) : base(components, spriteRenderer, logicAI)
         {
+            _seeker = seeker;
             _speed = speed;
-
         }
 
         public override void Rotate(Vector3 target)
@@ -27,23 +31,15 @@ namespace PixelGame.Model
             {
                 UnitComponents.Transform.localScale = new Vector3(-1f, 1f, 1f);
             }
-            /*var selfDir = SpriteRenderer.transform.position;
-            SpriteRenderer.flipX = selfDir.x > target.x ? true : false;*/
         }
 
 
         public override void RecalculatePath(Vector3 target)
         {
-            if (LogicAI.Seeker.IsDone())
+            if (Seeker.IsDone())
             {
-                LogicAI.Seeker.StartPath(UnitComponents.RgdBody.position, target, OnPathComplete);
+                Seeker.StartPath(UnitComponents.RgdBody.position, target, LogicAI.OnPathComplete);
             }
-        }
-
-        protected override void OnPathComplete(Path p)
-        {
-            if (p.error) return;
-            LogicAI.OnPathComplete(p);
         }
     }
 }

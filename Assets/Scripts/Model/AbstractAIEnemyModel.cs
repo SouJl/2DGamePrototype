@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public abstract class AbstractAIEnemyModel: IUnit
+    public abstract class AbstractAIEnemyModel<ILogicAI> : IUnit
     {
         public StateMachine UnitMovementSM { get; set; }
         public State IdleState { get; set; }
@@ -36,6 +36,5 @@ namespace PixelGame.Model
 
         public abstract void RecalculatePath(Vector3 target);
 
-        protected abstract void OnPathComplete(Path p);
     }
 }

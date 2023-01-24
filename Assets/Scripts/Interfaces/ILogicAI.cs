@@ -1,13 +1,10 @@
-﻿using Pathfinding;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PixelGame.Interfaces
 {
-    public interface ILogicAI
+    public interface ILogicAI<T>
     {
-        Path Path { get; }
-
-        Seeker Seeker { get; }
+        T Path { get; }
 
         float NextWayPointDistance { get; }
 
@@ -17,7 +14,7 @@ namespace PixelGame.Interfaces
 
         bool ReachedEndOfPath { get; set; }
 
-        void OnPathComplete(Path path);
+        void OnPathComplete(T path);
 
         Vector2 CalculatePath(Vector2 fromPosition);
 

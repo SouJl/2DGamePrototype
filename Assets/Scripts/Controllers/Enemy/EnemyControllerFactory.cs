@@ -32,9 +32,16 @@ namespace PixelGame.Controllers
                         var projController = new ProjectilesController(weaponView.ProjectileType, weaponView.ProjectileLifeTime, _enemyViewSevice);
                         var components = new ComponentsModel(batEnemy.Transform, batEnemy.Rigidbody, batEnemy.Collider);
                         var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, projController);
-                        var ai = new StalkerAI(batEnemy.Seeker, Resources.Load<AIConfig>("StalkerAIConfig"));
-                        var enemyModel = new StalkerEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Speed);
+                        var ai = new StalkerAI(Resources.Load<AIConfig>("StalkerAIConfig"));
+                        var enemyModel = new StalkerEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Seeker, batEnemy.Speed);
                         return new BatEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
+                    }
+                case WizzardEnemyView wizardEnemy: 
+                    {
+                        var components = new ComponentsModel(wizardEnemy.Transform, wizardEnemy.Rigidbody, wizardEnemy.Collider);
+                        var ai = new PatrolAI(Resources.Load<AIConfig>("PatrolAIConfig"), wizardEnemy.WayPoints);
+                        var enemyModel = new PatrolEnemyModel(components, wizardEnemy.SpriteRenderer, ai);
+                        return new WizardController(_playerTransform, wizardEnemy, enemyModel);
                     }
             }
         }

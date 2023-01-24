@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class StalkerAI : ILogicAI
+    public class StalkerAI : ILogicAI<Path>
     {
         private Path _path;
-        private Seeker _seeker;
         private float _nextWayPointDistance;
         private int _currentWayPoint;
         private float _updateFrameRate;
@@ -17,7 +16,6 @@ namespace PixelGame.Model
 
         public Path Path { get => _path; }
 
-        public Seeker Seeker { get => _seeker; }
 
         public float NextWayPointDistance { get => _nextWayPointDistance; }
 
@@ -28,9 +26,8 @@ namespace PixelGame.Model
         public bool ReachedEndOfPath { get => _reachedEndOfPath; set => _reachedEndOfPath = value; }
 
 
-        public StalkerAI(Seeker seeker, AIConfig config) 
+        public StalkerAI(AIConfig config) 
         {
-            _seeker = seeker;
             _updateFrameRate = config.UpdateFrameRate;
             _nextWayPointDistance = config.NextWayPointDistance;
         }

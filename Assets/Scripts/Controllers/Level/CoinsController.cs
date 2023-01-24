@@ -21,7 +21,7 @@ namespace PixelGame.Controllers
             _playerView = playerView;
             _playerView.OnLevelObjectContact += OnLevelObjectContact;
 
-            _viewService = new ViewService(coinsView.transform);
+            _viewService = new ViewService();
             _animatorController = new SpriteAnimatorController(coinsView.AnimationConfig, coinsView.AnimationSpeed);
             _coinViews = new List<LevelObjectView>();
             

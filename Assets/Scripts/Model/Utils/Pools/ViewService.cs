@@ -10,19 +10,16 @@ namespace PixelGame.Model.Utils
     {
         private readonly Dictionary<string, ObjectPool> _viewCashe;
 
-        private Transform _root = null;
-
-        public ViewService(Transform root)
+        public ViewService()
         {
             _viewCashe = new Dictionary<string, ObjectPool>();
-            _root = root;
         }
 
         public T Instantiate<T>(LevelObjectView prefab)
         {
             if (!_viewCashe.TryGetValue(prefab.name, out ObjectPool viewPool))
             {
-                viewPool = new ObjectPool(prefab, _root);
+                viewPool = new ObjectPool(prefab);
                 _viewCashe[prefab.name] = viewPool;
             }
 

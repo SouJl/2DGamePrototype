@@ -38,7 +38,7 @@ namespace PixelGame.Model
             var axis = Vector3.Cross(Vector3.right + flipVector, dir);
             _muzzle.rotation = Quaternion.AngleAxis(angle, axis);
 
-            var prjmodel = _projectilesController.Add(Damage);
+            var prjmodel = _projectilesController.Add(Damage, _muzzle.position);
             prjmodel.Rgdbody.AddForce(_muzzle.up * _shootPower, _forceMode);
             _lastAtackTime = Time.time;
         }

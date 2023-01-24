@@ -9,12 +9,14 @@ namespace PixelGame.Controllers
 {
     public class EnemyControllerFactory
     {
-
         private Transform _playerTransform;
 
-        public EnemyControllerFactory(Transform playerTransform) 
+        private ViewService _enemyViewSevice;
+
+        public EnemyControllerFactory(Transform playerTransform, ViewService viewService) 
         {
             _playerTransform = playerTransform;
+            _enemyViewSevice = viewService;
         }
 
         public IExecute GetEnemyController(EnemyView enemy) 
@@ -27,7 +29,7 @@ namespace PixelGame.Controllers
                 case BatEnemyView batEnemy: 
                     {
                         var weaponView = batEnemy.Weapon;
-                        var projController = new ProjectilesController(weaponView.ProjectileType, new ViewService(weaponView.Muzzle), weaponView.ProjectileLifeTime);
+                        var projController = new ProjectilesController(weaponView.ProjectileType, weaponView.ProjectileLifeTime, _enemyViewSevice);
                         var components = new ComponentsModel(batEnemy.Transform, batEnemy.Rigidbody, batEnemy.Collider);
                         var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, projController);
                         var ai = new StalkerAI(batEnemy.Seeker, Resources.Load<AIConfig>("StalkerAIConfig"));

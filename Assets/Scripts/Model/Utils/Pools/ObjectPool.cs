@@ -10,16 +10,12 @@ namespace PixelGame.Model.Utils
     {
         private readonly Stack<LevelObjectView> _stack = new Stack<LevelObjectView>();
         private readonly LevelObjectView  _prefab;
-        private readonly Transform _mainRoot;
         private readonly Transform _root;
 
-        public ObjectPool(LevelObjectView prefab, Transform mainRoot)
+        public ObjectPool(LevelObjectView prefab)
         {
             _prefab = prefab;
-            _mainRoot = mainRoot;
             _root = new GameObject($"[{_prefab.name}]").transform;
-            _root.position = mainRoot.position;
-            _root.SetParent(_mainRoot);
         }
 
         public LevelObjectView Pop()
@@ -27,7 +23,7 @@ namespace PixelGame.Model.Utils
             LevelObjectView go;
             if (_stack.Count == 0)
             {
-                go = Object.Instantiate(_prefab, _mainRoot.position, Quaternion.identity);
+                go = Object.Instantiate(_prefab);
                 go.name = _prefab.name;
             }
             else
@@ -35,15 +31,13 @@ namespace PixelGame.Model.Utils
                 go = _stack.Pop();
             }
             go.SetActive(true);
-            go.transform.SetParent(_mainRoot);
             go.OnStartExecute();
             return go;
         }
 
         public void Push(LevelObjectView go)
         {
-            _stack.Push(go);
-            go.transform.position = _root.position;
+            _stack.Push(go); 
             go.SetActive(false);
             go.transform.SetParent(_root);
         }

@@ -33,12 +33,14 @@ namespace PixelGame.Model.Utils
 
         public void FinishProtection(LevelObjectView invader)
         {
+            if (invader.gameObject.tag != "Player") return;
             _isPatrolling = true;
             _currentTarget = _patrolModel.GetClosestTarget(_components.RgdBody.position);
         }
 
         public void StartProtection(LevelObjectView invader)
         {
+            if (invader.gameObject.tag != "Player") return;
             _isPatrolling = false;
             _currentTarget = invader.Transform;
         }

@@ -1,23 +1,20 @@
 ﻿using Pathfinding;
 using PixelGame.Interfaces;
+using PixelGame.Model.AIModels;
 using PixelGame.Model.Utils;
 using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class StalkerEnemyModel : AbstractAIEnemyModel
+    public class StandartAIEnemyModel : AbstractAIEnemyModel
     {
-        private Seeker _seeker;
-
-        public Seeker Seeker { get => _seeker; }
         
         private float _speed;
 
         public float Speed { get => _speed;  }
 
-        public StalkerEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, ILogicAI logicAI, Seeker seeker, float speed) : base(components, spriteRenderer, logicAI)
+        public StandartAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAIModel logicAI, float speed) : base(components, spriteRenderer, logicAI)
         {
-            _seeker = seeker;
             _speed = speed;
         }
 
@@ -34,12 +31,14 @@ namespace PixelGame.Model
         }
 
 
-        public override void RecalculatePath(Vector3 target)
+        public override void RecalculatePath()
         {
-            if (Seeker.IsDone())
-            {
-                Seeker.StartPath(UnitComponents.RgdBody.position, target, LogicAI.OnPathComplete);
-            }
+            LogicAI.RecalculatePath();
+        }
+
+        public override void Move()
+        {
+            UnitComponents.RgdBody.velocity = LogicAI.CalculateVelocity(UnitComponents.RgdBody.position) * Speed * Time.fixedDeltaTime;
         }
     }
 }

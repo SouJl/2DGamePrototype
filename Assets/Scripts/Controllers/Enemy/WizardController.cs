@@ -11,21 +11,20 @@ namespace PixelGame.Controllers
     {
         private WizzardEnemyView _enemyView;
         private SpriteAnimatorController _animatorController;
-        private ProtectorEnemyModel _enemy;
+        private AbstractAIEnemyModel _enemyModel;
         private ProtectedZoneModel _protectedZone;
         private float lastTimeAiUpdate;
 
-        public WizardController(WizzardEnemyView view, ProtectorEnemyModel enemyModel)
+        public WizardController(WizzardEnemyView view, AbstractAIEnemyModel enemyModel, ProtectedZoneModel protectedZone)
         {
             _enemyView = view;
-            _enemy = enemyModel;
-
-            _protectedZone = new ProtectedZoneModel(_enemyView.ProtectedZone, _enemy);
+            _enemyModel = enemyModel;
+            _protectedZone = protectedZone;
 
             _animatorController = new SpriteAnimatorController(_enemyView.AnimationConfig, _enemyView.AnimationSpeed);
             _animatorController.StartAnimation(_enemyView.SpriteRenderer, AnimaState.Idle, true);
 
-            lastTimeAiUpdate = _enemy.PathfinderAI.UpdateFrameRate;
+            lastTimeAiUpdate = _enemyModel.LogicAI.PathfinderAI.UpdateFrameRate;
         }
 
         public void Execute()
@@ -35,9 +34,9 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
-            if (lastTimeAiUpdate > _enemy.PathfinderAI.UpdateFrameRate)
+            if (lastTimeAiUpdate > _enemyModel.LogicAI.PathfinderAI.UpdateFrameRate)
             {
-                _enemy.RecalculatePath();
+                _enemyModel.RecalculatePath();
                 lastTimeAiUpdate = 0;
             }
             else
@@ -45,8 +44,8 @@ namespace PixelGame.Controllers
                 lastTimeAiUpdate += Time.fixedDeltaTime;
             }
 
-            var newVel = _enemy.CalculatePath();
-            _enemy.Components.RgdBody.velocity = newVel;
+            _enemyModel.Rotate(_enemyModel.UnitComponents.RgdBody.position);
+            _enemyModel.Move();
         }
     }
 }

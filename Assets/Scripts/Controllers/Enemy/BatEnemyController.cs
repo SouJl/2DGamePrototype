@@ -32,7 +32,7 @@ namespace PixelGame.Controllers
 
             _weapon = weapon;
 
-            lastTimeAiUpdate = _enemy.LogicAI.UpdateFrameRate;
+            lastTimeAiUpdate = _enemy.LogicAI.PathfinderAI.UpdateFrameRate;
         }
 
         public void Execute()
@@ -44,9 +44,9 @@ namespace PixelGame.Controllers
         {
             _weapon.Update(Time.fixedDeltaTime);
 
-            if (lastTimeAiUpdate > _enemy.LogicAI.UpdateFrameRate) 
+            if (lastTimeAiUpdate > _enemy.LogicAI.PathfinderAI.UpdateFrameRate) 
             {
-                _enemy.RecalculatePath(_player.position);
+                _enemy.RecalculatePath();
                 lastTimeAiUpdate = 0;
             }
             else 
@@ -54,8 +54,7 @@ namespace PixelGame.Controllers
                 lastTimeAiUpdate += Time.fixedDeltaTime;
             }
 
-            var newVel = _enemy.LogicAI.CalculatePath(_enemy.UnitComponents.RgdBody.position);
-            _enemy.UnitComponents.RgdBody.velocity = newVel;
+            _enemy.Move();
             _enemy.Rotate(_player.position);
         }
 

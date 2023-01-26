@@ -21,7 +21,7 @@ namespace PixelGame.View
         {
             var _levlObj = other.GetComponent<LevelObjectView>();
 
-            if (!_levlObj)
+            if (_levlObj)
                 TriggerEnter?.Invoke(_levlObj);
         }
 
@@ -29,7 +29,7 @@ namespace PixelGame.View
         {
             var _levlObj = other.GetComponent<LevelObjectView>();
 
-            if (!_levlObj)
+            if (_levlObj)
                 TriggerExit?.Invoke(_levlObj);
         }
     }

@@ -1,68 +1,32 @@
 ﻿using Pathfinding;
-using PixelGame.Configs;
 using PixelGame.Interfaces;
+using PixelGame.Model.Utils;
 using UnityEngine;
 
-namespace PixelGame.Model
+namespace PixelGame.Model.AIModels
 {
-    public class StalkerAI : ILogicAI
+    public class StalkerAI : AbstractAIModel
     {
-        private Path _path;
-        private float _nextWayPointDistance;
-        private int _currentWayPoint;
-        private float _updateFrameRate;
+        private Seeker _seeker;
 
-        private bool _reachedEndOfPath;
-
-        public Path Path { get => _path; }
-
-
-        public float NextWayPointDistance { get => _nextWayPointDistance; }
-
-        public int CurrentWayPoint { get => _currentWayPoint; }
-
-        public float UpdateFrameRate { get => _updateFrameRate; }
-
-        public bool ReachedEndOfPath { get => _reachedEndOfPath; set => _reachedEndOfPath = value; }
-
-
-        public StalkerAI(AIConfig config) 
+        public StalkerAI(ComponentsModel components, IPathfinderAI pathfinderAI, Seeker seeker, Transform target) : base(components, pathfinderAI)
         {
-            _updateFrameRate = config.UpdateFrameRate;
-            _nextWayPointDistance = config.NextWayPointDistance;
+            _seeker = seeker;
+            currentTarget = target;
         }
 
-        public void OnPathComplete(Path path)
+        public override void RecalculatePath()
         {
-            if (!path.error) 
+            if (_seeker.IsDone())
             {
-                _path = path;
-                _currentWayPoint = 0;
+                _seeker.StartPath(Components.RgdBody.position, currentTarget.position, PathfinderAI.OnPathComplete);
             }
+
         }
- 
-        public Vector2 CalculatePath(Vector2 fromPosition)
+
+        public override Vector2 CalculateVelocity(Vector2 fromPosition)
         {
-            if (_path == null) return Vector2.zero;
-
-            ReachedEndOfPath = false;
-
-            if (_currentWayPoint >= _path.vectorPath.Count)
-            {
-                ReachedEndOfPath = true;
-                return Vector2.zero;
-            }
-
-            Vector2 direction = ((Vector2)_path.vectorPath[_currentWayPoint] - fromPosition).normalized;
-
-            float distance = Vector2.Distance(fromPosition, _path.vectorPath[_currentWayPoint]);
-
-            if (distance < NextWayPointDistance)
-            {
-                _currentWayPoint++;
-            }
-
-            return direction;
+            return PathfinderAI.CalculatePath(fromPosition);
         }
     }
 }

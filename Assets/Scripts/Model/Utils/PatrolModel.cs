@@ -1,18 +1,16 @@
-﻿using PixelGame.Configs;
-using PixelGame.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace PixelGame.Model.AIModels
 {
-    public class PatrolAI 
+    public class PatrolModel
     {
         private List<Transform> _wayPoints;
 
         public List<Transform> WayPoints { get => _wayPoints; }
 
         private int _currentPointIndex;
-        public PatrolAI(List<Transform> wayPoints)
+        public PatrolModel(List<Transform> wayPoints)
         {
             _wayPoints = wayPoints;
         }

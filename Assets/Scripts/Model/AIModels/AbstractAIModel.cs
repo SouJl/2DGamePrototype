@@ -1,17 +1,24 @@
 ﻿using PixelGame.Interfaces;
+using PixelGame.Model.Utils;
 using UnityEngine;
 
 namespace PixelGame.Model.AIModels
 {
     public abstract class AbstractAIModel
     {
-        protected IPathfinderAI pathfinderAI { get; private set; }
+        protected Transform currentTarget;
 
-        public AbstractAIModel(IPathfinderAI pathfinderAI) 
+        public ComponentsModel Components { get; private set; }
+        public IPathfinderAI PathfinderAI { get; private set; }
+
+        public AbstractAIModel(ComponentsModel components, IPathfinderAI pathfinderAI) 
         {
-            this.pathfinderAI = pathfinderAI;
+            Components = components;
+            PathfinderAI = pathfinderAI;
         }
 
-        public abstract void RecalculatePath(Vector2 target);
+        public abstract void RecalculatePath();
+
+        public abstract Vector2 CalculateVelocity(Vector2 fromPosition);
     }
 }

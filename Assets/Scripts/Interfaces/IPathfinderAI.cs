@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using System;
 using UnityEngine;
 
 namespace PixelGame.Interfaces
@@ -14,6 +15,8 @@ namespace PixelGame.Interfaces
         float UpdateFrameRate { get; }
 
         bool ReachedEndOfPath { get; set; }
+
+        Action OnReachedEndOfPath { get; set; }
 
         void OnPathComplete(Path path);
 

@@ -32,6 +32,8 @@ namespace PixelGame.Model
 
         private void OnLevelObjectContact(LevelObjectView levelObject) 
         {
+            if (!levelObject) return;
+
             if (levelObject.gameObject.tag == "Player") 
             {
                 _onDestroy?.Invoke(this);

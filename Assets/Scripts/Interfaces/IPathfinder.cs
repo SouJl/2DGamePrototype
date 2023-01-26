@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PixelGame.Interfaces
 {
-    public interface IPathfinderAI
+    public interface IPathfinder
     {
         Path Path { get; }
 

@@ -1,44 +1,49 @@
-﻿using Pathfinding;
-using PixelGame.Interfaces;
-using PixelGame.Model.AIModels;
+﻿using PixelGame.Model.AIModels;
 using PixelGame.Model.Utils;
 using UnityEngine;
 
 namespace PixelGame.Model
 {
     public class StandartAIEnemyModel : AbstractAIEnemyModel
-    {
-        
+    {    
         private float _speed;
+        private float _moveThresh;
 
         public float Speed { get => _speed;  }
+        public float MoveThresh { get => _moveThresh;}
 
-        public StandartAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAIModel logicAI, float speed) : base(components, spriteRenderer, logicAI)
+        private int FacingDirection;
+
+
+        public StandartAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI logicAI, float speed, float moveThresh) : base(components, spriteRenderer, logicAI)
         {
             _speed = speed;
+            _moveThresh = moveThresh;
+            FacingDirection = 1;
         }
 
         public override void Rotate(Vector3 target)
         {
-            if (UnitComponents.RgdBody.velocity.x > 0)
+            float xInpunt = UnitComponents.RgdBody.velocity.x;
+
+            if (xInpunt != 0 && (xInpunt * FacingDirection) < 0)
             {
-                UnitComponents.Transform.localScale = new Vector3(1f, 1f, 1f);
-            }
-            else 
-            {
-                UnitComponents.Transform.localScale = new Vector3(-1f, 1f, 1f);
+                FacingDirection *= -1;
+                UnitComponents.Transform.Rotate(0.0f, 180.0f, 0.0f);
             }
         }
 
-
-        public override void RecalculatePath()
+        public override void Update(float time)
         {
-            LogicAI.RecalculatePath();
+            LogicAI.Update(time);
         }
 
         public override void Move()
         {
-            UnitComponents.RgdBody.velocity = LogicAI.CalculateVelocity(UnitComponents.RgdBody.position) * Speed * Time.fixedDeltaTime;
+            var newVel = LogicAI.CalculateVelocity(UnitComponents.Transform.position) * Speed * Time.fixedDeltaTime;
+
+            if(Mathf.Abs(newVel.x) > _moveThresh)
+                UnitComponents.RgdBody.velocity = newVel;
         }
     }
 }

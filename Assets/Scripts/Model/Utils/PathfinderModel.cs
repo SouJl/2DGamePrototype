@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PixelGame.Model.Utils
 {
-    public class PathfinderModel: IPathfinderAI
+    public class PathfinderModel: IPathfinder
     {
         private Path _path;
         private float _nextWayPointDistance;

@@ -9,6 +9,7 @@ namespace PixelGame.View
         [Header("Enemy Settings")]
         [SerializeField] private float _maxHealth = 50f;
         [SerializeField] private LocatorComponent _locator;
+        [SerializeField] private AIConfig _aIConfig;
 
         [Space(10)]
 
@@ -28,6 +29,7 @@ namespace PixelGame.View
         public int AnimationSpeed { get => _animationSpeed; }
         public AnimationConfig AnimationConfig { get => _animationConfig;}
         public LocatorComponent Locator { get => _locator;}
+        public AIConfig AIConfig { get => _aIConfig; }
 
         public override void Awake()
         {

@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PixelGame.Configs
 {
-    [CreateAssetMenu(fileName = "AIConfig", menuName = "Configs/AI")]
-    public class AIConfig:ScriptableObject
+    [Serializable]
+    public struct AIConfig
     {
         public float UpdateFrameRate;
         public float NextWayPointDistance;
+        public float MinSqrDistance;
         public Transform[] waypoints;
     }
 }

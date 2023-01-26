@@ -1,5 +1,4 @@
-﻿using Pathfinding;
-using PixelGame.Enumerators;
+﻿using PixelGame.Enumerators;
 using PixelGame.Interfaces;
 using PixelGame.Model;
 using PixelGame.View;
@@ -16,8 +15,6 @@ namespace PixelGame.Controllers
         private IWeapon _weapon;
         private SpriteAnimatorController _animatorController;
 
-        private float lastTimeAiUpdate;
-
         public BatEnemyController(Transform player, BatEnemyView view, AbstractAIEnemyModel enemyModel, IWeapon weapon) 
         {
             _player = player;
@@ -31,8 +28,6 @@ namespace PixelGame.Controllers
             _view.Locator.OnLacatorContact += OnLocatorContact;
 
             _weapon = weapon;
-
-            lastTimeAiUpdate = _enemy.LogicAI.PathfinderAI.UpdateFrameRate;
         }
 
         public void Execute()
@@ -43,19 +38,10 @@ namespace PixelGame.Controllers
         public void FixedExecute()
         {
             _weapon.Update(Time.fixedDeltaTime);
-
-            if (lastTimeAiUpdate > _enemy.LogicAI.PathfinderAI.UpdateFrameRate) 
-            {
-                _enemy.RecalculatePath();
-                lastTimeAiUpdate = 0;
-            }
-            else 
-            {
-                lastTimeAiUpdate += Time.fixedDeltaTime;
-            }
+            _enemy.Update(Time.fixedDeltaTime);
 
             _enemy.Move();
-            _enemy.Rotate(_player.position);
+            _enemy.Rotate(Vector3.zero);
         }
 
         public void OnLocatorContact(LevelObjectView target)

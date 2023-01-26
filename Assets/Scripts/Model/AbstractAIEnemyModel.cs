@@ -13,30 +13,32 @@ namespace PixelGame.Model
 
         private ComponentsModel _unitComponents;
         private SpriteRenderer _spriteRenderer;
-        private AbstractAIModel _logicAI;
+        private AbstractAI _logicAI;
 
 
         public ComponentsModel UnitComponents { get => _unitComponents; }
         public SpriteRenderer SpriteRenderer { get => _spriteRenderer; }
         
-        public AbstractAIModel LogicAI { get => _logicAI; }
+        public AbstractAI LogicAI { get => _logicAI; }
 
         public Vector2 CurrentVelocity { get; set; }
 
         public Vector2 WorkVelocity { get; set; }
 
-        public AbstractAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAIModel logicAI) 
+        public AbstractAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI logicAI) 
         {
             _unitComponents = components;
             _spriteRenderer = spriteRenderer;
             _logicAI = logicAI;
         }
 
+
         public abstract void Move();
+
 
         public abstract void Rotate(Vector3 target);
 
-        public abstract void RecalculatePath();
+        public abstract void Update(float time);
 
     }
 }

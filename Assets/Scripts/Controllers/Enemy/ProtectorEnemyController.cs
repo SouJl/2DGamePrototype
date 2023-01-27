@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace PixelGame.Controllers
 {
-    public class WizardController : IExecute
+    public class ProtectorEnemyController : IExecute
     {
-        private WizzardEnemyView _enemyView;
+        private ProtectorEnemyView _enemyView;
         private SpriteAnimatorController _animatorController;
         private AbstractAIEnemyModel _enemyModel;
 
-        public WizardController(WizzardEnemyView view, AbstractAIEnemyModel enemyModel)
+        public ProtectorEnemyController(ProtectorEnemyView view, AbstractAIEnemyModel enemyModel)
         {
             _enemyView = view;
             _enemyModel = enemyModel;

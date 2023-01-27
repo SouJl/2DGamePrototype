@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class StandartAIEnemyModel : AbstractAIEnemyModel
+    public class StandartEnemyModel : AbstractAIEnemyModel
     {
         private AbstractAI _aImodel;
         private float _speed;
@@ -15,7 +15,7 @@ namespace PixelGame.Model
 
         private int FacingDirection;
 
-        public StandartAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI aImodel, float speed, float moveThresh) : base(components, spriteRenderer)
+        public StandartEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI aImodel, float speed, float moveThresh) : base(components, spriteRenderer)
         {
             _aImodel = aImodel;
             _speed = speed;

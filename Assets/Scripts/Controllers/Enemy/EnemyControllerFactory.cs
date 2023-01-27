@@ -26,7 +26,7 @@ namespace PixelGame.Controllers
                 default:
                     return null;
 
-                case BatEnemyView batEnemy: 
+                case StalkerEnemyView batEnemy: 
                     {
                         var weaponView = batEnemy.Weapon;             
                         var components = new ComponentsModel(batEnemy.Transform, batEnemy.Rigidbody, batEnemy.Collider);
@@ -35,16 +35,16 @@ namespace PixelGame.Controllers
                         var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, projController);
 
                         var ai = new StalkerAI(batEnemy.AIConfig, components, batEnemy.Seeker, _playerTransform);                        
-                        var enemyModel = new StandartAIEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Speed, batEnemy.MoveThresh);
+                        var enemyModel = new StandartEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Speed, batEnemy.MoveThresh);
                         
-                        return new BatEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
+                        return new StalkerEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
                     }
-                    case WizzardEnemyView wizardEnemy: 
+                    case ProtectorEnemyView wizardEnemy: 
                     {
                         var components = new ComponentsModel(wizardEnemy.Transform, wizardEnemy.Rigidbody, wizardEnemy.Collider);
                         var ai = new ProtectorAI(wizardEnemy.AIConfig, components, wizardEnemy.Seeker, wizardEnemy.ProtectedZone, _playerTransform.tag);
-                        var enemyModel = new StandartAIEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.Speed, wizardEnemy.MoveThresh);
-                        return new WizardController(wizardEnemy, enemyModel);
+                        var enemyModel = new StandartEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.Speed, wizardEnemy.MoveThresh);
+                        return new ProtectorEnemyController(wizardEnemy, enemyModel);
                     }
                 case ChaserEnemyView chaserEnemy:
                     {

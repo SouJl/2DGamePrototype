@@ -46,6 +46,10 @@ namespace PixelGame.Controllers
                         var enemyModel = new StandartAIEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.Speed, wizardEnemy.MoveThresh);
                         return new WizardController(wizardEnemy, enemyModel);
                     }
+                case ChaserEnemyView chaserEnemy:
+                    {
+                        return new ChaserEnemyController(chaserEnemy, _playerTransform);
+                    }
             }
         }
     }

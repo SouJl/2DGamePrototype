@@ -25,11 +25,11 @@ namespace PixelGame.Controllers
         public void Execute()
         {
             _animatorController.Update();
-            _enemyModel.Update(Time.deltaTime);
         }
 
         public void FixedExecute()
-        {     
+        {
+            _enemyModel.Update(Time.fixedDeltaTime);
             _enemyModel.Move();
             _enemyModel.Rotate(Vector3.zero);
         }

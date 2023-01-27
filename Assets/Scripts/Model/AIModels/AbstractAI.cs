@@ -13,6 +13,9 @@ namespace PixelGame.Model.AIModels
             _config = config;
         }
 
+        public abstract void Init();
+        public abstract void Deint();
+
         public abstract void Update(float time);
 
         public abstract Vector2 CalculateVelocity(Vector2 fromPosition);

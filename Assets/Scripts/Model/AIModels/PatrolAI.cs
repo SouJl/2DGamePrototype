@@ -1,63 +1,49 @@
 ﻿using Pathfinding;
 using PixelGame.Configs;
 using PixelGame.Model.Utils;
-using PixelGame.View;
 using UnityEngine;
 
 namespace PixelGame.Model.AIModels
 {
-    public class ProtectorAI : AbstractAI
+    public class PatrolAI : AbstractAI
     {
         #region private Variables
 
         private ComponentsModel _components;
         private Seeker _seeker;
-        private LevelObjectTrigger _patrolZone;
-        private string _targetTag;
 
-        private ProtectorAIModel _patrolModel;
+        private PatrolAIModel _patrolModel;
+
         private Transform _target;
-
-        private bool _isPatrolling;
-        private bool _isPathComple;
 
         private float _updateFrameRate;
         private float _lastTimeUpdate;
+        private bool _isPathComple;
 
         #endregion
 
-        public ProtectorAI(AIConfig config, ComponentsModel components, Seeker seeker, LevelObjectTrigger patrolZone, string targetTag) : base(config)
+        public PatrolAI(AIConfig config, ComponentsModel components, Seeker seeker) : base(config)
         {
             _components = components;
             _seeker = seeker;
-            _patrolZone = patrolZone;
-            _targetTag = targetTag;
 
-            _patrolModel = new ProtectorAIModel(config.waypoints, config.MinSqrDistance);
+            _patrolModel = new PatrolAIModel(config.waypoints, config.MinSqrDistance);
 
             _updateFrameRate = Config.UpdateFrameRate;
             _lastTimeUpdate = _updateFrameRate;
-
             _isPathComple = false;
-            _isPatrolling = true;
-
-            Init();
         }
 
         #region public Methods
 
         public override void Init()
         {
-            _patrolZone.TriggerEnter += StartProtection;
-            _patrolZone.TriggerExit += FinishProtection;
             _patrolModel.OnReachedEndOfPath += OnReachedEnd;
-            _target = _patrolModel.GetNextTarget();
+            _target = _patrolModel.GetClosestTarget(_components.RgdBody.position);
         }
 
         public override void Deint()
         {
-            _patrolZone.TriggerEnter -= StartProtection;
-            _patrolZone.TriggerExit -= FinishProtection;
             _patrolModel.OnReachedEndOfPath -= OnReachedEnd;
         }
 
@@ -73,7 +59,7 @@ namespace PixelGame.Model.AIModels
                 _lastTimeUpdate += time;
             }
         }
-        
+
         public override Vector2 CalculateVelocity(Vector2 fromPosition)
         {
             return _patrolModel.CalculateVelocity(fromPosition);
@@ -82,25 +68,6 @@ namespace PixelGame.Model.AIModels
         #endregion
 
         #region private Methods
-
-        private void StartProtection(LevelObjectView invader)
-        {
-            if (invader.gameObject.tag != _targetTag) return;
-
-            _isPatrolling = false;
-            _target = invader.Transform;
-            RecalculatePath();
-        }
-
-        private void FinishProtection(LevelObjectView invader)
-        {
-            if (invader.gameObject.tag != _targetTag) return;
-
-            _isPatrolling = true;
-            _target = _patrolModel.GetClosestTarget(_components.RgdBody.position);
-            RecalculatePath();
-        }
-
 
         private void RecalculatePath()
         {
@@ -114,19 +81,16 @@ namespace PixelGame.Model.AIModels
 
         private void OnPathComplete(Path p)
         {
-            if (p.error) return; 
+            if (p.error) return;
             _patrolModel.UpdatePath(p);
             _isPathComple = true;
         }
 
         private void OnReachedEnd()
         {
-            if (_isPathComple) 
+            if (_isPathComple)
             {
-                _target = _isPatrolling 
-                    ? _patrolModel.GetNextTarget() 
-                    : _patrolModel.GetClosestTarget(_components.RgdBody.position);
-
+                _target = _patrolModel.GetNextTarget();
                 _isPathComple = false;
             }
         }

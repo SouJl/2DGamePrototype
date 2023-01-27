@@ -5,7 +5,8 @@ using UnityEngine;
 namespace PixelGame.Model
 {
     public class StandartAIEnemyModel : AbstractAIEnemyModel
-    {    
+    {
+        private AbstractAI _aImodel;
         private float _speed;
         private float _moveThresh;
 
@@ -14,9 +15,9 @@ namespace PixelGame.Model
 
         private int FacingDirection;
 
-
-        public StandartAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI logicAI, float speed, float moveThresh) : base(components, spriteRenderer, logicAI)
+        public StandartAIEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI aImodel, float speed, float moveThresh) : base(components, spriteRenderer)
         {
+            _aImodel = aImodel;
             _speed = speed;
             _moveThresh = moveThresh;
             FacingDirection = 1;
@@ -35,12 +36,12 @@ namespace PixelGame.Model
 
         public override void Update(float time)
         {
-            LogicAI.Update(time);
+            _aImodel.Update(time);
         }
 
         public override void Move()
         {
-            var newVel = LogicAI.CalculateVelocity(UnitComponents.Transform.position) * Speed * Time.fixedDeltaTime;
+            var newVel = _aImodel.CalculateVelocity(UnitComponents.Transform.position) * Speed * Time.fixedDeltaTime;
 
             if (Mathf.Abs(newVel.x) > _moveThresh)
                 UnitComponents.RgdBody.velocity = newVel;

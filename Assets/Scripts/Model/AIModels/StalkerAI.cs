@@ -7,6 +7,8 @@ namespace PixelGame.Model.AIModels
 {
     public class StalkerAI : AbstractAI
     {
+        #region private Variables
+
         private ComponentsModel _components;
         private Seeker _seeker;
         private Transform _target;
@@ -14,6 +16,8 @@ namespace PixelGame.Model.AIModels
 
         private float _updateFrameRate;
         private float _lastTimeUpdate;
+
+        #endregion
 
         public StalkerAI(AIConfig config, ComponentsModel components,  Seeker seeker, Transform target) : base(config)
         {
@@ -24,6 +28,20 @@ namespace PixelGame.Model.AIModels
 
             _updateFrameRate = Config.UpdateFrameRate;
             _lastTimeUpdate = _updateFrameRate;
+
+            Init();
+        }
+
+        #region public Methods
+
+        public override void Init()
+        {
+            RecalculatePath();
+        }
+
+        public override void Deint()
+        {
+            return;
         }
 
         public override Vector2 CalculateVelocity(Vector2 fromPosition)
@@ -41,8 +59,12 @@ namespace PixelGame.Model.AIModels
             else
             {
                 _lastTimeUpdate += time;
-            }           
+            }
         }
+
+        #endregion
+
+        #region private Methods
 
         private void RecalculatePath()
         {
@@ -57,5 +79,7 @@ namespace PixelGame.Model.AIModels
             if (p.error) return;
             _aIModel.UpdatePath(p);
         }
+
+        #endregion
     }
 }

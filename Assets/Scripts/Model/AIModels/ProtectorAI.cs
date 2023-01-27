@@ -13,6 +13,7 @@ namespace PixelGame.Model.AIModels
         private ComponentsModel _components;
         private Seeker _seeker;
         private LevelObjectTrigger _patrolZone;
+        private float _speedMultiplier;
         private string _targetTag;
 
         private ProtectorAIModel _patrolModel;
@@ -26,11 +27,12 @@ namespace PixelGame.Model.AIModels
 
         #endregion
 
-        public ProtectorAI(AIConfig config, ComponentsModel components, Seeker seeker, LevelObjectTrigger patrolZone, string targetTag) : base(config)
+        public ProtectorAI(AIConfig config, ComponentsModel components, Seeker seeker, LevelObjectTrigger patrolZone, float speedMulti,  string targetTag) : base(config)
         {
             _components = components;
             _seeker = seeker;
             _patrolZone = patrolZone;
+            _speedMultiplier = speedMulti;
             _targetTag = targetTag;
 
             _patrolModel = new ProtectorAIModel(config.waypoints, config.MinSqrDistance);
@@ -77,7 +79,7 @@ namespace PixelGame.Model.AIModels
         public override Vector2 CalculateVelocity(Vector2 fromPosition)
         {
             var calculteVel = _patrolModel.CalculateVelocity(fromPosition);
-            if (!_isPatrolling) calculteVel *= 3f;
+            if (!_isPatrolling) calculteVel *= _speedMultiplier;
             return calculteVel;
         }
 

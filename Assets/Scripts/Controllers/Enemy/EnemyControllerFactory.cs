@@ -26,25 +26,25 @@ namespace PixelGame.Controllers
                 default:
                     return null;
 
-                case StalkerEnemyView batEnemy: 
+                case StalkerEnemyView stalkerEnemy: 
                     {
-                        var weaponView = batEnemy.Weapon;             
-                        var components = new ComponentsModel(batEnemy.Transform, batEnemy.Rigidbody, batEnemy.Collider);
+                        var weaponView = stalkerEnemy.Weapon;             
+                        var components = new ComponentsModel(stalkerEnemy.Transform, stalkerEnemy.Rigidbody, stalkerEnemy.Collider);
                         
                         var projController = new ProjectilesController(weaponView.ProjectileType, weaponView.ProjectileLifeTime, _enemyViewSevice);
                         var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, projController);
 
-                        var ai = new StalkerAI(batEnemy.AIConfig, components, batEnemy.Seeker, _playerTransform);                        
-                        var enemyModel = new StandartEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.EnemyData.speed, batEnemy.EnemyData.moveThresh);
+                        var ai = new StalkerAI(stalkerEnemy.AIConfig, components, stalkerEnemy.Seeker, _playerTransform);                        
+                        var enemyModel = new StandartEnemyModel(components, stalkerEnemy.SpriteRenderer, ai, stalkerEnemy.EnemyData.speed, stalkerEnemy.EnemyData.moveThresh);
                         
-                        return new StalkerEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
+                        return new StalkerEnemyController(_playerTransform, stalkerEnemy, enemyModel, weapon);
                     }
-                    case ProtectorEnemyView wizardEnemy: 
+                    case ProtectorEnemyView protectorEnemy: 
                     {
-                        var components = new ComponentsModel(wizardEnemy.Transform, wizardEnemy.Rigidbody, wizardEnemy.Collider);
-                        var ai = new ProtectorAI(wizardEnemy.AIConfig, components, wizardEnemy.Seeker, wizardEnemy.ProtectedZone, _playerTransform.tag);
-                        var enemyModel = new StandartEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.EnemyData.speed, wizardEnemy.EnemyData.moveThresh);
-                        return new ProtectorEnemyController(wizardEnemy, enemyModel);
+                        var components = new ComponentsModel(protectorEnemy.Transform, protectorEnemy.Rigidbody, protectorEnemy.Collider);
+                        var ai = new ProtectorAI(protectorEnemy.AIConfig, components, protectorEnemy.Seeker, protectorEnemy.ProtectedZone, protectorEnemy.SpeedMuliplier, _playerTransform.tag);
+                        var enemyModel = new StandartEnemyModel(components, protectorEnemy.SpriteRenderer, ai, protectorEnemy.EnemyData.speed, protectorEnemy.EnemyData.moveThresh);
+                        return new ProtectorEnemyController(protectorEnemy, enemyModel);
                     }
                 case ChaserEnemyView chaserEnemy:
                     {

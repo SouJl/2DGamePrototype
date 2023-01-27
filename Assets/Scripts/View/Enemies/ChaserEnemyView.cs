@@ -5,6 +5,7 @@ namespace PixelGame.View
 {
     public class ChaserEnemyView:EnemyView
     {
+        [Header("Chaser Settings")]
         [SerializeField] private float _chaseBreakDistance = 10f;
         [SerializeField] private LevelObjectTrigger _targetLocator;
         [SerializeField] Seeker _seeker;

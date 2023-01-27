@@ -33,7 +33,7 @@ namespace PixelGame.Model.AIModels
 
         public override void Update(float time)
         {
-            if (_lastTimeUpdate >= _updateFrameRate)
+            if (_lastTimeUpdate > _updateFrameRate)
             {
                 RecalculatePath();
                 _lastTimeUpdate = 0;

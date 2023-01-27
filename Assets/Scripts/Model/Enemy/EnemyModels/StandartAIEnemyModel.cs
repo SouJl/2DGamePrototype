@@ -42,7 +42,7 @@ namespace PixelGame.Model
         {
             var newVel = LogicAI.CalculateVelocity(UnitComponents.Transform.position) * Speed * Time.fixedDeltaTime;
 
-            if(Mathf.Abs(newVel.x) > _moveThresh)
+            if (Mathf.Abs(newVel.x) > _moveThresh)
                 UnitComponents.RgdBody.velocity = newVel;
         }
     }

@@ -7,7 +7,6 @@ namespace PixelGame.Configs
     public struct AIConfig
     {
         public float UpdateFrameRate;
-        public float NextWayPointDistance;
         public float MinSqrDistance;
         public Transform[] waypoints;
     }

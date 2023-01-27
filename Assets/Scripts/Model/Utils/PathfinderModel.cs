@@ -30,7 +30,6 @@ namespace PixelGame.Model.Utils
         public PathfinderModel(AIConfig config)
         {
             _updateFrameRate = config.UpdateFrameRate;
-            _nextWayPointDistance = config.NextWayPointDistance;
         }
 
         public void OnPathComplete(Path path)

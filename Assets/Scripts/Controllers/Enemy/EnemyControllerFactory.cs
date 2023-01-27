@@ -42,7 +42,7 @@ namespace PixelGame.Controllers
                     case WizzardEnemyView wizardEnemy: 
                     {
                         var components = new ComponentsModel(wizardEnemy.Transform, wizardEnemy.Rigidbody, wizardEnemy.Collider);
-                        var ai = new PatrolAI(wizardEnemy.AIConfig, components, wizardEnemy.Seeker, wizardEnemy.ProtectedZone, _playerTransform.tag);
+                        var ai = new ProtectorAI(wizardEnemy.AIConfig, components, wizardEnemy.Seeker, wizardEnemy.ProtectedZone, _playerTransform.tag);
                         var enemyModel = new StandartAIEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.Speed, wizardEnemy.MoveThresh);
                         return new WizardController(wizardEnemy, enemyModel);
                     }

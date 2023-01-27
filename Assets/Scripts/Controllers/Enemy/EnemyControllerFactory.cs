@@ -35,7 +35,7 @@ namespace PixelGame.Controllers
                         var weapon = new ProjectileWeponModel(weaponView.Damage, weaponView.AttackDelay, weaponView.Muzzle, weaponView.ShootPower, weaponView.ForceMode, projController);
 
                         var ai = new StalkerAI(batEnemy.AIConfig, components, batEnemy.Seeker, _playerTransform);                        
-                        var enemyModel = new StandartEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.Speed, batEnemy.MoveThresh);
+                        var enemyModel = new StandartEnemyModel(components, batEnemy.SpriteRenderer, ai, batEnemy.EnemyData.speed, batEnemy.EnemyData.moveThresh);
                         
                         return new StalkerEnemyController(_playerTransform, batEnemy, enemyModel, weapon);
                     }
@@ -43,7 +43,7 @@ namespace PixelGame.Controllers
                     {
                         var components = new ComponentsModel(wizardEnemy.Transform, wizardEnemy.Rigidbody, wizardEnemy.Collider);
                         var ai = new ProtectorAI(wizardEnemy.AIConfig, components, wizardEnemy.Seeker, wizardEnemy.ProtectedZone, _playerTransform.tag);
-                        var enemyModel = new StandartEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.Speed, wizardEnemy.MoveThresh);
+                        var enemyModel = new StandartEnemyModel(components, wizardEnemy.SpriteRenderer, ai, wizardEnemy.EnemyData.speed, wizardEnemy.EnemyData.moveThresh);
                         return new ProtectorEnemyController(wizardEnemy, enemyModel);
                     }
                 case ChaserEnemyView chaserEnemy:

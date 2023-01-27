@@ -8,18 +8,17 @@ namespace PixelGame.Controllers
 {
     public class ProtectorEnemyController : IExecute
     {
-        private ProtectorEnemyView _enemyView;
+        private ProtectorEnemyView _view;
         private SpriteAnimatorController _animatorController;
         private AbstractAIEnemyModel _enemyModel;
 
         public ProtectorEnemyController(ProtectorEnemyView view, AbstractAIEnemyModel enemyModel)
         {
-            _enemyView = view;
+            _view = view;
             _enemyModel = enemyModel;
 
-            _animatorController = new SpriteAnimatorController(_enemyView.AnimationConfig, _enemyView.AnimationSpeed);
-            _animatorController.StartAnimation(_enemyView.SpriteRenderer, AnimaState.Idle, true);
-
+            _animatorController = new SpriteAnimatorController(_view.EnemyData.animationConfig, _view.EnemyData.animationSpeed);
+            _animatorController.StartAnimation(_view.SpriteRenderer, AnimaState.Idle, true);
         }
 
         public void Execute()

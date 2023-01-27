@@ -18,10 +18,10 @@ namespace PixelGame.Controllers
             _view = view;
             var components = new ComponentsModel(_view.Transform, _view.Rigidbody, _view.Collider);
 
-            _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);
+            _animatorController = new SpriteAnimatorController(_view.EnemyData.animationConfig, _view.EnemyData.animationSpeed);
             _animatorController.StartAnimation(_view.SpriteRenderer, AnimaState.Idle, true);
 
-            _model = new ChaserEnemyModel(components, _view.SpriteRenderer, _view.AIConfig, _view.Seeker, _view.TargetLocator, target, _view.Speed, _view.ChaseBreakDistance);
+            _model = new ChaserEnemyModel(components, _view.SpriteRenderer, _view.AIConfig, _view.Seeker, _view.TargetLocator, target, _view.EnemyData.speed, _view.ChaseBreakDistance);
 
         }
 

@@ -2,7 +2,7 @@
 
 namespace PixelGame.Configs
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "Configs/Player")]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "Configs/UnitConfigs/Player")]
     public class PlayerData: ScriptableObject
     {
         [Header("Move settings")]

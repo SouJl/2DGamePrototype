@@ -21,7 +21,7 @@ namespace PixelGame.Controllers
             _view = view;
             _enemy = enemyModel;
 
-            _animatorController = new SpriteAnimatorController(_view.AnimationConfig, _view.AnimationSpeed);
+            _animatorController = new SpriteAnimatorController(_view.EnemyData.animationConfig, _view.EnemyData.animationSpeed);
             _animatorController.StartAnimation(_view.SpriteRenderer, AnimaState.Idle, true);
 
             _view.OnLevelObjectContact += OnCloseContact;

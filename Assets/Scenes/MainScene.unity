@@ -1427,9 +1427,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 387626536}
-  - component: {fileID: 387626540}
   - component: {fileID: 387626535}
   - component: {fileID: 387626538}
+  - component: {fileID: 387626544}
   - component: {fileID: 387626539}
   - component: {fileID: 387626543}
   m_Layer: 9
@@ -1545,34 +1545,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &387626540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387626534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eedb309a49677584ca5640be1db49702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transform: {fileID: 0}
-  _spriteRenderer: {fileID: 0}
-  _collider: {fileID: 0}
-  _rigidbody: {fileID: 0}
-  _maxHealth: 50
-  _locator: {fileID: 1691703496}
-  _aIConfig:
-    UpdateFrameRate: 0.5
-    MinSqrDistance: 0.2
-    waypoints: []
-  _speed: 50
-  _moveThresh: 0.01
-  _animationSpeed: 8
-  _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
-  _weapon: {fileID: 783482042}
-  _seeker: {fileID: 0}
 --- !u!114 &387626543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,6 +1573,30 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &387626544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387626534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedb309a49677584ca5640be1db49702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _collider: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _enemyData: {fileID: 11400000, guid: ebb9657713683a84b8e50f939e9f5ccd, type: 2}
+  _aIConfig:
+    UpdateFrameRate: 0.5
+    MinSqrDistance: 0.2
+    waypoints: []
+  _locator: {fileID: 1691703496}
+  _weapon: {fileID: 783482042}
+  _seeker: {fileID: 0}
 --- !u!1 &400459116
 GameObject:
   m_ObjectHideFlags: 0
@@ -30546,16 +30542,12 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _maxHealth: 50
-  _locator: {fileID: 843241384}
+  _enemyData: {fileID: 11400000, guid: ebb9657713683a84b8e50f939e9f5ccd, type: 2}
   _aIConfig:
     UpdateFrameRate: 0.5
     MinSqrDistance: 0.2
     waypoints: []
-  _speed: 50
-  _moveThresh: 0.01
-  _animationSpeed: 8
-  _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
+  _locator: {fileID: 843241384}
   _weapon: {fileID: 1426929537}
   _seeker: {fileID: 0}
 --- !u!50 &924124180
@@ -39061,6 +39053,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerView: {fileID: 893068770}
   _enemyViews:
+  - {fileID: 387626544}
+  - {fileID: 924124179}
+  - {fileID: 1656898040}
+  - {fileID: 2109011138}
   - {fileID: 1742535307}
   _coinsView: {fileID: 1899726270}
   _levelContacts: {fileID: 896022720}
@@ -41197,18 +41193,13 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _maxHealth: 50
-  _locator: {fileID: 0}
+  _enemyData: {fileID: 11400000, guid: b445989b982a8634ab15c79596731557, type: 2}
   _aIConfig:
     UpdateFrameRate: 0.5
     MinSqrDistance: 0.2
     waypoints:
     - {fileID: 1662484994}
     - {fileID: 1724031450}
-  _speed: 100
-  _moveThresh: 0.01
-  _animationSpeed: 5
-  _animationConfig: {fileID: 11400000, guid: f08eb9bd20dab174d8861add6b7c5223, type: 2}
   _seeker: {fileID: 0}
   _protectedZone: {fileID: 531900948}
 --- !u!4 &1656898041
@@ -41720,8 +41711,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _maxHealth: 50
-  _locator: {fileID: 0}
+  _enemyData: {fileID: 11400000, guid: 4959876a1ca81ac459220c68844171f0, type: 2}
   _aIConfig:
     UpdateFrameRate: 0.5
     MinSqrDistance: 0.2
@@ -41731,10 +41721,6 @@ MonoBehaviour:
     - {fileID: 880809262}
     - {fileID: 1519545660}
     - {fileID: 1950967698}
-  _speed: 100
-  _moveThresh: 0.01
-  _animationSpeed: 10
-  _animationConfig: {fileID: 11400000, guid: 89be714d5e6bd2241b9ce9f9f5d716d0, type: 2}
   _chaseBreakDistance: 12
   _targetLocator: {fileID: 58785444}
   _seeker: {fileID: 1742535306}
@@ -45971,18 +45957,13 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _collider: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _maxHealth: 50
-  _locator: {fileID: 0}
+  _enemyData: {fileID: 11400000, guid: b445989b982a8634ab15c79596731557, type: 2}
   _aIConfig:
     UpdateFrameRate: 0.5
     MinSqrDistance: 0.2
     waypoints:
     - {fileID: 662039407}
     - {fileID: 2101279081}
-  _speed: 100
-  _moveThresh: 0.01
-  _animationSpeed: 5
-  _animationConfig: {fileID: 11400000, guid: f08eb9bd20dab174d8861add6b7c5223, type: 2}
   _seeker: {fileID: 0}
   _protectedZone: {fileID: 1564224654}
 --- !u!1001 &523344925875703276

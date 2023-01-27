@@ -76,7 +76,9 @@ namespace PixelGame.Model.AIModels
         
         public override Vector2 CalculateVelocity(Vector2 fromPosition)
         {
-            return _patrolModel.CalculateVelocity(fromPosition);
+            var calculteVel = _patrolModel.CalculateVelocity(fromPosition);
+            if (!_isPatrolling) calculteVel *= 3f;
+            return calculteVel;
         }
 
         #endregion

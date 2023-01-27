@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProtectorEnemyData
   m_EditorClassIdentifier: 
   maxHealth: 100
-  speed: 50
+  speed: 80
   moveThresh: 0.01
   animationSpeed: 10
   animationConfig: {fileID: 11400000, guid: f08eb9bd20dab174d8861add6b7c5223, type: 2}

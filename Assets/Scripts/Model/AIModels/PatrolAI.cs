@@ -40,6 +40,7 @@ namespace PixelGame.Model.AIModels
         {
             _patrolModel.OnReachedEndOfPath += OnReachedEnd;
             _target = _patrolModel.GetClosestTarget(_components.RgdBody.position);
+            RecalculatePath();
         }
 
         public override void Deint()

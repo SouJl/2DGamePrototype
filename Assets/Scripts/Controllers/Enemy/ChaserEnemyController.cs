@@ -11,7 +11,7 @@ namespace PixelGame.Controllers
     {
         private  ChaserEnemyView _view;
         private SpriteAnimatorController _animatorController;
-        private AbstractAIEnemyModel _model;
+        private AbstractEnemyModel _model;
 
         public ChaserEnemyController(ChaserEnemyView view, Transform target) 
         {
@@ -21,7 +21,7 @@ namespace PixelGame.Controllers
             _animatorController = new SpriteAnimatorController(_view.EnemyData.animationConfig, _view.EnemyData.animationSpeed);
             _animatorController.StartAnimation(_view.SpriteRenderer, AnimaState.Idle, true);
 
-            _model = new ChaserEnemyModel(components, _view.SpriteRenderer, _view.AIConfig, _view.Seeker, _view.TargetLocator, target, _view.EnemyData.speed, _view.ChaseBreakDistance);
+            _model = new ChaserEnemyModel(components, _view.SpriteRenderer, _view.EnemyData, _view.AIConfig, _view.Seeker, _view.TargetLocator, target, _view.ChaseBreakDistance);
 
         }
 

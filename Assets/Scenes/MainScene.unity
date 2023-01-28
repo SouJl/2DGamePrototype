@@ -29473,7 +29473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662039406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 96, y: 1, z: 0}
+  m_LocalPosition: {x: 96.25, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41097,6 +41097,7 @@ GameObject:
   - component: {fileID: 1656898039}
   - component: {fileID: 1656898038}
   - component: {fileID: 1656898042}
+  - component: {fileID: 1656898043}
   m_Layer: 0
   m_Name: WizardEnemy
   m_TagString: Untagged
@@ -41200,6 +41201,7 @@ MonoBehaviour:
     waypoints:
     - {fileID: 1662484994}
     - {fileID: 1724031450}
+  _speedMuliplier: 2
   _seeker: {fileID: 0}
   _protectedZone: {fileID: 531900948}
 --- !u!4 &1656898041
@@ -41245,6 +41247,22 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!70 &1656898043
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656898037}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.9375, y: 1.75}
+  m_Direction: 0
 --- !u!1001 &1661535523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45818,6 +45836,8 @@ GameObject:
   - component: {fileID: 2109011137}
   - component: {fileID: 2109011136}
   - component: {fileID: 2109011135}
+  - component: {fileID: 2109011139}
+  - component: {fileID: 2109011140}
   m_Layer: 0
   m_Name: WizardEnemy (1)
   m_TagString: Untagged
@@ -45964,8 +45984,47 @@ MonoBehaviour:
     waypoints:
     - {fileID: 662039407}
     - {fileID: 2101279081}
+  _speedMuliplier: 2
   _seeker: {fileID: 0}
   _protectedZone: {fileID: 1564224654}
+--- !u!70 &2109011139
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109011133}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.9375, y: 1.75}
+  m_Direction: 0
+--- !u!114 &2109011140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109011133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
 --- !u!1001 &523344925875703276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46048,7 +46107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5677347114398040005, guid: 771e1d3852fdcf442aa5cddd97136fe5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 91.8
       objectReference: {fileID: 0}
     - target: {fileID: 5677347114398040005, guid: 771e1d3852fdcf442aa5cddd97136fe5, type: 3}
       propertyPath: m_LocalPosition.y

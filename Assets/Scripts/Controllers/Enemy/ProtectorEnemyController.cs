@@ -1,6 +1,7 @@
 ﻿using PixelGame.Enumerators;
 using PixelGame.Interfaces;
 using PixelGame.Model;
+using PixelGame.Model.Utils;
 using PixelGame.View;
 using UnityEngine;
 
@@ -10,12 +11,15 @@ namespace PixelGame.Controllers
     {
         private ProtectorEnemyView _view;
         private SpriteAnimatorController _animatorController;
-        private AbstractAIEnemyModel _enemyModel;
+        private AbstractEnemyModel _model;
 
-        public ProtectorEnemyController(ProtectorEnemyView view, AbstractAIEnemyModel enemyModel)
+        public ProtectorEnemyController(ProtectorEnemyView view, Transform target)
         {
             _view = view;
-            _enemyModel = enemyModel;
+
+            var components = new ComponentsModel(_view.Transform, _view.Rigidbody, _view.Collider);
+            
+            _model = new ProtectorEnemyModel(components, _view.SpriteRenderer, _view.EnemyData, _view.AIConfig, _view.Seeker, _view.ProtectedZone, target, _view.SpeedMuliplier);
 
             _animatorController = new SpriteAnimatorController(_view.EnemyData.animationConfig, _view.EnemyData.animationSpeed);
             _animatorController.StartAnimation(_view.SpriteRenderer, AnimaState.Idle, true);
@@ -28,9 +32,9 @@ namespace PixelGame.Controllers
 
         public void FixedExecute()
         {
-            _enemyModel.Update(Time.fixedDeltaTime);
-            _enemyModel.Move();
-            _enemyModel.Rotate(Vector3.zero);
+            _model.Update(Time.fixedDeltaTime);
+            _model.Move();
+            _model.Rotate(Vector3.zero);
         }
     }
 }

@@ -33,11 +33,11 @@ namespace PixelGame.Model.AIModels
         {
             if (_waypoints == null) return null;
             var closestIndex = 0;
-            var closestDistance = 0.0f;
+            var closestDistance = float.MaxValue;
             for (var i = 0; i < _waypoints.Length; i++)
             {
-                var distance = Vector2.Distance(fromPosition,
-                _waypoints[i].position);
+                var distance = Vector2.Distance(fromPosition,_waypoints[i].position);
+
                 if (closestDistance > distance)
                 {
                     closestDistance = distance;

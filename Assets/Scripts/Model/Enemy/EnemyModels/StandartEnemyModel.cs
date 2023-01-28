@@ -1,25 +1,19 @@
-﻿using PixelGame.Model.AIModels;
+﻿using PixelGame.Configs;
+using PixelGame.Model.AIModels;
 using PixelGame.Model.Utils;
 using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class StandartEnemyModel : AbstractAIEnemyModel
+    public class StandartEnemyModel : AbstractEnemyModel
     {
         private AbstractAI _aImodel;
-        private float _speed;
-        private float _moveThresh;
-
-        public float Speed { get => _speed;  }
-        public float MoveThresh { get => _moveThresh;}
 
         private int FacingDirection;
 
-        public StandartEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AbstractAI aImodel, float speed, float moveThresh) : base(components, spriteRenderer)
+        public StandartEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, EnemyData data, AbstractAI aImodel) : base(components, spriteRenderer, data)
         {
             _aImodel = aImodel;
-            _speed = speed;
-            _moveThresh = moveThresh;
             FacingDirection = 1;
         }
 
@@ -41,10 +35,15 @@ namespace PixelGame.Model
 
         public override void Move()
         {
-            var newVel = _aImodel.CalculateVelocity(UnitComponents.Transform.position) * Speed * Time.fixedDeltaTime;
+            var newVel = _aImodel.CalculateVelocity(UnitComponents.Transform.position) * Data.speed * Time.fixedDeltaTime;
 
-            if (Mathf.Abs(newVel.x) > _moveThresh)
+            if (Mathf.Abs(newVel.x) > Data.moveThresh)
                 UnitComponents.RgdBody.velocity = newVel;
+        }
+
+        public override void Dispose()
+        {
+            
         }
     }
 }

@@ -10,12 +10,12 @@ namespace PixelGame.Controllers
     public class StalkerEnemyController : IExecute, IDisposable
     {
         private Transform _player;
-        private AbstractAIEnemyModel _enemy;
+        private AbstractEnemyModel _enemy;
         private StalkerEnemyView _view;
         private IWeapon _weapon;
         private SpriteAnimatorController _animatorController;
 
-        public StalkerEnemyController(Transform player, StalkerEnemyView view, AbstractAIEnemyModel enemyModel, IWeapon weapon) 
+        public StalkerEnemyController(Transform player, StalkerEnemyView view, AbstractEnemyModel enemyModel, IWeapon weapon) 
         {
             _player = player;
             _view = view;

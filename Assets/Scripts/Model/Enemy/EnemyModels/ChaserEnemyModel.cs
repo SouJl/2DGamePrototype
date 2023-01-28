@@ -7,13 +7,12 @@ using UnityEngine;
 
 namespace PixelGame.Model
 {
-    public class ChaserEnemyModel : AbstractAIEnemyModel
+    public class ChaserEnemyModel : AbstractEnemyModel
     {
         private AbstractAI _patrolModelAI;
         private AbstractAI _stalkerModelAI;
         private Transform _target;
         private LevelObjectTrigger _trigger;
-        private float _speed;
 
         private AbstractAI _currentModelAI;
 
@@ -23,11 +22,10 @@ namespace PixelGame.Model
 
         private bool _isChaseTarget;
 
-        public ChaserEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, AIConfig aIConfig, Seeker seeker, LevelObjectTrigger trigger, Transform target, float speed, float chaseBreak) : base(components, spriteRenderer)
+        public ChaserEnemyModel(ComponentsModel components, SpriteRenderer spriteRenderer, EnemyData data, AIConfig aIConfig, Seeker seeker, LevelObjectTrigger trigger, Transform target, float chaseBreak) : base(components, spriteRenderer, data)
         {
             _target = target;
             _trigger = trigger;
-            _speed = speed;
             _chaseDistanceBreak = chaseBreak;
 
             _patrolModelAI = new PatrolAI(aIConfig, UnitComponents, seeker);
@@ -40,6 +38,7 @@ namespace PixelGame.Model
 
             ChangeAI(_patrolModelAI);
         }
+
 
         public override void Rotate(Vector3 target)
         {
@@ -70,7 +69,7 @@ namespace PixelGame.Model
 
         public override void Move()
         {
-            var newVel = _currentModelAI.CalculateVelocity(UnitComponents.Transform.position) * _speed * Time.fixedDeltaTime;
+            var newVel = _currentModelAI.CalculateVelocity(UnitComponents.Transform.position) * Data.speed * Time.fixedDeltaTime;
 
             if (Mathf.Abs(newVel.x) > 0.01)
                 UnitComponents.RgdBody.velocity = newVel;
@@ -97,6 +96,11 @@ namespace PixelGame.Model
             _currentModelAI.Deint();
             _currentModelAI = newAI;
             _currentModelAI.Init();
+        }
+
+        public override void Dispose()
+        {
+            _trigger.TriggerEnter -= OnTargetTriggered;
         }
     }
 }

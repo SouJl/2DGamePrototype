@@ -29,16 +29,31 @@ namespace PixelGame
         private void Start()
         {
             _executeController = new ListExecuteController();
+            
             _playerController = new PlayerController(_playerView, _guiView.HealhBar);
-            _enemyLevelController = new EnemyLevelController(_enemyViews, _playerView.Transform);
-            _coinsController = new CoinsController(_playerView, _coinsView);
-            _levelContactsController = new LevelContactsController(_playerView, _levelContacts.LevelEndZone, _levelContacts.DeathZones, _levelContacts.StartPostion);
-            _jointsController = new JointsController(_jointsCollection);
-
             _executeController.AddExecuteObject(_playerController);
-            _executeController.AddExecuteObject(_enemyLevelController);
-            _executeController.AddExecuteObject(_coinsController);
-            _executeController.AddExecuteObject(_jointsController);
+
+            if (_enemyViews.Count != 0) 
+            {
+                _enemyLevelController = new EnemyLevelController(_enemyViews, _playerView.Transform);
+                _executeController.AddExecuteObject(_enemyLevelController);
+            }
+            if(_coinsView) 
+            {
+                _coinsController = new CoinsController(_playerView, _coinsView);
+                _executeController.AddExecuteObject(_coinsController);
+            }
+
+            if (_levelContacts) 
+            {
+                _levelContactsController = new LevelContactsController(_playerView, _levelContacts.LevelEndZone, _levelContacts.DeathZones, _levelContacts.StartPostion);
+            }
+
+            if (_jointsCollection) 
+            {
+                _jointsController = new JointsController(_jointsCollection);
+                _executeController.AddExecuteObject(_jointsController);
+            }        
         }
 
         private void Update()

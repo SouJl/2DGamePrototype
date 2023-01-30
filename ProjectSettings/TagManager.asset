@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 772712503
+    locked: 0
   - name: Environment
     uniqueID: 2409547043
     locked: 0

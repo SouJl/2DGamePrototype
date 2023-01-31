@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace PixelGame.Components
 {
+    [ExecuteInEditMode]
     [RequireComponent(typeof(Camera))]
     public class CameraFollow:MonoBehaviour
     {
@@ -16,6 +17,9 @@ namespace PixelGame.Components
 
         private Vector3 _velocity = Vector3.zero;
 
+
+
+
         private void FixedUpdate()
         {
             if (!_followTarget) return;
@@ -25,5 +29,25 @@ namespace PixelGame.Components
             var targetPos = new Vector3(clampPosX, clampPosY, transform.position.z);
             transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, _smoothTime);
         }
+
+
+        private void OnDrawGizmos()
+        {
+            ChangeeCamPosToTarget();
+        }
+
+        #if UNITY_EDITOR
+        private void ChangeeCamPosToTarget()
+        {
+            if (Application.isEditor && !Application.isPlaying)
+            {
+                if (_followTarget)
+                {
+                    var _targetPos = new Vector3(_followTarget.transform.position.x, _followTarget.transform.position.y, transform.position.z);
+                    transform.position = _targetPos;
+                }
+            }
+        }
+        #endif
     }
 }

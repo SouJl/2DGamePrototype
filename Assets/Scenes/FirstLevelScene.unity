@@ -32286,7 +32286,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _maxHealth: 120
   _playerData: {fileID: 11400000, guid: 611af16afb1bbea4788d8b640499d796, type: 2}
-  _animationSpeed: 15
+  _animationSpeed: 12
   _animationConfig: {fileID: 11400000, guid: 5403b78581cf20943b8fcfce850a5d81, type: 2}
   _slopeData:
     slopeCheckDistance: 0.4

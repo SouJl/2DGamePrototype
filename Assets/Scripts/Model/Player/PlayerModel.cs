@@ -15,7 +15,6 @@ namespace PixelGame.Model
         public State LandState { get; set; }
         public State JumpState { get; set; }
         public State FallState { get; set; }
-        public State RollState { get; set; }
         public State WallSlideState { get; set; }
         public State WallClimbState { get; set; }
         public State WallGrabState { get; set; }

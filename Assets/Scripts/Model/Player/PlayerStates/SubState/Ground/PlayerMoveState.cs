@@ -8,12 +8,11 @@ namespace PixelGame.Model.StateMachines
     public class PlayerMoveState : PlayerGroundState
     {
         private bool _isStay;
-        private bool _isRoll;
 
         private bool _isWallSlide;
         private bool _isFall;
 
-        public PlayerMoveState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
+        public PlayerMoveState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState, bool loop) : base(stateMachine, animatorController, unit, playerData, animaState, loop)
         {
         }
 
@@ -27,7 +26,6 @@ namespace PixelGame.Model.StateMachines
         {
             base.Exit();
             _isStay = false;
-            _isRoll = false;
             _isWallSlide = false;
             _isFall = false;
         }
@@ -36,7 +34,6 @@ namespace PixelGame.Model.StateMachines
         {
             base.InputData();
             _isStay = _xAxisInput == 0 ? true : false;
-            _isRoll = Input.GetKey(KeyCode.LeftShift);
         }
 
         public override void LogicUpdate()
@@ -44,7 +41,6 @@ namespace PixelGame.Model.StateMachines
             base.LogicUpdate();
 
             if (_isStay) stateMachine.ChangeState(player.IdleState);
-            if (_isRoll) stateMachine.ChangeState(player.RollState);
 
             if (_isWallSlide) stateMachine.ChangeState(player.WallSlideState);
             if (_isFall) stateMachine.ChangeState(player.FallState);

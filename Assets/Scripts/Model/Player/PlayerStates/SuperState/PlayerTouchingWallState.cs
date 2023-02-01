@@ -13,7 +13,7 @@ namespace PixelGame.Model.StateMachines
         protected bool isGrab;
         protected bool isJump;
 
-        public PlayerTouchingWallState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
+        public PlayerTouchingWallState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState, bool loop) : base(stateMachine, animatorController, unit, playerData, animaState, loop)
         {
         }
 

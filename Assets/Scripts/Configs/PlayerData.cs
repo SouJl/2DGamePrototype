@@ -32,6 +32,9 @@ namespace PixelGame.Configs
         [Header("Ledge Settings")]
         public Vector2 startOffset;
         public Vector2 stopOffset;
+
+        [Header("Climb Settings")]
+        public float climbSmooth = 0.2f;
         
         
         [Header("Crouch Settings")]

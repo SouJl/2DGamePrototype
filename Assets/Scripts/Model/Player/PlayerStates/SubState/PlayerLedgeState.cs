@@ -13,10 +13,10 @@ namespace PixelGame.Model.StateMachines
         private bool _isTouchingWall;
         private bool _isHanging;
         private bool _isCornerSpace;
+        private bool _isClimb;
 
-        public PlayerLedgeState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
+        public PlayerLedgeState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState, bool loop) : base(stateMachine, animatorController, unit, playerData, animaState, loop)
         {
-
         }
 
         public override void Enter()
@@ -40,18 +40,22 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             _isTouchingWall = false;
             _isHanging = false;
+            _isClimb = false;
         }
 
         public override void InputData()
         {
             base.InputData();
+            _isClimb = Input.GetKeyDown(KeyCode.LeftShift);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if(_xAxisInput * player.FacingDirection > 0) 
+            Debug.Log(_xAxisInput);
+
+            if((Mathf.Abs(_xAxisInput) > 0 &&_yAxisInput > 0) && _xAxisInput * player.FacingDirection > 0) 
             {
                 stateMachine.ChangeState(player.ClimbState);
                 return;

@@ -33,18 +33,17 @@ namespace PixelGame.Controllers
         private void InitStateMachine() 
         {
             _playerModel.UnitMovementSM = new StateMachine();
-            _playerModel.IdleState = new PlayerIdleState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Idle);
-            _playerModel.RunState = new PlayerMoveState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Run);
-            _playerModel.JumpState = new PlayerJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
-            _playerModel.InAirState = new PlayerInAirState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
-            _playerModel.LandState = new PlayerLandState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Idle);
-            _playerModel.FallState = new PlayerFallState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Fall);
-            _playerModel.RollState = new PlayerRollState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Roll, _view.AnimationSpeed);
-            _playerModel.WallGrabState = new PlayerWallGrabState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallGrab);
-            _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallSlide);
-            _playerModel.WallJumpState = new PlayerWallJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
-            _playerModel.LedgeState = new PlayerLedgeState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Ledge);
-            _playerModel.ClimbState = new PlayerClimbState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Climb);
+            _playerModel.IdleState = new PlayerIdleState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Idle, true);
+            _playerModel.RunState = new PlayerMoveState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Run, true);
+            _playerModel.JumpState = new PlayerJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir, true);
+            _playerModel.InAirState = new PlayerInAirState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir, true);
+            _playerModel.LandState = new PlayerLandState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Idle, true);
+            _playerModel.FallState = new PlayerFallState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Fall, true);
+            _playerModel.WallGrabState = new PlayerWallGrabState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallGrab, true);
+            _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallSlide, true);
+            _playerModel.WallJumpState = new PlayerWallJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir, true);
+            _playerModel.LedgeState = new PlayerLedgeState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Ledge, false);
+            _playerModel.ClimbState = new PlayerClimbState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Climb, false);
 
             _playerModel.UnitMovementSM.Initialize(_playerModel.IdleState);
         }

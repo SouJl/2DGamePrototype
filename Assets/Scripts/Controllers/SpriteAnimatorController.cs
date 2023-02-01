@@ -28,7 +28,7 @@ namespace PixelGame.Controllers
             }
             else if (Counter > Sprites.Count)
             {
-                Counter = Sprites.Count;
+                Counter = Sprites.Count - 1;
                 Sleeps = true;
             }
         }
@@ -40,6 +40,8 @@ namespace PixelGame.Controllers
         private Dictionary<SpriteRenderer, Animation> _activeAnimations = new Dictionary<SpriteRenderer, Animation>();
 
         private float _animationSpeed;
+
+        public bool IsAnimationEnd { get; private set; }
 
         public SpriteAnimatorController(AnimationConfig config, float animationSpeed) 
         {
@@ -78,8 +80,10 @@ namespace PixelGame.Controllers
         {
             if (_activeAnimations.ContainsKey(sprite))
             {
+                _activeAnimations[sprite].Sleeps = false;
                 _activeAnimations.Remove(sprite);
             }
+            IsAnimationEnd = false;
         }
 
 
@@ -89,6 +93,7 @@ namespace PixelGame.Controllers
             {
                 animation.Value.Update();
                 animation.Key.sprite = animation.Value.Sprites[(int)animation.Value.Counter];
+                IsAnimationEnd = animation.Value.Sleeps;
             }
         }
 

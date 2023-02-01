@@ -21,10 +21,12 @@ namespace PixelGame.Model.StateMachines
 
         protected float startTime;
         protected bool isExitingState;
+        protected bool isAnimationEnd;
         private AnimaState _animaState;
 
+        private bool _loop;
 
-        public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController)
+        public PlayerState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState, bool loop) : base(stateMachine, animatorController)
         {
             player = unit;
             this.playerData = playerData;
@@ -33,6 +35,7 @@ namespace PixelGame.Model.StateMachines
             _fullFriction = Resources.Load<PhysicsMaterial2D>("FullFrictionMaterial");
             _noneFriction = Resources.Load<PhysicsMaterial2D>("ZeroFrictionMaterial");
             _animaState = animaState;
+            _loop = loop;
         }
 
         public override void Enter()
@@ -40,7 +43,7 @@ namespace PixelGame.Model.StateMachines
             base.Enter();
             DoChecks();
             startTime = Time.time;
-            animatorController.StartAnimation(player.SpriteRenderer, _animaState, true);
+            animatorController.StartAnimation(player.SpriteRenderer, _animaState, _loop);
             isExitingState = false;
         }
 
@@ -50,6 +53,7 @@ namespace PixelGame.Model.StateMachines
             base.Exit();
             animatorController.StopAnimation(player.SpriteRenderer);
             isExitingState = true;
+            isAnimationEnd = false;
         }
 
         public override void InputData()
@@ -57,6 +61,7 @@ namespace PixelGame.Model.StateMachines
             base.InputData();
             _xAxisInput = Input.GetAxis("Horizontal");
             _yAxisInput = Input.GetAxis("Vertical");
+
         }
 
         public override void LogicUpdate()
@@ -73,6 +78,9 @@ namespace PixelGame.Model.StateMachines
         }
 
 
-        protected virtual void DoChecks() { }
+        protected virtual void DoChecks() 
+        {
+            isAnimationEnd = animatorController.IsAnimationEnd;
+        }
     }
 }

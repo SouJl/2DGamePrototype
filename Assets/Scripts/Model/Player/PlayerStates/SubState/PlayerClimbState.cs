@@ -8,14 +8,11 @@ namespace PixelGame.Model.StateMachines
     public class PlayerClimbState : PlayerState
     {
         private Vector2 _cornerPos;
-        private Vector2 _startPos;
         private Vector2 _stopPos;
-        private bool _isTouchingWall;
-        private bool _isHanging;
+        private bool _isEndClimb;
 
-        public PlayerClimbState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
+        public PlayerClimbState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState, bool loop) : base(stateMachine, animatorController, unit, playerData, animaState, loop)
         {
-
         }
 
         public override void Enter()
@@ -24,19 +21,13 @@ namespace PixelGame.Model.StateMachines
             player.SetVelocityZero();
             player.UnitComponents.Transform.position = player.LedgeDetectPos;
             _cornerPos = player.ContactsPoller.DetermineCornerPos(player.FacingDirection);
-
-            _startPos.Set(_cornerPos.x - (player.FacingDirection * playerData.startOffset.x), _cornerPos.y - playerData.startOffset.y);
             _stopPos.Set(_cornerPos.x + (player.FacingDirection * playerData.stopOffset.x), _cornerPos.y + playerData.stopOffset.y);
-
-            player.UnitComponents.Transform.position = _startPos;
-
-            _isTouchingWall = player.ContactsPoller.CheckWallFront(player.FacingDirection);
-            _isHanging = true;
         }
 
         public override void Exit()
         {
             base.Exit();
+            _isEndClimb = false;
         }
 
         public override void InputData()
@@ -47,16 +38,22 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
+            if (isAnimationEnd) 
+            {
+                player.UnitComponents.Transform.position = _stopPos;
+                stateMachine.ChangeState(player.IdleState);
+            }
         }
 
- 
+   
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
 
             player.SetVelocityZero();
-            var pos = Vector2.Lerp(player.UnitComponents.Transform.position, _stopPos, 0.1f);
-            player.UnitComponents.Transform.position = pos;
+
+            player.UnitComponents.Transform.position = Vector2.Lerp(player.UnitComponents.Transform.position, _stopPos, playerData.climbSmooth);
         }
 
         protected override void DoChecks()

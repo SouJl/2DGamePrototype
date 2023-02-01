@@ -17,8 +17,8 @@ MonoBehaviour:
   jumpForce: 7
   jumpThreshold: 0.2
   rollFrames: 12
-  wallJumpForce: 10
-  wallJumpTime: 0.4
+  wallJumpForce: 8
+  wallJumpTime: 0.5
   wallJumpAngle: {x: 1.2, y: 2}
   flyThreshold: 0.2
   fallThreshold: 0.1
@@ -26,6 +26,7 @@ MonoBehaviour:
   wallSlideSpeed: 2
   startOffset: {x: -0.1, y: 0.8}
   stopOffset: {x: 0.5, y: 0.8}
+  climbSmooth: 0.2
   crouchMovementVelocity: 5
   crouchColliderHeight: 0.8
   standColliderHeight: 1.9

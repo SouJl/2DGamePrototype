@@ -1,29 +1,29 @@
 ﻿using PixelGame.Components;
+using PixelGame.Configs;
 using UnityEngine;
 
 namespace PixelGame.Model
 {
     public class ContactsPollerModel
     {
-        private const float _collisionThresh = 0.5f;
-        private ContactPoint2D[] _contacts = new ContactPoint2D[10];
-        private int _contactsCount;
-        private readonly Collider2D _collider2D;
-
         public Vector2 GroundVelocity { get; private set; }
-        public bool HasLeftContacts { get; private set; }
-        public bool HasRightContacts { get; private set; }
 
         private Transform _groundCheckPos;
         private float _groundCheckRadius;
         private LayerMask _groundLayerMask;
+        private Transform _wallCheck;
+        private Transform _ledgeCheck;
 
-        public ContactsPollerModel(Collider2D collider2D, GroundCheckComponent groundCheck)
+        private PlayerData _playerData;
+
+        public ContactsPollerModel(PlayerData  playerData, GroundCheckComponent groundCheck, Transform wallCheck, Transform ledgeCheck) 
         {
-            _collider2D = collider2D;
+            _playerData = playerData;
             _groundCheckPos = groundCheck.GroundCheck;
             _groundCheckRadius = groundCheck.Radius;
             _groundLayerMask = groundCheck.LayerMask;
+            _wallCheck = wallCheck;
+            _ledgeCheck = ledgeCheck;
         }
 
         public bool CheckGround()
@@ -47,23 +47,38 @@ namespace PixelGame.Model
             return hit != null;
         }
 
-        public bool CheckWallTouch()
+        public bool CheckWallFront(int facingDirection) 
         {
-            HasLeftContacts = false;
-            HasRightContacts = false;
-            _contactsCount = _collider2D.GetContacts(_contacts);
+            return Physics2D.Raycast(_wallCheck.position, Vector2.right * facingDirection, _playerData.wallCheckDistance, _groundLayerMask); ;
+        }
+        public bool CheckWallBack(int facingDirection)
+        {
+            return Physics2D.Raycast(_wallCheck.position, Vector2.left * facingDirection, _playerData.wallCheckDistance, _groundLayerMask);
+        }
 
-            for (int i = 0; i < _contactsCount; i++)
-            {
-                var normal = _contacts[i].normal;
-                if (normal.x > _collisionThresh)
-                    HasLeftContacts = true;
+        public bool CheckLedgeTouch(int facingDirection) 
+        {
+            var rayColor = Color.green;
+            Debug.DrawRay(_ledgeCheck.position, Vector2.right * facingDirection * _playerData.wallCheckDistance, rayColor);
+            return Physics2D.Raycast(_ledgeCheck.position, Vector2.right * facingDirection, _playerData.wallCheckDistance, _groundLayerMask);
+        }
 
-                if (normal.x < -_collisionThresh)
-                    HasRightContacts = true;
-            }
 
-            return HasRightContacts || HasLeftContacts;
+        public Vector2 DetermineCornerPos(int facingDirection)
+        {
+            Vector2 result = Vector2.zero;
+            RaycastHit2D xHit = Physics2D.Raycast(_wallCheck.position, Vector2.right * facingDirection, _playerData.wallCheckDistance, _groundLayerMask);
+            float xDist = xHit.distance;
+            result.Set((xDist + 0.015f) * facingDirection, 0f);
+            RaycastHit2D yHit = Physics2D.Raycast(_ledgeCheck.position + (Vector3)result, Vector2.down, _ledgeCheck.position.y - _wallCheck.position.y, _groundLayerMask);
+            float yDist = yHit.distance;
+            result.Set(_wallCheck.position.x + (xDist * facingDirection), _ledgeCheck.position.y - yDist);
+            return result;
+        }
+
+        public bool CheckCornerSpace(Vector2 _cornerPos, int facingDirection)
+        {
+            return Physics2D.Raycast(_cornerPos + (Vector2.up * 0.015f) + (Vector2.right * facingDirection * 0.015f), Vector2.up, _playerData.standColliderHeight, _groundLayerMask);
         }
     }
 }

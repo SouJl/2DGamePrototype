@@ -65,7 +65,7 @@ namespace PixelGame.Model.StateMachines
         {
             base.DoChecks();
             _isGrounded = player.ContactsPoller.CheckGround();
-            _isTouchingWall = player.ContactsPoller.CheckWallTouch();
+            _isTouchingWall = player.ContactsPoller.CheckWallFront(player.FacingDirection);
         }
     }
 }

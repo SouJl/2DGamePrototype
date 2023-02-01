@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   moveThresh: 0.01
-  jumpForce: 8
+  jumpForce: 7
   jumpThreshold: 0.2
   rollFrames: 12
   wallJumpForce: 10
-  wallJumpTime: 0.6
+  wallJumpTime: 0.4
   wallJumpAngle: {x: 1.2, y: 2}
   flyThreshold: 0.2
-  fallThreshold: 1
+  fallThreshold: 0.1
+  wallCheckDistance: 0.6
   wallSlideSpeed: 2
+  startOffset: {x: -0.1, y: 0.8}
+  stopOffset: {x: 0, y: 0}
+  crouchMovementVelocity: 5
+  crouchColliderHeight: 0.8
+  standColliderHeight: 1.9

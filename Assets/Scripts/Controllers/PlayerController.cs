@@ -20,7 +20,7 @@ namespace PixelGame.Controllers
             _view = view;
             var componentsModel = new ComponentsModel(_view.Transform, _view.Rigidbody, _view.Collider);
 
-            var contactsPoller = new ContactsPollerModel(_view.Collider, _view.GroundCheck);
+            var contactsPoller = new ContactsPollerModel(_view.PlayerData, _view.GroundCheck, _view.WallCheck, _view.LedgeCheck);
             var slope = new SlopeAnaliser(_view.Rigidbody, _view.Collider, _view.SlopeData.slopeCheckDistance, _view.SlopeData.maxSlopeAngle, _view.SlopeData.layerMask);
             _playerModel = new PlayerModel(componentsModel, _view.SpriteRenderer, contactsPoller, _view.MaxHealth, _view.PlayerData, slope);
 
@@ -43,6 +43,8 @@ namespace PixelGame.Controllers
             _playerModel.WallGrabState = new PlayerWallGrabState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallGrab);
             _playerModel.WallSlideState = new PlayerWallSlideState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.WallSlide);
             _playerModel.WallJumpState = new PlayerWallJumpState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.InAir);
+            _playerModel.LedgeState = new PlayerLedgeState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Ledge);
+            _playerModel.ClimbState = new PlayerClimbState(_playerModel.UnitMovementSM, _animatorController, _playerModel, _view.PlayerData, AnimaState.Climb);
 
             _playerModel.UnitMovementSM.Initialize(_playerModel.IdleState);
         }

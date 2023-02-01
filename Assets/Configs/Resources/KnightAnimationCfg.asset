@@ -69,3 +69,15 @@ MonoBehaviour:
   - State: 6
     Sprites:
     - {fileID: 149204476, guid: 4822047dea6f2b24ea8c9051f2d2227e, type: 3}
+  - State: 7
+    Sprites:
+    - {fileID: 149204476, guid: 4822047dea6f2b24ea8c9051f2d2227e, type: 3}
+  - State: 8
+    Sprites:
+    - {fileID: 817016754, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+    - {fileID: -1869907308, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+    - {fileID: -1644608607, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+    - {fileID: 193031436, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+    - {fileID: -1832342559, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+    - {fileID: 1974276977, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+    - {fileID: 840115632, guid: 4b3020419973fe74e809466f6f185115, type: 3}

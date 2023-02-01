@@ -10,7 +10,9 @@ namespace PixelGame.Model.StateMachines
         private bool _isJump;
         private bool _isGrounded;
         private bool _isTouchingWall;
+        private bool _isTouchingWallBack;
         private bool _isGrab;
+        private bool _isTouchingLedge;
 
         public PlayerInAirState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
         {
@@ -34,6 +36,7 @@ namespace PixelGame.Model.StateMachines
             base.InputData();
             _isGrab = Input.GetKey(KeyCode.LeftControl);
             _isJump = Input.GetKeyDown(KeyCode.Space);
+
         }
 
         public override void LogicUpdate()
@@ -59,13 +62,21 @@ namespace PixelGame.Model.StateMachines
                 return;
             }
 
-            if(_isJump && _isTouchingWall)
+            if (_isTouchingWall && !_isTouchingLedge && !_isGrounded)
             {
-                _isTouchingWall = player.ContactsPoller.CheckWallTouch();
+                stateMachine.ChangeState(player.LedgeState);
+                return;
+            }
+
+            if (_isJump && (_isTouchingWall || _isTouchingWallBack))
+            {
+                _isTouchingWall = player.ContactsPoller.CheckWallFront(player.FacingDirection);
                 player.DetermineWallJumpDirection(_isTouchingWall);
                 stateMachine.ChangeState(player.WallJumpState);
                 return;
             }
+
+
         }
 
         public override void PhysicsUpdate()
@@ -84,7 +95,16 @@ namespace PixelGame.Model.StateMachines
         {
             base.DoChecks();
             _isGrounded = player.ContactsPoller.CheckGround();
-            _isTouchingWall = player.ContactsPoller.CheckWallTouch();
+            _isTouchingWall = player.ContactsPoller.CheckWallFront(player.FacingDirection);
+            _isTouchingWallBack = player.ContactsPoller.CheckWallBack(player.FacingDirection);
+
+            _isTouchingLedge = player.ContactsPoller.CheckLedgeTouch(player.FacingDirection);
+
+
+            if ( _isTouchingWall && !_isTouchingLedge)
+            {
+                player.SetDetectedPos(player.UnitComponents.Transform.position);
+            }
         }
     }
 }

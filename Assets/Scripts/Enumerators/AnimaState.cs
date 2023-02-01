@@ -9,6 +9,8 @@
         Roll        = 4,
         WallSlide   = 5,
         WallGrab    = 6,
+        Ledge       = 7,
+        Climb       = 8,
         Attack      = 12,
     }
 }

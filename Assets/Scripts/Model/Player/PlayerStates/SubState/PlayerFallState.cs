@@ -9,6 +9,7 @@ namespace PixelGame.Model.StateMachines
     {
         private bool _isGrounded;
         private bool _isTouchingWall;
+        private bool _isTouchingLedge;
 
         public PlayerFallState(StateMachine stateMachine, SpriteAnimatorController animatorController, PlayerModel unit, PlayerData playerData, AnimaState animaState) : base(stateMachine, animatorController, unit, playerData, animaState)
         {
@@ -24,6 +25,8 @@ namespace PixelGame.Model.StateMachines
         {
             base.Exit();
             _isGrounded = false;
+            _isTouchingWall = false;
+            _isTouchingLedge = false;
         }
 
         public override void InputData()
@@ -34,11 +37,22 @@ namespace PixelGame.Model.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isGrounded) stateMachine.ChangeState(player.LandState);
-            
-            else if (_isTouchingWall && (_xAxisInput * player.FacingDirection) > 0)
+            if (_isGrounded)
+            {
+                stateMachine.ChangeState(player.LandState);
+                return;
+            }
+
+            if (_isTouchingWall && !_isTouchingLedge && !_isGrounded) 
+            {
+                stateMachine.ChangeState(player.LedgeState);
+                return;
+            }
+
+            if (_isTouchingWall && (_xAxisInput * player.FacingDirection) > 0)
             {
                 stateMachine.ChangeState(player.WallSlideState);
+                return;
             }
         }
 
@@ -58,7 +72,13 @@ namespace PixelGame.Model.StateMachines
         {
             base.DoChecks();
             _isGrounded = player.ContactsPoller.CheckGround();
-            _isTouchingWall = player.ContactsPoller.CheckWallTouch();
+            _isTouchingWall = player.ContactsPoller.CheckWallFront(player.FacingDirection);
+            _isTouchingLedge = player.ContactsPoller.CheckLedgeTouch(player.FacingDirection);
+
+            if (_isTouchingWall && !_isTouchingLedge)
+            {
+                player.SetDetectedPos(player.UnitComponents.Transform.position);
+            }
         }
     }
 }

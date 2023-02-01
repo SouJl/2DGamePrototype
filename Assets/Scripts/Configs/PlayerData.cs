@@ -26,6 +26,17 @@ namespace PixelGame.Configs
         public float fallThreshold = 1f;
 
         [Header("Wall Slide Settings")]
+        public float wallCheckDistance = 0.5f;
         public float wallSlideSpeed = 2f;
+
+        [Header("Ledge Settings")]
+        public Vector2 startOffset;
+        public Vector2 stopOffset;
+        
+        
+        [Header("Crouch Settings")]
+        public float crouchMovementVelocity = 5f;
+        public float crouchColliderHeight = 0.8f;
+        public float standColliderHeight = 1.6f;
     }
 }

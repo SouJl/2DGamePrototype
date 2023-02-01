@@ -20,6 +20,9 @@ namespace PixelGame.Model
         public State WallClimbState { get; set; }
         public State WallGrabState { get; set; }
         public State WallJumpState { get; set; }
+        public State LedgeState { get; set; }
+        public State ClimbState { get; set; }
+
 
         #endregion
 
@@ -45,6 +48,7 @@ namespace PixelGame.Model
        
         public bool CanSetVelocity { get; set; }
         public int WallJumpDirection { get; set; }
+        public Vector2 LedgeDetectPos { get; private set; }
 
         #endregion
 
@@ -103,6 +107,14 @@ namespace PixelGame.Model
         {
             if (CanSetVelocity) MoveModel.Move(_workVelocity);
         }
+
+        public void SetDetectedPos(Vector2 pos) => LedgeDetectPos = pos;
+
+        public void SetVelocityZero()
+        {
+            UnitComponents.RgdBody.velocity = Vector2.zero;
+            CurrentVelocity = Vector2.zero;
+        }  
     }
 }
 

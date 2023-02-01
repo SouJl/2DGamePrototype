@@ -21,6 +21,8 @@ namespace PixelGame.View
 
 
         [SerializeField] private GroundCheckComponent _groundCheck;
+        [SerializeField] private Transform _wallCheck;
+        [SerializeField] private Transform _ledgeCheck;
 
         public float MaxHealth { get => _maxHealth;}
         public PlayerData PlayerData { get => _playerData; }
@@ -29,7 +31,9 @@ namespace PixelGame.View
         public AnimationConfig AnimationConfig { get => _animationConfig; }
         public SlopeDataComponent SlopeData { get => _slopeData; }
         public GroundCheckComponent GroundCheck { get => _groundCheck;  }
-       
+        public Transform LedgeCheck { get => _ledgeCheck;}
+        public Transform WallCheck { get => _wallCheck; }
+
         public override void Awake()
         {
             base.Awake();

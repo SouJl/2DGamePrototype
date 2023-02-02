@@ -36,7 +36,7 @@ namespace PixelGame.Controllers
 
         public bool MoveNext()
         {
-            if (_index == Length - 1)
+            if (_interactiveObject == null || _index == Length - 1)
                 return false;
             _index++;
             return true;
@@ -44,6 +44,7 @@ namespace PixelGame.Controllers
 
         public void Reset()
         {
+            if (_interactiveObject == null) return;
             _index = -1;
         }
 

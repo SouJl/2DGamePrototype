@@ -33,7 +33,7 @@ namespace PixelGame
 
         private void Start()
         {
-           // _executeController = new ListExecuteController();
+            _executeController = new ListExecuteController();
 
             if (_playerView) 
             {

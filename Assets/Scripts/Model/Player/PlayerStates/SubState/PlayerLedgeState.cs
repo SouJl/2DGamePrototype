@@ -53,8 +53,6 @@ namespace PixelGame.Model.StateMachines
         {
             base.LogicUpdate();
 
-            Debug.Log(_xAxisInput);
-
             if((Mathf.Abs(_xAxisInput) > 0 &&_yAxisInput > 0) && _xAxisInput * player.FacingDirection > 0) 
             {
                 stateMachine.ChangeState(player.ClimbState);

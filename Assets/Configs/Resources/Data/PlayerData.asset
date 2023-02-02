@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   moveThresh: 0.01
-  jumpForce: 7
+  jumpForce: 7.5
   jumpThreshold: 0.2
   rollFrames: 12
   wallJumpForce: 8

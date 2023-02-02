@@ -16,6 +16,9 @@ namespace PixelGame
         [SerializeField] private LevelContactsComponent _levelContacts;
         [SerializeField] private JointsCollectionView _jointsCollection;
         [SerializeField] private GUIView _guiView;
+        [SerializeField]
+        private GenerateLevelView _generateLevelView;
+
 
         private ListExecuteController _executeController;
 
@@ -26,13 +29,18 @@ namespace PixelGame
 
         private JointsController _jointsController;
 
+        private LevelGeneratorController _generatorLevelController;
+
         private void Start()
         {
-            _executeController = new ListExecuteController();
-            
-            _playerController = new PlayerController(_playerView, _guiView.HealhBar);
-            _executeController.AddExecuteObject(_playerController);
+           // _executeController = new ListExecuteController();
 
+            if (_playerView) 
+            {
+                _playerController = new PlayerController(_playerView, _guiView.HealhBar);
+                _executeController.AddExecuteObject(_playerController);
+            }
+  
             if (_enemyViews.Count != 0) 
             {
                 _enemyLevelController = new EnemyLevelController(_enemyViews, _playerView.Transform);
@@ -53,11 +61,16 @@ namespace PixelGame
             {
                 _jointsController = new JointsController(_jointsCollection);
                 _executeController.AddExecuteObject(_jointsController);
-            }        
+            }
+
+            _generatorLevelController = new LevelGeneratorController(_generateLevelView);
+            _generatorLevelController.Init();
         }
 
         private void Update()
         {
+            if (_executeController == null) return;
+
             while (_executeController.MoveNext())
             {
                 IExecute tmp = (IExecute)_executeController.Current;
@@ -68,6 +81,8 @@ namespace PixelGame
 
         private void FixedUpdate()
         {
+            if (_executeController == null) return;
+
             while (_executeController.MoveNext())
             {
                 IExecute tmp = (IExecute)_executeController.Current;

@@ -13,11 +13,10 @@ namespace PixelGame
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private List<EnemyView> _enemyViews;
         [SerializeField] private CoinsView _coinsView;
+        [SerializeField] private LevelMachinesContainerView _levelMachines;
         [SerializeField] private LevelContactsComponent _levelContacts;
         [SerializeField] private JointsCollectionView _jointsCollection;
         [SerializeField] private GUIView _guiView;
-        [SerializeField]
-        private GenerateLevelView _generateLevelView;
 
 
         private ListExecuteController _executeController;
@@ -25,11 +24,11 @@ namespace PixelGame
         private PlayerController _playerController;
         private EnemyLevelController _enemyLevelController;
         private CoinsController _coinsController;
+        private MachinesController _machinesController;
         private LevelContactsController _levelContactsController;
 
         private JointsController _jointsController;
 
-        private LevelGeneratorController _generatorLevelController;
 
         private void Start()
         {
@@ -46,6 +45,7 @@ namespace PixelGame
                 _enemyLevelController = new EnemyLevelController(_enemyViews, _playerView.Transform);
                 _executeController.AddExecuteObject(_enemyLevelController);
             }
+
             if(_coinsView) 
             {
                 _coinsController = new CoinsController(_playerView, _coinsView);
@@ -63,8 +63,11 @@ namespace PixelGame
                 _executeController.AddExecuteObject(_jointsController);
             }
 
-            _generatorLevelController = new LevelGeneratorController(_generateLevelView);
-            _generatorLevelController.Init();
+            if (_levelMachines) 
+            {
+                _machinesController = new MachinesController(_levelMachines);
+                _executeController.AddExecuteObject(_machinesController);
+            }      
         }
 
         private void Update()
@@ -89,6 +92,12 @@ namespace PixelGame
                 tmp.FixedExecute();
             }
             _executeController.Reset();
+        }
+
+
+        private void OnDisable()
+        {
+            _levelContactsController.Dispose();
         }
     }
 }

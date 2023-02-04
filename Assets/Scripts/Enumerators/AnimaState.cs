@@ -2,6 +2,7 @@
 {
     public enum AnimaState
     {
+        // for Characters
         Idle        = 0,
         Run         = 1,
         InAir       = 2,
@@ -12,5 +13,9 @@
         Ledge       = 7,
         Climb       = 8,
         Attack      = 12,
+
+        //For items
+        Off         = 30,
+        On          = 31,
     }
 }

@@ -15,7 +15,6 @@
         Attack      = 12,
 
         //For items
-        Off         = 30,
-        On          = 31,
+        InUse       = 31,
     }
 }

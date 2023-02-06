@@ -69,7 +69,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -235,12 +235,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 225
+        y: 226
         width: 44
-        height: 45
+        height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 5, y: 6, z: 5, w: 5}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0

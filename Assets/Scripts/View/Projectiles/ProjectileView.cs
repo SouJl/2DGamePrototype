@@ -22,6 +22,15 @@ namespace PixelGame.View
             if(state == false)
                 _trailRenderer?.Clear();
         }
+
+        protected override void CollisionContact(Collider2D collision)
+        {
+            base.CollisionContact(collision);
+            if (collision.TryGetComponent(out LevelObjectView collideObject))
+            {
+                OnLevelObjectContact?.Invoke(collideObject);
+            }
+        }
     }
 }
 

@@ -4,8 +4,9 @@ namespace PixelGame.Configs
 {
     public enum QuestType 
     {
-        Switch,
+        Interact,
         PickUp,
+        Tutorial,
     }
 
     [CreateAssetMenu(fileName = "QuestCfg", menuName = "Configs/Quest/QuestConfig")]

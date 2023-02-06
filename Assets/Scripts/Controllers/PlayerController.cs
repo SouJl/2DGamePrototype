@@ -15,6 +15,8 @@ namespace PixelGame.Controllers
 
         private HealthController _healthController;
 
+        public PlayerModel PlayerModel => _playerModel;
+
         public PlayerController(PlayerView view, HealhBarView healhBar) 
         {
             _view = view;

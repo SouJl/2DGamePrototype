@@ -5,7 +5,7 @@ namespace PixelGame.Configs
     public enum QuestSequenceType 
     {
         Common,
-        Resettable
+        Resetable
     }
 
     [CreateAssetMenu(fileName = "QuestSequenceCfg", menuName = "Configs/Quest/QuestSequence")]
@@ -13,8 +13,10 @@ namespace PixelGame.Configs
     {
         [SerializeField] private QuestConfig[] _quests;
         [SerializeField] private QuestSequenceType _type;
+        [SerializeField] private string _reward;
 
         public QuestConfig[] Quests => _quests;
-        public QuestSequenceType Type => Type;
+        public QuestSequenceType Type => _type;
+        public string Reward => _reward;
     }
 }

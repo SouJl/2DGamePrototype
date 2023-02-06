@@ -16,7 +16,7 @@ namespace PixelGame
         [SerializeField] private LevelMachinesContainerView _levelMachines;
         [SerializeField] private LevelContactsComponent _levelContacts;
         [SerializeField] private JointsCollectionView _jointsCollection;
-        [SerializeField] private QuestContainerView _questContainer;
+        [SerializeField] private QuestContainerView[] _questContainers;
         [SerializeField] private GUIView _guiView;
 
 
@@ -27,7 +27,6 @@ namespace PixelGame
         private CoinsController _coinsController;
         private MachinesController _machinesController;
         private LevelContactsController _levelContactsController;
-        private QuestSequenceController _sequenceController;
 
         private JointsController _jointsController;
 
@@ -71,8 +70,11 @@ namespace PixelGame
                 _executeController.AddExecuteObject(_machinesController);
             }
 
-            _sequenceController = new QuestSequenceController(_questContainer);
-            _executeController.AddExecuteObject(_sequenceController);
+            foreach (var questContainer in _questContainers) 
+            {
+                _executeController.AddExecuteObject(new QuestSequenceController(questContainer, _playerController.PlayerModel));
+            }
+      
         }
 
         private void Update()

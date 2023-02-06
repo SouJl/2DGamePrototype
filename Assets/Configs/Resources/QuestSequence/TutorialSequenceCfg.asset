@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057537e4b507c434f9790b538a949bee, type: 3}
+  m_Name: TutorialSequenceCfg
+  m_EditorClassIdentifier: 
+  _quests:
+  - {fileID: 11400000, guid: ccb94ce8f6c52c54d9000eb6eb8e87ba, type: 2}
+  - {fileID: 11400000, guid: 93eae3fcd62f02f488ec8a29e2151319, type: 2}
+  - {fileID: 11400000, guid: 060c4b8fee518c9469bbd33d0df1c581, type: 2}
+  - {fileID: 11400000, guid: 36ba6aec9636b8e43890ec3d43076c31, type: 2}
+  _type: 0
+  _reward: You complete tutorial

@@ -20,6 +20,15 @@ namespace PixelGame.View
             base.Awake();
         }
 
+        protected override void CollisionContact(Collider2D collision)
+        {
+            base.CollisionContact(collision);
+            if (collision.TryGetComponent(out LevelObjectView collideObject))
+            {
+                OnLevelObjectContact?.Invoke(collideObject);
+            }
+        }
+
         private void OnDrawGizmos()
         {
             Vector2 upperPosLeft = new(_upperPos.x - 1, _upperPos.y);
@@ -31,5 +40,6 @@ namespace PixelGame.View
             Gizmos.DrawLine(upperPosLeft, upperPosRight);
             Gizmos.DrawLine(lowerPosLeft, lowerPosRight);
         }
+
     }
 }

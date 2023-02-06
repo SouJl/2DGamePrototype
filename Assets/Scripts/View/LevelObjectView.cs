@@ -18,6 +18,7 @@ namespace PixelGame.View
 
 
         public Action<LevelObjectView> OnLevelObjectContact { get; set; }
+        public Action<LevelObjectView> OnLevelObjectStay { get; set; }
 
         public virtual void Awake()
         {
@@ -40,11 +41,14 @@ namespace PixelGame.View
 
         public virtual void SetActive(bool state) => gameObject.SetActive(state);
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            var collideObject = collision.gameObject.GetComponent<LevelObjectView>();
-            OnLevelObjectContact?.Invoke(collideObject);
-        }
+        protected virtual void CollisionContact(Collider2D collision) { }
+
+        protected virtual void CollisionStay(Collider2D collision) { }
+
+        private void OnTriggerEnter2D(Collider2D collision) => CollisionContact(collision);
+       
+        private void OnTriggerStay2D(Collider2D collision) => CollisionStay(collision);
+
     }
 }
 

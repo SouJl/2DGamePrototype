@@ -18,5 +18,14 @@ namespace PixelGame.View
         {
             base.Awake();
         }
+
+        protected override void CollisionContact(Collider2D collision)
+        {
+            base.CollisionContact(collision);
+            if (collision.TryGetComponent(out LevelObjectView collideObject))
+            {
+                OnLevelObjectContact?.Invoke(collideObject);
+            }
+        }
     }
 }

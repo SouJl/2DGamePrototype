@@ -55,7 +55,8 @@ namespace PixelGame.Model.Quest
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _view.OnLevelObjectContact -= OnContact;
+            _view.ProcessComplete();
         }
 
     }

@@ -10,24 +10,13 @@ namespace PixelGame.Model.Quest
 {
     public class QuestConfigurator
     {
-        private Dictionary<QuestType, Func<IQuestModel>> _questDict;
-        private readonly Dictionary<QuestSequenceType, Func<List<IQuest>, IQuestSequence>> _questSequenceDict;
+        private readonly List<QuestObjectView> _questObjects;
+        private readonly PlayerModel _player;
 
-        private List<QuestObjectView> _questObjects;
-
-        public QuestConfigurator(List<QuestObjectView> questObjects)
+        public QuestConfigurator(List<QuestObjectView> questObjects, PlayerModel player)
         {
             _questObjects = questObjects;
-
-            _questDict = new Dictionary<QuestType, Func<IQuestModel>>
-            {
-                { QuestType.PickUp, () => new PickUpQuestModel() },
-            };
-
-            _questSequenceDict = new Dictionary<QuestSequenceType, Func<List<IQuest>, IQuestSequence>>
-            {
-                { QuestSequenceType.Common, questCollection => new QuestSequenceModel(questCollection) },
-            };
+            _player = player;
         }
 
         public IQuestSequence CreateQuestSequence(QuestSequenceConfig config)
@@ -41,8 +30,20 @@ namespace PixelGame.Model.Quest
                 quests.Add(quest);
             }
 
-            // return _questSequenceDict[config.Type].Invoke(quests);
-            return new QuestSequenceModel(quests);
+            switch (config.Type) 
+            {
+                default: return null;
+
+                case QuestSequenceType.Common: 
+                    {
+                        return new QuestSequenceModel(quests);
+                    }
+                case QuestSequenceType.Resetable: 
+                    {
+                        return new ResetableSequenceModel(quests);
+                    }
+            }
+           
         }
 
         public IQuest CreateQuest(QuestConfig config)
@@ -54,13 +55,37 @@ namespace PixelGame.Model.Quest
                 Debug.LogWarning($"QuestsConfigurator :: Start : Can't find view of quest {questId}");
                 return null;
             }
-            if (_questDict.TryGetValue(config.QuestType, out var factory))
+
+            IQuestModel questModel = null;
+
+            switch (config.QuestType) 
             {
-                var questModel = factory.Invoke();
-                return new QuestModel(questView, questModel);
+                case QuestType.Interact: 
+                    {
+                        questModel = new InteractQuestModel();
+                        return new QuestModel(questView, questModel);
+                    }
+                case QuestType.PickUp: 
+                    {
+                        questModel = new PickUpQuestModel();
+
+                        return new QuestModel(questView, questModel);
+                    }
+                case QuestType.Tutorial: 
+                    {
+                        var view = questView as TutorialQuestView;
+                        if (view) 
+                        {
+                            questModel = new InputQuestModel(_player, view.MonitoringAction);
+                            return new TutorialModel(view, questModel);
+                        }
+                        break;
+                    }
             }
+
             Debug.LogWarning($"QuestsConfigurator :: Start : Can't create model for quest {questId}");
             return null;
+
         }
     }
 }

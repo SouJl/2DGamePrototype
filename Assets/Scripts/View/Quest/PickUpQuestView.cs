@@ -15,9 +15,7 @@ namespace PixelGame.View
             base.Awake();
 
             SpriteRenderer.sprite = _sprites[_currentAnim];
-            _lastUpdateTime = 0;
-
-
+            _lastUpdateTime = _animDelay;
         }
 
         private void Update()
@@ -46,6 +44,15 @@ namespace PixelGame.View
             base.ProcessActivate();
 
             gameObject.SetActive(true);
+        }
+
+        protected override void CollisionContact(Collider2D collision)
+        {
+            base.CollisionContact(collision);
+            if (collision.TryGetComponent(out LevelObjectView collideObject))
+            {
+                OnLevelObjectContact?.Invoke(collideObject);
+            }
         }
     }
 }

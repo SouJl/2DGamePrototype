@@ -4,6 +4,7 @@ using UnityEngine;
 using PixelGame.Interfaces;
 using System.Collections.Generic;
 using PixelGame.Components;
+using PixelGame.Coins;
 
 namespace PixelGame 
 {
@@ -12,7 +13,7 @@ namespace PixelGame
         [Header("Game Objects")]
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private List<EnemyView> _enemyViews;
-        [SerializeField] private CoinsView _coinsView;
+        [SerializeField] private List<LevelObjectView> _coinViews;
         [SerializeField] private LevelMachinesContainerView _levelMachines;
         [SerializeField] private LevelContactsComponent _levelContacts;
         [SerializeField] private JointsCollectionView _jointsCollection;
@@ -47,11 +48,7 @@ namespace PixelGame
                 _executeController.AddExecuteObject(_enemyLevelController);
             }
 
-            if(_coinsView) 
-            {
-                _coinsController = new CoinsController(_playerView, _coinsView);
-                _executeController.AddExecuteObject(_coinsController);
-            }
+            _coinsController = new CoinsController(_guiView.CoinsBar, _playerView, _coinViews);
 
             if (_levelContacts) 
             {

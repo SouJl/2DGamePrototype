@@ -5,7 +5,7 @@ using PixelGame.Model.Utils;
 using PixelGame.View;
 using UnityEngine;
 
-namespace PixelGame.Controllers
+namespace PixelGame.Controllers.Coins
 {
     public class CoinsController : IExecute, IDisposable
     {

@@ -1,4 +1,4 @@
-﻿namespace Root.PixelGame.StateMachine
+﻿namespace Root.PixelGame.StateMachines
 {
     internal interface IStateMachine 
     {

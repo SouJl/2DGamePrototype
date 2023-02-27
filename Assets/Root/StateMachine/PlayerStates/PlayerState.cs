@@ -2,11 +2,11 @@
 using System;
 using UnityEngine;
 
-namespace Root.PixelGame.StateMachine
+namespace Root.PixelGame.StateMachines
 {
     internal class PlayerState : State
     {
-        protected readonly IPlayerStateHandler stateHandler;
+        protected readonly IPlayerCore playerCore;
         protected readonly IPlayerData playerData;
 
         protected float startTime;
@@ -20,13 +20,14 @@ namespace Root.PixelGame.StateMachine
         protected PhysicsMaterial2D _noneFriction;
 
         public PlayerState(
-            IStateMachine stateMachine,
-            IPlayerStateHandler stateHandler,
-            IPlayerData playerData) : base(stateMachine)
+            IStateHandler stateHandler,
+            IPlayerCore playerCore,
+            IPlayerData playerData) : base(stateHandler)
         {
-            this.stateHandler 
-                = stateHandler ?? throw new ArgumentNullException(nameof(stateHandler));
-
+       
+            this.playerCore 
+                = playerCore ?? throw new ArgumentNullException(nameof(playerCore));
+            
             this.playerData 
                 = playerData ?? throw new ArgumentNullException(nameof(playerData));
 

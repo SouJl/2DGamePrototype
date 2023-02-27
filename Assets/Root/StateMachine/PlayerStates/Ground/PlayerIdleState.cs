@@ -1,14 +1,55 @@
 ﻿using Root.PixelGame.Game;
+using UnityEngine;
 
-namespace Root.PixelGame.StateMachine
+namespace Root.PixelGame.StateMachines
 {
     internal class PlayerIdleState : PlayerGroundState
     {
+        private bool _isRun;
+        private bool _isFall;
+
         public PlayerIdleState(
-            IStateMachine stateMachine,
-            IPlayerStateHandler stateHandler,
-            IPlayerData playerData) : base(stateMachine, stateHandler, playerData)
+            IStateHandler stateHandler,
+            IPlayerCore playerCore,
+            IPlayerData playerData) : base(stateHandler, playerCore, playerData) { }
+
+        public override void Enter()
         {
+            base.Enter();
+            playerCore.SetVelocityX(0f);
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            _isRun = false;
+            _isFall = false;
+        }
+
+        public override void InputData()
+        {
+            base.InputData();
+            _isRun = Mathf.Abs(_xAxisInput) > playerData.MoveThresh;
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+            if (_isRun) ChangeState(StateType.RunState);
+            if (_isFall) ChangeState(StateType.FallState);
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+
+            playerCore.ChangePhysicsMaterial(_fullFriction);
+        }
+
+
+        protected override void DoChecks()
+        {
+            base.DoChecks();
         }
     }
 }

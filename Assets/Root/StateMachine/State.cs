@@ -1,4 +1,6 @@
-﻿namespace Root.PixelGame.StateMachine
+﻿using System;
+
+namespace Root.PixelGame.StateMachines
 {
     internal interface IState
     {
@@ -15,10 +17,11 @@
 
     internal abstract class State : IState
     {
-        protected readonly IStateMachine stateMachine;
+        protected readonly IStateHandler stateHandler;
 
-        public State(IStateMachine stateMachine) =>
-            this.stateMachine = stateMachine;
+        public State(IStateHandler stateHandler) =>
+             this.stateHandler
+                = stateHandler ?? throw new ArgumentNullException(nameof(stateHandler));
 
         public virtual void Enter() { }
 
@@ -32,6 +35,6 @@
 
         protected abstract void DoChecks();
 
-        protected void ChangeState(IState newState) => stateMachine.ChangeState(newState);
+        protected void ChangeState(StateType newStateType) => stateHandler.ChangeState(newStateType);
     }
 }

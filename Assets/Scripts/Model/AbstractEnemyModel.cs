@@ -1,6 +1,5 @@
 ﻿using PixelGame.Configs;
 using PixelGame.Interfaces;
-using PixelGame.Model.AIModels;
 using PixelGame.Model.StateMachines;
 using PixelGame.Model.Utils;
 using System;

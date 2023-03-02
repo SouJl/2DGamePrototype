@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Game;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
@@ -6,9 +7,10 @@ namespace Root.PixelGame.StateMachines
     internal class PlayerLandState : PlayerGroundState
     {
         public PlayerLandState(
-            IStateHandler stateHandler,
-            IPlayerCore playerCore,
-            IPlayerData playerData) : base(stateHandler, playerCore, playerData)
+               IStateHandler stateHandler,
+               IPlayerCore playerCore,
+               IPlayerData playerData,
+               IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }
 

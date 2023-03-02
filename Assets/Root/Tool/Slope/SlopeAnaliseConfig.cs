@@ -10,7 +10,7 @@ namespace Root.PixelGame.Tool
     }
 
     [CreateAssetMenu(fileName = nameof(SlopeAnaliseConfig),
-        menuName = "Configs/" + nameof(SlopeAnaliseConfig))]
+        menuName = "Configs/Slope/" + nameof(SlopeAnaliseConfig))]
     internal class SlopeAnaliseConfig : ScriptableObject, ISlopeAnaliseConfig
     {
         [field: SerializeField] public float CheckDistance { get; private set; }

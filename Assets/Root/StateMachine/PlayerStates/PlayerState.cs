@@ -1,13 +1,15 @@
-﻿using Root.PixelGame.Game;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game;
 using System;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
 {
-    internal class PlayerState : State
+    internal abstract class PlayerState : State
     {
         protected readonly IPlayerCore playerCore;
         protected readonly IPlayerData playerData;
+        protected readonly IAnimatorController animator;
 
         protected float startTime;
 
@@ -19,10 +21,12 @@ namespace Root.PixelGame.StateMachines
         protected PhysicsMaterial2D _fullFriction;
         protected PhysicsMaterial2D _noneFriction;
 
+
         public PlayerState(
             IStateHandler stateHandler,
             IPlayerCore playerCore,
-            IPlayerData playerData) : base(stateHandler)
+            IPlayerData playerData,
+            IAnimatorController animator) : base(stateHandler)
         {
        
             this.playerCore 
@@ -30,6 +34,9 @@ namespace Root.PixelGame.StateMachines
             
             this.playerData 
                 = playerData ?? throw new ArgumentNullException(nameof(playerData));
+            
+            this.animator
+                = animator ?? throw new ArgumentNullException(nameof(animator));
 
             _fullFriction = Resources.Load<PhysicsMaterial2D>("Materail/FullFrictionMaterial");
             _noneFriction = Resources.Load<PhysicsMaterial2D>("Materail/ZeroFrictionMaterial");
@@ -48,6 +55,7 @@ namespace Root.PixelGame.StateMachines
             base.Exit();
             isExitingState = true;
             isAnimationEnd = false;
+            animator.StopAnimation();
         }
 
         public override void InputData()
@@ -65,6 +73,7 @@ namespace Root.PixelGame.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+            playerCore.SlopeAnaliser.SlopeCheck();
         }
 
         protected override void DoChecks()

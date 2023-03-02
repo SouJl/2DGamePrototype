@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Game;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
@@ -11,9 +12,14 @@ namespace Root.PixelGame.StateMachines
         private bool _isGrab;
 
         public PlayerGroundState(
-            IStateHandler stateHandler,
-            IPlayerCore playerCore,
-            IPlayerData playerData) : base(stateHandler, playerCore, playerData) { }
+            IStateHandler stateHandler, 
+            IPlayerCore playerCore, 
+            IPlayerData playerData, 
+            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+        {
+        }
+
+        
 
         public override void Enter()
         {
@@ -23,9 +29,10 @@ namespace Root.PixelGame.StateMachines
         public override void Exit()
         {
             base.Exit();
-            _isJump = false;
-            _isTouchingWall = false;
-            _isGrab = false;
+            _isJump = default;
+            _isTouchingWall = default;
+            _isGrab = default;
+            _isGrounded = default;
         }
 
         public override void InputData()
@@ -45,7 +52,7 @@ namespace Root.PixelGame.StateMachines
             }
             if (!_isGrounded && playerCore.CurrentVelocity.y <= 0)
             {
-                ChangeState(StateType.FallState);
+                ChangeState(StateType.IdleState);
                 return;
             }
             if (_isTouchingWall && _isGrab)
@@ -53,6 +60,12 @@ namespace Root.PixelGame.StateMachines
                 ChangeState(StateType.WallGrabState);
                 return;
             }
+        }
+
+        protected override void DoChecks()
+        {
+            base.DoChecks();
+            _isGrounded = playerCore.CheckGround();
         }
     }
 }

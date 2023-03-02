@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e18fe2f20d10d841ac291a4586c9b5f, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  <Speed>k__BackingField: 5
+  <MoveThresh>k__BackingField: 0.01
+  <JumpForce>k__BackingField: 7.5
+  <JumpThreshold>k__BackingField: 0.2
+  <WallJumpForce>k__BackingField: 8
+  <WallJumpTime>k__BackingField: 0.4
+  <WallJumpAngle>k__BackingField: {x: 1.2, y: 2}
+  <FlyThreshold>k__BackingField: 0.2
+  <FallThreshold>k__BackingField: 1
+  <WallCheckDistance>k__BackingField: 0.5
+  <WallSlideSpeed>k__BackingField: 2
+  <StartOffset>k__BackingField: {x: 0, y: 0}
+  <StopOffset>k__BackingField: {x: 0, y: 0}
+  <ClimbSmooth>k__BackingField: 0.2
+  <CrouchMovementVelocity>k__BackingField: 5
+  <CrouchColliderHeight>k__BackingField: 0.8
+  <StandColliderHeight>k__BackingField: 1.6

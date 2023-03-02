@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Game;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
@@ -9,14 +10,18 @@ namespace Root.PixelGame.StateMachines
         private bool _isFall;
 
         public PlayerIdleState(
-            IStateHandler stateHandler,
-            IPlayerCore playerCore,
-            IPlayerData playerData) : base(stateHandler, playerCore, playerData) { }
+                 IStateHandler stateHandler,
+                 IPlayerCore playerCore,
+                 IPlayerData playerData,
+                 IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+        {
+        }
 
         public override void Enter()
         {
             base.Enter();
             playerCore.SetVelocityX(0f);
+            animator.StartAnimation(AnimationType.Idle);
         }
 
         public override void Exit()
@@ -35,7 +40,8 @@ namespace Root.PixelGame.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isRun) ChangeState(StateType.RunState);
+            if (_isRun) 
+                ChangeState(StateType.RunState);
             if (_isFall) ChangeState(StateType.FallState);
         }
 

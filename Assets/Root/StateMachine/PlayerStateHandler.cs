@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Game;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game;
 
 namespace Root.PixelGame.StateMachines
 {
@@ -22,13 +23,14 @@ namespace Root.PixelGame.StateMachines
         public PlayerStateHandler(
             IStateMachine stateMachine,
             IPlayerCore playerCore,
-            IPlayerData playerData)
+            IPlayerData playerData,
+            IAnimatorController animator)
         {
             this.stateMachine = stateMachine;
 
-            idleState = new PlayerIdleState(this, playerCore, playerData);
-            runState = new PlayerMoveState(this, playerCore, playerData);
-            landState = new PlayerLandState(this, playerCore, playerData);
+            idleState = new PlayerIdleState(this, playerCore, playerData, animator);
+            runState = new PlayerMoveState(this, playerCore, playerData, animator);
+            landState = new PlayerLandState(this, playerCore, playerData, animator);
 
             this.stateMachine.Initialize(idleState);
         }

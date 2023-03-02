@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Game;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
@@ -9,11 +10,11 @@ namespace Root.PixelGame.StateMachines
         private bool _isWallSlide;
         private bool _isFall;
 
-
         public PlayerMoveState(
             IStateHandler stateHandler,
             IPlayerCore playerCore,
-            IPlayerData playerData) : base(stateHandler, playerCore, playerData)
+            IPlayerData playerData,
+            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }
 
@@ -21,6 +22,7 @@ namespace Root.PixelGame.StateMachines
         {
             base.Enter();
             _isWallSlide = false;
+            animator.StartAnimation(AnimationType.Run);
         }
 
         public override void Exit()
@@ -55,7 +57,6 @@ namespace Root.PixelGame.StateMachines
             if (!playerCore.SlopeAnaliser.IsOnSlope)
             {
                 playerCore.SetVelocityX(_xAxisInput * playerData.Speed);
-
             }
             else if (playerCore.SlopeAnaliser.IsOnSlope && playerCore.SlopeAnaliser.CanWalkOnSlope)
             {

@@ -19,6 +19,8 @@
 
         public void ChangeState(IState newState)
         {
+            if (newState == null) return;
+
             CurrentState.Exit();
             CurrentState = newState;
             newState.Enter();

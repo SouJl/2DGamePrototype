@@ -43,7 +43,7 @@ namespace PixelGame.Model.StateMachines
             if (_isStay) stateMachine.ChangeState(player.IdleState);
 
             if (_isWallSlide) stateMachine.ChangeState(player.WallSlideState);
-            if (_isFall) stateMachine.ChangeState(player.FallState);
+            if (_isFall) stateMachine.ChangeState(player.IdleState);
         }
 
         public override void PhysicsUpdate()

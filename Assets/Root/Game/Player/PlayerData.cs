@@ -23,7 +23,7 @@ namespace Root.PixelGame.Game
         float StandColliderHeight { get; }
     }
 
-    [CreateAssetMenu(fileName = nameof(PlayerData), menuName = "Configs/" + nameof(PlayerData))]
+    [CreateAssetMenu(fileName = nameof(PlayerData), menuName = "Configs/Player/" + nameof(PlayerData))]
     internal class PlayerData : ScriptableObject, IPlayerData
     {
         [field: Header("Move Settings")]
@@ -33,9 +33,6 @@ namespace Root.PixelGame.Game
         [field: Header("Jump Settings")]
         [field: SerializeField] public float JumpForce { get; private set; } = 10f;
         [field: SerializeField] public float JumpThreshold { get; private set; } = 0.2f;
-
-        [field: Header("Roll Settings")]
-        [field: SerializeField] public int RollFrames = 12;
 
         [field: Header("Wall Jump Settings")]
         [field: SerializeField] public float WallJumpForce { get; private set; } = 20f;

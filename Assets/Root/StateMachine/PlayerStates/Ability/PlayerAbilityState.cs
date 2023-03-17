@@ -25,6 +25,7 @@ namespace Root.PixelGame.StateMachines
         {
             base.Exit();
             _isGrounded = false;
+            isAbilityDone = false;
         }
 
         public override void InputData()
@@ -37,7 +38,7 @@ namespace Root.PixelGame.StateMachines
             base.LogicUpdate();
             if (isAbilityDone)
             {
-                if (_isGrounded && playerCore.PhysicModel.Rigidbody.velocity.y < 0.01f)
+                if (_isGrounded && playerCore.Physic.Rigidbody.velocity.y < 0.01f)
                 {
                     ChangeState(StateType.IdleState);
                 }
@@ -56,7 +57,7 @@ namespace Root.PixelGame.StateMachines
         protected override void DoChecks()
         {
             base.DoChecks();
-            _isGrounded = playerCore.CheckGround();
+            _isGrounded = playerCore.GroundCheck.CheckGround();
         }
     }
 }

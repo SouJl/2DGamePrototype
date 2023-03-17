@@ -40,3 +40,15 @@ MonoBehaviour:
     - {fileID: 1692709358, guid: 4a925e9c5207c854a898353ba596f6df, type: 3}
     - {fileID: -1786407332, guid: 4a925e9c5207c854a898353ba596f6df, type: 3}
     - {fileID: -649085427, guid: 4a925e9c5207c854a898353ba596f6df, type: 3}
+  - <Loop>k__BackingField: 1
+    <State>k__BackingField: 2
+    _sprites:
+    - {fileID: 1341412211, guid: cc6feb89391582d4cb4c0e50f9e60c32, type: 3}
+    - {fileID: -146544651, guid: cc6feb89391582d4cb4c0e50f9e60c32, type: 3}
+    - {fileID: 1133196509, guid: cc6feb89391582d4cb4c0e50f9e60c32, type: 3}
+  - <Loop>k__BackingField: 1
+    <State>k__BackingField: 3
+    _sprites:
+    - {fileID: 624034854, guid: b7bc9fc8dc33d7348be07eab0c18ad92, type: 3}
+    - {fileID: -835386239, guid: b7bc9fc8dc33d7348be07eab0c18ad92, type: 3}
+    - {fileID: 1867098807, guid: b7bc9fc8dc33d7348be07eab0c18ad92, type: 3}

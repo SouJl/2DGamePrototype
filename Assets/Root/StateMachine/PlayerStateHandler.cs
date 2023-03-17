@@ -31,6 +31,9 @@ namespace Root.PixelGame.StateMachines
             idleState = new PlayerIdleState(this, playerCore, playerData, animator);
             runState = new PlayerMoveState(this, playerCore, playerData, animator);
             landState = new PlayerLandState(this, playerCore, playerData, animator);
+            inAirState = new PlayerInAirState(this, playerCore, playerData, animator);
+            jumpState = new PlayerJumpState(this, playerCore, playerData, animator);
+            fallState = new PlayerFallState(this, playerCore, playerData, animator);
 
             this.stateMachine.Initialize(idleState);
         }

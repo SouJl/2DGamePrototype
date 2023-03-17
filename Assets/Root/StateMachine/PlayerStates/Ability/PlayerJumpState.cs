@@ -6,9 +6,6 @@ namespace Root.PixelGame.StateMachines
 {
     internal class PlayerJumpState : PlayerAbilityState
     {
-        private bool _isWallSlide;
-        private bool _isFall;
-
         public PlayerJumpState(
             IStateHandler stateHandler, 
             IPlayerCore playerCore, 
@@ -20,15 +17,12 @@ namespace Root.PixelGame.StateMachines
         public override void Enter()
         {
             base.Enter();
-            _isWallSlide = false;
             Jump();
         }
 
         public override void Exit()
         {
             base.Exit();
-            _isWallSlide = false;
-            _isFall = false;
         }
 
         public override void InputData()
@@ -39,8 +33,6 @@ namespace Root.PixelGame.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isWallSlide) ChangeState(StateType.WallSlideState);
-            if (_isFall) ChangeState(StateType.FallState);
         }
 
         public override void PhysicsUpdate()
@@ -52,7 +44,7 @@ namespace Root.PixelGame.StateMachines
         private void Jump()
         {
             animator.StartAnimation(AnimationType.InAir);
-            playerCore.PhysicModel.SetVelocityY(playerData.JumpForce);
+            playerCore.Physic.SetVelocityY(playerData.JumpForce);
             isAbilityDone = true;
         }
     }

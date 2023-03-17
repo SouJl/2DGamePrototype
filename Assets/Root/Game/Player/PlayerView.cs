@@ -10,7 +10,6 @@ namespace Root.PixelGame.Game
         public Rigidbody2D Rigidbody { get; }
 
         public Transform GroundCheck { get; }
-        public LayerMask GroundLayerMask { get; }
     }
 
     internal class PlayerView : MonoBehaviour, IPlayerView
@@ -21,8 +20,6 @@ namespace Root.PixelGame.Game
         [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
 
         [field: SerializeField] public Transform GroundCheck { get; private set; }
-
-        [field: SerializeField] public LayerMask GroundLayerMask { get; private set; }
 
         private void Awake()
         {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae96829a76c54648a3f3e15775965dc, type: 3}
   m_Name: SlopeAnaliseConfig
   m_EditorClassIdentifier: 
-  <CheckDistance>k__BackingField: 0.3
-  <MaxAngle>k__BackingField: 45
+  <CheckDistance>k__BackingField: 0.4
+  <MaxAngle>k__BackingField: 60
   <Mask>k__BackingField:
     serializedVersion: 2
     m_Bits: 24576

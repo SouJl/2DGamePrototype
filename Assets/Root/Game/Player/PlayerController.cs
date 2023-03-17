@@ -1,5 +1,7 @@
 ﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game.Core;
 using Root.PixelGame.StateMachines;
+using Root.PixelGame.Tool;
 using System;
 using UnityEngine;
 
@@ -29,7 +31,7 @@ namespace Root.PixelGame.Game
 
             _data = LoadData(_dataConfig);
 
-            _core = new PlayerCore(_view.Transform, _view.Rigidbody, _view.Collider, _view.GroundCheck, _view.GroundLayerMask);
+            _core = CreatePlayerCore(_view);
 
             _playerBehavior = new StateMachine();
 
@@ -54,6 +56,16 @@ namespace Root.PixelGame.Game
             var data = Resources.Load<PlayerData>(path);
 
             return data;
+        }
+
+        private IPlayerCore CreatePlayerCore(IPlayerView view)
+        {
+            var physicModel = new PhysicModel(view.Rigidbody);
+            var slopeAnaliser = new SlopeAnaliserTool(view.Rigidbody, _view.Collider);
+            var groundCheck = new GroundCheckModel(view.GroundCheck);
+            var core = new PlayerCore(view.Transform, physicModel, slopeAnaliser, groundCheck);
+
+            return core;
         }
     }
 }

@@ -56,13 +56,13 @@ namespace Root.PixelGame.StateMachines
 
             if (!playerCore.SlopeAnaliser.IsOnSlope)
             {
-                playerCore.PhysicModel.SetVelocityX(_xAxisInput * playerData.Speed);
+                playerCore.Physic.SetVelocityX(_xAxisInput * playerData.Speed);
             }
             else if (playerCore.SlopeAnaliser.IsOnSlope && playerCore.SlopeAnaliser.CanWalkOnSlope)
             {
                 var newVel = new Vector2(playerCore.SlopeAnaliser.SlopeNormalPerp.x * -_xAxisInput, playerCore.SlopeAnaliser.SlopeNormalPerp.y * -_xAxisInput) * playerData.Speed;
-                playerCore.PhysicModel.SetVelocityX(newVel.x);
-                playerCore.PhysicModel.SetVelocityY(newVel.y);
+                playerCore.Physic.SetVelocityX(newVel.x);
+                playerCore.Physic.SetVelocityY(newVel.y);
             }
 
         }
@@ -73,7 +73,7 @@ namespace Root.PixelGame.StateMachines
             if (!playerCore.SlopeAnaliser.IsOnSlope && 
                 !playerCore.SlopeAnaliser.CanWalkOnSlope)
             {
-                playerCore.PhysicModel.ChangePhysicsMaterial(_noneFriction);
+                playerCore.Physic.ChangePhysicsMaterial(_noneFriction);
             }
         }
 

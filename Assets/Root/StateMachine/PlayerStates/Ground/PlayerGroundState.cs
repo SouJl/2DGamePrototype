@@ -50,7 +50,7 @@ namespace Root.PixelGame.StateMachines
                 ChangeState(StateType.JumpState);
                 return;
             }
-            if (!_isGrounded && playerCore.PhysicModel.CurrentVelocity.y <= 0)
+            if (!_isGrounded && playerCore.Physic.CurrentVelocity.y <= 0)
             {
                 ChangeState(StateType.IdleState);
                 return;
@@ -65,7 +65,7 @@ namespace Root.PixelGame.StateMachines
         protected override void DoChecks()
         {
             base.DoChecks();
-            _isGrounded = playerCore.CheckGround();
+            _isGrounded = playerCore.GroundCheck.CheckGround();
         }
     }
 }

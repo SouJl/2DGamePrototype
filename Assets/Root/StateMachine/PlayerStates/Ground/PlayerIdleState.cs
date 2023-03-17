@@ -20,7 +20,7 @@ namespace Root.PixelGame.StateMachines
         public override void Enter()
         {
             base.Enter();
-            playerCore.PhysicModel.SetVelocityX(0f);
+            playerCore.Physic.SetVelocityX(0f);
             animator.StartAnimation(AnimationType.Idle);
         }
 
@@ -49,7 +49,7 @@ namespace Root.PixelGame.StateMachines
         {
             base.PhysicsUpdate();
 
-            playerCore.PhysicModel.ChangePhysicsMaterial(_fullFriction);
+            playerCore.Physic.ChangePhysicsMaterial(_fullFriction);
         }
 
 

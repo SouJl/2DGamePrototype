@@ -74,11 +74,10 @@ namespace Root.PixelGame.StateMachines
         {
             base.PhysicsUpdate();
             playerCore.SlopeAnaliser.SlopeCheck();
+            playerCore.Physic.Update();
+            DoChecks();
         }
 
-        protected override void DoChecks()
-        {
-
-        }
+        protected override void DoChecks() { }
     }
 }

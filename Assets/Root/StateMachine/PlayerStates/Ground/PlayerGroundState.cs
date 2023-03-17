@@ -50,7 +50,7 @@ namespace Root.PixelGame.StateMachines
                 ChangeState(StateType.JumpState);
                 return;
             }
-            if (!_isGrounded && playerCore.CurrentVelocity.y <= 0)
+            if (!_isGrounded && playerCore.PhysicModel.CurrentVelocity.y <= 0)
             {
                 ChangeState(StateType.IdleState);
                 return;

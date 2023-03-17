@@ -13,7 +13,6 @@ namespace Root.PixelGame.Game
         Vector2 WallJumpAngle { get; }
         float FlyThreshold { get; }
         float FallThreshold { get; }
-        float WallCheckDistance { get; }
         float WallSlideSpeed { get; }
         Vector2 StartOffset { get; }
         Vector2 StopOffset { get; }
@@ -44,7 +43,6 @@ namespace Root.PixelGame.Game
         [field: SerializeField] public float FallThreshold { get; private set; } = 1f;
 
         [field: Header("Wall Slide Settings")]
-        [field: SerializeField] public float WallCheckDistance { get; private set; } = 0.5f;
         [field: SerializeField] public float WallSlideSpeed { get; private set; } = 2f;
 
         [field: Header("Ledge Settings")]

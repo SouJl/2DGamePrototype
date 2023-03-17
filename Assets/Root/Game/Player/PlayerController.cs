@@ -63,7 +63,8 @@ namespace Root.PixelGame.Game
             var physicModel = new PhysicModel(view.Rigidbody);
             var slopeAnaliser = new SlopeAnaliserTool(view.Rigidbody, _view.Collider);
             var groundCheck = new GroundCheckModel(view.GroundCheck);
-            var core = new PlayerCore(view.Transform, physicModel, slopeAnaliser, groundCheck);
+            var wallCheck = new WallCheckModel(view.WallCheck);
+            var core = new PlayerCore(view.Transform, physicModel, slopeAnaliser, groundCheck, wallCheck);
 
             return core;
         }

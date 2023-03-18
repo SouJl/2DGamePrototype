@@ -58,3 +58,7 @@ MonoBehaviour:
     - {fileID: -76864899, guid: 6b375d616be87c6469e3015fec78ee99, type: 3}
     - {fileID: 2099106330, guid: 6b375d616be87c6469e3015fec78ee99, type: 3}
     - {fileID: 245415889, guid: 6b375d616be87c6469e3015fec78ee99, type: 3}
+  - <Loop>k__BackingField: 1
+    <State>k__BackingField: 6
+    _sprites:
+    - {fileID: 149204476, guid: 4822047dea6f2b24ea8c9051f2d2227e, type: 3}

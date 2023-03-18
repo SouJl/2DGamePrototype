@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
 {
-    internal class PlayerFallState : PlayerState
+    internal class PlayerWallGrabState : PlayerTouchingWallState
     {
-        private bool _isGrounded;
-        private bool _isTouchingWall;
+        private Vector2 _holdPosition;
 
-        public PlayerFallState(
+
+        public PlayerWallGrabState(
             IStateHandler stateHandler, 
             IPlayerCore playerCore, 
             IPlayerData playerData, 
@@ -20,15 +20,14 @@ namespace Root.PixelGame.StateMachines
         public override void Enter()
         {
             base.Enter();
-            animator.StartAnimation(AnimationType.Fall);
+            animator.StartAnimation(AnimationType.WallGrab);
+            _holdPosition = playerCore.CurrentPosition;
+            HoldPosition();
         }
-
 
         public override void Exit()
         {
             base.Exit();
-            _isGrounded = false;
-            _isTouchingWall = false;
         }
 
         public override void InputData()
@@ -39,36 +38,35 @@ namespace Root.PixelGame.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isGrounded)
+            if (!isExitingState)
             {
-                ChangeState(StateType.LandState);
-                return;
-            }
-
-            if (_isTouchingWall && (_xAxisInput * playerCore.FacingDirection) > 0)
-            {
-                ChangeState(StateType.WallSlideState);
-                return;
+                if (_yAxisInput < 0 || !isGrab)
+                {
+                    ChangeState(StateType.WallSlideState);
+                    return;
+                }
             }
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
-            if (Mathf.Abs(_xAxisInput) > playerData.MoveThresh)
+            if (!isExitingState)
             {
-                playerCore.CheckFlip(_xAxisInput);
-
-                playerCore.Physic.SetVelocityX(_xAxisInput * playerData.Speed);
+                HoldPosition();
             }
         }
 
         protected override void DoChecks()
         {
             base.DoChecks();
-            _isGrounded = playerCore.GroundCheck.CheckGround();
-            _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
+        }
+
+        private void HoldPosition()
+        {
+            playerCore.CurrentPosition = _holdPosition;
+            playerCore.Physic.SetVelocityX(0f);
+            playerCore.Physic.SetVelocityY(0f);
         }
     }
 }

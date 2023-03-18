@@ -8,6 +8,7 @@ namespace Root.PixelGame.StateMachines
     {
         protected bool isGrounded;
         protected bool isTouchingWall;
+        protected bool isGrab;
         protected bool isJump;
 
         public PlayerTouchingWallState(
@@ -28,11 +29,13 @@ namespace Root.PixelGame.StateMachines
             base.Exit();
             isGrounded = false;
             isTouchingWall = false;
+            isGrab = false;
         }
 
         public override void InputData()
         {
             base.InputData();
+            isGrab = Input.GetKey(KeyCode.LeftControl);
             isJump = Input.GetKeyDown(KeyCode.Space);
         }
 
@@ -47,13 +50,13 @@ namespace Root.PixelGame.StateMachines
                 return;
             }
 
-            if (isGrounded)
+            if (isGrounded && !isGrab)
             {
                 ChangeState(StateType.IdleState);
                 return;
             }
 
-            if (!isTouchingWall || ((_xAxisInput * playerCore.FacingDirection) < 0))
+            if (!isTouchingWall || ((_xAxisInput * playerCore.FacingDirection) < 0 && !isGrab))
             {
                 ChangeState(StateType.InAirState);
                 return;

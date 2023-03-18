@@ -32,6 +32,10 @@ namespace Root.PixelGame.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            if (isTouchingWall && isGrab)
+            {
+                ChangeState(StateType.WallGrabState);
+            }
         }
 
         public override void PhysicsUpdate()

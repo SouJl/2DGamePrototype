@@ -16,6 +16,8 @@ namespace Root.PixelGame.Game
 
         int WallJumpDirection { get; }
 
+        Vector3 CurrentPosition { get; set; }
+
         void CheckFlip(float xInpunt);
 
         void DetermineWallJumpDirection(bool isTouchingWall);
@@ -33,6 +35,12 @@ namespace Root.PixelGame.Game
         public int FacingDirection { get; private set; }
 
         public int WallJumpDirection { get; private set; }
+
+        public Vector3 CurrentPosition 
+        {
+            get => _transform.position;
+            set => _transform.position = value;
+        }
 
         public PlayerCore(
             Transform transform, 

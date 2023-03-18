@@ -52,7 +52,7 @@ namespace Root.PixelGame.StateMachines
             }
             if (!_isGrounded && playerCore.Physic.CurrentVelocity.y <= 0)
             {
-                ChangeState(StateType.IdleState);
+                ChangeState(StateType.FallState);
                 return;
             }
             if (_isTouchingWall && _isGrab)

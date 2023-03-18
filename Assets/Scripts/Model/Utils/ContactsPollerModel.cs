@@ -49,7 +49,7 @@ namespace PixelGame.Model
 
         public bool CheckWallFront(int facingDirection) 
         {
-            return Physics2D.Raycast(_wallCheck.position, Vector2.right * facingDirection, _playerData.wallCheckDistance, _groundLayerMask); ;
+            return Physics2D.Raycast(_wallCheck.position, Vector2.right * facingDirection, _playerData.wallCheckDistance, _groundLayerMask); 
         }
         public bool CheckWallBack(int facingDirection)
         {

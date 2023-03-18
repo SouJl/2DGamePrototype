@@ -6,8 +6,11 @@ namespace Root.PixelGame.StateMachines
 {
     internal class PlayerInAirState : PlayerState
     {
-        private bool _isJump;
         private bool _isGrounded;
+        private bool _isJump;
+        private bool _isTouchingWall;
+        private bool _isTouchingWallBack;
+
 
         public PlayerInAirState(
             IStateHandler stateHandler, 
@@ -50,6 +53,14 @@ namespace Root.PixelGame.StateMachines
                 }
                 return;
             }
+
+            if (_isJump && (_isTouchingWall || _isTouchingWallBack))
+            {
+                _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
+                playerCore.DetermineWallJumpDirection(_isTouchingWall);
+                ChangeState(StateType.WallJumpState);
+                return;
+            }
         }
 
         public override void PhysicsUpdate()
@@ -68,6 +79,10 @@ namespace Root.PixelGame.StateMachines
         {
             base.DoChecks();
             _isGrounded = playerCore.GroundCheck.CheckGround();
+
+            _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
+            _isTouchingWallBack = playerCore.WallCheck.CheckWallBack(playerCore.FacingDirection);
+
         }
     }
 }

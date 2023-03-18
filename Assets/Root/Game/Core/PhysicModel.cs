@@ -8,11 +8,13 @@ namespace Root.PixelGame.Game.Core
         
         Vector2 CurrentVelocity { get; }
 
+        void SetVelocity(float velocity, Vector2 angle, int direction);
         void SetVelocityX(float velocity);
         void SetVelocityY(float velocity);
         void ChangePhysicsMaterial(PhysicsMaterial2D newMaterial);
 
         void Update();
+
     }
 
     internal class PhysicModel : IPhysicModel
@@ -27,6 +29,13 @@ namespace Root.PixelGame.Game.Core
         public PhysicModel(Rigidbody2D rigidbody)
         {
             Rigidbody = rigidbody;
+        }
+
+        public void SetVelocity(float velocity, Vector2 angle, int direction)
+        {
+            angle.Normalize();
+            _workVelocity.Set(angle.x * velocity * direction, angle.y * velocity);
+            SetFinalVelocity();
         }
 
         public void SetVelocityX(float velocity)

@@ -1,50 +1,40 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
+using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
 {
-    internal class PlayerJumpState : PlayerAbilityState
+    internal class PlayerWallJumpState : PlayerAbilityState
     {
-        public PlayerJumpState(
+        public PlayerWallJumpState(
             IStateHandler stateHandler, 
             IPlayerCore playerCore, 
             IPlayerData playerData, 
             IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }
-
         public override void Enter()
         {
             base.Enter();
-            Jump();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void InputData()
-        {
-            base.InputData();
+            playerCore.Physic.SetVelocityX(0f);
+            animator.StartAnimation(AnimationType.InAir);
+            playerCore.Physic.SetVelocity(playerData.WallJumpForce, playerData.WallJumpAngle, playerCore.WallJumpDirection);
+            playerCore.CheckFlip(playerCore.WallJumpDirection);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-        }
-
-
-        private void Jump()
-        {
-            animator.StartAnimation(AnimationType.InAir);
-            playerCore.Physic.SetVelocityY(playerData.JumpForce);
-            isAbilityDone = true;
+            if (Time.time >= startTime + playerData.WallJumpTime)
+            {
+                isAbilityDone = true;
+            }
         }
     }
 }

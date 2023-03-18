@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4055ed8fbe014cc4a966a515f13d6d57, type: 3}
   m_Name: WallCheckConfig
   m_EditorClassIdentifier: 
-  <CheckDistance>k__BackingField: 0.5
+  <CheckDistance>k__BackingField: 0.65
   <CheckLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 24576

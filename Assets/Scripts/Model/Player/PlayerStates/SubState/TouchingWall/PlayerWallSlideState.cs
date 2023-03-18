@@ -44,7 +44,6 @@ namespace PixelGame.Model.StateMachines
                 player.SetVelocityX(_xAxisInput);
                 player.SetVelocityY(-playerData.wallSlideSpeed);
             }
-
         }
     }
 }

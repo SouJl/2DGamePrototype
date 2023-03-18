@@ -11,9 +11,14 @@ namespace Root.PixelGame.Game
         ISlopeAnaliser SlopeAnaliser { get; }
         IGroundCheck GroundCheck { get; }
         IWallCheck WallCheck { get; }
+
         int FacingDirection { get; }
 
+        int WallJumpDirection { get; }
+
         void CheckFlip(float xInpunt);
+
+        void DetermineWallJumpDirection(bool isTouchingWall);
     }
 
     internal class PlayerCore : IPlayerCore
@@ -26,6 +31,8 @@ namespace Root.PixelGame.Game
         public IWallCheck WallCheck { get; private set; }
 
         public int FacingDirection { get; private set; }
+
+        public int WallJumpDirection { get; private set; }
 
         public PlayerCore(
             Transform transform, 
@@ -56,6 +63,11 @@ namespace Root.PixelGame.Game
                 FacingDirection *= -1;
                 _transform.Rotate(0.0f, 180.0f, 0.0f);
             }
+        }
+
+        public void DetermineWallJumpDirection(bool isTouchingWall)
+        {
+            WallJumpDirection = (isTouchingWall ? -1 : 1) * FacingDirection;
         }
     }
 }

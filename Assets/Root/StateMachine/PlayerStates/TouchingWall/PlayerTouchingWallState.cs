@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
 {
-    internal class PlayerFallState : PlayerState
+    internal class PlayerTouchingWallState : PlayerState
     {
-        private bool _isGrounded;
-        private bool _isTouchingWall;
+        protected bool isGrounded;
+        protected bool isTouchingWall;
+        protected bool isJump;
 
-        public PlayerFallState(
+        public PlayerTouchingWallState(
             IStateHandler stateHandler, 
             IPlayerCore playerCore, 
             IPlayerData playerData, 
@@ -17,38 +18,44 @@ namespace Root.PixelGame.StateMachines
         {
         }
 
-
         public override void Enter()
         {
             base.Enter();
-            animator.StartAnimation(AnimationType.Fall);
         }
-
 
         public override void Exit()
         {
             base.Exit();
-            _isGrounded = false;
-            _isTouchingWall = false;
+            isGrounded = false;
+            isTouchingWall = false;
         }
 
         public override void InputData()
         {
             base.InputData();
+            isJump = Input.GetKeyDown(KeyCode.Space);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (_isGrounded)
+
+            if (isJump)
             {
-                ChangeState(StateType.LandState);
+                playerCore.DetermineWallJumpDirection(isTouchingWall);
+                ChangeState(StateType.WallJumpState);
                 return;
             }
 
-            if (_isTouchingWall && (_xAxisInput * playerCore.FacingDirection) > 0)
+            if (isGrounded)
             {
-                ChangeState(StateType.WallSlideState);
+                ChangeState(StateType.IdleState);
+                return;
+            }
+
+            if (!isTouchingWall || ((_xAxisInput * playerCore.FacingDirection) < 0))
+            {
+                ChangeState(StateType.InAirState);
                 return;
             }
         }
@@ -56,21 +63,13 @@ namespace Root.PixelGame.StateMachines
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
-            if (Mathf.Abs(_xAxisInput) > playerData.MoveThresh)
-            {
-                playerCore.CheckFlip(_xAxisInput);
-
-                playerCore.Physic.SetVelocityX(_xAxisInput * playerData.Speed);
-            }
         }
 
         protected override void DoChecks()
         {
             base.DoChecks();
-            _isGrounded = playerCore.GroundCheck.CheckGround();
-            _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
-            Debug.Log(_isTouchingWall);
+            isGrounded = playerCore.GroundCheck.CheckGround();
+            isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
         }
     }
 }

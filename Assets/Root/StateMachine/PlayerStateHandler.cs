@@ -34,6 +34,7 @@ namespace Root.PixelGame.StateMachines
             inAirState = new PlayerInAirState(this, playerCore, playerData, animator);
             jumpState = new PlayerJumpState(this, playerCore, playerData, animator);
             fallState = new PlayerFallState(this, playerCore, playerData, animator);
+            wallSlideState = new PlayerWallSlideState(this, playerCore, playerData, animator);
 
             this.stateMachine.Initialize(idleState);
         }

@@ -20,11 +20,11 @@ MonoBehaviour:
   <WallJumpTime>k__BackingField: 0.5
   <WallJumpAngle>k__BackingField: {x: 1.2, y: 2}
   <FlyThreshold>k__BackingField: 0.2
-  <FallThreshold>k__BackingField: 1
+  <FallThreshold>k__BackingField: 0.1
   <WallSlideSpeed>k__BackingField: 2
-  <StartOffset>k__BackingField: {x: 0, y: 0}
-  <StopOffset>k__BackingField: {x: 0, y: 0}
+  <StartOffset>k__BackingField: {x: -0.1, y: 0.8}
+  <StopOffset>k__BackingField: {x: 0.5, y: 0.8}
   <ClimbSmooth>k__BackingField: 0.2
   <CrouchMovementVelocity>k__BackingField: 5
   <CrouchColliderHeight>k__BackingField: 0.8
-  <StandColliderHeight>k__BackingField: 1.6
+  <StandColliderHeight>k__BackingField: 1.9

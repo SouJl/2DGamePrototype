@@ -11,6 +11,7 @@ namespace Root.PixelGame.StateMachines
         private bool _isTouchingWall;
         private bool _isTouchingWallBack;
         private bool _isGrab;
+        private bool _isTouchingLedge;
 
         public PlayerInAirState(
             IStateHandler stateHandler, 
@@ -64,6 +65,12 @@ namespace Root.PixelGame.StateMachines
                 return;
             }
 
+            if (_isTouchingWall && !_isTouchingLedge && !_isGrounded)
+            {
+                ChangeState(StateType.LedgeState);
+                return;
+            }
+
             if (_isJump && (_isTouchingWall || _isTouchingWallBack))
             {
                 _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
@@ -92,7 +99,12 @@ namespace Root.PixelGame.StateMachines
 
             _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
             _isTouchingWallBack = playerCore.WallCheck.CheckWallBack(playerCore.FacingDirection);
-
+            
+            _isTouchingLedge = playerCore.LedgeCheck.CheckLedgeTouch(playerCore.FacingDirection);
+            if (_isTouchingWall && !_isTouchingLedge)
+            {
+                playerCore.LedgeCheck.LedgePosition = playerCore.CurrentPosition;
+            }
         }
     }
 }

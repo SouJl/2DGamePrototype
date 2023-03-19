@@ -12,7 +12,6 @@ namespace Root.PixelGame.StateMachines
         private readonly IState jumpState;
         private readonly IState fallState;
         private readonly IState wallSlideState;
-        private readonly IState wallClimbState;
         private readonly IState wallGrabState;
         private readonly IState wallJumpState;
         private readonly IState ledgeState;
@@ -37,6 +36,8 @@ namespace Root.PixelGame.StateMachines
             wallSlideState = new PlayerWallSlideState(this, playerCore, playerData, animator);
             wallJumpState = new PlayerWallJumpState(this, playerCore, playerData, animator);
             wallGrabState = new PlayerWallGrabState(this, playerCore, playerData, animator);
+            ledgeState = new PlayerLedgeState(this, playerCore, playerData, animator);
+            climbState = new PlayerClimbState(this, playerCore, playerData, animator);
 
             this.stateMachine.Initialize(idleState);
         }
@@ -55,7 +56,6 @@ namespace Root.PixelGame.StateMachines
                 StateType.JumpState => jumpState,
                 StateType.FallState => fallState,
                 StateType.WallSlideState => wallSlideState,
-                StateType.WallClimbState => wallClimbState,
                 StateType.WallGrabState => wallGrabState,
                 StateType.WallJumpState => wallJumpState,
                 StateType.LedgeState => ledgeState,

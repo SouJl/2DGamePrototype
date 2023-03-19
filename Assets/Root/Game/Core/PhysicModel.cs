@@ -14,7 +14,7 @@ namespace Root.PixelGame.Game.Core
         void ChangePhysicsMaterial(PhysicsMaterial2D newMaterial);
 
         void Update();
-
+        void SetVelocityZero();
     }
 
     internal class PhysicModel : IPhysicModel
@@ -62,6 +62,12 @@ namespace Root.PixelGame.Game.Core
         public void Update()
         {
             CurrentVelocity = Rigidbody.velocity;
+        }
+
+        public void SetVelocityZero()
+        {
+            Rigidbody.velocity =  Vector2.zero;
+            CurrentVelocity = Vector2.zero;
         }
     }
 }

@@ -78,6 +78,9 @@ namespace Root.PixelGame.StateMachines
             DoChecks();
         }
 
-        protected override void DoChecks() { }
+        protected override void DoChecks()
+        {
+            isAnimationEnd = animator.IsAnimationEnd;
+        }
     }
 }

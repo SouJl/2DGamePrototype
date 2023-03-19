@@ -11,7 +11,7 @@ namespace Root.PixelGame.Game
         ISlopeAnaliser SlopeAnaliser { get; }
         IGroundCheck GroundCheck { get; }
         IWallCheck WallCheck { get; }
-
+        ILedgeCheck LedgeCheck { get; }
         int FacingDirection { get; }
 
         int WallJumpDirection { get; }
@@ -31,7 +31,7 @@ namespace Root.PixelGame.Game
         public ISlopeAnaliser SlopeAnaliser { get; private set; }
         public IGroundCheck GroundCheck { get; private set; }
         public IWallCheck WallCheck { get; private set; }
-
+        public ILedgeCheck LedgeCheck { get; private set; }
         public int FacingDirection { get; private set; }
 
         public int WallJumpDirection { get; private set; }
@@ -47,7 +47,8 @@ namespace Root.PixelGame.Game
             IPhysicModel physic,
             ISlopeAnaliser slopeAnaliser,
             IGroundCheck groundCheck,
-            IWallCheck wallCheck)
+            IWallCheck wallCheck,
+            ILedgeCheck ledgeCheck)
         {
             _transform = transform;
 
@@ -61,6 +62,9 @@ namespace Root.PixelGame.Game
             WallCheck
               = wallCheck ?? throw new ArgumentNullException(nameof(wallCheck));
 
+            LedgeCheck
+             = ledgeCheck ?? throw new ArgumentNullException(nameof(ledgeCheck));
+            
             FacingDirection = 1;
         }
 

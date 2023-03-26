@@ -51,13 +51,9 @@ namespace Root.PixelGame.Game
             _playerBehavior.CurrentState.PhysicsUpdate();
         }
 
-        private IPlayerData LoadData(string path)
-        {
-            var data = Resources.Load<PlayerData>(path);
-
-            return data;
-        }
-
+        private IPlayerData LoadData(string path) => 
+            ResourceLoader.LoadObject<PlayerData>(path);
+        
         private IPlayerCore CreatePlayerCore(IPlayerView view)
         {
             var physicModel = new PhysicModel(view.Rigidbody);

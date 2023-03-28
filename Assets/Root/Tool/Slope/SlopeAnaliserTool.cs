@@ -45,12 +45,8 @@ namespace Root.PixelGame.Tool
             SlopeCheckVertical(checkPos);
         }
 
-        private ISlopeAnaliseConfig LoadConfig(string path)
-        {
-            var config = Resources.Load<SlopeAnaliseConfig>(path);
-
-            return config;
-        }
+        private ISlopeAnaliseConfig LoadConfig(string path) => 
+            ResourceLoader.LoadObject<SlopeAnaliseConfig>(path);
 
         private void SlopeCheckHorizontal(Vector2 checkPos)
         {

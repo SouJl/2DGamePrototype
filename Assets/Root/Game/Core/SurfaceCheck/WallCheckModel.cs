@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Root.PixelGame.Tool;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Core
 {
@@ -22,11 +23,8 @@ namespace Root.PixelGame.Game.Core
             config = LoadConfig(_configPath);
         }
 
-        private ISurfaceCheckConfig LoadConfig(string path)
-        {
-            var config = Resources.Load<SurfaceCheckConfig>(path);
-            return config;
-        }
+        private ISurfaceCheckConfig LoadConfig(string path) => 
+            ResourceLoader.LoadObject<SurfaceCheckConfig>(path);
 
         public bool CheckWallFront(int facingDirection) =>
             Physics2D.Raycast(_wallCheck.position, Vector2.right * facingDirection, config.CheckDistance, config.CheckLayerMask);

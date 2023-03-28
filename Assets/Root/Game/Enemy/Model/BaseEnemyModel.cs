@@ -2,5 +2,11 @@
 {
     internal interface IEnemyModel
     {
+        
+    }
+
+    public abstract class BaseEnemyModel
+    {
+
     }
 }

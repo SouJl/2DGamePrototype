@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Root.PixelGame.Game.Core;
+using System;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -6,15 +7,20 @@ namespace Root.PixelGame.Game.Enemy
     {
         private readonly IEnemyView _view;
         private readonly IEnemyModel _model;
+        private readonly IEnemyCore _core;
 
         public EnemyController(
             IEnemyView view, 
-            IEnemyModel model)
+            IEnemyModel model,
+            IEnemyCore core)
         {
             _view 
                 = view ?? throw new ArgumentNullException(nameof(view));
             _model
               = model ?? throw new ArgumentNullException(nameof(model));
+            _core 
+                = core ?? throw new ArgumentNullException(nameof(core));
+
         }
 
         public override void Execute()
@@ -24,7 +30,8 @@ namespace Root.PixelGame.Game.Enemy
 
         public override void FixedExecute()
         {
-            
+            _core.Move(fixedTime);
+            _core.Rotate(fixedTime);
         }
     }
 }

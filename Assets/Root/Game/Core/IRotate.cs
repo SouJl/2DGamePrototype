@@ -2,8 +2,8 @@
 
 namespace Root.PixelGame.Game.Core
 {
-    internal interface IMove
+    internal interface IRotate
     {
-        void Move(Vector3 direction);
+        void Rotate(Vector3 direction);
     }
 }

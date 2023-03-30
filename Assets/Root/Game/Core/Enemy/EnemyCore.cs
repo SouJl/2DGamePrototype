@@ -14,7 +14,9 @@ namespace Root.PixelGame.Game.Core
         private readonly IMove _mover;
         private readonly IRotate _rotator;
 
-        public EnemyCore(IMove mover, IRotate rotator) 
+        public EnemyCore(
+            IMove mover, 
+            IRotate rotator) 
         {
             _mover 
                 = mover ?? throw new ArgumentNullException(nameof(mover));

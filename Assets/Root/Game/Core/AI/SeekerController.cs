@@ -15,7 +15,7 @@ namespace Root.PixelGame.Game.AI
         private readonly Seeker _seeker;
         private readonly Transform _handler;
         private readonly Transform _target;
-        private readonly IAIModel _model;
+        private readonly IPathAIModel _model;
 
         private bool _isPathCompete;
 
@@ -25,7 +25,7 @@ namespace Root.PixelGame.Game.AI
             Seeker seeker, 
             Transform handler, 
             Transform target, 
-            IAIModel model)
+            IPathAIModel model)
         {
             _seeker 
                 = seeker ?? throw new ArgumentNullException(nameof(seeker));

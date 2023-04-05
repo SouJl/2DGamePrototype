@@ -1,9 +1,15 @@
 ﻿using Root.PixelGame.Game.Core;
 using System;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal class EnemyController : BaseController
+    internal interface IEnemyController
+    {
+        void OnCollisionContact(Collision2D collision);
+    }
+
+    internal class EnemyController : BaseController, IEnemyController
     {
         private readonly IEnemyView _view;
         private readonly IEnemyModel _model;
@@ -32,6 +38,11 @@ namespace Root.PixelGame.Game.Enemy
         {
             _core.Move(fixedTime);
             _core.Rotate(fixedTime);
+        }
+
+        public void OnCollisionContact(Collision2D collision)
+        {
+            Debug.Log($"On Contact {collision.gameObject.name}");
         }
     }
 }

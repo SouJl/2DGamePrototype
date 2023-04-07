@@ -12,8 +12,8 @@ namespace Root.PixelGame.Game.AI
 
     internal class AIFactory : IAIFactory
     {
-        private readonly string PatrolAIConfigPath= @"Enemy/AI/PatrolAIConfig";
-        private readonly string StalkerAIConfigPath = @"Enemy/AI/StalekrAIConfig";
+        private readonly string PatrolAIConfigPath= @"Configs/AI/PatrolAIConfig";
+        private readonly string StalkerAIConfigPath = @"Configs/AI/StalekrAIConfig";
 
         public IAIBehaviour CreateAIBehavior(IAIViewComponent aIView)
         {

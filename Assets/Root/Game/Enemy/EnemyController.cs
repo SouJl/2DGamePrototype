@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal interface IEnemyController
+    internal interface IEnemyController : IExecute
     {
         void OnCollisionContact(Collision2D collision);
     }
@@ -27,6 +27,7 @@ namespace Root.PixelGame.Game.Enemy
             _core 
                 = core ?? throw new ArgumentNullException(nameof(core));
 
+            _view.Init(this);
         }
 
         public override void Execute()

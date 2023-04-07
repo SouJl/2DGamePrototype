@@ -15,7 +15,7 @@ namespace Root.PixelGame.Game.Core
             IEnemyData data,
             IMove mover, 
             IRotate rotator,
-            IAIBehaviour aIBehaviour) : base(transform, physic, data, mover, rotator)
+            IAIBehaviour aIBehaviour) : base(transform, data, mover, rotator)
         {
             ChangeAI(aIBehaviour);
         }
@@ -32,16 +32,12 @@ namespace Root.PixelGame.Game.Core
         public override void Move(float time)
         {
             var newVel = _aIBehaviour.GetNewVelocity(transform.position) * data.Speed * time;
-            if (Mathf.Abs(newVel.x) > data.MoveThresh) 
-            {
-                physic.SetVelocityX(newVel.x);
-                physic.SetVelocityY(newVel.y);
-            }          
+            mover.Move(newVel);
         }
 
         public override void Rotate(float time)
         {
-            base.Rotate(time);
+            rotator.Rotate();
         }
     }
 }

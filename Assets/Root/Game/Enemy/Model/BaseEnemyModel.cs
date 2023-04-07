@@ -5,7 +5,7 @@
         
     }
 
-    public abstract class BaseEnemyModel
+    public abstract class BaseEnemyModel : IEnemyModel
     {
 
     }

@@ -46,5 +46,6 @@ namespace Root.PixelGame.Game.Enemy
         {
             Debug.Log($"On Contact {collision.gameObject.name}");
         }
+
     }
 }

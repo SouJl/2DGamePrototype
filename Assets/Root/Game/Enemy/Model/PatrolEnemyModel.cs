@@ -2,6 +2,8 @@
 {
     internal class PatrolEnemyModel : BaseEnemyModel
     {
-
+        public PatrolEnemyModel(IEnemyData data) : base(data)
+        {
+        }
     }
 }

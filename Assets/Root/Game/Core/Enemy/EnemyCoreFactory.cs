@@ -1,21 +1,21 @@
 ﻿using Root.PixelGame.Game.AI;
 using Root.PixelGame.Game.Enemy;
-using Root.PixelGame.Tool;
+using System;
 
 namespace Root.PixelGame.Game.Core
 { 
     internal class EnemyCoreFactory
     {
-        private readonly string StalkerEnemyDataPath = @"Enemy/StalkerEnemyData";
-        private readonly string PatrolEnemyDataPath = @"Enemy/PatrolEnemyData";
-
+        private readonly IEnemyData _data;
         private readonly IAIFactory aIFactory;
 
-        public EnemyCoreFactory() 
+        public EnemyCoreFactory(IEnemyData data) 
         {
+            _data 
+                = data ?? throw new ArgumentNullException(nameof(data));
+
             aIFactory = new AIFactory();
         }
-
 
         public IEnemyCore GetEnemyCore(IEnemyView view)
         {
@@ -26,24 +26,20 @@ namespace Root.PixelGame.Game.Core
                 case StalkerEnemyView stalkerEnemy:
                     {
                         IPhysicModel physic = new PhysicModel(stalkerEnemy.EnemyRigidbody);
-                        IEnemyData data = LoadData(StalkerEnemyDataPath);
-                        IMove mover = new PhysicsMover(physic, data);
+                        IMove mover = new PhysicsMover(physic, _data);
                         IRotate rotator = new SelfRotator(stalkerEnemy.EnemyTransfrom, physic);
                         IAIBehaviour aI = aIFactory.CreateAIBehavior(stalkerEnemy.AIViewComponent);
-                        return new AIEnemyCore(stalkerEnemy.EnemyTransfrom, data, mover, rotator, aI);
+                        return new AIEnemyCore(stalkerEnemy.EnemyTransfrom, _data, mover, rotator, aI);
                     }
                 case PatrolEnemyView patrolEnemy: 
                     {
                         IPhysicModel physic = new PhysicModel(patrolEnemy.EnemyRigidbody);
-                        IEnemyData data = LoadData(PatrolEnemyDataPath);
-                        IMove mover = new PhysicsMover(physic, data);
+                        IMove mover = new PhysicsMover(physic, _data);
                         IRotate rotator = new SelfRotator(patrolEnemy.EnemyTransfrom, physic);
                         IAIBehaviour aI = aIFactory.CreateAIBehavior(patrolEnemy.AIViewComponent);
-                        return new AIEnemyCore(patrolEnemy.EnemyTransfrom, data, mover, rotator, aI);
+                        return new AIEnemyCore(patrolEnemy.EnemyTransfrom, _data, mover, rotator, aI);
                     }
             }
         }
-
-        private IEnemyData LoadData(string path) => ResourceLoader.LoadObject<EnemyDataConfig>(path);
     }
 }

@@ -12,8 +12,7 @@ namespace Root.PixelGame.Game.Enemy
         
         public EnemiesHandler(IList<IEnemyView> enemyViews)
         {
-            var enemyCoreFactory = new EnemyCoreFactory();
-            _factory = new EnemyControllerFactory(enemyCoreFactory);
+            _factory = new EnemyControllerFactory();
             _enemiesList = new List<IEnemyController>();
             foreach (var enemyView in enemyViews)
             {

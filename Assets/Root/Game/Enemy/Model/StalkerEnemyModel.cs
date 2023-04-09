@@ -2,6 +2,8 @@
 {
     internal class StalkerEnemyModel : BaseEnemyModel
     {
-
+        public StalkerEnemyModel(IEnemyData data) : base(data)
+        {
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Root.PixelGame.Game.Enemy
         public Transform EnemyTransfrom => _enemyTransform;
         public Rigidbody2D EnemyRigidbody => _enemyRigidbody;
        
-        public void Init(IEnemyController controller)
+        public virtual void Init(IEnemyController controller)
         {
             _controller = controller;
         }

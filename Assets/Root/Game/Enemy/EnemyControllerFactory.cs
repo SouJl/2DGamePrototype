@@ -30,6 +30,12 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyCore core = _coreFactory.GetEnemyCore(stalkerEnemy);
                         return new EnemyController(stalkerEnemy, model, core);
                     }
+                case PatrolEnemyView patrolEnemy: 
+                    {
+                        IEnemyModel model = new PatrolEnemyModel();
+                        IEnemyCore core = _coreFactory.GetEnemyCore(patrolEnemy);
+                        return new EnemyController(patrolEnemy, model, core);
+                    }
             }
         }
     }

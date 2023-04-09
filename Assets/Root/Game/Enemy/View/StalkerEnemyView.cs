@@ -9,6 +9,11 @@ namespace Root.PixelGame.Game.Enemy
 
         public IAIViewComponent AIViewComponent => _aIViewComponent;
 
-        
+
+        public override void Init(IEnemyController controller)
+        {
+            base.Init(controller);
+        }
+
     }
 }

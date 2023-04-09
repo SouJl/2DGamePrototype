@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StalkerEnemyData
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  <Speed>k__BackingField: 10
+  <Speed>k__BackingField: 80
   <MoveThresh>k__BackingField: 0.05

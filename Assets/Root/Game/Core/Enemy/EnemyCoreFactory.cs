@@ -1,11 +1,19 @@
-﻿using Root.PixelGame.Game.Enemy;
+﻿using Root.PixelGame.Game.AI;
+using Root.PixelGame.Game.Enemy;
 using Root.PixelGame.Tool;
 
 namespace Root.PixelGame.Game.Core
 { 
     internal class EnemyCoreFactory
     {
-        private readonly string StalkerEnemyDataPath = @"Configs/Enemy/StalkerEnemyData";
+        private readonly string StalkerEnemyDataPath = @"Enemy/StalkerEnemyData";
+        private readonly IAIFactory aIFactory;
+
+        public EnemyCoreFactory() 
+        {
+            aIFactory = new AIFactory();
+        }
+
 
         public IEnemyCore GetEnemyCore(IEnemyView view)
         {
@@ -19,7 +27,8 @@ namespace Root.PixelGame.Game.Core
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
                         IMove mover = new PhysicsMover(physic, data);
                         IRotate rotator = new SelfRotator(stalkerEnemy.EnemyTransfrom, physic);
-                        return new EnemyCore(stalkerEnemy.EnemyTransfrom, data, mover, rotator);
+                        IAIBehaviour aI = aIFactory.CreateAIBehavior(stalkerEnemy.AIViewComponent);
+                        return new AIEnemyCore(stalkerEnemy.EnemyTransfrom, data, mover, rotator, aI);
                     }
             }
         }

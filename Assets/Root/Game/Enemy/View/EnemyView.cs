@@ -17,6 +17,7 @@ namespace Root.PixelGame.Game.Enemy
 
         public Transform EnemyTransfrom => _enemyTransform;
         public Rigidbody2D EnemyRigidbody => _enemyRigidbody;
+       
         public void Init(IEnemyController controller)
         {
             _controller = controller;
@@ -28,9 +29,11 @@ namespace Root.PixelGame.Game.Enemy
             _enemyRigidbody = gameObject.GetComponent<Rigidbody2D>();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             _controller.OnCollisionContact(collision);
         }
+
+ 
     }
 }

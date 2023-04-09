@@ -8,5 +8,7 @@ namespace Root.PixelGame.Game.Enemy
         [SerializeField] private SeekerAIViewComponent _aIViewComponent;
 
         public IAIViewComponent AIViewComponent => _aIViewComponent;
+
+        
     }
 }

@@ -11,7 +11,6 @@ namespace Root.PixelGame.Game.Core
 
         public AIEnemyCore(
             Transform transform,
-            IPhysicModel physic,
             IEnemyData data,
             IMove mover, 
             IRotate rotator,

@@ -6,7 +6,7 @@ namespace Root.PixelGame.Game.Enemy
 {
     internal interface IEnemyController : IExecute
     {
-        void OnCollisionContact(Collision2D collision);
+        void OnCollisionContact(Collider2D collision);
     }
 
     internal class EnemyController : BaseController, IEnemyController
@@ -32,16 +32,17 @@ namespace Root.PixelGame.Game.Enemy
 
         public override void Execute()
         {
-           
+            
         }
 
         public override void FixedExecute()
         {
+            _core.UpdateCoreData(Time.fixedDeltaTime);
             _core.Move(fixedTime);
             _core.Rotate(fixedTime);
         }
 
-        public void OnCollisionContact(Collision2D collision)
+        public void OnCollisionContact(Collider2D collision)
         {
             Debug.Log($"On Contact {collision.gameObject.name}");
         }

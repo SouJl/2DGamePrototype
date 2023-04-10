@@ -1,4 +1,6 @@
-﻿using Root.PixelGame.Game.Core;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game.Core;
+using Root.PixelGame.StateMachines;
 using System;
 using UnityEngine;
 
@@ -13,34 +15,42 @@ namespace Root.PixelGame.Game.Enemy
     {
         private readonly IEnemyView _view;
         private readonly IEnemyModel _model;
-        private readonly IEnemyCore _core;
+
+        private readonly IAnimatorController _animator;
+        private readonly IStateMachine _stateMachine;
+        private readonly IStateHandler _stateHandler;
 
         public EnemyController(
             IEnemyView view, 
             IEnemyModel model,
-            IEnemyCore core)
+            IAnimatorController animator,
+            IStateMachine stateMachine)
         {
             _view 
                 = view ?? throw new ArgumentNullException(nameof(view));
             _model
               = model ?? throw new ArgumentNullException(nameof(model));
-            _core 
-                = core ?? throw new ArgumentNullException(nameof(core));
+            _animator
+                = animator ?? throw new ArgumentNullException(nameof(animator));
+            _stateMachine
+                = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
 
             _view.Init(this);
         }
 
+
         public override void Execute()
         {
-            
+            _animator.Update();
+            _stateMachine.CurrentState.InputData();
+            _stateMachine.CurrentState.LogicUpdate();
         }
 
         public override void FixedExecute()
         {
-            _core.UpdateCoreData(Time.fixedDeltaTime);
-            _core.Move(fixedTime);
-            _core.Rotate(fixedTime);
+            _stateMachine.CurrentState.PhysicsUpdate();
         }
+
 
         public void OnCollisionContact(Collider2D collision)
         {

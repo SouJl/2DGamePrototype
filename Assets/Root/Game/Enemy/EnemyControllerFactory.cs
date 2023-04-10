@@ -1,4 +1,6 @@
-﻿using Root.PixelGame.Game.Core;
+﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game.Core;
+using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
 
@@ -29,23 +31,36 @@ namespace Root.PixelGame.Game.Enemy
                     {
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
                         IEnemyModel model = new StalkerEnemyModel(data);
-                        var coreFactory = new EnemyCoreFactory(data);
-                        IEnemyCore core = coreFactory.GetEnemyCore(stalkerEnemy);
-                        return new EnemyController(stalkerEnemy, model, core);
+                        IAnimatorController animator = GetAnimatorController(stalkerEnemy);
+                        IEnemyCore core = GetEnemyCore(stalkerEnemy, data);
+                        IStateMachine stateMachine = new StateMachine(); 
+                        _ = new EnemyStateHandler(stateMachine, core, animator);
+                        
+                        return new EnemyController(stalkerEnemy, model, animator, stateMachine);
                     }
                 case PatrolEnemyView patrolEnemy: 
                     {
                         IEnemyData data = LoadData(PatrolEnemyDataPath);
                         IEnemyModel model = new PatrolEnemyModel(data);
-                        var coreFactory = new EnemyCoreFactory(data);
-                        IEnemyCore core = coreFactory.GetEnemyCore(patrolEnemy);
-                        return new EnemyController(patrolEnemy, model, core);
+                        IAnimatorController animator = GetAnimatorController(patrolEnemy);
+                        IEnemyCore core = GetEnemyCore(patrolEnemy, data);
+                        IStateMachine stateMachine = new StateMachine();
+                        _ = new EnemyStateHandler(stateMachine, core, animator);
+
+                        return new EnemyController(patrolEnemy, model, animator, stateMachine);
                     }
             }
         }
 
-
         private IEnemyData LoadData(string path) => ResourceLoader.LoadObject<EnemyDataConfig>(path);
 
+        private IAnimatorController GetAnimatorController(EnemyView view)  
+            =>  new SpriteAnimatorController(view.Animation.SpriteRenderer, view.Animation.AnimationConfig);
+
+        private IEnemyCore GetEnemyCore(IEnemyView view, IEnemyData data)
+        {
+            var coreFactory = new EnemyCoreFactory(data);
+            return coreFactory.GetEnemyCore(view);
+        }
     }
 }

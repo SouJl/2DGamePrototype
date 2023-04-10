@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Root.Components;
+using Root.PixelGame.Animation;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -12,12 +14,14 @@ namespace Root.PixelGame.Game.Enemy
     {
         [SerializeField] private Transform _enemyTransform;
         [SerializeField] private Rigidbody2D _enemyRigidbody;
+        [SerializeField] private AnimationViewComponent _animation; 
 
         private IEnemyController _controller;
 
         public Transform EnemyTransfrom => _enemyTransform;
         public Rigidbody2D EnemyRigidbody => _enemyRigidbody;
-       
+        public AnimationViewComponent Animation => _animation;
+
         public virtual void Init(IEnemyController controller)
         {
             _controller = controller;

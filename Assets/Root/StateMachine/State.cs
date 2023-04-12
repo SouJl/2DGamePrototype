@@ -17,11 +17,21 @@ namespace Root.PixelGame.StateMachines
 
     internal abstract class State : IState
     {
-        protected readonly IStateHandler stateHandler;
+        private readonly IStateHandler _stateHandler;
+        private readonly IStateMachine _stateMachine;
+         
+        public State(
+            IStateHandler stateHandler,
+            IStateMachine stateMachine)
+        {
+            _stateHandler
+             = stateHandler ?? throw new ArgumentNullException(nameof(stateHandler));
+            _stateMachine
+               = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine)); 
+        }
 
-        public State(IStateHandler stateHandler) =>
-             this.stateHandler
-                = stateHandler ?? throw new ArgumentNullException(nameof(stateHandler));
+        protected void ChangeState(StateType newStateType) 
+            => _stateMachine.ChangeState(_stateHandler.GetState(newStateType));
 
         public virtual void Enter() { }
 
@@ -35,6 +45,5 @@ namespace Root.PixelGame.StateMachines
 
         protected abstract void DoChecks();
 
-        protected void ChangeState(StateType newStateType) => stateHandler.ChangeState(newStateType);
     }
 }

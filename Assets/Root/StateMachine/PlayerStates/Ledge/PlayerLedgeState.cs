@@ -11,10 +11,11 @@ namespace Root.PixelGame.StateMachines
         private bool _isHanging;
 
         public PlayerLedgeState(
-            IStateHandler stateHandler, 
-            IPlayerCore playerCore, 
-            IPlayerData playerData, 
-            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+            IStateHandler stateHandler,
+            IStateMachine stateMachine,
+            IPlayerCore playerCore,
+            IPlayerData playerData,
+            IAnimatorController animator) : base(stateHandler, stateMachine, playerCore, playerData, animator)
         {
         }
         public override void Enter()

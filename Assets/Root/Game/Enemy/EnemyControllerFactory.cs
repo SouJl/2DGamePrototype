@@ -3,6 +3,7 @@ using Root.PixelGame.Game.Core;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
+using System.Collections.Generic;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -34,9 +35,8 @@ namespace Root.PixelGame.Game.Enemy
                         IAnimatorController animator = GetAnimatorController(stalkerEnemy);
                         IEnemyCore core = GetEnemyCore(stalkerEnemy, data);
                         IStateMachine stateMachine = new StateMachine(); 
-                        _ = new EnemyStateHandler(stateMachine, core, animator);
                         
-                        return new EnemyController(stalkerEnemy, model, animator, stateMachine);
+                        return new EnemyController(stalkerEnemy, model, core, animator, stateMachine);
                     }
                 case PatrolEnemyView patrolEnemy: 
                     {
@@ -45,9 +45,8 @@ namespace Root.PixelGame.Game.Enemy
                         IAnimatorController animator = GetAnimatorController(patrolEnemy);
                         IEnemyCore core = GetEnemyCore(patrolEnemy, data);
                         IStateMachine stateMachine = new StateMachine();
-                        _ = new EnemyStateHandler(stateMachine, core, animator);
 
-                        return new EnemyController(patrolEnemy, model, animator, stateMachine);
+                        return new EnemyController(patrolEnemy, model, core, animator, stateMachine);
                     }
             }
         }

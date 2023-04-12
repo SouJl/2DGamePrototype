@@ -12,9 +12,10 @@ namespace Root.PixelGame.StateMachines
 
         public PlayerMoveState(
             IStateHandler stateHandler,
+            IStateMachine stateMachine,
             IPlayerCore playerCore,
             IPlayerData playerData,
-            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+            IAnimatorController animator) : base(stateHandler, stateMachine, playerCore, playerData, animator)
         {
         }
 

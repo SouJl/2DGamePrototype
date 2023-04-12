@@ -18,9 +18,10 @@ namespace Root.PixelGame.StateMachines.Enemy
         protected readonly float fixedTime;
 
         public EnemyState(
-            IStateHandler stateHandler,
-            IEnemyCore core, 
-            IAnimatorController animator) : base(stateHandler)
+            IStateHandler stateHandler, 
+            IStateMachine stateMachine,
+            IEnemyCore core,
+            IAnimatorController animator) : base(stateHandler, stateMachine)
         {
             this.core 
                 = core ?? throw new ArgumentNullException(nameof(core));
@@ -55,6 +56,7 @@ namespace Root.PixelGame.StateMachines.Enemy
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            animator.Update();
         }
 
         public override void PhysicsUpdate()

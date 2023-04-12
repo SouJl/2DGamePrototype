@@ -11,9 +11,10 @@ namespace Root.PixelGame.StateMachines
 
         public PlayerClimbState(
             IStateHandler stateHandler,
+            IStateMachine stateMachine,
             IPlayerCore playerCore,
-            IPlayerData playerData, 
-            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+            IPlayerData playerData,
+            IAnimatorController animator) : base(stateHandler, stateMachine, playerCore, playerData, animator)
         {
         }
 

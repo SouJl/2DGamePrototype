@@ -1,4 +1,6 @@
-﻿namespace Root.PixelGame.Game.Enemy
+﻿using Root.PixelGame.StateMachines;
+
+namespace Root.PixelGame.Game.Enemy
 {
     internal interface IEnemyModel
     {

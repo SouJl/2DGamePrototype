@@ -7,10 +7,10 @@ namespace Root.PixelGame.StateMachines.Enemy
     {
         public EnemyIdleState(
             IStateHandler stateHandler, 
-            IEnemyCore core, 
-            IAnimatorController animator) : base(stateHandler, core, animator)
+            IStateMachine stateMachine, 
+            IEnemyCore core,
+            IAnimatorController animator) : base(stateHandler, stateMachine, core, animator)
         {
-
         }
 
         public override void Enter()

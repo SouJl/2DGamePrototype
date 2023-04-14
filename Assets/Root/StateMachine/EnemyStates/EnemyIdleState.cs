@@ -7,9 +7,8 @@ namespace Root.PixelGame.StateMachines.Enemy
     {
         public EnemyIdleState(
             IStateHandler stateHandler, 
-            IStateMachine stateMachine, 
             IEnemyCore core,
-            IAnimatorController animator) : base(stateHandler, stateMachine, core, animator)
+            IAnimatorController animator) : base(stateHandler, core, animator)
         {
         }
 

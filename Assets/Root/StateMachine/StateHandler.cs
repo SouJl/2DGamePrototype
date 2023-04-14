@@ -3,23 +3,50 @@ using System.Collections.Generic;
 
 namespace Root.PixelGame.StateMachines
 {
-    internal interface IStateHandler
+    internal interface IStateHandler :IExecute
     {
-        IState GetState(StateType stateType);
+        void Init();
+        void ChangeState(StateType stateType);
     }
-    internal class StateHandler : IStateHandler
-    {
-        private IDictionary<StateType, IState> _usedStates;
 
-        public StateHandler(IDictionary<StateType, IState> usedStates)
+    internal abstract class StateHandler : IStateHandler, IDisposable
+    {
+        protected readonly IStateMachine stateMachine;
+        protected IDictionary<StateType, IState> states;
+
+        public StateHandler()
         {
-            _usedStates 
-                = usedStates ?? throw new ArgumentNullException(nameof(usedStates));
+            stateMachine = new StateMachine();
         }
 
+        public void Init()
+        {     
+            states = CreateStates();
+            Initialize();
+        }
 
-        public IState GetState(StateType stateType) 
-            => _usedStates[stateType];
+        public void ChangeState(StateType state) 
+            => stateMachine.ChangeState(states[state]);
 
+        public virtual void Dispose()
+        {
+            states.Clear();
+            stateMachine.Dispose();
+        }
+        public virtual void Execute()
+        {
+            stateMachine.CurrentState.InputData();
+            stateMachine.CurrentState.LogicUpdate();
+        }
+
+        public virtual void FixedExecute()
+        {
+            stateMachine.CurrentState.PhysicsUpdate();
+        }
+
+        protected abstract void Initialize();
+        protected abstract IDictionary<StateType, IState> CreateStates();
+
+   
     }
 }

@@ -11,10 +11,9 @@ namespace Root.PixelGame.StateMachines
 
         public PlayerWallGrabState(
             IStateHandler stateHandler,
-            IStateMachine stateMachine,
             IPlayerCore playerCore,
             IPlayerData playerData,
-            IAnimatorController animator) : base(stateHandler, stateMachine, playerCore, playerData, animator)
+            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }
 

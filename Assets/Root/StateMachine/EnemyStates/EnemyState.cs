@@ -19,9 +19,8 @@ namespace Root.PixelGame.StateMachines.Enemy
 
         public EnemyState(
             IStateHandler stateHandler, 
-            IStateMachine stateMachine,
             IEnemyCore core,
-            IAnimatorController animator) : base(stateHandler, stateMachine)
+            IAnimatorController animator) : base(stateHandler)
         {
             this.core 
                 = core ?? throw new ArgumentNullException(nameof(core));

@@ -34,9 +34,9 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyModel model = new StalkerEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(stalkerEnemy);
                         IEnemyCore core = GetEnemyCore(stalkerEnemy, data);
-                        IStateMachine stateMachine = new StateMachine(); 
+                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
                         
-                        return new EnemyController(stalkerEnemy, model, core, animator, stateMachine);
+                        return new EnemyController(stalkerEnemy, model, animator, stateHandler);
                     }
                 case PatrolEnemyView patrolEnemy: 
                     {
@@ -44,9 +44,9 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(patrolEnemy);
                         IEnemyCore core = GetEnemyCore(patrolEnemy, data);
-                        IStateMachine stateMachine = new StateMachine();
+                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
-                        return new EnemyController(patrolEnemy, model, core, animator, stateMachine);
+                        return new EnemyController(patrolEnemy, model, animator, stateHandler);
                     }
             }
         }

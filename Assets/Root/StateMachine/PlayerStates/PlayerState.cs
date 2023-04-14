@@ -23,10 +23,9 @@ namespace Root.PixelGame.StateMachines
 
         protected PlayerState(
             IStateHandler stateHandler,
-            IStateMachine stateMachine,
             IPlayerCore playerCore,
             IPlayerData playerData,
-            IAnimatorController animator) : base(stateHandler, stateMachine)
+            IAnimatorController animator) : base(stateHandler)
         {
             this.playerCore
                = playerCore ?? throw new ArgumentNullException(nameof(playerCore));

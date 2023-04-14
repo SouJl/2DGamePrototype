@@ -3,8 +3,9 @@ using Root.PixelGame.Game.Enemy;
 using System;
 
 namespace Root.PixelGame.Game.Core
-{ 
-    internal class EnemyCoreFactory
+{
+
+    internal class EnemyCoreFactory : ICoreFactory<IEnemyCore, IEnemyView>
     {
         private readonly IEnemyData _data;
         private readonly IAIFactory aIFactory;
@@ -17,7 +18,7 @@ namespace Root.PixelGame.Game.Core
             aIFactory = new AIFactory();
         }
 
-        public IEnemyCore GetEnemyCore(IEnemyView view)
+        public IEnemyCore GetCore(IEnemyView view)
         {
             switch (view)
             {

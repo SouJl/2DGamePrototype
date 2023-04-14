@@ -16,6 +16,7 @@ namespace Root.PixelGame.Game.Enemy
     {
         private readonly string StalkerEnemyDataPath = @"Enemy/StalkerEnemyData";
         private readonly string PatrolEnemyDataPath = @"Enemy/PatrolEnemyData";
+        private readonly string ChaserEnemyDataPath = @"Enemy/ChaserEnemyData";
 
         public EnemyControllerFactory()
         {
@@ -48,6 +49,16 @@ namespace Root.PixelGame.Game.Enemy
 
                         return new EnemyController(patrolEnemy, model, animator, stateHandler);
                     }
+                case ChaserEnemyView chaserEnemy: 
+                    {
+                        IEnemyData data = LoadData(ChaserEnemyDataPath);
+                        IEnemyModel model = new PatrolEnemyModel(data);
+                        IAnimatorController animator = GetAnimatorController(chaserEnemy);
+                        IEnemyCore core = GetEnemyCore(chaserEnemy, data);
+                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
+
+                        return new EnemyController(chaserEnemy, model, animator, stateHandler);
+                    }
             }
         }
 
@@ -59,7 +70,7 @@ namespace Root.PixelGame.Game.Enemy
         private IEnemyCore GetEnemyCore(IEnemyView view, IEnemyData data)
         {
             var coreFactory = new EnemyCoreFactory(data);
-            return coreFactory.GetEnemyCore(view);
+            return coreFactory.GetCore(view);
         }
     }
 }

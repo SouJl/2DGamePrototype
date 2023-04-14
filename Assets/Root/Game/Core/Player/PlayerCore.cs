@@ -1,9 +1,8 @@
-﻿using Root.PixelGame.Game.Core;
-using Root.PixelGame.Tool;
+﻿using Root.PixelGame.Tool;
 using UnityEngine;
 using System;
 
-namespace Root.PixelGame.Game
+namespace Root.PixelGame.Game.Core
 {
     internal interface IPlayerCore
     {

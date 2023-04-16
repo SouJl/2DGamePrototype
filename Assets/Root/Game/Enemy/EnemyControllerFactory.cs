@@ -34,7 +34,8 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
                         IEnemyModel model = new StalkerEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(stalkerEnemy);
-                        IEnemyCore core = GetEnemyCore(stalkerEnemy, data);
+                        var coreFactory = new EnemyCoreFactory(stalkerEnemy, data);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Stalker);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
                         
                         return new EnemyController(stalkerEnemy, model, animator, stateHandler);
@@ -44,7 +45,8 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyData data = LoadData(PatrolEnemyDataPath);
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(patrolEnemy);
-                        IEnemyCore core = GetEnemyCore(patrolEnemy, data);
+                        var coreFactory = new EnemyCoreFactory(patrolEnemy, data);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Patrol);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
                         return new EnemyController(patrolEnemy, model, animator, stateHandler);
@@ -54,7 +56,8 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyData data = LoadData(ChaserEnemyDataPath);
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(chaserEnemy);
-                        IEnemyCore core = GetEnemyCore(chaserEnemy, data);
+                        var coreFactory = new EnemyCoreFactory(chaserEnemy, data);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Stalker);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
                         return new EnemyController(chaserEnemy, model, animator, stateHandler);
@@ -67,10 +70,6 @@ namespace Root.PixelGame.Game.Enemy
         private IAnimatorController GetAnimatorController(EnemyView view)  
             =>  new SpriteAnimatorController(view.Animation.SpriteRenderer, view.Animation.AnimationConfig);
 
-        private IEnemyCore GetEnemyCore(IEnemyView view, IEnemyData data)
-        {
-            var coreFactory = new EnemyCoreFactory(data);
-            return coreFactory.GetCore(view);
-        }
+        private IEnemyCore GetEnemyCore(ICoreFactory<IEnemyCore, EnemyCoreType> coreFactory, EnemyCoreType type) => coreFactory.GetCore(type);
     }
 }

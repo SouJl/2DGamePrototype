@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal interface IEnemyView
+    internal interface IEnemyView : ILevelObject
     {
         void Init(IEnemyController controller);
     }
@@ -17,9 +17,12 @@ namespace Root.PixelGame.Game.Enemy
 
         private IEnemyController _controller;
 
-        public Transform EnemyTransfrom => _enemyTransform;
-        public Rigidbody2D EnemyRigidbody => _enemyRigidbody;
+        public Transform LObjTransform => _enemyTransform;
+
+        public Rigidbody2D LObjRigidbody => _enemyRigidbody;
+
         public AnimationViewComponent Animation => _animation;
+
 
         public virtual void Init(IEnemyController controller)
         {

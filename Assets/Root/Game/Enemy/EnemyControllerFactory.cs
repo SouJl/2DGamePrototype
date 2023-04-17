@@ -2,8 +2,6 @@
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
-using System;
-using System.Collections.Generic;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -34,7 +32,7 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
                         IEnemyModel model = new StalkerEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(stalkerEnemy);
-                        var coreFactory = new EnemyCoreFactory(stalkerEnemy, data);
+                        var coreFactory = new EnemyCoreFactory(stalkerEnemy.EnemyCoreView, data);
                         IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Stalker);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
                         
@@ -45,7 +43,7 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyData data = LoadData(PatrolEnemyDataPath);
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(patrolEnemy);
-                        var coreFactory = new EnemyCoreFactory(patrolEnemy, data);
+                        var coreFactory = new EnemyCoreFactory(patrolEnemy.EnemyCoreView, data);
                         IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Patrol);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
@@ -56,7 +54,7 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyData data = LoadData(ChaserEnemyDataPath);
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(chaserEnemy);
-                        var coreFactory = new EnemyCoreFactory(chaserEnemy, data);
+                        var coreFactory = new EnemyCoreFactory(chaserEnemy.EnemyCoreView, data);
                         IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Stalker);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 

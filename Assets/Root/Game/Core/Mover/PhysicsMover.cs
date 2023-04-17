@@ -20,6 +20,8 @@ namespace Root.PixelGame.Game.Core
 
         public void Move(Vector2 direction)
         {
+            direction *= _data.Speed;
+
             if (Mathf.Abs(direction.x) > _data.MoveThresh)
             {
                 _physic.SetVelocityX(direction.x);

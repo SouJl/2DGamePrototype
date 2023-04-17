@@ -1,5 +1,5 @@
-﻿using Root.PixelGame.Game.AI.Model;
-using Root.PixelGame.Game.AI.ViewComponent;
+﻿using Root.PixelGame.Components.AI;
+using Root.PixelGame.Game.AI.Model;
 using Root.PixelGame.Tool;
 using System;
 
@@ -21,7 +21,7 @@ namespace Root.PixelGame.Game.AI
             {
                 default:
                     return null;
-                case PatrolAIViewComponent patrolAIView:
+                case PatrolViewComponent patrolAIView:
                     {
                         var config = LoadConfig(PatrolAIConfigPath);
                         var model = new PatrolAIModel(config, patrolAIView.PatrolWayPoints);

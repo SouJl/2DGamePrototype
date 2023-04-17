@@ -1,5 +1,4 @@
 ﻿using Root.PixelGame.Game.AI;
-using Root.PixelGame.Game.Enemy;
 using System;
 using UnityEngine;
 
@@ -11,10 +10,9 @@ namespace Root.PixelGame.Game.Core
 
         public AIEnemyCore(
             Transform transform,
-            IEnemyData data,
             IMove mover, 
             IRotate rotator,
-            IAIBehaviour aIBehaviour) : base(transform, data, mover, rotator)
+            IAIBehaviour aIBehaviour) : base(transform, mover, rotator)
         {
             ChangeAI(aIBehaviour);
         }
@@ -30,7 +28,7 @@ namespace Root.PixelGame.Game.Core
 
         public override void Move(float time)
         {
-            var newVel = _aIBehaviour.GetNewVelocity(transform.position) * data.Speed * time;
+            var newVel = _aIBehaviour.GetNewVelocity(transform.position) * time;
             mover.Move(newVel);
         }
 

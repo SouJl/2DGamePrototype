@@ -1,15 +1,14 @@
-﻿using Root.PixelGame.Game.AI.ViewComponent;
+﻿using Root.PixelGame.Components.Core;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    [RequireComponent(typeof(PatrolAIViewComponent))]
+    [RequireComponent(typeof(PatrolCoreComponent))]
     internal  class PatrolEnemyView : EnemyView
     {
-        [SerializeField] private PatrolAIViewComponent _aIViewComponent;
+        [SerializeField] private PatrolCoreComponent _enemyCoreView;
 
-        public IAIViewComponent AIViewComponent => _aIViewComponent;
-
+        public override IEnemyCoreComponent EnemyCoreView => _enemyCoreView;
 
         public override void Init(IEnemyController controller)
         {
@@ -18,7 +17,7 @@ namespace Root.PixelGame.Game.Enemy
 
         private void OnValidate()
         {
-            _aIViewComponent = GetComponent<PatrolAIViewComponent>();
+            _enemyCoreView = GetComponent<PatrolCoreComponent>();
         }
     }
 }

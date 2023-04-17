@@ -8,8 +8,8 @@ namespace Root.PixelGame.Game.Core
     internal enum EnemyCoreType
     {
         None,
-        Stalker,
-        Patrol
+        Intelligent,
+        Simple
     }
 
     internal class EnemyCoreFactory : ICoreFactory<IEnemyCore, EnemyCoreType>
@@ -35,14 +35,14 @@ namespace Root.PixelGame.Game.Core
         { 
             return type switch
             {
-                EnemyCoreType.Stalker => CreateStalkerCore(),
-                EnemyCoreType.Patrol => CreatePatrolCore(),
+                EnemyCoreType.Intelligent => CreateAICore(),
+                EnemyCoreType.Simple => CreateSimpleCore(),
                 _ => new StubEnemyCore(),
 
             };
         }
 
-        private IEnemyCore CreateStalkerCore()
+        private IEnemyCore CreateAICore()
         {
             IPhysicModel physic = new PhysicModel(_view.Rigidbody);
             IMove mover = new PhysicsMover(physic, _data);
@@ -52,13 +52,12 @@ namespace Root.PixelGame.Game.Core
 
         }
 
-        private IEnemyCore CreatePatrolCore()
+        private IEnemyCore CreateSimpleCore()
         {
             IPhysicModel physic = new PhysicModel(_view.Rigidbody);
             IMove mover = new PhysicsMover(physic, _data);
             IRotate rotator = new SelfRotator(_view.Transform, physic);
-            IAIBehaviour aI = aIFactory.CreateAIBehavior(_view.AIViewComponent);
-            return new AIEnemyCore(_view.Transform, mover, rotator, aI);
+            return new EnemyCore(_view.Transform, mover, rotator);
         }
     }
 }

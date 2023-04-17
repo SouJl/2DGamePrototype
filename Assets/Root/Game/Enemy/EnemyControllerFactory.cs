@@ -33,7 +33,7 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyModel model = new StalkerEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(stalkerEnemy);
                         var coreFactory = new EnemyCoreFactory(stalkerEnemy.EnemyCoreView, data);
-                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Stalker);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Intelligent);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
                         
                         return new EnemyController(stalkerEnemy, model, animator, stateHandler);
@@ -44,7 +44,7 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(patrolEnemy);
                         var coreFactory = new EnemyCoreFactory(patrolEnemy.EnemyCoreView, data);
-                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Patrol);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Intelligent);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
                         return new EnemyController(patrolEnemy, model, animator, stateHandler);
@@ -55,10 +55,21 @@ namespace Root.PixelGame.Game.Enemy
                         IEnemyModel model = new PatrolEnemyModel(data);
                         IAnimatorController animator = GetAnimatorController(chaserEnemy);
                         var coreFactory = new EnemyCoreFactory(chaserEnemy.EnemyCoreView, data);
-                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Stalker);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Intelligent);
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
                         return new EnemyController(chaserEnemy, model, animator, stateHandler);
+                    }
+                case PathSeekerEnemyView pathSeeker:
+                    {
+                        IEnemyData data = LoadData(PatrolEnemyDataPath);
+                        IEnemyModel model = new PatrolEnemyModel(data);
+                        IAnimatorController animator = GetAnimatorController(pathSeeker);
+                        var coreFactory = new EnemyCoreFactory(pathSeeker.EnemyCoreView, data);
+                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Intelligent);
+                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
+
+                        return new EnemyController(pathSeeker, model, animator, stateHandler);
                     }
             }
         }

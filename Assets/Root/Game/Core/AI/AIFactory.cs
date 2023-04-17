@@ -12,7 +12,7 @@ namespace Root.PixelGame.Game.AI
 
     internal class AIFactory : IAIFactory
     {
-        private readonly string PatrolAIConfigPath= @"Enemy/AI/PatrolAIConfig";
+        private readonly string PatrolAIConfigPath= @"Enemy/AI/PatrolConfig";
         private readonly string StalkerAIConfigPath = @"Enemy/AI/StalkerAIConfig";
 
         public IAIBehaviour CreateAIBehavior(IAIViewComponent aIView)
@@ -21,10 +21,10 @@ namespace Root.PixelGame.Game.AI
             {
                 default:
                     return null;
-                case PatrolViewComponent patrolAIView:
+                case PatrolViewComponent patrolView:
                     {
                         var config = LoadConfig(PatrolAIConfigPath);
-                        var model = new PatrolAIModel(config, patrolAIView.PatrolWayPoints);
+                        var model = new PatrolModel(config, patrolView.PatrolWayPoints);
                         var aiBehavior = new SimpleAI(config, model);
                         return aiBehavior;
                     }
@@ -38,6 +38,17 @@ namespace Root.PixelGame.Game.AI
                             seekerAIView.Target, 
                             model);
                         var aiBehavior = new SeekerAI(config, seeker, model);
+                        return aiBehavior;
+                    }
+                case PatrolAIComponent patrolAI: 
+                    {
+                        var config = LoadConfig(PatrolAIConfigPath);
+                        var model = new PatrolAIModel(config, patrolAI.PatrolWayPoints);
+                        var seeker = new PatrolPathController(
+                            patrolAI.Seeker,
+                            patrolAI.Handler,
+                            model);
+                        var aiBehavior = new PatrolAI(config, seeker, model);
                         return aiBehavior;
                     }
             }

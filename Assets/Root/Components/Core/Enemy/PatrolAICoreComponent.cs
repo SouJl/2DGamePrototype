@@ -10,9 +10,15 @@ namespace Root.PixelGame.Components.Core
 
         public override IAIViewComponent AIViewComponent => _aIViewComponent;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _aIViewComponent ??= gameObject.GetComponent<PatrolAIComponent>();
+        }
+
         private void OnValidate()
         {
-            _aIViewComponent ??= gameObject.GetComponent<PatrolAIComponent>();
+            _aIViewComponent = gameObject.GetComponent<PatrolAIComponent>();
         }
     }
 }

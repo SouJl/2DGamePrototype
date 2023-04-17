@@ -19,7 +19,7 @@ namespace Root.PixelGame.Components.Core
 
         public abstract IAIViewComponent AIViewComponent { get; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _transform = gameObject.transform;
             _rigidbody = gameObject.GetComponent<Rigidbody2D>();

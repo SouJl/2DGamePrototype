@@ -9,9 +9,15 @@ namespace Root.PixelGame.Components.Core
         [SerializeField] private SeekerAIViewComponent _aIViewComponent;
         public override IAIViewComponent AIViewComponent => _aIViewComponent;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _aIViewComponent ??= gameObject.GetComponent<SeekerAIViewComponent>();
+        }
+
         private void OnValidate()
         {
-            _aIViewComponent ??= gameObject.GetComponent<SeekerAIViewComponent>();
+            _aIViewComponent = gameObject.GetComponent<SeekerAIViewComponent>();
         }
     }
 }

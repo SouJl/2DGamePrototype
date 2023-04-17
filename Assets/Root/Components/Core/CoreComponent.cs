@@ -17,10 +17,10 @@ namespace Root.PixelGame.Components.Core
         public Transform Transform => _transform;
         public Rigidbody2D Rigidbody => _rigidbody;
 
-        private void OnValidate()
+        protected virtual void Awake()
         {
             _transform = gameObject.transform;
-            _rigidbody ??= gameObject.GetComponent<Rigidbody2D>(); 
+            _rigidbody ??= gameObject.GetComponent<Rigidbody2D>();
         }
     }
 }

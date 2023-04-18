@@ -1,5 +1,4 @@
-﻿
-
+﻿using Root.PixelGame.Components.AI;
 using Root.PixelGame.Game.AI.Model;
 using System;
 using UnityEngine;
@@ -14,16 +13,16 @@ namespace Root.PixelGame.Game.AI
         private float _lastTimeUpdate;
 
         public PatrolAI(
-            IAIConfig config,
+            IAIData data,
             ISeeker seeker,
-            IAIModel model) : base(config)
+            IAIModel model) : base(data)
         {
             _seeker
                 = seeker ?? throw new ArgumentNullException(nameof(seeker));
             _model
                 = model ?? throw new ArgumentNullException(nameof(model));
 
-            _lastTimeUpdate = _config.UpdateFrameRate;
+            _lastTimeUpdate = data.UpdateFrameRate;
 
             Init();
         }
@@ -49,7 +48,7 @@ namespace Root.PixelGame.Game.AI
         public override void UpdateParameters(float time)
         {
             base.UpdateParameters(time);
-            if (_lastTimeUpdate > _config.UpdateFrameRate)
+            if (_lastTimeUpdate > data.UpdateFrameRate)
             {
                 _seeker.RecalculatePath();
                 _lastTimeUpdate = 0;

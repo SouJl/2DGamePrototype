@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Game.AI.Model;
+﻿using Root.PixelGame.Components.AI;
+using Root.PixelGame.Game.AI.Model;
 using System;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ namespace Root.PixelGame.Game.AI
         private readonly IAIModel _model;
      
         public SimpleAI(
-            IAIConfig config,
-            IAIModel model) : base(config)
+            IAIData data,
+            IAIModel model) : base(data)
         {
             _model
                 = model ?? throw new ArgumentNullException(nameof(model));

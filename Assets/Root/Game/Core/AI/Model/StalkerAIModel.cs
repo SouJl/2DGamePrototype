@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using Root.PixelGame.Components.AI;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.AI.Model
@@ -14,11 +15,10 @@ namespace Root.PixelGame.Game.AI.Model
     {
         private int _currentPointIndex;
 
-        public StalkerAIModel(IAIConfig config) : base(config)
+        public StalkerAIModel(IAIData data) : base(data)
         {
-
         }
- 
+
         public override Vector2 CalculateVelocity(Vector2 fromPosition)
         {
             if (path == null) return Vector2.zero;
@@ -29,7 +29,7 @@ namespace Root.PixelGame.Game.AI.Model
 
             var sqrDistance = Vector2.SqrMagnitude((Vector2)path.vectorPath[_currentPointIndex] - fromPosition);
 
-            if (sqrDistance <= config.MinSqrDistance)
+            if (sqrDistance <= data.MinSqrDistance)
             {
                 _currentPointIndex++;
             }

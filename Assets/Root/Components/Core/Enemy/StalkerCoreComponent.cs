@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace Root.PixelGame.Components.Core
 {
-    [RequireComponent(typeof(SeekerAIViewComponent))]
+    [RequireComponent(typeof(ChaseAIComponent))]
     internal class StalkerCoreComponent : EnemyCoreComponent
     {
-        [SerializeField] private SeekerAIViewComponent _aIViewComponent;
-        public override IAIViewComponent AIViewComponent => _aIViewComponent;
+        [SerializeField] private ChaseAIComponent _aIViewComponent;
+        public override IAIComponent AIViewComponent => _aIViewComponent;
 
         protected override void Awake()
         {
             base.Awake();
-            _aIViewComponent ??= gameObject.GetComponent<SeekerAIViewComponent>();
+            _aIViewComponent ??= gameObject.GetComponent<ChaseAIComponent>();
         }
 
         private void OnValidate()
         {
-            _aIViewComponent = gameObject.GetComponent<SeekerAIViewComponent>();
+            _aIViewComponent = gameObject.GetComponent<ChaseAIComponent>();
         }
     }
 }

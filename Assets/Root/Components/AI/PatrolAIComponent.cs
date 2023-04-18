@@ -5,13 +5,13 @@ using UnityEngine;
 namespace Root.PixelGame.Components.AI
 {
     [RequireComponent(typeof(Seeker))]
-    internal class PatrolAIComponent : MonoBehaviour, IAIViewComponent
+    internal class PatrolAIComponent : AIComponent
     {
+        [Header("AIComponent Patrol Settings")]
         [SerializeField] private Seeker _seeker;
         [SerializeField] private Transform[] _patrolWayPoints;    
 
         public Seeker Seeker => _seeker;
-        public Transform Handler => gameObject.transform;
         public IList<Transform> PatrolWayPoints => _patrolWayPoints;
 
         private void OnValidate()

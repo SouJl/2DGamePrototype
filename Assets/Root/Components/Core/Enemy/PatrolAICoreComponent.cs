@@ -8,7 +8,7 @@ namespace Root.PixelGame.Components.Core
     {
         [SerializeField] private PatrolAIComponent _aIViewComponent;
 
-        public override IAIViewComponent AIViewComponent => _aIViewComponent;
+        public override IAIComponent AIViewComponent => _aIViewComponent;
 
         protected override void Awake()
         {

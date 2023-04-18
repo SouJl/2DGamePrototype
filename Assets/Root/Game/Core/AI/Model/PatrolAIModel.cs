@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using Root.PixelGame.Components.AI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,8 @@ namespace Root.PixelGame.Game.AI.Model
         public event Action OnReachedEnd;
 
         public PatrolAIModel(
-            IAIConfig config,
-            IList<Transform> wayPoints) : base(config)
+            IAIData data,
+            IList<Transform> wayPoints) : base(data)
         {
             _wayPoints
                = wayPoints ?? throw new ArgumentNullException(nameof(wayPoints));
@@ -63,7 +64,7 @@ namespace Root.PixelGame.Game.AI.Model
 
             var sqrDistance = Vector2.SqrMagnitude((Vector2)path.vectorPath[_currentPointIndex] - fromPosition);
 
-            if (sqrDistance < config.MinSqrDistance)
+            if (sqrDistance < data.MinSqrDistance)
             {
                 _currentPointIndex++;
             }

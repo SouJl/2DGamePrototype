@@ -1,45 +1,47 @@
-﻿using System;
+﻿using Root.PixelGame.Components.AI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.AI.Model
 {
-    internal class PatrolModel : BaseAIModel
+    internal class PatrolModel
     {
         private readonly IList<Transform> _wayPoints;
+        private readonly float _minSqrDistance;
 
         private Stack<Transform> _stackPoints;
-
         private Transform _target;
 
-
         public PatrolModel(
-            IAIConfig config,
-            IList<Transform> wayPoints) : base(config)
+            IList<Transform> wayPoints,
+            float minSqrDistance)
         {
             _wayPoints
                 = wayPoints ?? throw new ArgumentNullException(nameof(wayPoints));
 
+            _minSqrDistance = minSqrDistance;
+
             FillWaypointStack(_wayPoints);
         }
 
-        public override void InitModel()
+        public  void InitModel()
         {
             _target = GetNextWaypoint();
         }
 
-        public override void DeinitModel()
+        public  void DeinitModel()
         {
             _wayPoints.Clear();
             _stackPoints.Clear();
             _target = default;
         }
 
-        public override Vector2 CalculateVelocity(Vector2 fromPosition)
+        public  Vector2 CalculateVelocity(Vector2 fromPosition)
         {
             var sqrDistance = Vector2.SqrMagnitude((Vector2)_target.position - fromPosition);
-            if (sqrDistance <= config.MinSqrDistance)
+            if (sqrDistance <= _minSqrDistance)
             {
                 _target = GetNextWaypoint();
             }

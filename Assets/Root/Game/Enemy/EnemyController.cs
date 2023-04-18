@@ -1,9 +1,6 @@
 ﻿using Root.PixelGame.Animation;
-using Root.PixelGame.Game.Core;
 using Root.PixelGame.StateMachines;
-using Root.PixelGame.StateMachines.Enemy;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
@@ -53,7 +50,7 @@ namespace Root.PixelGame.Game.Enemy
 
         public void OnCollisionContact(Collider2D collision)
         {
-            Debug.Log($"On Contact {collision.gameObject.name}");
+            
         }
     }
 }

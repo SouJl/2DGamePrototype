@@ -38,17 +38,6 @@ namespace Root.PixelGame.Game.Enemy
                         
                         return new EnemyController(stalkerEnemy, model, animator, stateHandler);
                     }
-                case PatrolEnemyView patrolEnemy: 
-                    {
-                        IEnemyData data = LoadData(PatrolEnemyDataPath);
-                        IEnemyModel model = new PatrolEnemyModel(data);
-                        IAnimatorController animator = GetAnimatorController(patrolEnemy);
-                        var coreFactory = new EnemyCoreFactory(patrolEnemy.EnemyCoreView, data);
-                        IEnemyCore core = GetEnemyCore(coreFactory, EnemyCoreType.Intelligent);
-                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
-
-                        return new EnemyController(patrolEnemy, model, animator, stateHandler);
-                    }
                 case ChaserEnemyView chaserEnemy: 
                     {
                         IEnemyData data = LoadData(ChaserEnemyDataPath);

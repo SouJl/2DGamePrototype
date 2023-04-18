@@ -5,7 +5,7 @@ namespace Root.PixelGame.Components.Core
 {
     internal interface IEnemyCoreComponent : ICoreComponent
     {
-        IAIViewComponent AIViewComponent { get; }
+        IAIComponent AIViewComponent { get; }
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
@@ -17,7 +17,7 @@ namespace Root.PixelGame.Components.Core
         public Transform Transform => _transform;
         public Rigidbody2D Rigidbody => _rigidbody;
 
-        public abstract IAIViewComponent AIViewComponent { get; }
+        public abstract IAIComponent AIViewComponent { get; }
 
         protected virtual void Awake()
         {

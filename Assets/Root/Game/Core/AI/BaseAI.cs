@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Root.PixelGame.Components.AI;
+using System;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.AI
@@ -13,11 +14,11 @@ namespace Root.PixelGame.Game.AI
 
     internal abstract class BaseAI : IAIBehaviour
     {
-        protected readonly IAIConfig _config;
-        public BaseAI(IAIConfig config)
+        protected readonly IAIData data;
+        public BaseAI(IAIData data)
         {
-            _config 
-                = config ?? throw new ArgumentNullException(nameof(config));
+            this.data 
+                = data ?? throw new ArgumentNullException(nameof(data));
         }
 
         public abstract void Init();

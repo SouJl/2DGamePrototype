@@ -4,13 +4,13 @@ using UnityEngine;
 namespace Root.PixelGame.Components.AI
 {
     [RequireComponent(typeof(Seeker))]
-    internal class SeekerAIViewComponent :MonoBehaviour,  IAIViewComponent
+    internal class ChaseAIComponent : AIComponent
     {
-        [SerializeField] private Transform _target;
+        [Header("AIComponent Chaser Settings")]
         [SerializeField] private Seeker _seeker;
+        [SerializeField] private Transform _target;
 
         public Seeker Seeker => _seeker;
-        public Transform Handler => gameObject.transform;
         public Transform Target => _target;
 
         private void OnValidate()

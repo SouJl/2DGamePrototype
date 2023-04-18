@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using Root.PixelGame.Components.AI;
 using System;
 using UnityEngine;
 
@@ -14,13 +15,13 @@ namespace Root.PixelGame.Game.AI.Model
 
     internal abstract class BaseAIModel : IAIModel
     {
-        protected IAIConfig config;
+        protected IAIData data;
         protected Path path;
 
-        public BaseAIModel(IAIConfig config)
+        public BaseAIModel(IAIData data)
         {
-            this.config 
-                = config ?? throw new ArgumentNullException(nameof(config));
+            this.data 
+                = data ?? throw new ArgumentNullException(nameof(data));
         }
 
         public abstract Vector2 CalculateVelocity(Vector2 fromPosition);

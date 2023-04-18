@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    [RequireComponent(typeof(StalkerCoreComponent))]
+    [RequireComponent(typeof(ChaserAICoreComponent))]
     internal class StalkerEnemyView : EnemyView
     {
-        [SerializeField] private StalkerCoreComponent _enemyCoreView;
+        [SerializeField] private ChaserAICoreComponent _coreComponent;
 
-        public override IEnemyCoreComponent EnemyCoreView => _enemyCoreView;
+        public IEnemyCoreComponent CoreComponent => _coreComponent;
 
         public override void Init(IEnemyController controller)
         {
@@ -16,7 +16,7 @@ namespace Root.PixelGame.Game.Enemy
         }
         private void OnValidate()
         {
-            _enemyCoreView = GetComponent<StalkerCoreComponent>();
+            _coreComponent = GetComponent<ChaserAICoreComponent>();
         }
     }
 }

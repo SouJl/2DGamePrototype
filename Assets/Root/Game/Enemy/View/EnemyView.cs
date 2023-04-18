@@ -6,7 +6,6 @@ namespace Root.PixelGame.Game.Enemy
 {
     internal interface IEnemyView
     {
-        IEnemyCoreComponent EnemyCoreView { get; }
         void Init(IEnemyController controller);
     }
 
@@ -17,7 +16,6 @@ namespace Root.PixelGame.Game.Enemy
         [SerializeField] private AnimationViewComponent _animation; 
 
         public AnimationViewComponent Animation => _animation;
-        public abstract IEnemyCoreComponent EnemyCoreView { get; }
 
         public virtual void Init(IEnemyController controller)
         {

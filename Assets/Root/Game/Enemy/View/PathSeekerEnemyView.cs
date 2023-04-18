@@ -6,9 +6,9 @@ namespace Root.PixelGame.Game.Enemy
     [RequireComponent(typeof(PatrolAICoreComponent))]
     internal class PathSeekerEnemyView : EnemyView
     {
-        [SerializeField] private PatrolAICoreComponent _enemyCoreView;
+        [SerializeField] private PatrolAICoreComponent _coreComponent;
 
-        public override IEnemyCoreComponent EnemyCoreView => _enemyCoreView;
+        public  IEnemyCoreComponent CoreComponent => _coreComponent;
 
         public override void Init(IEnemyController controller)
         {
@@ -16,7 +16,7 @@ namespace Root.PixelGame.Game.Enemy
         }
         private void OnValidate()
         {
-            _enemyCoreView = GetComponent<PatrolAICoreComponent>();
+            _coreComponent = GetComponent<PatrolAICoreComponent>();
         }
     }
 }

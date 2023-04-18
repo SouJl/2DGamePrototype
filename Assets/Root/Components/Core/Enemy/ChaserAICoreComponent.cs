@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Root.PixelGame.Components.Core
 {
     [RequireComponent(typeof(ChaseAIComponent))]
-    internal class StalkerCoreComponent : EnemyCoreComponent
+    internal class ChaserAICoreComponent : EnemyCoreComponent
     {
         [SerializeField] private ChaseAIComponent _aIViewComponent;
         public override IAIComponent AIViewComponent => _aIViewComponent;

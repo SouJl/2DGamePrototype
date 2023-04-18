@@ -5,59 +5,39 @@ using System;
 
 namespace Root.PixelGame.Game.Core
 {
-    internal enum EnemyCoreType
+    internal class EnemyCoreFactory : ICoreFactory<IEnemyCore, ICoreComponent>
     {
-        None,
-        Intelligent,
-        Simple
-    }
 
-    internal class EnemyCoreFactory : ICoreFactory<IEnemyCore, EnemyCoreType>
-    {
-        private readonly IEnemyCoreComponent _view;
         private readonly IEnemyData _data;
         private readonly IAIFactory aIFactory;
 
-        public EnemyCoreFactory(
-            IEnemyCoreComponent view, 
-            IEnemyData data) 
+        public EnemyCoreFactory(IEnemyData data) 
         {
-            _view
-              = view ?? throw new ArgumentNullException(nameof(view));
-
             _data 
                 = data ?? throw new ArgumentNullException(nameof(data));
 
             aIFactory = new AIFactory();
         }
 
-        public IEnemyCore GetCore(EnemyCoreType type)
+        public IEnemyCore GetCore(ICoreComponent coreComponent)
         { 
-            return type switch
+            return coreComponent switch
             {
-                EnemyCoreType.Intelligent => CreateAICore(),
-                EnemyCoreType.Simple => CreateSimpleCore(),
+                ChaserAICoreComponent
+                    => CreateAICore(coreComponent as ChaserAICoreComponent),
+                PatrolAICoreComponent 
+                    => CreateAICore(coreComponent as PatrolAICoreComponent),
                 _ => new StubEnemyCore(),
-
             };
         }
 
-        private IEnemyCore CreateAICore()
+        private IEnemyCore CreateAICore(IEnemyCoreComponent coreComponent)
         {
-            IPhysicModel physic = new PhysicModel(_view.Rigidbody);
+            IPhysicModel physic = new PhysicModel(coreComponent.Rigidbody);
             IMove mover = new PhysicsMover(physic, _data);
-            IRotate rotator = new SelfRotator(_view.Transform, physic);
-            IAIBehaviour aI = aIFactory.CreateAIBehavior(_view.AIViewComponent);
-            return new AIEnemyCore(_view.Transform, mover, rotator, aI);
-
-        }
-
-        private IEnemyCore CreateSimpleCore()
-        {
-            IPhysicModel physic = new PhysicModel(_view.Rigidbody);
-            IMove mover = new PhysicsMover(physic, _data);
-            IRotate rotator = new SelfRotator(_view.Transform, physic);
-            return new EnemyCore(_view.Transform, mover, rotator);
+            IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
+            IAIBehaviour aI = aIFactory.CreateAIBehavior(coreComponent.AIViewComponent);
+            return new AIEnemyCore(coreComponent.Transform, mover, rotator, aI);
         }
     }
 }

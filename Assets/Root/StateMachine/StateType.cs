@@ -14,5 +14,7 @@
         WallJumpState,
         LedgeState,
         ClimbState,
+
+        InAction,
     }
 }

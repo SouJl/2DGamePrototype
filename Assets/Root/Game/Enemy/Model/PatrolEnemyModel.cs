@@ -1,8 +1,10 @@
-﻿namespace Root.PixelGame.Game.Enemy
+﻿using UnityEngine;
+
+namespace Root.PixelGame.Game.Enemy
 {
     internal class PatrolEnemyModel : BaseEnemyModel
     {
-        public PatrolEnemyModel(IEnemyData data) : base(data)
+        public PatrolEnemyModel(Transform selfTransform, IEnemyData data) : base(selfTransform, data)
         {
         }
     }

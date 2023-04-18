@@ -28,5 +28,11 @@ namespace Root.PixelGame.Game.Enemy
             _chaseAICore = GetComponent<ChaserAICoreComponent>();
             _patrolAICore = GetComponent<PatrolAICoreComponent>();
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _chaseBreakDistance);
+        }
     }
 }

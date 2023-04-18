@@ -24,6 +24,8 @@ namespace Root.PixelGame.Game.Enemy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (_controller == null) return;
+
             _controller.OnCollisionContact(collision);
         } 
     }

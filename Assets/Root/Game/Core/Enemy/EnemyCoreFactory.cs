@@ -35,7 +35,7 @@ namespace Root.PixelGame.Game.Core
         {
             IPhysicModel physic = new PhysicModel(coreComponent.Rigidbody);
             IMove mover = new PhysicsMover(physic, _data);
-            IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
+            IRotate rotator = new ScaleRotator(coreComponent.Transform, physic);
             IAIBehaviour aI = aIFactory.CreateAIBehavior(coreComponent.AIViewComponent);
             return new AIEnemyCore(coreComponent.Transform, mover, rotator, aI);
         }

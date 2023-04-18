@@ -31,30 +31,40 @@ namespace Root.PixelGame.Game.Enemy
                 case StalkerEnemyView stalkerEnemy: 
                     {
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
-                        IEnemyModel model = new StalkerEnemyModel(data);
+                        IEnemyModel model = new StalkerEnemyModel(stalkerEnemy.transform, data);
                         IAnimatorController animator = GetAnimatorController(stalkerEnemy);
+
                         var coreFactory = new EnemyCoreFactory(data);
                         IEnemyCore core = GetEnemyCore(coreFactory, stalkerEnemy.CoreComponent);
+                        
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);                  
+                        
                         return new EnemyController(stalkerEnemy, model, animator, stateHandler);
                     }
                 case ChaserEnemyView chaserEnemy: 
                     {
                         IEnemyData data = LoadData(ChaserEnemyDataPath);
-                        IEnemyModel model = new PatrolEnemyModel(data);
+                        IEnemyModel model = new ChaserEnemyModel(chaserEnemy.transform, data);
                         IAnimatorController animator = GetAnimatorController(chaserEnemy);
+
                         var coreFactory = new EnemyCoreFactory(data);
                         IEnemyCore chaseCore = GetEnemyCore(coreFactory, chaserEnemy.ChaseAICore);
-                        IStateHandler stateHandler = new EnemyStatesHandler(chaseCore, animator);
-                        return new EnemyController(chaserEnemy, model, animator, stateHandler);
+                        IEnemyCore patrolCore = GetEnemyCore(coreFactory, chaserEnemy.PatrolAICore);
+
+                        IStateHandler stateHandler 
+                            = new ChaserEnemyStatesHandler(chaseCore, patrolCore, animator);
+                        
+                        return new ChaserEnemyController(chaserEnemy, model, animator, stateHandler, chaserEnemy.TargetLocator, chaserEnemy.ChaseBreakDistance);
                     }
                 case PathSeekerEnemyView pathSeeker:
                     {
                         IEnemyData data = LoadData(PatrolEnemyDataPath);
-                        IEnemyModel model = new PatrolEnemyModel(data);
+                        IEnemyModel model = new PatrolEnemyModel(pathSeeker.transform, data);
                         IAnimatorController animator = GetAnimatorController(pathSeeker);
+                        
                         var coreFactory = new EnemyCoreFactory(data);
                         IEnemyCore core = GetEnemyCore(coreFactory, pathSeeker.CoreComponent);
+                        
                         IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
 
                         return new EnemyController(pathSeeker, model, animator, stateHandler);

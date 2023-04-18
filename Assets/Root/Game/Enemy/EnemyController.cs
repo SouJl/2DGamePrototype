@@ -31,6 +31,7 @@ namespace Root.PixelGame.Game.Enemy
               = animator ?? throw new ArgumentNullException(nameof(animator));
             _stateHandler
                 = stateHandler ?? throw new ArgumentNullException(nameof(stateHandler));
+           
             _stateHandler.Init();
 
             _view.Init(this);

@@ -1,14 +1,15 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
+using Root.PixelGame.Game.Core;
 
 namespace Root.PixelGame.StateMachines
 {
     internal class PlayerJumpState : PlayerAbilityState
     {
         public PlayerJumpState(
-            IStateHandler stateHandler, 
-            IPlayerCore playerCore, 
-            IPlayerData playerData, 
+            IStateHandler stateHandler,
+            IPlayerCore playerCore,
+            IPlayerData playerData,
             IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }

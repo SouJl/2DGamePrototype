@@ -1,6 +1,4 @@
-﻿
-
-namespace Root.PixelGame.Game
+﻿namespace Root.PixelGame.Game
 {
     internal class PlayerModel
     {

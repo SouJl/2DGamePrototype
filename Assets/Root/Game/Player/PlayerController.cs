@@ -3,6 +3,7 @@ using Root.PixelGame.Game.Core;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Root.PixelGame.Game
@@ -15,7 +16,6 @@ namespace Root.PixelGame.Game
         private readonly IAnimatorController _animator;
         private readonly IPlayerData _data;
         private readonly IPlayerCore _core;
-        private readonly IStateMachine _playerBehavior;
 
         private readonly IStateHandler _stateHandler;
 
@@ -33,22 +33,19 @@ namespace Root.PixelGame.Game
 
             _core = CreatePlayerCore(_view);
 
-            _playerBehavior = new StateMachine();
-
-            _stateHandler = new PlayerStateHandler(_playerBehavior, _core, _data, _animator);
+            _stateHandler = new PlayerStatesHandler(_data, _core, _animator);
+            _stateHandler.Init();
         }
-
 
         public override void Execute()
         {
             _animator.Update();
-            _playerBehavior.CurrentState.InputData();
-            _playerBehavior.CurrentState.LogicUpdate();
+            _stateHandler.Execute();
         }
 
         public override void FixedExecute()
         {
-            _playerBehavior.CurrentState.PhysicsUpdate();
+            _stateHandler.FixedExecute();
         }
 
         private IPlayerData LoadData(string path) => 
@@ -66,4 +63,5 @@ namespace Root.PixelGame.Game
             return core;
         }
     }
+
 }

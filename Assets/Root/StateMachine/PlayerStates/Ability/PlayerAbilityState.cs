@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
+using Root.PixelGame.Game.Core;
 
 namespace Root.PixelGame.StateMachines
 {
@@ -9,8 +10,11 @@ namespace Root.PixelGame.StateMachines
 
         private bool _isGrounded;
 
-
-        public PlayerAbilityState(IStateHandler stateHandler, IPlayerCore playerCore, IPlayerData playerData, IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+        public PlayerAbilityState(
+            IStateHandler stateHandler,
+            IPlayerCore playerCore,
+            IPlayerData playerData,
+            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }
 

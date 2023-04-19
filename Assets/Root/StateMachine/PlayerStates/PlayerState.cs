@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
+using Root.PixelGame.Game.Core;
 using System;
 using UnityEngine;
 
@@ -21,20 +22,18 @@ namespace Root.PixelGame.StateMachines
         protected PhysicsMaterial2D _fullFriction;
         protected PhysicsMaterial2D _noneFriction;
 
-
-        public PlayerState(
+        protected PlayerState(
             IStateHandler stateHandler,
             IPlayerCore playerCore,
             IPlayerData playerData,
             IAnimatorController animator) : base(stateHandler)
         {
-       
-            this.playerCore 
-                = playerCore ?? throw new ArgumentNullException(nameof(playerCore));
-            
-            this.playerData 
+            this.playerCore
+               = playerCore ?? throw new ArgumentNullException(nameof(playerCore));
+
+            this.playerData
                 = playerData ?? throw new ArgumentNullException(nameof(playerData));
-            
+
             this.animator
                 = animator ?? throw new ArgumentNullException(nameof(animator));
 

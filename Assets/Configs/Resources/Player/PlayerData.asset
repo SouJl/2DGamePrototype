@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 5
   <MoveThresh>k__BackingField: 0.01
-  <JumpForce>k__BackingField: 7.5
+  <JumpForce>k__BackingField: 6
   <JumpThreshold>k__BackingField: 0.2
   <WallJumpForce>k__BackingField: 8
   <WallJumpTime>k__BackingField: 0.5

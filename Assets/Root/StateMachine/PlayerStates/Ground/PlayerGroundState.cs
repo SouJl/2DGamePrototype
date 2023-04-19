@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
+using Root.PixelGame.Game.Core;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
@@ -12,14 +13,12 @@ namespace Root.PixelGame.StateMachines
         private bool _isGrab;
 
         public PlayerGroundState(
-            IStateHandler stateHandler, 
-            IPlayerCore playerCore, 
-            IPlayerData playerData, 
+            IStateHandler stateHandler,
+            IPlayerCore playerCore,
+            IPlayerData playerData,
             IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }
-
-        
 
         public override void Enter()
         {

@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
+using Root.PixelGame.Game.Core;
 using UnityEngine;
 
 namespace Root.PixelGame.StateMachines
@@ -12,7 +13,7 @@ namespace Root.PixelGame.StateMachines
         public PlayerClimbState(
             IStateHandler stateHandler,
             IPlayerCore playerCore,
-            IPlayerData playerData, 
+            IPlayerData playerData,
             IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
         {
         }

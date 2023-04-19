@@ -1,6 +1,8 @@
-﻿namespace Root.PixelGame.StateMachines
+﻿using System;
+
+namespace Root.PixelGame.StateMachines
 {
-    internal interface IStateMachine 
+    internal interface IStateMachine : IDisposable 
     {
         IState CurrentState { get; }
         void Initialize(IState initgState);
@@ -24,6 +26,11 @@
             CurrentState.Exit();
             CurrentState = newState;
             newState.Enter();
+        }
+
+        public void Dispose()
+        {
+            CurrentState = default;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Root.PixelGame.Game.Enemy
         private readonly string StalkerEnemyDataPath = @"Enemy/PursuerEnemyData";
         private readonly string PatrolEnemyDataPath = @"Enemy/PatrolEnemyData";
         private readonly string ChaserEnemyDataPath = @"Enemy/ChaserEnemyData";
+        private readonly string ProtectorEnemyDataPath = @"Enemy/ProtectorEnemyData";
 
         private readonly Transform playerTransform;
 
@@ -51,6 +52,14 @@ namespace Root.PixelGame.Game.Enemy
                         ITargetSelector targetSelector = new DynamicTargetSelector();
 
                         return new PatrolEnemyController(patrolEnemy, data, model, targetSelector);
+                    }
+                case ProtectorEnemyView protectorEnemy: 
+                    {
+                        IEnemyData data = LoadData(ProtectorEnemyDataPath);
+                        IEnemyModel model = new ProtectorEnemyModel(protectorEnemy.transform, data);
+                        ITargetSelector targetSelector = new DynamicTargetSelector();
+
+                        return new ProtectorEnemyController(protectorEnemy, data, model, targetSelector, protectorEnemy.ProtectionZone);
                     }
             }
         }

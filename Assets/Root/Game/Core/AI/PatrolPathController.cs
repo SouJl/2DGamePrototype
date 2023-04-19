@@ -33,11 +33,13 @@ namespace Root.PixelGame.Game.AI
 
         public void RecalculatePath()
         {
+            if (_model.Target.CurrentTarget == null) return;
+
             _isPathCompete = false;
 
             if (_seeker.IsDone())
             {
-                _seeker.StartPath(_handler.position, _model.CurrentTarget.position, OnPathComplete);
+                _seeker.StartPath(_handler.position, _model.Target.CurrentTarget.position, OnPathComplete);
             }
         }
 
@@ -53,7 +55,7 @@ namespace Root.PixelGame.Game.AI
         {
             if (_isPathCompete)
             {
-                _model.UpdateTarget();
+                _model.ChangeTarget();
                 _isPathCompete = false;
             }
         }

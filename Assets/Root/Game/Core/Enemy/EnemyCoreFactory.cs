@@ -1,6 +1,7 @@
 ﻿using Root.PixelGame.Components.Core;
 using Root.PixelGame.Game.AI;
 using Root.PixelGame.Game.Enemy;
+using Root.PixelGame.Tool;
 using System;
 
 namespace Root.PixelGame.Game.Core
@@ -11,12 +12,14 @@ namespace Root.PixelGame.Game.Core
         private readonly IEnemyData _data;
         private readonly IAIFactory aIFactory;
 
-        public EnemyCoreFactory(IEnemyData data) 
+        public EnemyCoreFactory(
+            IEnemyData data, 
+            ITargetSelector targetSelector)
         {
             _data 
                 = data ?? throw new ArgumentNullException(nameof(data));
 
-            aIFactory = new AIFactory();
+            aIFactory = new AIFactory(targetSelector);
         }
 
         public IEnemyCore GetCore(ICoreComponent coreComponent)

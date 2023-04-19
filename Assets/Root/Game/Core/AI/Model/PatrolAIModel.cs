@@ -1,5 +1,6 @@
 ﻿using Pathfinding;
 using Root.PixelGame.Components.AI;
+using Root.PixelGame.Tool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,44 +11,44 @@ namespace Root.PixelGame.Game.AI.Model
     internal interface ITargetedAIModel : IPathAIModel
     {
         event Action OnReachedEnd;
-        Transform CurrentTarget { get; }
-        void UpdateTarget();
+        ITargetSelector Target { get; }
+        void ChangeTarget();
     }
 
     internal class PatrolAIModel : BaseAIModel, ITargetedAIModel
     {
         private readonly IList<Transform> _wayPoints;
-
+        private readonly ITargetSelector _target;
         private Stack<Transform> _stackPoints;
 
-        private Transform _target;
-
         private int _currentPointIndex;
-
-        public Transform CurrentTarget => _target;
+        public ITargetSelector Target => _target;
 
         public event Action OnReachedEnd;
 
         public PatrolAIModel(
             IAIData data,
-            IList<Transform> wayPoints) : base(data)
+            IList<Transform> wayPoints,
+            ITargetSelector target) : base(data)
         {
             _wayPoints
                = wayPoints ?? throw new ArgumentNullException(nameof(wayPoints));
-
+            _target 
+                = target ?? throw new ArgumentNullException(nameof(target));
+            
             FillWaypointStack(_wayPoints);
         }
 
         public override void InitModel()
         {
-            _target = GetNextWaypoint();
+            _target.ChangeTarget(GetNextWaypoint());
         }
 
         public override void DeinitModel()
         {
             _wayPoints.Clear();
             _stackPoints.Clear();
-            _target = default;
+            _target.ChangeTarget(default);
         }
 
         public override Vector2 CalculateVelocity(Vector2 fromPosition)
@@ -98,9 +99,7 @@ namespace Root.PixelGame.Game.AI.Model
             }
         }
 
-        public void UpdateTarget()
-        {
-            _target = GetNextWaypoint();
-        }
+        public void ChangeTarget() 
+            => _target.ChangeTarget(GetNextWaypoint());
     }
 }

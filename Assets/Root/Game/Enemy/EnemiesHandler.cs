@@ -1,6 +1,5 @@
-﻿using Root.PixelGame.Game.Core;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -10,13 +9,16 @@ namespace Root.PixelGame.Game.Enemy
 
         private List<IEnemyController> _enemiesList;
         
-        public EnemiesHandler(IList<IEnemyView> enemyViews)
+        public EnemiesHandler(
+            Transform playerTransform, 
+            IList<IEnemyView> enemyViews)
         {
-            _factory = new EnemyControllerFactory();
+            _factory = new EnemyControllerFactory(playerTransform);
             _enemiesList = new List<IEnemyController>();
             foreach (var enemyView in enemyViews)
             {
                 var enemyController = _factory.CreateEnemyController(enemyView);
+                enemyController.InitController();
                 _enemiesList.Add(enemyController);
             }
         }

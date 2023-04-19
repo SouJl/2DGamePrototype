@@ -1,8 +1,5 @@
-﻿using Root.PixelGame.Animation;
-using Root.PixelGame.Components.Core;
-using Root.PixelGame.Game.Core;
-using Root.PixelGame.StateMachines;
-using Root.PixelGame.Tool;
+﻿using Root.PixelGame.Tool;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -13,12 +10,15 @@ namespace Root.PixelGame.Game.Enemy
 
     internal class EnemyControllerFactory : IEnemyControllerFactory
     {
-        private readonly string StalkerEnemyDataPath = @"Enemy/StalkerEnemyData";
+        private readonly string StalkerEnemyDataPath = @"Enemy/PursuerEnemyData";
         private readonly string PatrolEnemyDataPath = @"Enemy/PatrolEnemyData";
         private readonly string ChaserEnemyDataPath = @"Enemy/ChaserEnemyData";
 
-        public EnemyControllerFactory()
+        private readonly Transform playerTransform;
+
+        public EnemyControllerFactory(Transform playerTransform) 
         {
+            this.playerTransform = playerTransform;
         }
 
         public IEnemyController CreateEnemyController(IEnemyView view)
@@ -28,62 +28,33 @@ namespace Root.PixelGame.Game.Enemy
             {
                 default:
                     return null;
-                case StalkerEnemyView stalkerEnemy: 
+                case PursuerEnemyView pursuerEnemy: 
                     {
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
-                        IEnemyModel model = new StalkerEnemyModel(stalkerEnemy.transform, data);
-                        IAnimatorController animator = GetAnimatorController(stalkerEnemy);
+                        IEnemyModel model = new PursuerEnemyModel(pursuerEnemy.transform, data);                       
+                        ITargetSelector targetSelector = new ManualTargetSelector(playerTransform); 
                         
-                        ITargetSelector targetSelector = new ManualTargetSelector(stalkerEnemy.StalkerTarget);
-
-                        var coreFactory = new EnemyCoreFactory(data, targetSelector);
-                        IEnemyCore core = GetEnemyCore(coreFactory, stalkerEnemy.CoreComponent);
-                        
-                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);                  
-                        
-                        return new EnemyController(stalkerEnemy, model, animator, stateHandler);
+                        return new PursuerEnemyController(pursuerEnemy, data, model, targetSelector);
                     }
                 case ChaserEnemyView chaserEnemy: 
                     {
                         IEnemyData data = LoadData(ChaserEnemyDataPath);
-                        IEnemyModel model = new ChaserEnemyModel(chaserEnemy.transform, data);
-                        IAnimatorController animator = GetAnimatorController(chaserEnemy);
-                        
+                        IEnemyModel model = new ChaserEnemyModel(chaserEnemy.transform, data);                       
                         ITargetSelector targetSelector = new DynamicTargetSelector();
-
-                        var coreFactory = new EnemyCoreFactory(data, targetSelector);
-                        IEnemyCore chaseCore = GetEnemyCore(coreFactory, chaserEnemy.ChaseAICore);
-                        IEnemyCore patrolCore = GetEnemyCore(coreFactory, chaserEnemy.PatrolAICore);
-
-                        IStateHandler stateHandler 
-                            = new ChaserEnemyStatesHandler(chaseCore, patrolCore, animator);
                         
-                        return new ChaserEnemyController(chaserEnemy, model, animator, stateHandler, targetSelector, chaserEnemy.TargetLocator, chaserEnemy.ChaseBreakDistance);
+                        return new ChaserEnemyController(chaserEnemy, data, model, targetSelector, chaserEnemy.TargetLocator, chaserEnemy.ChaseBreakDistance);
                     }
-                case PathSeekerEnemyView pathSeeker:
+                case PatrolEnemyView patrolEnemy:
                     {
                         IEnemyData data = LoadData(PatrolEnemyDataPath);
-                        IEnemyModel model = new PatrolEnemyModel(pathSeeker.transform, data);
-                        IAnimatorController animator = GetAnimatorController(pathSeeker);
+                        IEnemyModel model = new PatrolEnemyModel(patrolEnemy.transform, data);
                         ITargetSelector targetSelector = new DynamicTargetSelector();
 
-                        var coreFactory = new EnemyCoreFactory(data, targetSelector);
-                        
-                        IEnemyCore core = GetEnemyCore(coreFactory, pathSeeker.CoreComponent);
-                        
-                        IStateHandler stateHandler = new EnemyStatesHandler(core, animator);
-
-                        return new EnemyController(pathSeeker, model, animator, stateHandler);
+                        return new PatrolEnemyController(patrolEnemy, data, model, targetSelector);
                     }
             }
         }
 
         private IEnemyData LoadData(string path) => ResourceLoader.LoadObject<EnemyDataConfig>(path);
-
-        private IAnimatorController GetAnimatorController(EnemyView view)  
-            =>  new SpriteAnimatorController(view.Animation.SpriteRenderer, view.Animation.AnimationConfig);
-
-        private IEnemyCore GetEnemyCore(ICoreFactory<IEnemyCore, ICoreComponent> coreFactory, ICoreComponent coreComponent) 
-            => coreFactory.GetCore(coreComponent);
     }
 }

@@ -19,7 +19,7 @@ namespace Root.PixelGame
             var playerAnimator = new SpriteAnimatorController(_playerView.SpriteRenderer, _playerAnimationConfig);
 
             _playerController = new PlayerController(_playerView, playerAnimator);
-            _enemiesHandler = new EnemiesHandler(_enemyViews);
+            _enemiesHandler = new EnemiesHandler(_playerView.Transform, _enemyViews);
         }
 
         private void Update()

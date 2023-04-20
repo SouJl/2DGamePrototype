@@ -7,7 +7,8 @@ namespace Root.PixelGame.Components
     internal class CameraFollowComponent : MonoBehaviour
     {
         [SerializeField] private Transform _followTarget;
-        [SerializeField] private float _levelLength = 100;
+        [SerializeField] private float _maxX = 100f;
+        [SerializeField] private float _minX = -10f;
         [SerializeField] private float _maxY = 10;
         [SerializeField] private float _minY = -10;
         [SerializeField] private float _xOffset = 0f;
@@ -20,19 +21,18 @@ namespace Root.PixelGame.Components
         {
             if (!_followTarget) return;
 
-            var clampPosX = Mathf.Clamp(_followTarget.position.x + _xOffset, 0, _levelLength);
+            var clampPosX = Mathf.Clamp(_followTarget.position.x + _xOffset, _minX, _maxX);
             var clampPosY = Mathf.Clamp(_followTarget.position.y + _yOffset, _minY, _maxY);
             var targetPos = new Vector3(clampPosX, clampPosY, transform.position.z);
             transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, _smoothTime);
         }
 
-
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             ChangeeCamPosToTarget();
         }
 
-#if UNITY_EDITOR
         private void ChangeeCamPosToTarget()
         {
             if (Application.isEditor && !Application.isPlaying)

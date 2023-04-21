@@ -1,6 +1,7 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
 using Root.PixelGame.Game.Enemy;
+using System;
 using UnityEngine;
 
 namespace Root.PixelGame
@@ -26,12 +27,23 @@ namespace Root.PixelGame
         {
             _playerController.Execute();
             _enemiesHandler.Execute();
+
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                GameExit();
+            }
+
         }
 
         private void FixedUpdate()
         {
             _playerController.FixedExecute();
             _enemiesHandler.FixedExecute();
+        }
+
+        private void GameExit()
+        {
+            Application.Quit();
         }
     }
 }

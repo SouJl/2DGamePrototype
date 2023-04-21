@@ -61,9 +61,17 @@ namespace Root.PixelGame.Game.Enemy
 
                         return new ProtectorEnemyController(protectorEnemy, data, model, targetSelector, protectorEnemy.ProtectionZone);
                     }
+
+                case StandEnemyView standEnemy: 
+                    {
+                        IEnemyData data = standEnemy.Data;
+                        IEnemyModel model = new StandEnemyModel(standEnemy.transform, data);
+                        return new StandEnemyController(standEnemy, data, model);
+                    }
             }
         }
 
-        private IEnemyData LoadData(string path) => ResourceLoader.LoadObject<EnemyDataConfig>(path);
+        private IEnemyData LoadData(string path) 
+            => ResourceLoader.LoadObject<EnemyDataConfig>(path);
     }
 }

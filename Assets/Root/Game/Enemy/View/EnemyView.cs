@@ -1,5 +1,4 @@
 ﻿using Assets.Root.Components;
-using Root.PixelGame.Components.Core;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy

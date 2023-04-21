@@ -11,6 +11,7 @@ namespace Root.PixelGame.StateMachines
         private bool _isGrounded;
         private bool _isTouchingWall;
         private bool _isGrab;
+        private bool _isAttack;
 
         public PlayerGroundState(
             IStateHandler stateHandler,
@@ -32,6 +33,7 @@ namespace Root.PixelGame.StateMachines
             _isTouchingWall = default;
             _isGrab = default;
             _isGrounded = default;
+            _isAttack = false;
         }
 
         public override void InputData()
@@ -39,11 +41,17 @@ namespace Root.PixelGame.StateMachines
             base.InputData();
             _isJump = Input.GetKeyDown(KeyCode.Space);
             _isGrab = Input.GetKey(KeyCode.LeftControl);
+            _isAttack = Input.GetMouseButtonDown(0);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            if (_isAttack)
+            {
+                ChangeState(StateType.PrimaryAtackState);
+                return;
+            }
             if (_isJump)
             {
                 ChangeState(StateType.JumpState);

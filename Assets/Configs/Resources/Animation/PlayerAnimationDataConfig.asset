@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169d5293a22e1d547adc2a1e6d0f66ac, type: 3}
   m_Name: PlayerAnimationDataConfig
   m_EditorClassIdentifier: 
-  _animationSpeed: 15
+  _animationSpeed: 12
   _spriteAnimationConfigs:
   - <Loop>k__BackingField: 1
     <State>k__BackingField: 0
@@ -79,3 +79,19 @@ MonoBehaviour:
     - {fileID: -1644608607, guid: 4b3020419973fe74e809466f6f185115, type: 3}
     - {fileID: 193031436, guid: 4b3020419973fe74e809466f6f185115, type: 3}
     - {fileID: -1832342559, guid: 4b3020419973fe74e809466f6f185115, type: 3}
+  - <Loop>k__BackingField: 0
+    <State>k__BackingField: 12
+    _sprites:
+    - {fileID: 409077267, guid: 801547a4d449e4d4fb13707ea70eea2b, type: 3}
+    - {fileID: 501071110, guid: 801547a4d449e4d4fb13707ea70eea2b, type: 3}
+    - {fileID: -764744482, guid: 801547a4d449e4d4fb13707ea70eea2b, type: 3}
+    - {fileID: 1698910597, guid: 801547a4d449e4d4fb13707ea70eea2b, type: 3}
+  - <Loop>k__BackingField: 0
+    <State>k__BackingField: 13
+    _sprites:
+    - {fileID: 1083820799, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
+    - {fileID: -784459610, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
+    - {fileID: 1660910540, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
+    - {fileID: -1539692074, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
+    - {fileID: -315284498, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
+    - {fileID: -1061849727, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}

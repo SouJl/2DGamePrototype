@@ -22,6 +22,8 @@ namespace Root.PixelGame.StateMachines
         protected PhysicsMaterial2D _fullFriction;
         protected PhysicsMaterial2D _noneFriction;
 
+        protected byte _atackIndex = 0;
+
         protected PlayerState(
             IStateHandler stateHandler,
             IPlayerCore playerCore,

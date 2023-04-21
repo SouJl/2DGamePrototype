@@ -15,6 +15,9 @@
         LedgeState,
         ClimbState,
 
+        PrimaryAtackState,
+        SecondaryAtackState,
+
         InAction,
     }
 }

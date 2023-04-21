@@ -45,6 +45,7 @@ namespace Root.PixelGame.StateMachines
             states[StateType.WallGrabState] = new PlayerWallGrabState(this, _core, _data, _animator);
             states[StateType.LedgeState] = new PlayerLedgeState(this, _core, _data, _animator);
             states[StateType.ClimbState] = new PlayerClimbState(this, _core, _data, _animator);
+            states[StateType.PrimaryAtackState] = new PlayerAttackState(this, _core, _data, _animator);
 
             return states;
         }   

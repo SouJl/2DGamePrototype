@@ -12,7 +12,8 @@
         WallGrab    = 6,
         Ledge       = 7,
         Climb       = 8,
-        Attack      = 12,
+        Attack1     = 12,
+        Attack2     = 13,
 
         //For items
         InUse       = 31,

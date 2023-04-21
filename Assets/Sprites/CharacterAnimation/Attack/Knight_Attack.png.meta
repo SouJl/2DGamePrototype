@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7bc9fc8dc33d7348be07eab0c18ad92
+guid: 801547a4d449e4d4fb13707ea70eea2b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,18 +102,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -129,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight_Fall_0
+      name: Knight_Attack_0
       rect:
         serializedVersion: 2
-        x: 40
+        x: 37
         y: 0
-        width: 27
-        height: 37
+        width: 37
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e0e7f2bcd5ba434892d99d5b6b6986b
-      internalID: 624034854
+      spriteID: 1dea01f9a150ebf46a27d00fac2ee90f
+      internalID: 409077267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_Fall_1
+      name: Knight_Attack_1
       rect:
         serializedVersion: 2
-        x: 160
+        x: 172
         y: 0
-        width: 27
-        height: 37
+        width: 64
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ed9cf8f05ece9243ba1b9e76e8f4741
-      internalID: -835386239
+      spriteID: 4f12863efba2ace4081d965051448241
+      internalID: 501071110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_Fall_2
+      name: Knight_Attack_2
       rect:
         serializedVersion: 2
-        x: 280
+        x: 294
         y: 0
-        width: 27
-        height: 37
+        width: 63
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,8 +173,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59df5abe6366fa24fa86482b37806732
-      internalID: 1867098807
+      spriteID: bd93033c433e8384fa54529ee532557a
+      internalID: -764744482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 0
+        width: 57
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c70deb0bf0399c47a07ac14e98eabc6
+      internalID: 1698910597
       vertices: []
       indices: 
       edges: []
@@ -202,9 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Knight_Fall_2: 1867098807
-      Knight_Fall_0: 624034854
-      Knight_Fall_1: -835386239
+      Knight_Attack_3: 1698910597
+      Knight_Attack_0: 409077267
+      Knight_Attack_2: -764744482
+      Knight_Attack_1: 501071110
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

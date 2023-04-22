@@ -16,7 +16,10 @@ namespace Root.PixelGame.Game.Enemy
 
         public override void OnCollisionContact(Collider2D collision) 
         {
-
+            if(collision.gameObject.tag == "PlayerWeapon")
+            {
+                model.Damage(50);
+            }
         }
 
         protected override void CreateAnimatorController(IEnemyView view)
@@ -29,6 +32,11 @@ namespace Root.PixelGame.Game.Enemy
         protected override void CreateStatesHandler(IEnemyView view)
         {
             _stateHandler = new EnemyStatesHandler(new StubEnemyCore(nameof(StandEnemyController)), _animator);
+        }
+
+        protected override void OnHealthEndBaegaviour()
+        {
+            view.ChangeLevelDisplay(false);
         }
     }
 }

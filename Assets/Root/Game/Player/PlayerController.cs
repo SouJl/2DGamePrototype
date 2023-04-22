@@ -35,6 +35,7 @@ namespace Root.PixelGame.Game
             _core = CreatePlayerCore(_view);
 
             var weapon = new Sword(_animator);
+            weapon.WeaponActive += _view.WeaponUsed;
 
             _stateHandler = new PlayerStatesHandler(_data, _core, _animator, weapon);
             _stateHandler.Init();

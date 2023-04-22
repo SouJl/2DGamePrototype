@@ -10,6 +10,7 @@ TagManager:
   - DeathZone
   - Ground
   - Joint
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Items
   - Ground
   - Obstacle
-  - 
+  - Weapon
   - 
   - 
   - 

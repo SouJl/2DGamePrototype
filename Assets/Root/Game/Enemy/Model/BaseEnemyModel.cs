@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿using Root.PixelGame.Game.Core;
+using System;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal interface IEnemyModel
+    internal interface IEnemyModel : IDamageable
     {
+        float Health { get; }
+        float Speed { get; }
+
         Transform SelfTransform { get; }
     }
 
@@ -13,8 +18,10 @@ namespace Root.PixelGame.Game.Enemy
         private readonly float _defaultHealth;
         private readonly float _defaultSpeed;
 
-        public float Health { get; set; }
-        public float Speed { get; set; }
+        public abstract event Action OnHealthEnd;
+
+        public float Health { get; protected set; }
+        public float Speed { get; protected set; }
 
         public Transform SelfTransform => _selfTransform;
 
@@ -35,5 +42,7 @@ namespace Root.PixelGame.Game.Enemy
             Health = _defaultHealth;
             Speed = _defaultSpeed;
         }
+
+        public abstract void Damage(float amount);
     }
 }

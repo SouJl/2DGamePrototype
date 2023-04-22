@@ -30,7 +30,9 @@ namespace Root.PixelGame.Game.Enemy
             this.data 
                 = data ?? throw new ArgumentNullException(nameof(data));
             this.model
-              = model ?? throw new ArgumentNullException(nameof(model));           
+              = model ?? throw new ArgumentNullException(nameof(model));
+
+            model.OnHealthEnd += OnHealthEndBaegaviour;
         }
 
         public void InitController()
@@ -59,5 +61,7 @@ namespace Root.PixelGame.Game.Enemy
         protected abstract void CreateAnimatorController(IEnemyView view);
 
         protected abstract void CreateStatesHandler(IEnemyView view);
+
+        protected abstract void OnHealthEndBaegaviour(); 
     }
 }

@@ -46,6 +46,7 @@ namespace Root.PixelGame.StateMachines
             {
                 playerCore.Physic.SetVelocityX(0f);
                 ChangeState(StateType.IdleState);
+                _weapon.WeaponActive?.Invoke();
             }
         }
 
@@ -62,7 +63,8 @@ namespace Root.PixelGame.StateMachines
         private void Attack()
         {
             playerCore.Physic.SetVelocityX(_attackMoveOffset * playerCore.FacingDirection);
-            _weapon.Attack(); 
+            _weapon.Attack();
+            _weapon.WeaponActive?.Invoke();
         }
     }
 }

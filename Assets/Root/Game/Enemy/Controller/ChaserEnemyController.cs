@@ -56,7 +56,13 @@ namespace Root.PixelGame.Game.Enemy
             }
         }
 
-        public override void OnCollisionContact(Collider2D collision) { }
+        public override void OnCollisionContact(Collider2D collision) 
+        {
+            if (collision.gameObject.tag == "PlayerWeapon")
+            {
+                model.Damage(50);
+            }
+        }
 
         private void OnLocatorContact(Collider2D collision)
         {
@@ -83,6 +89,11 @@ namespace Root.PixelGame.Game.Enemy
             IEnemyCore patrolCore = coreFactory.GetCore(chaserView.PatrolAICore);
 
             _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, _animator);
+        }
+
+        protected override void OnHealthEndBaegaviour()
+        {
+            view.ChangeLevelDisplay(false);
         }
     }
 }

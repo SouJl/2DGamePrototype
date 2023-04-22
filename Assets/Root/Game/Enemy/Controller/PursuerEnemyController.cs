@@ -48,5 +48,10 @@ namespace Root.PixelGame.Game.Enemy
 
             _stateHandler = new EnemyStatesHandler(core, _animator);
         }
+
+        protected override void OnHealthEndBaegaviour()
+        {
+            view.ChangeLevelDisplay(false);
+        }
     }
 }

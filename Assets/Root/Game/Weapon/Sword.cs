@@ -1,4 +1,5 @@
 ﻿using Root.PixelGame.Animation;
+using System;
 
 namespace Root.PixelGame.Game.Weapon
 {
@@ -11,13 +12,11 @@ namespace Root.PixelGame.Game.Weapon
         private readonly int _maxCombo = 2;
 
         private int _comboIndex;
-
+        
         public Sword(IAnimatorController animator)
         {
             _animator = animator;
         }
-
-   
 
         public override void Attack()
         {

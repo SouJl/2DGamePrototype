@@ -12,6 +12,9 @@ namespace Root.PixelGame.Game
         public Transform GroundCheck { get; }
         public Transform WallCheck { get; }
         public Transform LedgeCheck { get; }
+
+
+        void WeaponUsed();
     }
 
     internal class PlayerView : MonoBehaviour, IPlayerView
@@ -25,9 +28,15 @@ namespace Root.PixelGame.Game
         [field: SerializeField] public Transform WallCheck { get; private set; }
         [field: SerializeField] public Transform LedgeCheck { get; private set; }
 
+        [field : SerializeField] public GameObject Weapon { get; private set; }
+
+
+        private bool _weponState;
+
         private void Awake()
         {
-
+            _weponState = false;
+            Weapon.SetActive(false);
         }
 
         private void OnValidate()
@@ -36,6 +45,13 @@ namespace Root.PixelGame.Game
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Collider = GetComponent<Collider2D>();
             Rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        public void WeaponUsed()
+        {
+            _weponState = !_weponState;
+
+            Weapon.SetActive(_weponState);
         }
     }
 }

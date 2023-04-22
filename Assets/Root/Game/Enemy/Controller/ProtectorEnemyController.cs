@@ -83,6 +83,10 @@ namespace Root.PixelGame.Game.Enemy
             _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, _animator);
         }
 
+        protected override void OnHealthEndBaegaviour()
+        {
+            view.ChangeLevelDisplay(false);
+        }
     }
 
 

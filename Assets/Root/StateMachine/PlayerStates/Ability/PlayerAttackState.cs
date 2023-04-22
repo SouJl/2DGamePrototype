@@ -1,22 +1,25 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
 using Root.PixelGame.Game.Core;
-using UnityEngine;
+using Root.PixelGame.Game.Weapon;
+using System;
 
 namespace Root.PixelGame.StateMachines
 {
     internal class PlayerAttackState : PlayerAbilityState
     {
-     
-        private bool _isCombo;
+        private readonly IWeapon _weapon;
+        private readonly float _attackMoveOffset = 1.5f;
 
         public PlayerAttackState(
             IStateHandler stateHandler, 
             IPlayerCore playerCore, 
             IPlayerData playerData, 
-            IAnimatorController animator) : base(stateHandler, playerCore, playerData, animator)
+            IAnimatorController animator, 
+            IWeapon weapon) : base(stateHandler, playerCore, playerData, animator)
         {
-
+            _weapon 
+                = weapon ?? throw new ArgumentNullException(nameof(weapon));
         }
 
         public override void Enter()
@@ -28,7 +31,6 @@ namespace Root.PixelGame.StateMachines
         public override void Exit()
         {
             base.Exit();
-            _isCombo = false;
         }
 
         public override void InputData()
@@ -36,27 +38,14 @@ namespace Root.PixelGame.StateMachines
             base.InputData();
         }
 
-        private bool CheckAttackInput() => Input.GetMouseButtonDown(0);
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
             if (isAnimationEnd)
             {
-                if (CheckAttackInput())
-                {
-                    if (_atackIndex == 1) _atackIndex = 0;
-                    else _atackIndex ++;
-
-                    ChangeState(StateType.PrimaryAtackState);
-                    return;
-                }
-                else
-                {
-                    _atackIndex = 0;
-                    ChangeState(StateType.IdleState);
-                }
+                playerCore.Physic.SetVelocityX(0f);
+                ChangeState(StateType.IdleState);
             }
         }
 
@@ -72,20 +61,8 @@ namespace Root.PixelGame.StateMachines
 
         private void Attack()
         {
-            switch (_atackIndex)
-            {
-                case 0:
-                    {
-                        animator.StartAnimation(AnimationType.Attack1);
-                        break;
-                    }
-                case 1: 
-                    {
-                        animator.StartAnimation(AnimationType.Attack2);
-                        break;
-                    }
-            }
-       
+            playerCore.Physic.SetVelocityX(_attackMoveOffset * playerCore.FacingDirection);
+            _weapon.Attack(); 
         }
     }
 }

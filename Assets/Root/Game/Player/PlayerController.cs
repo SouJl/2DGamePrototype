@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
@@ -33,7 +34,9 @@ namespace Root.PixelGame.Game
 
             _core = CreatePlayerCore(_view);
 
-            _stateHandler = new PlayerStatesHandler(_data, _core, _animator);
+            var weapon = new Sword(_animator);
+
+            _stateHandler = new PlayerStatesHandler(_data, _core, _animator, weapon);
             _stateHandler.Init();
         }
 

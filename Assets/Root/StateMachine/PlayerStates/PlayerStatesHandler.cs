@@ -3,6 +3,7 @@ using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
 using System.Collections.Generic;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Game.Weapon;
 
 namespace Root.PixelGame.StateMachines
 {
@@ -11,11 +12,13 @@ namespace Root.PixelGame.StateMachines
         private readonly IPlayerData _data;
         private readonly IPlayerCore _core;
         private readonly IAnimatorController _animator;
+        private readonly IWeapon _weapon;
 
         public PlayerStatesHandler(
             IPlayerData data,
             IPlayerCore core,
-            IAnimatorController animator) : base()
+            IAnimatorController animator,
+            IWeapon weapon) : base()
         {
             _data
                 = data ?? throw new ArgumentNullException(nameof(data));
@@ -23,6 +26,8 @@ namespace Root.PixelGame.StateMachines
                 = core ?? throw new ArgumentNullException(nameof(core));
             _animator
                 = animator ?? throw new ArgumentNullException(nameof(animator));
+            _weapon 
+                = weapon ?? throw new ArgumentNullException(nameof(weapon));
         }
 
         protected override void Initialize()
@@ -45,7 +50,7 @@ namespace Root.PixelGame.StateMachines
             states[StateType.WallGrabState] = new PlayerWallGrabState(this, _core, _data, _animator);
             states[StateType.LedgeState] = new PlayerLedgeState(this, _core, _data, _animator);
             states[StateType.ClimbState] = new PlayerClimbState(this, _core, _data, _animator);
-            states[StateType.PrimaryAtackState] = new PlayerAttackState(this, _core, _data, _animator);
+            states[StateType.PrimaryAtackState] = new PlayerAttackState(this, _core, _data, _animator, _weapon);
 
             return states;
         }   

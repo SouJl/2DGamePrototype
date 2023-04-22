@@ -13,7 +13,6 @@ namespace Root.PixelGame.StateMachines
         private bool _isTouchingWallBack;
         private bool _isGrab;
         private bool _isTouchingLedge;
-        private bool _isAttack;
 
         public PlayerInAirState(
             IStateHandler stateHandler,
@@ -35,7 +34,6 @@ namespace Root.PixelGame.StateMachines
             _isTouchingWall = false;
             _isGrab = false;
             _isJump = false;
-            _isAttack = false;
         }
 
         public override void InputData()
@@ -43,18 +41,11 @@ namespace Root.PixelGame.StateMachines
             base.InputData();
             _isJump = Input.GetKeyDown(KeyCode.Space);
             _isGrab = Input.GetKey(KeyCode.LeftControl);
-            _isAttack = Input.GetMouseButtonDown(0);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            if (_isAttack)
-            {
-                ChangeState(StateType.PrimaryAtackState);
-                return;
-            }
 
             if (_isTouchingWall && _isGrab)
             {

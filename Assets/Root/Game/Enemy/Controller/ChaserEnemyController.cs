@@ -28,7 +28,8 @@ namespace Root.PixelGame.Game.Enemy
                = targetSelector ?? throw new ArgumentNullException(nameof(targetSelector));
             _playerLocator 
                 = playerLocator ?? throw new ArgumentNullException(nameof(playerLocator));
-            _playerLocator.TriggerEnter += OnLocatorContact;
+            
+            _playerLocator.TriggerStay += OnLocatorContact;
 
             _chaseBreakDistance = chaseBreakDistance;
         }
@@ -64,7 +65,10 @@ namespace Root.PixelGame.Game.Enemy
         public override void TakeDamage(float amount)
         {
             model.Health.DecreaseHealth(amount);
-            if(model.Health.CurrentHealth == 0)
+          
+            _stateHandler.ChangeState(StateType.TakeDamage);
+
+            if (model.Health.CurrentHealth == 0)
             {
                 view.ChangeLevelDisplay(false);
             }
@@ -74,6 +78,8 @@ namespace Root.PixelGame.Game.Enemy
         {
             if(collision.gameObject.tag == "Player")
             {
+                if (_isChase == true) return;
+
                 _stateHandler.ChangeState(StateType.InAction);
                 _isChase = true;
                 _targetSelector.ChangeTarget(collision.gameObject.transform);

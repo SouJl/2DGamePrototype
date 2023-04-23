@@ -31,6 +31,8 @@ namespace Root.PixelGame.StateMachines
 
             states[StateType.IdleState] = new EnemyIdleState(this, _patrolCore, _animator);
             states[StateType.InAction] = new ChaseEnemyInActionState(this, _chaseCore, _animator);
+            states[StateType.TakeDamage] = new EnemyTakeDamageState(this, _chaseCore, _animator);
+
             return states;
         }
 

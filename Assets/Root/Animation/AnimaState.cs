@@ -14,6 +14,7 @@
         Climb       = 8,
         Attack1     = 12,
         Attack2     = 13,
+        TakeDamage  = 14,
 
         //For items
         InUse       = 31,

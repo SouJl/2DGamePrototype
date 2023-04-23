@@ -26,6 +26,7 @@ namespace Root.PixelGame.StateMachines
             var states = new Dictionary<StateType, IState>();
 
             states[StateType.IdleState] = new EnemyIdleState(this, _core, _animator);
+            states[StateType.TakeDamage] = new EnemyTakeDamageState(this, _core, _animator);
 
             return states;
         }

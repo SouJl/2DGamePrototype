@@ -1,37 +1,37 @@
-﻿using System;
+﻿using Root.PixelGame.Game.Core.Health;
+using System;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
     internal interface IEnemyModel
     {
-        float Health { get; }
+        IHealth Health { get; }
+
         float Speed { get; }
 
         Transform SelfTransform { get; }
-
-        void TakeDamage(float amount);
     }
 
     internal abstract class BaseEnemyModel : IEnemyModel
     {
-        protected readonly IEnemyView _view;
-        private readonly float _defaultHealth;
+        private readonly Transform _selfTransform;
         private readonly float _defaultSpeed;
 
-        public float Health { get; protected set; }
+        public IHealth Health { get; protected set; }
+
         public float Speed { get; protected set; }
 
-        public Transform SelfTransform => _view.EnemyTransform;
+        public Transform SelfTransform => _selfTransform;
 
         public BaseEnemyModel(
-            IEnemyView view, 
+            Transform transform, 
             IEnemyData data)
         {
-            _view 
-                = view ?? throw new ArgumentNullException(nameof(view));
-            
-            _defaultHealth = data.MaxHealth;
+            _selfTransform = transform;
+
+            Health = new HealthModel(data.MaxHealth);
+
             _defaultSpeed = data.Speed;
 
             SetDefaultValues();
@@ -40,10 +40,7 @@ namespace Root.PixelGame.Game.Enemy
 
         public void SetDefaultValues()
         {
-            Health = _defaultHealth;
             Speed = _defaultSpeed;
         }
-
-        public abstract void TakeDamage(float amount);
     }
 }

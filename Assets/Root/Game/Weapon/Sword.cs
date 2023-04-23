@@ -32,7 +32,7 @@ namespace Root.PixelGame.Game.Weapon
 
         public override void DealDamage(IDamageable damageableObject)
         {
-            damageableObject.Damage(50f);
+            damageableObject.Damage(25f);
         }
     }
 }

@@ -43,7 +43,32 @@ namespace Root.PixelGame.Game.Enemy
             base.FixedExecute();
         }
 
-        public override void OnCollisionContact(Collider2D collision) { }
+        public override void OnCollisionContact(Collider2D collision) 
+        {
+
+        }
+
+        public override void TakeDamage(float amount)
+        {
+
+        }
+
+        protected override void CreateAnimatorController(IEnemyView view)
+        {
+            var animationView = view as EnemyView;
+            _animator
+                = new SpriteAnimatorController(animationView.Animation.SpriteRenderer, animationView.Animation.AnimationConfig);
+        }
+
+        protected override void CreateStatesHandler(IEnemyView view)
+        {
+            ProtectorEnemyView chaserView = view as ProtectorEnemyView;
+            var coreFactory = new EnemyCoreFactory(data, _targetSelector);
+            IEnemyCore chaseCore = coreFactory.GetCore(chaserView.ChaseAICore);
+            IEnemyCore patrolCore = coreFactory.GetCore(chaserView.PatrolAICore);
+
+            _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, _animator);
+        }
 
         private void OnZoneEnter(Collider2D collision)
         {
@@ -65,28 +90,6 @@ namespace Root.PixelGame.Game.Enemy
             }
         }
 
-
-        protected override void CreateAnimatorController(IEnemyView view)
-        {
-            var animationView = view as EnemyView;
-            _animator
-                = new SpriteAnimatorController(animationView.Animation.SpriteRenderer, animationView.Animation.AnimationConfig);
-        }
-
-        protected override void CreateStatesHandler(IEnemyView view)
-        {
-            ProtectorEnemyView chaserView = view as ProtectorEnemyView;
-            var coreFactory = new EnemyCoreFactory(data, _targetSelector);
-            IEnemyCore chaseCore = coreFactory.GetCore(chaserView.ChaseAICore);
-            IEnemyCore patrolCore = coreFactory.GetCore(chaserView.PatrolAICore);
-
-            _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, _animator);
-        }
-
-        protected override void OnHealthEndBaegaviour()
-        {
-            view.ChangeLevelDisplay(false);
-        }
     }
 
 

@@ -11,6 +11,8 @@ namespace Root.PixelGame.Game.Enemy
 
         void InitController();
         void OnCollisionContact(Collider2D collision);
+
+        void TakeDamage(float amount);
     }
 
     internal abstract class BaseEnemyController : BaseController, IEnemyController
@@ -57,13 +59,12 @@ namespace Root.PixelGame.Game.Enemy
         {
             _stateHandler.FixedExecute();
         }
+        public abstract void TakeDamage(float amount);
 
         public virtual void OnCollisionContact(Collider2D collision) { }
 
         protected abstract void CreateAnimatorController(IEnemyView view);
 
-        protected abstract void CreateStatesHandler(IEnemyView view);
-
-        protected abstract void OnHealthEndBaegaviour();
+        protected abstract void CreateStatesHandler(IEnemyView view); 
     }
 }

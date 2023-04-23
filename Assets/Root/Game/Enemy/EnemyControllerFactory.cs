@@ -32,7 +32,7 @@ namespace Root.PixelGame.Game.Enemy
                 case PursuerEnemyView pursuerEnemy: 
                     {
                         IEnemyData data = LoadData(StalkerEnemyDataPath);
-                        IEnemyModel model = new PursuerEnemyModel(pursuerEnemy, data);                       
+                        IEnemyModel model = new PursuerEnemyModel(pursuerEnemy.EnemyTransform, data);                       
                         ITargetSelector targetSelector = new ManualTargetSelector(playerTransform); 
                         
                         return new PursuerEnemyController(pursuerEnemy, data, model, targetSelector);
@@ -40,7 +40,7 @@ namespace Root.PixelGame.Game.Enemy
                 case ChaserEnemyView chaserEnemy: 
                     {
                         IEnemyData data = LoadData(ChaserEnemyDataPath);
-                        IEnemyModel model = new ChaserEnemyModel(chaserEnemy, data);                       
+                        IEnemyModel model = new ChaserEnemyModel(chaserEnemy.EnemyTransform, data);                       
                         ITargetSelector targetSelector = new DynamicTargetSelector();
                         
                         return new ChaserEnemyController(chaserEnemy, data, model, targetSelector, chaserEnemy.TargetLocator, chaserEnemy.ChaseBreakDistance);
@@ -48,7 +48,7 @@ namespace Root.PixelGame.Game.Enemy
                 case PatrolEnemyView patrolEnemy:
                     {
                         IEnemyData data = LoadData(PatrolEnemyDataPath);
-                        IEnemyModel model = new PatrolEnemyModel(patrolEnemy, data);
+                        IEnemyModel model = new PatrolEnemyModel(patrolEnemy.EnemyTransform, data);
                         ITargetSelector targetSelector = new DynamicTargetSelector();
 
                         return new PatrolEnemyController(patrolEnemy, data, model, targetSelector);
@@ -56,7 +56,7 @@ namespace Root.PixelGame.Game.Enemy
                 case ProtectorEnemyView protectorEnemy: 
                     {
                         IEnemyData data = LoadData(ProtectorEnemyDataPath);
-                        IEnemyModel model = new ProtectorEnemyModel(protectorEnemy, data);
+                        IEnemyModel model = new ProtectorEnemyModel(protectorEnemy.EnemyTransform, data);
                         ITargetSelector targetSelector = new DynamicTargetSelector();
 
                         return new ProtectorEnemyController(protectorEnemy, data, model, targetSelector, protectorEnemy.ProtectionZone);
@@ -65,7 +65,7 @@ namespace Root.PixelGame.Game.Enemy
                 case StandEnemyView standEnemy: 
                     {
                         IEnemyData data = standEnemy.Data;
-                        IEnemyModel model = new StandEnemyModel(standEnemy, data);
+                        IEnemyModel model = new StandEnemyModel(standEnemy.EnemyTransform, data);
                         return new StandEnemyController(standEnemy, data, model);
                     }
             }

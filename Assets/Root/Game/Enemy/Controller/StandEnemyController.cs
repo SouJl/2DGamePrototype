@@ -14,7 +14,22 @@ namespace Root.PixelGame.Game.Enemy
         {
         }
 
-        public override void OnCollisionContact(Collider2D collision) { }
+        public override void OnCollisionContact(Collider2D collision) 
+        {
+
+        }
+
+        public override void TakeDamage(float amount)
+        {
+            model.Health.DecreaseHealth(amount);
+            
+            _stateHandler.ChangeState(StateType.TakeDamage);
+
+            if (model.Health.CurrentHealth == 0)
+            {
+                view.ChangeLevelDisplay(false);
+            }
+        }
 
         protected override void CreateAnimatorController(IEnemyView view)
         {
@@ -26,11 +41,6 @@ namespace Root.PixelGame.Game.Enemy
         protected override void CreateStatesHandler(IEnemyView view)
         {
             _stateHandler = new EnemyStatesHandler(new StubEnemyCore(nameof(StandEnemyController)), _animator);
-        }
-
-        protected override void OnHealthEndBaegaviour()
-        {
-            view.ChangeLevelDisplay(false);
         }
     }
 }

@@ -17,6 +17,7 @@
 
         PrimaryAtackState,
         SecondaryAtackState,
+        TakeDamage,
 
         InAction,
     }

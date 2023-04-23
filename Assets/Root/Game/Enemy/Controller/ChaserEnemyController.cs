@@ -56,8 +56,19 @@ namespace Root.PixelGame.Game.Enemy
             }
         }
 
-        public override void OnCollisionContact(Collider2D collision) { }
+        public override void OnCollisionContact(Collider2D collision) 
+        {
 
+        }
+
+        public override void TakeDamage(float amount)
+        {
+            model.Health.DecreaseHealth(amount);
+            if(model.Health.CurrentHealth == 0)
+            {
+                view.ChangeLevelDisplay(false);
+            }
+        }
 
         private void OnLocatorContact(Collider2D collision)
         {
@@ -86,9 +97,6 @@ namespace Root.PixelGame.Game.Enemy
             _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, _animator);
         }
 
-        protected override void OnHealthEndBaegaviour()
-        {
-            view.ChangeLevelDisplay(false);
-        }
+ 
     }
 }

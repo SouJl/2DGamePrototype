@@ -36,7 +36,7 @@ namespace Root.PixelGame.Game.Enemy
 
         public void Damage(float amount)
         {
-            _controller.Model.TakeDamage(amount);
+            _controller.TakeDamage(amount);
         }
 
 

@@ -31,7 +31,15 @@ namespace Root.PixelGame.Game.Enemy
             base.FixedExecute();
         }
 
-        public override void OnCollisionContact(Collider2D collision) { }
+        public override void OnCollisionContact(Collider2D collision) 
+        {
+
+        }
+
+        public override void TakeDamage(float amount)
+        {
+            
+        }
 
         protected override void CreateAnimatorController(IEnemyView view)
         {
@@ -47,11 +55,6 @@ namespace Root.PixelGame.Game.Enemy
             IEnemyCore core = coreFactory.GetCore(patrolView.CoreComponent);
 
             _stateHandler = new EnemyStatesHandler(core, _animator);
-        }
-
-        protected override void OnHealthEndBaegaviour()
-        {
-            view.ChangeLevelDisplay(false);
         }
     }
 }

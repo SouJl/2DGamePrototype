@@ -1,5 +1,5 @@
 ﻿using Root.PixelGame.Animation;
-using System;
+using Root.PixelGame.Game.Core;
 
 namespace Root.PixelGame.Game.Weapon
 {
@@ -13,9 +13,12 @@ namespace Root.PixelGame.Game.Weapon
 
         private int _comboIndex;
         
-        public Sword(IAnimatorController animator)
+        public Sword(
+            IWeaponView view, 
+            IAnimatorController animator)
         {
             _animator = animator;
+            view.Init(this);
         }
 
         public override void Attack()
@@ -25,6 +28,11 @@ namespace Root.PixelGame.Game.Weapon
 
             _animator.StartAnimation(_attackAnimations[_comboIndex]);
             _comboIndex++;
+        }
+
+        public override void DealDamage(IDamageable damageableObject)
+        {
+            damageableObject.Damage(50f);
         }
     }
 }

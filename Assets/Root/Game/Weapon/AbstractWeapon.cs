@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Root.PixelGame.Game.Core;
+using System;
 
 namespace Root.PixelGame.Game.Weapon
 {
@@ -6,11 +7,15 @@ namespace Root.PixelGame.Game.Weapon
     {
         Action WeaponActive { get; set; }
         void Attack();
+
+        void DealDamage(IDamageable damageableObject);
     }
     internal abstract class AbstractWeapon : IWeapon
     {
         public Action WeaponActive { get; set; }
 
         public abstract void Attack();
+
+        public abstract void DealDamage(IDamageable damageableObject);
     }
 }

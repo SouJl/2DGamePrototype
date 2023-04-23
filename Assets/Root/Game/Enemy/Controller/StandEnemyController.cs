@@ -14,13 +14,7 @@ namespace Root.PixelGame.Game.Enemy
         {
         }
 
-        public override void OnCollisionContact(Collider2D collision) 
-        {
-            if(collision.gameObject.tag == "PlayerWeapon")
-            {
-                model.Damage(50);
-            }
-        }
+        public override void OnCollisionContact(Collider2D collision) { }
 
         protected override void CreateAnimatorController(IEnemyView view)
         {

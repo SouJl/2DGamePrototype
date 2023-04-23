@@ -7,6 +7,8 @@ namespace Root.PixelGame.Game.Enemy
 {
     internal interface IEnemyController : IExecute
     {
+        IEnemyModel Model { get; }
+
         void InitController();
         void OnCollisionContact(Collider2D collision);
     }
@@ -20,6 +22,8 @@ namespace Root.PixelGame.Game.Enemy
         protected IAnimatorController _animator;
         protected IStateHandler _stateHandler;
 
+        public IEnemyModel Model => model;
+
         public BaseEnemyController(
             IEnemyView view, 
             IEnemyData data, 
@@ -31,8 +35,6 @@ namespace Root.PixelGame.Game.Enemy
                 = data ?? throw new ArgumentNullException(nameof(data));
             this.model
               = model ?? throw new ArgumentNullException(nameof(model));
-
-            model.OnHealthEnd += OnHealthEndBaegaviour;
         }
 
         public void InitController()
@@ -62,6 +64,6 @@ namespace Root.PixelGame.Game.Enemy
 
         protected abstract void CreateStatesHandler(IEnemyView view);
 
-        protected abstract void OnHealthEndBaegaviour(); 
+        protected abstract void OnHealthEndBaegaviour();
     }
 }

@@ -56,13 +56,8 @@ namespace Root.PixelGame.Game.Enemy
             }
         }
 
-        public override void OnCollisionContact(Collider2D collision) 
-        {
-            if (collision.gameObject.tag == "PlayerWeapon")
-            {
-                model.Damage(50);
-            }
-        }
+        public override void OnCollisionContact(Collider2D collision) { }
+
 
         private void OnLocatorContact(Collider2D collision)
         {

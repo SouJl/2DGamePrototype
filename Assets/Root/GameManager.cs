@@ -1,7 +1,7 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
 using Root.PixelGame.Game.Enemy;
-using System;
+using Root.PixelGame.Game.Weapon;
 using UnityEngine;
 
 namespace Root.PixelGame
@@ -9,6 +9,8 @@ namespace Root.PixelGame
     internal class GameManager : MonoBehaviour
     {
         [SerializeField] private PlayerView _playerView;
+        [SerializeField] private WeaponView _playerWeapon;
+
         [SerializeField] private AnimationDataConfig _playerAnimationConfig;
         [SerializeField] private EnemyView[] _enemyViews;
 
@@ -17,10 +19,15 @@ namespace Root.PixelGame
 
         private void Awake()
         {
-            var playerAnimator = new SpriteAnimatorController(_playerView.SpriteRenderer, _playerAnimationConfig);
-
-            _playerController = new PlayerController(_playerView, playerAnimator);
+            CreatePlayer();
             _enemiesHandler = new EnemiesHandler(_playerView.Transform, _enemyViews);
+        }
+
+        private void CreatePlayer()
+        {
+            var playerAnimator = new SpriteAnimatorController(_playerView.SpriteRenderer, _playerAnimationConfig);
+            var wepon = new Sword(_playerWeapon, playerAnimator);
+            _playerController = new PlayerController(_playerView, playerAnimator, wepon);
         }
 
         private void Update()

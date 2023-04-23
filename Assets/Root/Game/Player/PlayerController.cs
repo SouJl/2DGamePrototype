@@ -4,7 +4,6 @@ using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Root.PixelGame.Game
@@ -15,6 +14,8 @@ namespace Root.PixelGame.Game
         
         private readonly IPlayerView _view;
         private readonly IAnimatorController _animator;
+        private readonly IWeapon _weapon;
+
         private readonly IPlayerData _data;
         private readonly IPlayerCore _core;
 
@@ -22,19 +23,21 @@ namespace Root.PixelGame.Game
 
         public PlayerController(
             IPlayerView view,
-            IAnimatorController animator) 
+            IAnimatorController animator,
+            IWeapon weapon) 
         {
             _view 
                 = view ?? throw new ArgumentNullException(nameof(view));
 
             _animator 
                 = animator ?? throw new ArgumentNullException(nameof(animator));
+            _weapon 
+                = weapon ?? throw new ArgumentNullException(nameof(weapon));
 
             _data = LoadData(_dataConfig);
 
             _core = CreatePlayerCore(_view);
 
-            var weapon = new Sword(_animator);
             weapon.WeaponActive += _view.WeaponUsed;
 
             _stateHandler = new PlayerStatesHandler(_data, _core, _animator, weapon);

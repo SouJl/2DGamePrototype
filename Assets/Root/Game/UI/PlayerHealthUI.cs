@@ -1,11 +1,10 @@
 ﻿using Root.PixelGame.Game.Core.Health;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Root.Game.UI
+namespace Root.PixelGame.Game.UI
 {
-    internal class PlayerHealthUI : MonoBehaviour, IHealthUI
+    internal class PlayerHealthUI : MonoBehaviour, IGameElementUI<IHealth>
     {
         [SerializeField] private Slider _slider;
 

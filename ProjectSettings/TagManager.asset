@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Joint
   - PlayerWeapon
+  - Coin
   layers:
   - Default
   - TransparentFX

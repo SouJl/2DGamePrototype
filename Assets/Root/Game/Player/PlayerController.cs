@@ -1,17 +1,20 @@
-﻿using Root.Game.UI;
-using Root.PixelGame.Animation;
+﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.Core.Health;
+using Root.PixelGame.Game.Items;
+using Root.PixelGame.Game.UI;
 using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
+using UnityEngine;
 
 namespace Root.PixelGame.Game
 {
     internal interface IPlayerController
     {
         void TakeDamage(float amount);
+        void OnLevelContact(Collider2D collider);
     }
 
     internal class PlayerController : BaseController, IPlayerController
@@ -27,12 +30,14 @@ namespace Root.PixelGame.Game
 
         private readonly IStateHandler _stateHandler;
         private readonly IHealthController _healthController;
+        private readonly ICoinsController _coinsController;
 
         public PlayerController(
             IPlayerView view,
             IAnimatorController animator,
             IWeapon weapon,
-            IHealthUI healthUI) 
+            IGameElementUI<IHealth> healthUI,
+            ICoinsController coinsController) 
         {
             _view 
                 = view ?? throw new ArgumentNullException(nameof(view));
@@ -50,7 +55,9 @@ namespace Root.PixelGame.Game
             _stateHandler.Init();
 
             _healthController = new HealthController(healthUI, _data.Health);
-
+            _coinsController 
+                = coinsController ?? throw new ArgumentNullException(nameof(coinsController));
+            
             _view.Init(this);
         }
 
@@ -83,6 +90,16 @@ namespace Root.PixelGame.Game
         public void TakeDamage(float amount)
         {
             _healthController.HealthModel.DecreaseHealth(amount);
+        }
+
+        public void OnLevelContact(Collider2D collider)
+        {
+            if(collider.gameObject.tag == "Coin")
+            {
+                _coinsController.CoinsModel.Increase(1);
+                var coin = collider.GetComponent<CoinView>();
+                _coinsController.CoinObtained(coin);
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-﻿using Root.Game.UI;
+﻿using Root.PixelGame.Game.UI;
 using System;
 
 namespace Root.PixelGame.Game.Core.Health
@@ -9,23 +9,20 @@ namespace Root.PixelGame.Game.Core.Health
     }
     internal class HealthController : IHealthController
     {
-        private readonly IHealthUI _healthUI;
+        private readonly IGameElementUI<IHealth> _uiElement;
         private readonly IHealth _healthModel;
 
         public HealthController(
-            IHealthUI healthUI, 
+            IGameElementUI<IHealth> uiElement, 
             float maxHealth)
         {
-            _healthUI 
-                = healthUI ?? throw new ArgumentNullException(nameof(healthUI));
+            _uiElement
+                = uiElement ?? throw new ArgumentNullException(nameof(uiElement));
             _healthModel = new HealthModel(maxHealth);
 
-            _healthUI.InitUI(_healthModel);
+            _uiElement.InitUI(_healthModel);
         }
 
         public IHealth HealthModel => _healthModel;
-
-        
-
     }
 }

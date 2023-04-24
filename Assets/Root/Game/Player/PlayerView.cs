@@ -68,5 +68,10 @@ namespace Root.PixelGame.Game
 
             Weapon.SetActive(_weponState);
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            _playerController.OnLevelContact(collision);
+        }
     }
 }

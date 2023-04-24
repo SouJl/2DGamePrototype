@@ -4,6 +4,7 @@ namespace Root.PixelGame.Game
 {
     internal interface IPlayerData 
     {
+        float Health { get; }
         float Speed { get; }
         float MoveThresh { get; }
         float JumpForce { get; }
@@ -25,6 +26,8 @@ namespace Root.PixelGame.Game
     [CreateAssetMenu(fileName = nameof(PlayerData), menuName = "Configs/Player/" + nameof(PlayerData))]
     internal class PlayerData : ScriptableObject, IPlayerData
     {
+        [field: SerializeField] public float Health { get; private set; } = 200f;
+
         [field: Header("Move Settings")]
         [field: SerializeField] public float Speed { get; private set; } = 10f;
         [field: SerializeField] public float MoveThresh { get; private set; } = 0.01f;

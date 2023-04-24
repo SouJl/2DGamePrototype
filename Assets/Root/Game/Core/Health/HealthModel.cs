@@ -2,20 +2,13 @@
 
 namespace Root.PixelGame.Game.Core.Health
 {
-    internal interface IHealth
-    {
-        float CurrentHealth { get; }
-
-        void IncreaseHealth(float amount);
-        void DecreaseHealth(float amount);
-
-        void RestoreDefault();
-    }
 
     internal class HealthModel : IHealth
     {
         private readonly float _defaultHealth;
         private float _currentHealth;
+
+        public event Action OnHpChanged;
 
         public HealthModel(float maxHealth)
         {
@@ -33,11 +26,16 @@ namespace Root.PixelGame.Game.Core.Health
         }
 
         public void IncreaseHealth(float amount) 
-            => _currentHealth += amount;
+            => ChangeHealth(_currentHealth + amount);
         public void DecreaseHealth(float amount) 
-            => _currentHealth -= amount;
+            => ChangeHealth(_currentHealth - amount);
+        public void RestoreDefault()
+            => ChangeHealth(_defaultHealth);
 
-        public void RestoreDefault() 
-            => _currentHealth = _defaultHealth;
+        private void ChangeHealth(float newHealth)
+        {
+            _currentHealth = newHealth;
+            OnHpChanged?.Invoke();
+        }
     }
 }

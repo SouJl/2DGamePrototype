@@ -1,5 +1,7 @@
-﻿using Root.PixelGame.Animation;
+﻿using Root.Game.UI;
+using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Game.Core.Health;
 using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
@@ -20,28 +22,30 @@ namespace Root.PixelGame.Game
         private readonly IPlayerCore _core;
 
         private readonly IStateHandler _stateHandler;
+        private readonly IHealthController _healthController;
 
         public PlayerController(
             IPlayerView view,
             IAnimatorController animator,
-            IWeapon weapon) 
+            IWeapon weapon,
+            IHealthUI healthUI) 
         {
             _view 
                 = view ?? throw new ArgumentNullException(nameof(view));
-
             _animator 
                 = animator ?? throw new ArgumentNullException(nameof(animator));
             _weapon 
                 = weapon ?? throw new ArgumentNullException(nameof(weapon));
 
             _data = LoadData(_dataConfig);
-
             _core = CreatePlayerCore(_view);
 
             weapon.WeaponActive += _view.WeaponUsed;
 
             _stateHandler = new PlayerStatesHandler(_data, _core, _animator, weapon);
             _stateHandler.Init();
+
+            _healthController = new HealthController(healthUI, _data.Health);
         }
 
         public override void Execute()

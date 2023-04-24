@@ -1,12 +1,13 @@
 ﻿using Root.PixelGame.Game.Core.Health;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Root.Game.UI
 {
     internal class PlayerHealthUI : MonoBehaviour, IHealthUI
     {
-        [SerializeField] private TMP_Text _playerHelthDesctiption;
+        [SerializeField] private Slider _slider;
 
         private IHealth _healthModel;
 
@@ -14,6 +15,10 @@ namespace Root.Game.UI
         {
             _healthModel = healthModel;
             _healthModel.OnHpChanged += HealthChanged;
+
+            _slider.maxValue = _healthModel.MaxValue;
+            _slider.value = _healthModel.CurrentHealth;
+
             HealthChanged();
         }
 
@@ -24,7 +29,7 @@ namespace Root.Game.UI
 
         private void HealthChanged()
         {
-            _playerHelthDesctiption.text = $"Health: {_healthModel.CurrentHealth}";
+            _slider.value = _healthModel.CurrentHealth;
         }
     }
 }

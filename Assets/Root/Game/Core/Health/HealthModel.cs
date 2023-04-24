@@ -8,13 +8,13 @@ namespace Root.PixelGame.Game.Core.Health
         private readonly float _defaultHealth;
         private float _currentHealth;
 
-        public event Action OnHpChanged;
-
         public HealthModel(float maxHealth)
         {
             _defaultHealth = maxHealth;
             _currentHealth = _defaultHealth;
         }
+
+        public event Action OnHpChanged;
 
         public float CurrentHealth
         {
@@ -24,6 +24,8 @@ namespace Root.PixelGame.Game.Core.Health
                 _currentHealth = Math.Clamp(value, 0, _defaultHealth);
             }
         }
+
+        public float MaxValue => _defaultHealth;
 
         public void IncreaseHealth(float amount) 
             => ChangeHealth(_currentHealth + amount);

@@ -1,4 +1,5 @@
-﻿using Root.PixelGame.Tool;
+﻿using Root.PixelGame.Game.Weapon;
+using Root.PixelGame.Tool;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
@@ -66,7 +67,8 @@ namespace Root.PixelGame.Game.Enemy
                     {
                         IEnemyData data = standEnemy.Data;
                         IEnemyModel model = new StandEnemyModel(standEnemy.EnemyTransform, data);
-                        return new StandEnemyController(standEnemy, data, model);
+                        IWeapon weapon = new BatScratch(standEnemy.Weapon);
+                        return new StandEnemyController(standEnemy, data, model, weapon);
                     }
             }
         }

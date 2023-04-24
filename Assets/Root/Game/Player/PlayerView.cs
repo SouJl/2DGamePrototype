@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Root.PixelGame.Game.Core;
+using UnityEngine;
 
 namespace Root.PixelGame.Game
 {
@@ -13,11 +14,11 @@ namespace Root.PixelGame.Game
         public Transform WallCheck { get; }
         public Transform LedgeCheck { get; }
 
-
+        void Init(IPlayerController playerController);
         void WeaponUsed();
     }
 
-    internal class PlayerView : MonoBehaviour, IPlayerView
+    internal class PlayerView : MonoBehaviour, IPlayerView, IDamageable
     {
         [field: SerializeField] public Transform Transform { get; private set; }
         [field: SerializeField] public SpriteRenderer SpriteRenderer { get; private set; }
@@ -30,7 +31,7 @@ namespace Root.PixelGame.Game
 
         [field : SerializeField] public GameObject Weapon { get; private set; }
 
-
+        private IPlayerController _playerController;
         private bool _weponState;
 
         private void Awake()
@@ -45,6 +46,20 @@ namespace Root.PixelGame.Game
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Collider = GetComponent<Collider2D>();
             Rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+
+
+        public void Init(IPlayerController playerController)
+        {
+            _playerController = playerController;
+        }
+
+        public void Damage(float amount)
+        {
+            if (_playerController == null) return;
+
+            _playerController.TakeDamage(amount);
         }
 
         public void WeaponUsed()

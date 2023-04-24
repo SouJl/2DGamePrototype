@@ -6,11 +6,15 @@ using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
 using Root.PixelGame.Tool;
 using System;
-using UnityEngine;
 
 namespace Root.PixelGame.Game
 {
-    internal class PlayerController : BaseController
+    internal interface IPlayerController
+    {
+        void TakeDamage(float amount);
+    }
+
+    internal class PlayerController : BaseController, IPlayerController
     {
         private readonly string _dataConfig = @"Player/PlayerData";
         
@@ -46,6 +50,8 @@ namespace Root.PixelGame.Game
             _stateHandler.Init();
 
             _healthController = new HealthController(healthUI, _data.Health);
+
+            _view.Init(this);
         }
 
         public override void Execute()
@@ -72,6 +78,11 @@ namespace Root.PixelGame.Game
             var core = new PlayerCore(view.Transform, physicModel, slopeAnaliser, groundCheck, wallCheck, ledgeCheck);
 
             return core;
+        }
+
+        public void TakeDamage(float amount)
+        {
+            _healthController.HealthModel.DecreaseHealth(amount);
         }
     }
 

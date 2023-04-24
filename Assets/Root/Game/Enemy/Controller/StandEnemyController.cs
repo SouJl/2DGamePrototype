@@ -1,17 +1,24 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
+using System;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
     internal class StandEnemyController : BaseEnemyController
     {
+        private readonly IWeapon _weapon;
+
         public StandEnemyController(
             IEnemyView view, 
             IEnemyData data, 
-            IEnemyModel model) : base(view, data, model)
+            IEnemyModel model,
+            IWeapon weapon) : base(view, data, model)
         {
+            _weapon 
+                = weapon ?? throw new ArgumentNullException(nameof(weapon));
         }
 
         public override void OnCollisionContact(Collider2D collision) 

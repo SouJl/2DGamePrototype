@@ -1,4 +1,5 @@
 ﻿using Root.PixelGame.Game.Core;
+using Root.PixelGame.Tool;
 using System;
 
 namespace Root.PixelGame.Game.Weapon
@@ -17,5 +18,8 @@ namespace Root.PixelGame.Game.Weapon
         public abstract void Attack();
 
         public abstract void DealDamage(IDamageable damageableObject);
+
+        protected IWeaponData LoadWeaponData(string path) 
+            => ResourceLoader.LoadObject<WeaponData>(path);
     }
 }

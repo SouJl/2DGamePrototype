@@ -8,6 +8,7 @@ namespace Root.PixelGame.Game.Weapon
     internal interface IWeaponView 
     {
         void Init(IWeapon weapon);
+        void CheckTouchDamage();
     }
 
     internal class WeaponView : MonoBehaviour, IWeaponView
@@ -20,6 +21,7 @@ namespace Root.PixelGame.Game.Weapon
                 = weapon ?? throw new ArgumentNullException(nameof(weapon));
         }
 
+        public void CheckTouchDamage() { }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

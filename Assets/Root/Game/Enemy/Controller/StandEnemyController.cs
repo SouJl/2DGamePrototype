@@ -19,6 +19,16 @@ namespace Root.PixelGame.Game.Enemy
         {
             _weapon 
                 = weapon ?? throw new ArgumentNullException(nameof(weapon));
+            
+            _weapon.WeaponActive += ChangeToAttack;
+        }
+
+
+
+        public override void Execute()
+        {
+            base.Execute();
+            _weapon.Attack();
         }
 
         public override void OnCollisionContact(Collider2D collision) 
@@ -48,6 +58,11 @@ namespace Root.PixelGame.Game.Enemy
         protected override void CreateStatesHandler(IEnemyView view)
         {
             _stateHandler = new EnemyStatesHandler(new StubEnemyCore(nameof(StandEnemyController)), _animator);
+        }
+
+        private void ChangeToAttack()
+        {
+            _stateHandler.ChangeState(StateType.PrimaryAtackState);
         }
     }
 }

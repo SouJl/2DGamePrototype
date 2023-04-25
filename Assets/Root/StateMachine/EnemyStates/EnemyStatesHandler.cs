@@ -27,6 +27,7 @@ namespace Root.PixelGame.StateMachines
 
             states[StateType.IdleState] = new EnemyIdleState(this, _core, _animator);
             states[StateType.TakeDamage] = new EnemyTakeDamageState(this, _core, _animator);
+            states[StateType.PrimaryAtackState] = new EnemyAtackState(this, _core, _animator);
 
             return states;
         }

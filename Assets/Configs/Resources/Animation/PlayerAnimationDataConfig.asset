@@ -95,3 +95,9 @@ MonoBehaviour:
     - {fileID: -1539692074, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
     - {fileID: -315284498, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
     - {fileID: -1061849727, guid: d964f22fd5cde1d4180125416f32b5f9, type: 3}
+  - <Loop>k__BackingField: 0
+    <State>k__BackingField: 14
+    _sprites:
+    - {fileID: 996349741, guid: c96bd2b514ff66c4298057c8f25aff33, type: 3}
+    - {fileID: 996349741, guid: c96bd2b514ff66c4298057c8f25aff33, type: 3}
+    - {fileID: 996349741, guid: c96bd2b514ff66c4298057c8f25aff33, type: 3}

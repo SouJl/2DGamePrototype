@@ -45,19 +45,21 @@ namespace Root.PixelGame.Game
                 = animator ?? throw new ArgumentNullException(nameof(animator));
             _weapon 
                 = weapon ?? throw new ArgumentNullException(nameof(weapon));
+            _coinsController
+                = coinsController ?? throw new ArgumentNullException(nameof(coinsController));
 
             _data = LoadData(_dataConfig);
             _core = CreatePlayerCore(_view);
 
-            weapon.WeaponActive += _view.WeaponUsed;
+            _stateHandler 
+                = new PlayerStatesHandler(_data, _core, _animator, weapon); 
+            _healthController 
+                = new HealthController(healthUI, _data.Health);
 
-            _stateHandler = new PlayerStatesHandler(_data, _core, _animator, weapon);
+            weapon.WeaponActive += _view.WeaponUsed;
+            
             _stateHandler.Init();
 
-            _healthController = new HealthController(healthUI, _data.Health);
-            _coinsController 
-                = coinsController ?? throw new ArgumentNullException(nameof(coinsController));
-            
             _view.Init(this);
         }
 
@@ -90,6 +92,7 @@ namespace Root.PixelGame.Game
         public void TakeDamage(float amount)
         {
             _healthController.HealthModel.DecreaseHealth(amount);
+            _stateHandler.ChangeState(StateType.TakeDamage);
         }
 
         public void OnLevelContact(Collider2D collider)

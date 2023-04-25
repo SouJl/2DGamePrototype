@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4b3020419973fe74e809466f6f185115
+guid: c96bd2b514ff66c4298057c8f25aff33
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -114,7 +114,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight_WallClimb_0
+      name: Knight_Hit_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 3
-        width: 19
-        height: 32
+        x: 37
+        y: 0
+        width: 28
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,134 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78450ff9bd1208a499072b4c777d88ea
-      internalID: 817016754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_WallClimb_1
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 16
-        width: 21
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f05a80787afea084bbb15b5c779890c9
-      internalID: -1869907308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_WallClimb_2
-      rect:
-        serializedVersion: 2
-        x: 289
-        y: 24
-        width: 25
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab7b85830439c2942b5ae3539755f912
-      internalID: -1644608607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_WallClimb_3
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 29
-        width: 29
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23b89bf3fface17499ff97a04cec72c8
-      internalID: 193031436
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_WallClimb_4
-      rect:
-        serializedVersion: 2
-        x: 532
-        y: 33
-        width: 25
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1071adec159fef14ba48d48aab0a90dc
-      internalID: -1832342559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_WallClimb_5
-      rect:
-        serializedVersion: 2
-        x: 658
-        y: 34
-        width: 20
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f937c39e16e33b44ab59d33314085fe9
-      internalID: 1974276977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knight_WallClimb_6
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 32
-        width: 22
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 358c84104eee3dc4692c0a37d9aa9ecf
-      internalID: 840115632
+      spriteID: 3e2ef1bbe3dac7646be358fea1714a79
+      internalID: 996349741
       vertices: []
       indices: 
       edges: []
@@ -286,13 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Knight_WallClimb_0: 817016754
-      Knight_WallClimb_6: 840115632
-      Knight_WallClimb_5: 1974276977
-      Knight_WallClimb_2: -1644608607
-      Knight_WallClimb_4: -1832342559
-      Knight_WallClimb_1: -1869907308
-      Knight_WallClimb_3: 193031436
+      Knight_Hit_0: 996349741
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

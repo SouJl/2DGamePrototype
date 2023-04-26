@@ -4,7 +4,7 @@ using Root.PixelGame.Game.Core.Health;
 using Root.PixelGame.Game.Items;
 using Root.PixelGame.Game.UI;
 using Root.PixelGame.Game.Weapon;
-using Root.PixelGame.StateMachines;
+using Root.PixelGame.Game.StateMachines;
 using Root.PixelGame.Tool;
 using System;
 using UnityEngine;

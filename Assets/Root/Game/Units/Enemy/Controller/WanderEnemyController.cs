@@ -2,7 +2,8 @@
 using Root.PixelGame.Components.Core;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.Weapon;
-using Root.PixelGame.StateMachines;
+using Root.PixelGame.Game.StateMachines;
+using Root.PixelGame.Game.StateMachines.Enemy;
 using Root.PixelGame.Tool;
 using System;
 using UnityEngine;

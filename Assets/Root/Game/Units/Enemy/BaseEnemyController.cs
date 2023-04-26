@@ -1,5 +1,5 @@
 ﻿using Root.PixelGame.Animation;
-using Root.PixelGame.StateMachines;
+using Root.PixelGame.Game.StateMachines;
 using System;
 using UnityEngine;
 

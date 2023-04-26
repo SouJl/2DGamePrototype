@@ -1,7 +1,7 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.Weapon;
-using Root.PixelGame.StateMachines;
+using Root.PixelGame.Game.StateMachines;
 using System;
 using UnityEngine;
 

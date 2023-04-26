@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Root.PixelGame.Game.Enemy
 {
     [RequireComponent(typeof(SimpleCoreComponent))]
-    internal class StrandingEnemyView : EnemyView
+    internal class WanderEnemyView : EnemyView
     {
         [SerializeField] private SimpleCoreComponent _core;
         [SerializeField] private WeaponView _weapon;

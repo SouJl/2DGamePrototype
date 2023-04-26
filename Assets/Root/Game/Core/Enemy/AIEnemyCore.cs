@@ -37,5 +37,10 @@ namespace Root.PixelGame.Game.Core
         {
             rotator.Rotate();
         }
+
+        public override bool CheckPlayerInRange()
+        {
+            return false;
+        }
     }
 }

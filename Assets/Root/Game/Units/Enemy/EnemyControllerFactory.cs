@@ -70,12 +70,12 @@ namespace Root.PixelGame.Game.Enemy
                         IWeapon weapon = new EnemyWeapon(standEnemy.Weapon);
                         return new StandEnemyController(standEnemy, data, model, weapon);
                     }
-                case StrandingEnemyView strandingEnemy: 
+                case WanderEnemyView strandingEnemy: 
                     {
                         IEnemyData data = LoadData(StrandingEnemyDataPath);
                         IEnemyModel model = new StandEnemyModel(strandingEnemy.EnemyTransform, data);
                         IWeapon weapon = new EnemyWeapon(strandingEnemy.Weapon);
-                        return new StrandingEnemyController(strandingEnemy, data, model, weapon);
+                        return new WanderEnemyController(strandingEnemy, data, model, weapon);
                     }
             }
         }

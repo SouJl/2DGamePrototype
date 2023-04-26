@@ -9,12 +9,12 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal class StrandingEnemyController : BaseEnemyController
+    internal class WanderEnemyController : BaseEnemyController
     {
         private readonly IWeapon _weapon;
         private IEnemyCore _core;
 
-        public StrandingEnemyController(
+        public WanderEnemyController(
             IEnemyView view, 
             IEnemyData data, 
             IEnemyModel model,
@@ -63,9 +63,9 @@ namespace Root.PixelGame.Game.Enemy
 
         protected override void CreateStatesHandler(IEnemyView view)
         {
-            StrandingEnemyView pursuerView = view as StrandingEnemyView;
+            WanderEnemyView pursuerView = view as WanderEnemyView;
             _core = CreateCore(pursuerView.Core, pursuerView.GroundCheck, pursuerView.WallCheck);
-            _stateHandler = new EnemyStatesHandler(_core, data, _animator);
+            _stateHandler = new WanderEnemyStatesHandler(_core, data, _animator);
         }
 
         private IEnemyCore CreateCore(IEnemyCoreComponent coreComponent, Transform groundCheck, Transform wallCheck)

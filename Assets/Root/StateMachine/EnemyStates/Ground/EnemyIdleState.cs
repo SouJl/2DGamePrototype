@@ -7,6 +7,10 @@ namespace Root.PixelGame.StateMachines.Enemy
 {
     internal class EnemyIdleState : EnemyGroundState
     {
+        protected bool isIdleTimeOver;
+
+        protected float idleTime;
+
         public EnemyIdleState(
             IStateHandler stateHandler,
             IEnemyCore core,
@@ -19,35 +23,49 @@ namespace Root.PixelGame.StateMachines.Enemy
         public override void Enter()
         {
             base.Enter();
+            core.Physic.SetVelocityX(0f);
+            isIdleTimeOver = false;
+            SetRandomIdleTime();
             animator.StartAnimation(AnimationType.Idle);
         }
 
         public override void Exit()
         {
             base.Exit();
-        }
+            isGrounded = false;
+            isTouchingWall = false;
 
-        public override void InputData()
-        {
-            base.InputData();
+            if (core.FlipAfterIdle)
+            {
+                core.Flip();
+                core.SetFlipAfterIdle(false);
+            }
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (Mathf.Abs(_xAxisInput) > data.MoveThresh)
+            if (Time.time >= startTime + idleTime)
             {
-                ChangeState(StateType.MoveState);
-                return;
+                isIdleTimeOver = true;
             }
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            core.Move(fixedTime);
+            core.Physic.SetVelocityX(0f);
         }
 
+        protected override void DoChecks()
+        {
+            base.DoChecks();    
+        }
+
+        private void SetRandomIdleTime()
+        {
+            idleTime = Random.Range(data.MinIdleTime, data.MaxIdleTime);
+        }
     }
 }

@@ -24,14 +24,18 @@ namespace Root.PixelGame.Game.Core
                 = slopeAnaliser ?? throw new ArgumentNullException(nameof(slopeAnaliser));
             
             GroundCheck = new EnemyGroundCheckModel(groundCheck);
-            WallCheck = new WallCheckModel(groundCheck);
+            WallCheck = new WallCheckModel(wallCheck);
         }
+
 
         public override void Move(float time)
         {
             Physic.SetVelocityX(_speed * FacingDirection);
             Physic.SetVelocityY(Physic.Rigidbody.velocity.y);
         }
-        
+        public override bool CheckPlayerInRange()
+        {
+            return false;
+        }
     }
 }

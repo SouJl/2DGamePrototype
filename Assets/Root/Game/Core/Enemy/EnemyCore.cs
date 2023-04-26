@@ -12,15 +12,19 @@ namespace Root.PixelGame.Game.Core
         ISlopeAnaliser SlopeAnaliser { get; }
 
         int FacingDirection { get; }
+        bool FlipAfterIdle { get; }
 
         void Flip();
 
         void UpdateCoreData(float time);
         void Move(float time);
         void Rotate(float time);
+
+        bool CheckPlayerInRange();
+        void SetFlipAfterIdle(bool isFlip);
     }
 
-    internal class EnemyCore : IEnemyCore
+    internal abstract class EnemyCore : IEnemyCore
     {
         protected readonly Transform transform;
         protected readonly IMove mover;
@@ -34,6 +38,8 @@ namespace Root.PixelGame.Game.Core
         public ISlopeAnaliser SlopeAnaliser { get; protected set; }
 
         public int FacingDirection { get; private set; }
+
+        public bool FlipAfterIdle { get; private set; }
 
         public EnemyCore(
             Transform transform,
@@ -59,10 +65,17 @@ namespace Root.PixelGame.Game.Core
 
         public virtual void Rotate(float time) { }
 
+        public abstract bool CheckPlayerInRange();
+        
         public virtual void Flip()
         {
             FacingDirection *= -1;
             transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+
+        public virtual void SetFlipAfterIdle(bool isFlip)
+        {
+            FlipAfterIdle = isFlip;
         }
     }
 }

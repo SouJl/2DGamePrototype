@@ -20,5 +20,6 @@
         TakeDamage,
 
         InAction,
+        PlayerDetected,
     }
 }

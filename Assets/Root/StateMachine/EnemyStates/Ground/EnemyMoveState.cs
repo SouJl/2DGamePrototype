@@ -7,6 +7,8 @@ namespace Root.PixelGame.StateMachines.Enemy
 {
     internal class EnemyMoveState : EnemyGroundState
     {
+        protected bool isDetectingLedge;
+
         public EnemyMoveState(
             IStateHandler stateHandler,
             IEnemyCore core,
@@ -19,8 +21,8 @@ namespace Root.PixelGame.StateMachines.Enemy
         public override void Enter()
         {
             base.Enter();
-            DoChecks();
             animator.StartAnimation(AnimationType.Run);
+            core.Physic.SetVelocityX(data.Speed * core.FacingDirection);
         }
 
         public override void Exit()
@@ -41,6 +43,8 @@ namespace Root.PixelGame.StateMachines.Enemy
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+
+          
 
             if (!isGrounded)
             {

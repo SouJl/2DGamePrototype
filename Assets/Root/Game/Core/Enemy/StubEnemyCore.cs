@@ -20,11 +20,20 @@ namespace Root.PixelGame.Game.Core
         public ISlopeAnaliser SlopeAnaliser { get; }
         public int FacingDirection { get; }
 
+        public bool FlipAfterIdle { get; }
+
+        public bool CheckPlayerInRange() { return false; }
+
         public void Flip() { }
 
         public void Move(float time) { }
 
         public void Rotate(float time) { }
+
+        public void SetFlipAfterIdle(bool isFlip)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void UpdateCoreData(float time) { }
     }

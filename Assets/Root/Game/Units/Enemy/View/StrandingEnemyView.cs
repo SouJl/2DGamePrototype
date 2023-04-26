@@ -8,7 +8,7 @@ namespace Root.PixelGame.Game.Enemy
     internal class StrandingEnemyView : EnemyView
     {
         [SerializeField] private SimpleCoreComponent _core;
-        [SerializeField] private EnemyWeaponView _weapon;
+        [SerializeField] private WeaponView _weapon;
         [SerializeField] private Transform _groundCheck;
         [SerializeField] private Transform _wallCheck;
 

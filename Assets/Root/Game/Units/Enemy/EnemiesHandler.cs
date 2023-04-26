@@ -9,12 +9,18 @@ namespace Root.PixelGame.Game.Enemy
         private readonly IEnemyControllerFactory _factory; 
 
         private List<IEnemyController> _enemiesList;
-        
+
+        private event Action<int> OnAddPointsForDefeat;
+
         public EnemiesHandler(
             Transform playerTransform, 
+            Action<int> OnEnemyDefeat,
             IList<IEnemyView> enemyViews)
         {
             _factory = new EnemyControllerFactory(playerTransform);
+            
+            OnAddPointsForDefeat += OnEnemyDefeat;
+
             _enemiesList = new List<IEnemyController>();
             foreach (var enemyView in enemyViews)
             {
@@ -40,6 +46,7 @@ namespace Root.PixelGame.Game.Enemy
                 if (enemy.Model.Health.CurrentHealth <= 0)
                 {
                     enemy.DenitController();
+                    OnAddPointsForDefeat?.Invoke(enemy.Model.CostForDefeat);
                     _enemiesList.Remove(enemy);
                     continue;
                 }

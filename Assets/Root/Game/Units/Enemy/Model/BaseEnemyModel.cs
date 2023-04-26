@@ -1,5 +1,4 @@
 ﻿using Root.PixelGame.Game.Core.Health;
-using System;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
@@ -7,6 +6,8 @@ namespace Root.PixelGame.Game.Enemy
     internal interface IEnemyModel
     {
         IHealth Health { get; }
+
+        public int CostForDefeat { get; }
 
         float Speed { get; }
 
@@ -17,12 +18,13 @@ namespace Root.PixelGame.Game.Enemy
     {
         private readonly Transform _selfTransform;
         private readonly float _defaultSpeed;
-
+        private readonly int _costForDefeat;
         public IHealth Health { get; protected set; }
 
+        public int CostForDefeat => _costForDefeat;
         public float Speed { get; protected set; }
 
-        public Transform SelfTransform => _selfTransform;
+        public Transform SelfTransform => _selfTransform;   
 
         public BaseEnemyModel(
             Transform transform, 
@@ -33,6 +35,7 @@ namespace Root.PixelGame.Game.Enemy
             Health = new HealthModel(data.MaxHealth);
 
             _defaultSpeed = data.Speed;
+            _costForDefeat = data.CostForDefeat;
 
             SetDefaultValues();
           

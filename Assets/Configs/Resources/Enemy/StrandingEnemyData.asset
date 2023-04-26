@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: StrandingEnemyData
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 150
-  <Speed>k__BackingField: 3
+  <Speed>k__BackingField: 1.5
   <MoveThresh>k__BackingField: 0.01
+  <CostForDefeat>k__BackingField: 20

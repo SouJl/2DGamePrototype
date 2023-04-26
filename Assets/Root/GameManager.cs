@@ -11,7 +11,6 @@ namespace Root.PixelGame
     internal class GameManager : MonoBehaviour
     {
         [SerializeField] private PlayerView _playerView;
-        [SerializeField] private WeaponView _playerWeapon;
         [SerializeField] private PlayerHealthUI _playerHealthUI;
         [SerializeField] private PlayerCoinsUI playerCoinsUI;
 
@@ -25,13 +24,13 @@ namespace Root.PixelGame
         private void Awake()
         {
             CreatePlayer();
-            _enemiesHandler = new EnemiesHandler(_playerView.Transform, _enemyViews);
+            _enemiesHandler = new EnemiesHandler(_playerView.Transform, _playerController.AddPoints, _enemyViews);
         }
 
         private void CreatePlayer()
         {
             var playerAnimator = new SpriteAnimatorController(_playerView.SpriteRenderer, _playerAnimationConfig);
-            var wepon = new Sword(_playerWeapon, playerAnimator);
+            var wepon = new Sword(_playerView.Weapon, playerAnimator);
             var coinsController = new CoinsController(playerCoinsUI, _coins);
             _playerController = new PlayerController(_playerView, playerAnimator, wepon, _playerHealthUI, coinsController);
         }

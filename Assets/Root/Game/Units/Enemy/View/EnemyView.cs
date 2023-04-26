@@ -14,7 +14,7 @@ namespace Root.PixelGame.Game.Enemy
         void Init(IEnemyController controller);
     }
 
-    internal abstract class EnemyView : MonoBehaviour, IEnemyView, IDamageable
+    internal abstract class EnemyView : UnitView, IEnemyView
     {
         private IEnemyController _controller;
 
@@ -34,7 +34,7 @@ namespace Root.PixelGame.Game.Enemy
             gameObject.SetActive(state);
         }
 
-        public void Damage(float amount)
+        public override void Damage(float amount)
         {
             _controller.TakeDamage(amount);
         }

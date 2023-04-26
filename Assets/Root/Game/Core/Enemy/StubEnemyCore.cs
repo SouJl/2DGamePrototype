@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Root.PixelGame.Tool;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Core
 {
@@ -9,6 +10,17 @@ namespace Root.PixelGame.Game.Core
 
         public StubEnemyCore(string coreOwnerName)
            => Debug.Log($"Warning: {nameof(StubEnemyCore)} was created by {coreOwnerName}");
+
+        public IPhysicModel Physic { get; }
+
+        public IGroundCheck GroundCheck { get; }
+
+        public IWallCheck WallCheck { get; }
+
+        public ISlopeAnaliser SlopeAnaliser { get; }
+        public int FacingDirection { get; }
+
+        public void Flip() { }
 
         public void Move(float time) { }
 

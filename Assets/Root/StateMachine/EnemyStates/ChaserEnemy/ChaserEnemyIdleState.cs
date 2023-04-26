@@ -1,15 +1,18 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Game.Enemy;
 
 namespace Root.PixelGame.StateMachines.Enemy
 {
-    internal class EnemyIdleState : EnemyState
+    internal class ChaserEnemyIdleState : EnemyState
     {
-        public EnemyIdleState(
+        public ChaserEnemyIdleState(
             IStateHandler stateHandler, 
-            IEnemyCore core,
-            IAnimatorController animator) : base(stateHandler, core, animator)
+            IEnemyCore core, 
+            IEnemyData data, 
+            IAnimatorController animator) : base(stateHandler, core, data, animator)
         {
+
         }
 
         public override void Enter()

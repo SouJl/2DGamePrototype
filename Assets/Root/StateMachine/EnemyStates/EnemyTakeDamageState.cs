@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Game.Enemy;
 
 namespace Root.PixelGame.StateMachines.Enemy
 {
@@ -8,9 +9,9 @@ namespace Root.PixelGame.StateMachines.Enemy
         public EnemyTakeDamageState(
             IStateHandler stateHandler, 
             IEnemyCore core, 
-            IAnimatorController animator) : base(stateHandler, core, animator)
+            IEnemyData data, 
+            IAnimatorController animator) : base(stateHandler, core, data, animator)
         {
-
         }
 
         public override void Enter()

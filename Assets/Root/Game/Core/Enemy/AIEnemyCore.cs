@@ -9,10 +9,11 @@ namespace Root.PixelGame.Game.Core
         private IAIBehaviour _aIBehaviour;
 
         public AIEnemyCore(
-            Transform transform,
+            Transform transform, 
+            IPhysicModel physic, 
             IMove mover, 
-            IRotate rotator,
-            IAIBehaviour aIBehaviour) : base(transform, mover, rotator)
+            IRotate rotator, 
+            IAIBehaviour aIBehaviour) : base(transform, physic, mover, rotator)
         {
             ChangeAI(aIBehaviour);
         }

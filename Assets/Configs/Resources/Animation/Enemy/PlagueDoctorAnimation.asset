@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169d5293a22e1d547adc2a1e6d0f66ac, type: 3}
   m_Name: PlagueDoctorAnimation
   m_EditorClassIdentifier: 
-  _animationSpeed: 10
+  _animationSpeed: 5
   _spriteAnimationConfigs:
-  - <Loop>k__BackingField: 0
+  - <Loop>k__BackingField: 1
     <State>k__BackingField: 0
+    _sprites:
+    - {fileID: -712594850, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+    - {fileID: -968703878, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+    - {fileID: 1381886827, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+    - {fileID: 1593733678, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+    - {fileID: -1510260593, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+    - {fileID: 783791528, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+    - {fileID: -610521609, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
+  - <Loop>k__BackingField: 1
+    <State>k__BackingField: 1
     _sprites:
     - {fileID: 2070193196, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
     - {fileID: 807490214, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}

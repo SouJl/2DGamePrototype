@@ -1,12 +1,16 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.Enemy;
+using UnityEngine;
 
 namespace Root.PixelGame.StateMachines.Enemy
 {
-    internal class ChaseEnemyInActionState : EnemyState
-    {       
-        public ChaseEnemyInActionState(
+    internal class EnemyGroundState : EnemyState
+    {
+        protected bool isGrounded;
+        protected bool isTouchingWall;
+
+        public EnemyGroundState(
             IStateHandler stateHandler,
             IEnemyCore core,
             IEnemyData data,
@@ -18,30 +22,25 @@ namespace Root.PixelGame.StateMachines.Enemy
         public override void Enter()
         {
             base.Enter();
-            animator.StartAnimation(AnimationType.Idle);
+            DoChecks();
         }
-
         public override void Exit()
         {
             base.Exit();
-        }
-
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
+            isGrounded = false;
+            isTouchingWall = false;
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            core.Move(fixedTime);
-            core.Rotate(fixedTime);
         }
-
 
         protected override void DoChecks()
         {
             base.DoChecks();
+            isGrounded = core.GroundCheck.CheckGround();
+            isTouchingWall = core.WallCheck.CheckWallFront(core.FacingDirection);
         }
     }
 }

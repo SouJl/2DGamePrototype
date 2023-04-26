@@ -54,7 +54,7 @@ namespace Root.PixelGame.Game.Enemy
             var coreFactory = new EnemyCoreFactory(data, _targetSelector);
             IEnemyCore core = coreFactory.GetCore(pursuerView.CoreComponent);
 
-            _stateHandler = new EnemyStatesHandler(core, _animator);
+            _stateHandler = new EnemyStatesHandler(core, data, _animator);
         }
     }
 }

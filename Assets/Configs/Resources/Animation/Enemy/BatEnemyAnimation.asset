@@ -25,6 +25,17 @@ MonoBehaviour:
     - {fileID: -1849014748, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
     - {fileID: -23794858, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
     - {fileID: 777991720, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+  - <Loop>k__BackingField: 1
+    <State>k__BackingField: 1
+    _sprites:
+    - {fileID: 777991720, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: 270829633, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: -1839967504, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: 787042146, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: 922893450, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: -1849014748, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: -23794858, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
+    - {fileID: 777991720, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
   - <Loop>k__BackingField: 0
     <State>k__BackingField: 14
     _sprites:

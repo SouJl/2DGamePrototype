@@ -10,6 +10,7 @@ namespace Root.PixelGame.Game.Enemy
         IEnemyModel Model { get; }
 
         void InitController();
+        void DenitController();
         void OnCollisionContact(Collider2D collision);
 
         void TakeDamage(float amount);
@@ -49,6 +50,11 @@ namespace Root.PixelGame.Game.Enemy
             view.Init(this);
         }
 
+        public void DenitController()
+        {
+
+        }
+
         public override void Execute()
         {
             _animator.Update();
@@ -65,6 +71,8 @@ namespace Root.PixelGame.Game.Enemy
 
         protected abstract void CreateAnimatorController(IEnemyView view);
 
-        protected abstract void CreateStatesHandler(IEnemyView view); 
+        protected abstract void CreateStatesHandler(IEnemyView view);
+
+        
     }
 }

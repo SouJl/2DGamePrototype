@@ -20,7 +20,7 @@ namespace Root.PixelGame.StateMachines
             base.LogicUpdate();
             if (Mathf.Abs(_xAxisInput) > playerData.MoveThresh)
             {
-                ChangeState(StateType.RunState);
+                ChangeState(StateType.MoveState);
             }
             else
             {

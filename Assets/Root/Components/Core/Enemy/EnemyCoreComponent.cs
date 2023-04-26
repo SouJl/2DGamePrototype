@@ -13,16 +13,23 @@ namespace Root.PixelGame.Components.Core
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody;
-
+        [SerializeField] private Collider2D _collider;
         public Transform Transform => _transform;
         public Rigidbody2D Rigidbody => _rigidbody;
+        public Collider2D Collider => _collider;
 
         public abstract IAIComponent AIViewComponent { get; }
 
         protected virtual void Awake()
         {
+            _transform ??= gameObject.transform;
+            _rigidbody ??= gameObject.GetComponent<Rigidbody2D>();
+        }
+
+        private void OnValidate()
+        {
             _transform = gameObject.transform;
-            _rigidbody = gameObject.GetComponent<Rigidbody2D>();
+            _rigidbody ??= GetComponent<Rigidbody2D>();
         }
     }
 }

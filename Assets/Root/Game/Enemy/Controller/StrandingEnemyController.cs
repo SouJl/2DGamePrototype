@@ -1,29 +1,30 @@
 ﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Components.Core;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.Weapon;
 using Root.PixelGame.StateMachines;
+using Root.PixelGame.Tool;
 using System;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal class StandEnemyController : BaseEnemyController
+    internal class StrandingEnemyController : BaseEnemyController
     {
         private readonly IWeapon _weapon;
+        private IEnemyCore _core;
 
-        public StandEnemyController(
+        public StrandingEnemyController(
             IEnemyView view, 
             IEnemyData data, 
             IEnemyModel model,
             IWeapon weapon) : base(view, data, model)
         {
-            _weapon 
-                = weapon ?? throw new ArgumentNullException(nameof(weapon));
-            
+            _weapon
+               = weapon ?? throw new ArgumentNullException(nameof(weapon));
+
             _weapon.WeaponActive += ChangeToAttack;
         }
-
-
 
         public override void Execute()
         {
@@ -31,7 +32,12 @@ namespace Root.PixelGame.Game.Enemy
             _weapon.Attack();
         }
 
-        public override void OnCollisionContact(Collider2D collision) 
+        public override void FixedExecute()
+        {
+            base.FixedExecute();
+        }
+
+        public override void OnCollisionContact(Collider2D collision)
         {
 
         }
@@ -39,7 +45,7 @@ namespace Root.PixelGame.Game.Enemy
         public override void TakeDamage(float amount)
         {
             model.Health.DecreaseHealth(amount);
-            
+
             _stateHandler.ChangeState(StateType.TakeDamage);
 
             if (model.Health.CurrentHealth == 0)
@@ -57,8 +63,20 @@ namespace Root.PixelGame.Game.Enemy
 
         protected override void CreateStatesHandler(IEnemyView view)
         {
-            _stateHandler = new EnemyStatesHandler(new StubEnemyCore(nameof(StandEnemyController)), data, _animator);
+            StrandingEnemyView pursuerView = view as StrandingEnemyView;
+            _core = CreateCore(pursuerView.Core, pursuerView.GroundCheck, pursuerView.WallCheck);
+            _stateHandler = new EnemyStatesHandler(_core, data, _animator);
         }
+
+        private IEnemyCore CreateCore(IEnemyCoreComponent coreComponent, Transform groundCheck, Transform wallCheck)
+        {
+            IPhysicModel physic = new PhysicModel(coreComponent.Rigidbody);
+            ISlopeAnaliser slopeAnaliser = new SlopeAnaliserTool(coreComponent.Rigidbody, coreComponent.Collider);
+            IMove mover = new PhysicsMover(physic, data);
+            IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
+            return new StrandingEnemyCore(coreComponent.Transform, physic, mover, rotator, slopeAnaliser, groundCheck, wallCheck, data.Speed);
+        }
+
 
         private void ChangeToAttack()
         {

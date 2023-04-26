@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
@@ -25,9 +26,23 @@ namespace Root.PixelGame.Game.Enemy
 
         public void Execute()
         {
+            CheckForAlive();
             foreach (var enemy in _enemiesList)
             {
                 enemy.Execute();
+            }
+        }
+
+        private void CheckForAlive()
+        {
+            foreach (var enemy in _enemiesList.ToArray())
+            {
+                if (enemy.Model.Health.CurrentHealth <= 0)
+                {
+                    enemy.DenitController();
+                    _enemiesList.Remove(enemy);
+                    continue;
+                }
             }
         }
 

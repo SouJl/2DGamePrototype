@@ -40,7 +40,7 @@ namespace Root.PixelGame.StateMachines
             var states = new Dictionary<StateType, IState>();
 
             states[StateType.IdleState] = new PlayerIdleState(this, _core, _data, _animator);
-            states[StateType.RunState] = new PlayerMoveState(this, _core, _data, _animator);
+            states[StateType.MoveState] = new PlayerMoveState(this, _core, _data, _animator);
             states[StateType.LandState] = new PlayerLandState(this, _core, _data, _animator);
             states[StateType.InAirState] = new PlayerInAirState(this, _core, _data, _animator);
             states[StateType.JumpState] = new PlayerJumpState(this, _core, _data, _animator);

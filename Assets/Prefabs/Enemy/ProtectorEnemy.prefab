@@ -180,7 +180,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1617027905
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 787042146, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 4165252307356171465}
-  _animationConfig: {fileID: 11400000, guid: ae7e1a78138fa3848a399041ac4c0493, type: 2}
+  _animationConfig: {fileID: 0}
 --- !u!114 &4165252307356171469
 MonoBehaviour:
   m_ObjectHideFlags: 0

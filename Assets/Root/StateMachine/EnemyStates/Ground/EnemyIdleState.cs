@@ -1,12 +1,13 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.Enemy;
+using UnityEngine;
 
 namespace Root.PixelGame.StateMachines.Enemy
 {
-    internal class ChaseEnemyInActionState : EnemyState
-    {       
-        public ChaseEnemyInActionState(
+    internal class EnemyIdleState : EnemyGroundState
+    {
+        public EnemyIdleState(
             IStateHandler stateHandler,
             IEnemyCore core,
             IEnemyData data,
@@ -26,22 +27,27 @@ namespace Root.PixelGame.StateMachines.Enemy
             base.Exit();
         }
 
+        public override void InputData()
+        {
+            base.InputData();
+        }
+
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
+            if (Mathf.Abs(_xAxisInput) > data.MoveThresh)
+            {
+                ChangeState(StateType.MoveState);
+                return;
+            }
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
             core.Move(fixedTime);
-            core.Rotate(fixedTime);
         }
 
-
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-        }
     }
 }

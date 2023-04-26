@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlopeAnaliseConfig
   m_EditorClassIdentifier: 
   <CheckDistance>k__BackingField: 0.4
-  <MaxAngle>k__BackingField: 60
+  <MaxAngle>k__BackingField: 45
   <Mask>k__BackingField:
     serializedVersion: 2
     m_Bits: 24576

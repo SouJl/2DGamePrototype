@@ -42,7 +42,7 @@ namespace Root.PixelGame.StateMachines
         {
             base.LogicUpdate();
             if (_isRun) 
-                ChangeState(StateType.RunState);
+                ChangeState(StateType.MoveState);
             if (_isFall) ChangeState(StateType.FallState);
         }
 

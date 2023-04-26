@@ -6,6 +6,7 @@ namespace Root.PixelGame.Components.Core
     {
         Transform Transform { get; }
         Rigidbody2D Rigidbody { get; }
+        Collider2D Collider { get; }
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
@@ -13,9 +14,11 @@ namespace Root.PixelGame.Components.Core
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Collider2D _collider;
 
         public Transform Transform => _transform;
         public Rigidbody2D Rigidbody => _rigidbody;
+        public Collider2D Collider => _collider;
 
         protected virtual void Awake()
         {

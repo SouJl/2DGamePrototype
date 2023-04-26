@@ -15,6 +15,7 @@ namespace Root.PixelGame.Game.Enemy
         private readonly string PatrolEnemyDataPath = @"Enemy/PatrolEnemyData";
         private readonly string ChaserEnemyDataPath = @"Enemy/ChaserEnemyData";
         private readonly string ProtectorEnemyDataPath = @"Enemy/ProtectorEnemyData";
+        private readonly string StrandingEnemyDataPath = @"Enemy/StrandingEnemyData";
 
         private readonly Transform playerTransform;
 
@@ -62,13 +63,19 @@ namespace Root.PixelGame.Game.Enemy
 
                         return new ProtectorEnemyController(protectorEnemy, data, model, targetSelector, protectorEnemy.ProtectionZone);
                     }
-
                 case StandEnemyView standEnemy: 
                     {
                         IEnemyData data = standEnemy.Data;
                         IEnemyModel model = new StandEnemyModel(standEnemy.EnemyTransform, data);
-                        IWeapon weapon = new BatScratch(standEnemy.Weapon);
+                        IWeapon weapon = new EnemyWeapon(standEnemy.Weapon);
                         return new StandEnemyController(standEnemy, data, model, weapon);
+                    }
+                case StrandingEnemyView strandingEnemy: 
+                    {
+                        IEnemyData data = LoadData(StrandingEnemyDataPath);
+                        IEnemyModel model = new StandEnemyModel(strandingEnemy.EnemyTransform, data);
+                        IWeapon weapon = new EnemyWeapon(strandingEnemy.Weapon);
+                        return new StrandingEnemyController(strandingEnemy, data, model, weapon);
                     }
             }
         }

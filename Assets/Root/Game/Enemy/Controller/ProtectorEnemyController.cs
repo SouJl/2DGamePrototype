@@ -67,7 +67,7 @@ namespace Root.PixelGame.Game.Enemy
             IEnemyCore chaseCore = coreFactory.GetCore(chaserView.ChaseAICore);
             IEnemyCore patrolCore = coreFactory.GetCore(chaserView.PatrolAICore);
 
-            _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, _animator);
+            _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, data, _animator);
         }
 
         private void OnZoneEnter(Collider2D collision)

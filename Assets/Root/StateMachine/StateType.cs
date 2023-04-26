@@ -3,7 +3,7 @@
     public enum StateType
     {
         IdleState,
-        RunState,
+        MoveState,
         InAirState,
         LandState,
         JumpState,

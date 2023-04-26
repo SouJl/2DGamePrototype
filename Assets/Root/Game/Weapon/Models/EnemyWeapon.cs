@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Weapon
 {
-    internal class BatScratch : AbstractWeapon
+    internal class EnemyWeapon : AbstractWeapon
     {
         private readonly string _dataPath = @"Weapon/BatScratch";
         private readonly IWeaponView _view;
@@ -13,7 +13,7 @@ namespace Root.PixelGame.Game.Weapon
         private float _timeBetweenHit = 2f;
         private float _lastTimeHit;
 
-        public BatScratch(
+        public EnemyWeapon(
             IWeaponView view)
         {
             _view 

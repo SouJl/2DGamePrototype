@@ -23,14 +23,12 @@ namespace Root.PixelGame.Game.AI
                 = model ?? throw new ArgumentNullException(nameof(model));
 
             _lastTimeUpdate = data.UpdateFrameRate;
-
-            Init();
         }
 
         public override void Init()
         {
             _model.InitModel();
-            _seeker.RecalculatePath();
+            _seeker.Init();
         }
 
         public override void Deinit()
@@ -59,5 +57,6 @@ namespace Root.PixelGame.Game.AI
             }
         }
 
+        public override bool CheckTargetReached() => _seeker.IsPathComplete;
     }
 }

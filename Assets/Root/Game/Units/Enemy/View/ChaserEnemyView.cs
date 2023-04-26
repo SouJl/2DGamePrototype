@@ -3,17 +3,14 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    [RequireComponent(typeof(ChaserAICoreComponent))]
     [RequireComponent(typeof(PatrolAICoreComponent))]
     internal class ChaserEnemyView : EnemyView
     {
-        [SerializeField] private ChaserAICoreComponent _chaseAICore;
-        [SerializeField] private PatrolAICoreComponent _patrolAICore;
+        [SerializeField] private PatrolAICoreComponent _chaseAICore;
         [SerializeField] private LevelObjecTriggerComponent _targetLocator;
         [SerializeField] private float _chaseBreakDistance = 10f;
 
         public IEnemyCoreComponent ChaseAICore => _chaseAICore;
-        public IEnemyCoreComponent PatrolAICore => _patrolAICore;
 
         public ILevelObjectTrigger TargetLocator => _targetLocator;
         public float ChaseBreakDistance => _chaseBreakDistance;
@@ -25,8 +22,7 @@ namespace Root.PixelGame.Game.Enemy
 
         private void OnValidate()
         {
-            _chaseAICore = GetComponent<ChaserAICoreComponent>();
-            _patrolAICore = GetComponent<PatrolAICoreComponent>();
+            _chaseAICore = GetComponent<PatrolAICoreComponent>();
         }
 
         private void OnDrawGizmos()

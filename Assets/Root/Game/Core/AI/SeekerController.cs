@@ -9,6 +9,9 @@ namespace Root.PixelGame.Game.AI
     internal interface ISeeker
     {
         bool IsPathComplete { get; }
+
+        void Init();
+
         void RecalculatePath();
     }
     internal class SeekerController : ISeeker
@@ -37,6 +40,11 @@ namespace Root.PixelGame.Game.AI
             _model 
                 = model ?? throw new ArgumentNullException(nameof(model));
         }
+        public void Init()
+        {
+            _isPathCompete = false;
+            RecalculatePath();
+        }
 
         public void RecalculatePath()
         {
@@ -56,5 +64,7 @@ namespace Root.PixelGame.Game.AI
             _model.UpdatePath(p);
             _isPathCompete = true;
         }
+
+      
     }
 }

@@ -31,11 +31,15 @@ namespace Root.PixelGame.Game.AI
             _model.OnReachedEnd += OnReachedEnd;
         }
 
+        public void Init()
+        {
+            _isPathCompete = false;
+            RecalculatePath();
+        }
+
         public void RecalculatePath()
         {
-            if (_model.Target.CurrentTarget == null) return;
-
-            _isPathCompete = false;
+            if (_isPathCompete) return;
 
             if (_seeker.IsDone())
             {
@@ -47,17 +51,14 @@ namespace Root.PixelGame.Game.AI
         {
             if (p.error) return;
             _model.UpdatePath(p);
-            _isPathCompete = true;
         }
-
 
         private void OnReachedEnd()
         {
-            if (_isPathCompete)
+            if (!_isPathCompete) 
             {
-                _model.ChangeTarget();
-                _isPathCompete = false;
-            }
+                _isPathCompete = true;
+            }    
         }
     }
 }

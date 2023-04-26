@@ -22,6 +22,8 @@ namespace Root.PixelGame.Game.Core
 
         public bool FlipAfterIdle { get; }
 
+        public Transform Transform => throw new System.NotImplementedException();
+
         public bool CheckPlayerInRange() { return false; }
 
         public void Flip() { }

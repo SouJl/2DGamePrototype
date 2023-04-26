@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game.Core
 {
-    internal class StrandingEnemyCore : EnemyCore
+    internal class WanderEnemyCore : EnemyCore
     {
         private readonly float _speed;
 
-        public StrandingEnemyCore(
+        public WanderEnemyCore(
             Transform transform,
             IPhysicModel physic,
             IMove mover,
@@ -28,11 +28,6 @@ namespace Root.PixelGame.Game.Core
         }
 
 
-        public override void Move(float time)
-        {
-            Physic.SetVelocityX(_speed * FacingDirection);
-            Physic.SetVelocityY(Physic.Rigidbody.velocity.y);
-        }
         public override bool CheckPlayerInRange()
         {
             return false;

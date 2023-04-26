@@ -75,7 +75,7 @@ namespace Root.PixelGame.Game.Enemy
             ISlopeAnaliser slopeAnaliser = new SlopeAnaliserTool(coreComponent.Rigidbody, coreComponent.Collider);
             IMove mover = new PhysicsMover(physic, data);
             IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
-            return new StrandingEnemyCore(coreComponent.Transform, physic, mover, rotator, slopeAnaliser, groundCheck, wallCheck, data.Speed);
+            return new WanderEnemyCore(coreComponent.Transform, physic, mover, rotator, slopeAnaliser, groundCheck, wallCheck, data.Speed);
         }
 
 

@@ -22,7 +22,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
             base.Enter();
             animator.StartAnimation(AnimationType.Run);
-            core.Physic.SetVelocityX(data.Speed * core.FacingDirection);
         }
 
         public override void Exit()
@@ -42,29 +41,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
 
         public override void PhysicsUpdate()
         {
-            base.PhysicsUpdate();
-
-          
-
-            if (!isGrounded)
-            {
-                core.Flip();
-                ChangeState(StateType.IdleState);
-                return;
-            }
-            else
-            {
-                if (!core.SlopeAnaliser.IsOnSlope)
-                {
-                    core.Move(fixedTime);
-                }
-                else if (core.SlopeAnaliser.IsOnSlope && core.SlopeAnaliser.CanWalkOnSlope)
-                {
-                    var newVel = new Vector2(core.SlopeAnaliser.SlopeNormalPerp.x * -_xAxisInput, core.SlopeAnaliser.SlopeNormalPerp.y * -_xAxisInput) * 2f;
-                    core.Physic.SetVelocityX(newVel.x);
-                    core.Physic.SetVelocityY(newVel.y);
-                }
-            }      
+            base.PhysicsUpdate();  
         }
 
         protected override void DoChecks()

@@ -53,5 +53,10 @@ namespace Root.PixelGame.Game.AI
                 _lastTimeUpdate += time;
             }
         }
+
+        public override bool CheckTargetReached()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

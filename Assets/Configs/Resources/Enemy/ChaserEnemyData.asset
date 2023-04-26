@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: ChaserEnemyData
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  <Speed>k__BackingField: 120
+  <Speed>k__BackingField: 4
   <MoveThresh>k__BackingField: 0.05
+  <MinIdleTime>k__BackingField: 1
+  <MaxIdleTime>k__BackingField: 2
+  <CostForDefeat>k__BackingField: 10

@@ -1,4 +1,8 @@
 ﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Components.AI;
+using Root.PixelGame.Components.Core;
+using Root.PixelGame.Game.AI;
+using Root.PixelGame.Game.AI.Model;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.StateMachines;
 using Root.PixelGame.Tool;
@@ -11,8 +15,9 @@ namespace Root.PixelGame.Game.Enemy
     {
         private readonly ITargetSelector _targetSelector;
         private readonly ILevelObjectTrigger _playerLocator;
-
         private readonly float _chaseBreakDistance;
+
+        private IEnemyCore _core;
 
         private bool _isChase = false;
 
@@ -44,7 +49,7 @@ namespace Root.PixelGame.Game.Enemy
         {
             base.FixedExecute();
 
-            if (_isChase)
+            /*if (_isChase)
             {
                 var distance = Vector2.Distance(model.SelfTransform.position, _targetSelector.CurrentTarget.position);
 
@@ -54,7 +59,7 @@ namespace Root.PixelGame.Game.Enemy
                     _targetSelector.ChangeTarget(default);
                     _isChase = false;
                 }
-            }
+            }*/
         }
 
         public override void OnCollisionContact(Collider2D collision) 
@@ -96,13 +101,30 @@ namespace Root.PixelGame.Game.Enemy
         protected override void CreateStatesHandler(IEnemyView view)
         {
             ChaserEnemyView chaserView = view as ChaserEnemyView;
-            var coreFactory = new EnemyCoreFactory(data, _targetSelector);
-            IEnemyCore chaseCore = coreFactory.GetCore(chaserView.ChaseAICore);
-            IEnemyCore patrolCore = coreFactory.GetCore(chaserView.PatrolAICore);
-
-            _stateHandler = new ChaserEnemyStatesHandler(chaseCore, patrolCore, data, _animator);
+            _core = CreateCore(chaserView.ChaseAICore);
+            IAIBehaviour aiBeahaviour = CreateAI(chaserView.ChaseAICore.AIViewComponent);
+            _stateHandler = new ChaserEnemyStatesHandler(_core, aiBeahaviour, data, _animator);
         }
 
- 
+
+        private IEnemyCore CreateCore(IEnemyCoreComponent coreComponent)
+        {
+            IPhysicModel physic = new PhysicModel(coreComponent.Rigidbody);
+            IMove mover = new PhysicsMover(physic, data);
+            IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
+            return new ChaserEnemyCore(coreComponent.Transform, physic, mover, rotator);
+        }
+        private IAIBehaviour CreateAI(IAIComponent aIViewComponent)
+        {
+            PatrolAIComponent patrolAI = aIViewComponent as PatrolAIComponent;
+            var model = new PatrolAIModel(patrolAI.AIData, patrolAI.PatrolWayPoints, _targetSelector);
+            var seeker = new PatrolPathController(
+                patrolAI.Seeker,
+                patrolAI.Handler,
+                model);
+            var aiBehavior = new PatrolAI(patrolAI.AIData, seeker, model);
+            return aiBehavior;
+        }
+
     }
 }

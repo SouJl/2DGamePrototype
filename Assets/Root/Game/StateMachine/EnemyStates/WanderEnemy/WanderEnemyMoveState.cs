@@ -15,6 +15,12 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
 
         }
+        
+        public override void Enter()
+        {
+            base.Enter();
+            core.Physic.SetVelocityX(data.Speed * core.FacingDirection);
+        }
 
         public override void LogicUpdate()
         {
@@ -29,6 +35,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
             {
                 core.SetFlipAfterIdle(true);
                 ChangeState(StateType.IdleState);
+                return;
             }
         }
 

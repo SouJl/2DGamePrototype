@@ -6,6 +6,8 @@ namespace Root.PixelGame.Game.Core
 {
     internal interface IEnemyCore
     {
+
+        Transform Transform { get; }
         IPhysicModel Physic { get; }
         IGroundCheck GroundCheck { get; }
         IWallCheck WallCheck { get; }
@@ -40,6 +42,8 @@ namespace Root.PixelGame.Game.Core
         public int FacingDirection { get; private set; }
 
         public bool FlipAfterIdle { get; private set; }
+
+        public Transform Transform => transform;
 
         public EnemyCore(
             Transform transform,

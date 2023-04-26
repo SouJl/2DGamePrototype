@@ -32,5 +32,9 @@ namespace Root.PixelGame.Game.AI
         public override Vector2 GetNewVelocity(Vector2 fromPosition) 
             => _model.CalculateVelocity(fromPosition);
 
+        public override bool CheckTargetReached()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

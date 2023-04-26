@@ -41,13 +41,11 @@ namespace Root.PixelGame.Game.AI.Model
 
         public override void InitModel()
         {
-            _target.ChangeTarget(GetNextWaypoint());
+            ChangeTarget();
         }
 
         public override void DeinitModel()
         {
-            _wayPoints.Clear();
-            _stackPoints.Clear();
             _target.ChangeTarget(default);
         }
 
@@ -92,7 +90,9 @@ namespace Root.PixelGame.Game.AI.Model
         {
             _stackPoints ??= new Stack<Transform>();
             _stackPoints.Clear();
+            
             if (isReverse) wayPoints = wayPoints.Reverse().ToList();
+            
             foreach (var point in wayPoints)
             {
                 _stackPoints.Push(point);

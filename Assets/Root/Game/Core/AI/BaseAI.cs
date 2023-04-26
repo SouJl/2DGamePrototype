@@ -10,6 +10,8 @@ namespace Root.PixelGame.Game.AI
         void Deinit();
         Vector2 GetNewVelocity(Vector2 fromPosition);
         void UpdateParameters(float time);
+
+        bool CheckTargetReached();
     }
 
     internal abstract class BaseAI : IAIBehaviour
@@ -27,5 +29,7 @@ namespace Root.PixelGame.Game.AI
         public abstract Vector2 GetNewVelocity(Vector2 fromPosition);
 
         public virtual void UpdateParameters(float time) { }
+
+        public abstract bool CheckTargetReached();
     }
 }

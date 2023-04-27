@@ -34,6 +34,7 @@ namespace Root.PixelGame.Game.AI
         public override void Deinit()
         {
             _model.DeinitModel();
+            _seeker.Deinit();
             _lastTimeUpdate = default;
         }
 

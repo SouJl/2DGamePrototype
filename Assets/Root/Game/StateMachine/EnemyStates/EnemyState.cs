@@ -74,7 +74,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            core.UpdateCoreData(fixedTime);
             core.Physic.Update();
             DoChecks();
         }

@@ -13,6 +13,7 @@ namespace Root.PixelGame.Game.AI
         void Init();
 
         void RecalculatePath();
+        void Deinit();
     }
     internal class SeekerController : ISeeker
     {
@@ -42,8 +43,12 @@ namespace Root.PixelGame.Game.AI
         }
         public void Init()
         {
-            _isPathCompete = false;
             RecalculatePath();
+        }
+
+        public void Deinit()
+        {
+            _isPathCompete = false;
         }
 
         public void RecalculatePath()

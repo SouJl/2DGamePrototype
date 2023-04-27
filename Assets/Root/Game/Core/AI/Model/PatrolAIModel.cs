@@ -18,6 +18,7 @@ namespace Root.PixelGame.Game.AI.Model
     internal class PatrolAIModel : BaseAIModel, ITargetedAIModel
     {
         private readonly IList<Transform> _wayPoints;
+        private readonly IList<Transform> _reversedWayPoints;
         private readonly ITargetSelector _target;
         private Stack<Transform> _stackPoints;
 
@@ -26,6 +27,8 @@ namespace Root.PixelGame.Game.AI.Model
 
         public event Action OnReachedEnd;
 
+        private bool _changeState = true;
+
         public PatrolAIModel(
             IAIData data,
             IList<Transform> wayPoints,
@@ -33,15 +36,18 @@ namespace Root.PixelGame.Game.AI.Model
         {
             _wayPoints
                = wayPoints ?? throw new ArgumentNullException(nameof(wayPoints));
-            _target 
+            _target
                 = target ?? throw new ArgumentNullException(nameof(target));
-            
-            FillWaypointStack(_wayPoints);
+
+            _reversedWayPoints = _wayPoints.Reverse().ToList();
+
+            FillWaypointStack();
         }
 
         public override void InitModel()
         {
             ChangeTarget();
+            _currentPointIndex = 0;
         }
 
         public override void DeinitModel()
@@ -74,32 +80,37 @@ namespace Root.PixelGame.Game.AI.Model
         public void UpdatePath(Path p)
         {
             path = p;
-            _currentPointIndex = 1;
+            _currentPointIndex = 0;
         }
 
         private Transform GetNextWaypoint()
         {
             if (!_stackPoints.Any())
             {
-                FillWaypointStack(_wayPoints, true);
+                FillWaypointStack(_changeState);
+                _changeState = !_changeState;
             }
             return _stackPoints.Pop();
         }
 
-        private void FillWaypointStack(IList<Transform> wayPoints, bool isReverse = false)
+        private void FillWaypointStack(bool isReverse = false)
         {
+            List<Transform> wayPoints;
             _stackPoints ??= new Stack<Transform>();
             _stackPoints.Clear();
-            
-            if (isReverse) wayPoints = wayPoints.Reverse().ToList();
-            
-            foreach (var point in wayPoints)
+
+            if (isReverse)
+                wayPoints = _reversedWayPoints.ToList();
+            else
+                wayPoints = _wayPoints.ToList();
+
+            for (int i = 1; i < wayPoints.Count; i++)
             {
-                _stackPoints.Push(point);
+                _stackPoints.Push(wayPoints[i]);
             }
         }
 
-        public void ChangeTarget() 
+        public void ChangeTarget()
             => _target.ChangeTarget(GetNextWaypoint());
     }
 }

@@ -27,17 +27,20 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
             base.Enter();
             _aIBehaviour.Init();
+            _aIBehaviour.UpdateParameters(deltaTime);
             animator.StartAnimation(AnimationType.Idle);
         }
 
         public override void Exit()
         {
             base.Exit();
+            _aIBehaviour.Deinit();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            
             if (isPlayerInRange)
             {
                 ChangeState(StateType.PlayerDetected);
@@ -52,7 +55,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
+           
             var newVel = _aIBehaviour.GetNewVelocity(core.Transform.position) * data.Speed;
             core.Physic.SetVelocityX(newVel.x);
             core.Physic.SetVelocityY(newVel.y);

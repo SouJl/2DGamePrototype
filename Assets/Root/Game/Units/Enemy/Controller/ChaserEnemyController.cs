@@ -81,14 +81,14 @@ namespace Root.PixelGame.Game.Enemy
 
         private void OnLocatorContact(Collider2D collision)
         {
-            if(collision.gameObject.tag == "Player")
+            /*if(collision.gameObject.tag == "Player")
             {
                 if (_isChase == true) return;
 
                 _stateHandler.ChangeState(StateType.InAction);
                 _isChase = true;
                 _targetSelector.ChangeTarget(collision.gameObject.transform);
-            }
+            }*/
         }
 
         protected override void CreateAnimatorController(IEnemyView view)

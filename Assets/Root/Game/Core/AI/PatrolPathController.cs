@@ -32,9 +32,14 @@ namespace Root.PixelGame.Game.AI
         }
 
         public void Init()
+        {           
+            RecalculatePath();
+        }
+
+
+        public void Deinit()
         {
             _isPathCompete = false;
-            RecalculatePath();
         }
 
         public void RecalculatePath()
@@ -60,5 +65,6 @@ namespace Root.PixelGame.Game.AI
                 _isPathCompete = true;
             }    
         }
+
     }
 }

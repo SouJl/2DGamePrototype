@@ -74,7 +74,7 @@ namespace Root.PixelGame.Game.Enemy
         {
             if (collision.gameObject.tag == "Player")
             {
-                _stateHandler.ChangeState(StateType.InAction);
+                //_stateHandler.ChangeState(StateType.InAction);
                 _onProtect = true;
                 _targetSelector.ChangeTarget(collision.gameObject.transform);
             }

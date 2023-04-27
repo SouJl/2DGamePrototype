@@ -18,8 +18,11 @@
         PrimaryAtackState,
         SecondaryAtackState,
         TakeDamage,
-
-        InAction,
         PlayerDetected,
+
+        MeleeAttackState,
+        RangedAttackState,
+        ChargeState,
+        LookForPlayerState,
     }
 }

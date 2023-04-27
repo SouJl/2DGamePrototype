@@ -12,7 +12,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         protected readonly IEnemyData data;
         protected readonly IAnimatorController animator;
         
-        protected float startTime;
         protected bool isExitingState;
         protected bool isAnimationEnd;
 
@@ -43,7 +42,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
             base.Enter();
             DoChecks();
-            startTime = Time.time;
             isExitingState = false;
         }
 

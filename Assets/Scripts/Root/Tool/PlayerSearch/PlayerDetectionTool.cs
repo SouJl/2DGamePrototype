@@ -6,6 +6,8 @@ namespace Root.PixelGame.Tool.PlayerSearch
 {
     internal interface IPlayerDetection
     {
+        IPlayerDetectionData Data { get; }
+
         bool CheckPlayerInMinRange();
         bool CheckPlayerInMaxRange();
         bool CheckPlayerInCloseAction();
@@ -27,6 +29,8 @@ namespace Root.PixelGame.Tool.PlayerSearch
                 = playerDetectionComponent.Config 
                 ?? throw new ArgumentNullException(nameof(playerDetectionComponent.Config));
         }
+
+        public IPlayerDetectionData Data => _data;
 
         public bool CheckPlayerInCloseAction()
         {

@@ -20,7 +20,6 @@ namespace Root.PixelGame.Game.Enemy
 
         private IEnemyCore _core;
 
-        private bool _isChase = false;
 
         public ChaserEnemyController(
             IEnemyView view,

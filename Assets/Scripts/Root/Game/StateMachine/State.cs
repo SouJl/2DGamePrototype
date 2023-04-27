@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.StateMachines
 {
@@ -18,7 +19,9 @@ namespace Root.PixelGame.Game.StateMachines
     internal abstract class State : IState
     {
         private readonly IStateHandler _stateHandler;
-         
+
+        public float startTime { get; protected set; }
+
         public State(
             IStateHandler stateHandler)
         {
@@ -29,7 +32,10 @@ namespace Root.PixelGame.Game.StateMachines
         protected void ChangeState(StateType newStateType) 
             => _stateHandler.ChangeState(newStateType);
 
-        public virtual void Enter() { }
+        public virtual void Enter() 
+        {
+            startTime = Time.time;
+        }
 
         public virtual void Exit() { }
 

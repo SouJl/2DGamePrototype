@@ -12,8 +12,6 @@ namespace Root.PixelGame.Game.StateMachines
         protected readonly IPlayerData playerData;
         protected readonly IAnimatorController animator;
 
-        protected float startTime;
-
         protected bool isExitingState;
         protected bool isAnimationEnd;
 
@@ -47,7 +45,6 @@ namespace Root.PixelGame.Game.StateMachines
         {
             base.Enter();
             DoChecks();
-            startTime = Time.time;
             isExitingState = false;
         }
 

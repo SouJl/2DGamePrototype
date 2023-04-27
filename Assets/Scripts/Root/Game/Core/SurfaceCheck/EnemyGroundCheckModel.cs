@@ -25,7 +25,7 @@ namespace Root.PixelGame.Game.Core
             var hit = Physics2D.Raycast(_groundCheck.position, Vector2.down, config.CheckDistance, config.CheckLayerMask);
 
             Color rayColor;
-            if (hit != null)
+            if (hit)
             {
                 rayColor = Color.blue;
             }

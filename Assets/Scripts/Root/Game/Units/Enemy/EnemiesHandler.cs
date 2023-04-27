@@ -46,6 +46,7 @@ namespace Root.PixelGame.Game.Enemy
                 if (enemy.Model.Health.CurrentHealth <= 0)
                 {
                     enemy.DenitController();
+                    enemy.View.SetActive(false);
                     OnAddPointsForDefeat?.Invoke(enemy.Model.CostForDefeat);
                     _enemiesList.Remove(enemy);
                     continue;

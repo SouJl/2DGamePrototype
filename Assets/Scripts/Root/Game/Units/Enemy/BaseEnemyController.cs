@@ -6,7 +6,8 @@ using UnityEngine;
 namespace Root.PixelGame.Game.Enemy
 {
     internal interface IEnemyController : IExecute
-    { 
+    {
+        IEnemyView View { get; }
         IEnemyModel Model { get; }
 
         void InitController();
@@ -25,6 +26,8 @@ namespace Root.PixelGame.Game.Enemy
         protected IAnimatorController _animator;
         protected IStateHandler _stateHandler;
         public IEnemyModel Model => model;
+
+        public IEnemyView View => view;
 
         public BaseEnemyController(
             IEnemyView view, 

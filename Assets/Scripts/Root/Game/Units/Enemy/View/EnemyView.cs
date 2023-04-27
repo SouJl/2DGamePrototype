@@ -9,7 +9,7 @@ namespace Root.PixelGame.Game.Enemy
     {
         Transform EnemyTransform { get; }
 
-        void ChangeLevelDisplay(bool state);
+        void SetActive(bool state);
 
         void Init(IEnemyController controller);
     }
@@ -29,7 +29,7 @@ namespace Root.PixelGame.Game.Enemy
             _controller = controller;
         }
 
-        public void ChangeLevelDisplay(bool state)
+        public void SetActive(bool state)
         {
             gameObject.SetActive(state);
         }

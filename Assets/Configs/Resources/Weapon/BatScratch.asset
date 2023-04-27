@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ab0c61190b1204ca27affcb47cf54f, type: 3}
   m_Name: BatScratch
   m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 15
-  <MaxCombo>k__BackingField: 0
+  _attacks:
+  - <AttackName>k__BackingField: Attack1
+    <Damage>k__BackingField: 25
+    <KnockbackStrength>k__BackingField: 10
+    <KnockbackAngle>k__BackingField: {x: 1, y: 1}

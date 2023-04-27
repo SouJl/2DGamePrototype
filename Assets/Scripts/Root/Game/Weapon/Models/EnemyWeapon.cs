@@ -1,6 +1,5 @@
 ﻿using Root.PixelGame.Game.Core;
 using System;
-using UnityEngine;
 
 namespace Root.PixelGame.Game.Weapon
 {
@@ -10,8 +9,8 @@ namespace Root.PixelGame.Game.Weapon
         private readonly IWeaponView _view;
         private readonly IWeaponData _data;
 
-        private float _timeBetweenHit = 2f;
-        private float _lastTimeHit;
+
+        private int _attackIndex;
 
         public EnemyWeapon(
             IWeaponView view)
@@ -21,28 +20,21 @@ namespace Root.PixelGame.Game.Weapon
             
             _data = LoadWeaponData(_dataPath);
             
-            _lastTimeHit = _timeBetweenHit;
-
             view.Init(this);
         }
 
         public override void Attack()
         {
-            /*if (_lastTimeHit > _timeBetweenHit)
-            {
-                _view.CheckTouchDamage();
-                _lastTimeHit = 0;
-            }
-            else
-            {
-                _lastTimeHit += Time.deltaTime;
-            }*/
+            if (_attackIndex + 1 > _data.Attacks.Count)
+                _attackIndex = 0;
+
             _view.CheckTouchDamage();
+            _attackIndex++;
         }
 
         public override void DealDamage(IDamageable damageableObject)
         {
-            damageableObject.Damage(_data.Damage);
+            damageableObject.Damage(_data.Attacks[_attackIndex].Damage);
         }
     }
 }

@@ -46,11 +46,6 @@ namespace Root.PixelGame.Game.Enemy
             model.Health.DecreaseHealth(amount);
 
             _stateHandler.ChangeState(StateType.TakeDamage);
-
-            if (model.Health.CurrentHealth == 0)
-            {
-                view.ChangeLevelDisplay(false);
-            }
         }
 
         protected override void CreateAnimatorController(IEnemyView view)

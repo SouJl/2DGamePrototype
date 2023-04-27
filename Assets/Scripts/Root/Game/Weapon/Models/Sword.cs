@@ -14,7 +14,7 @@ namespace Root.PixelGame.Game.Weapon
         private readonly AnimationType[] _attackAnimations
             = new AnimationType[] { AnimationType.Attack1, AnimationType.Attack2 };
 
-        private int _comboIndex;
+        private int _attackIndex;
         
         public Sword(
             IWeaponView view, 
@@ -31,17 +31,17 @@ namespace Root.PixelGame.Game.Weapon
 
         public override void Attack()
         {
-            if (_comboIndex + 1 > _data.MaxCombo)
-                _comboIndex = 0;
+            if (_attackIndex + 1 > _data.Attacks.Count)
+                _attackIndex = 0;
 
             _view.CheckTouchDamage();
-            _animator.StartAnimation(_attackAnimations[_comboIndex]);
-            _comboIndex++;
+            _animator.StartAnimation(_attackAnimations[_attackIndex]);
+            _attackIndex++;
         }
 
         public override void DealDamage(IDamageable damageableObject)
         {
-            damageableObject.Damage(_data.Damage);
+            damageableObject.Damage(_data.Attacks[_attackIndex].Damage);
         }
     }
 }

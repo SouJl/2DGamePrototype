@@ -1,20 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Weapon
 {
     internal interface IWeaponData
     {
-        float Damage { get; }
-        int MaxCombo { get; }
+        IList<IAttackData> Attacks { get; }
     }
 
     [CreateAssetMenu(fileName = nameof(WeaponData), menuName = "Configs/" + nameof(WeaponData))]
     internal class WeaponData : ScriptableObject, IWeaponData
     {
-        [field: SerializeField] public float Damage { get; private set; } = 10f;
+        [SerializeField] public AttackData[] _attacks;
 
-        [field: SerializeField] public int MaxCombo { get; private set; } = 2;
-
-
+        public IList<IAttackData> Attacks => _attacks;
     }
 }

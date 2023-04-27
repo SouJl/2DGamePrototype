@@ -40,15 +40,15 @@ namespace Root.PixelGame.Components.Core
             {
                 Gizmos.color = Color.red;
                
-                Gizmos.DrawWireSphere(_playerCheckTransform.position + (Vector3)(Vector2.right * _config.CloseActionDistance), 0.3f); 
-                Gizmos.DrawWireSphere(_playerCheckTransform.position + (Vector3)(Vector2.right * _config.MinCheckDistance), 0.3f);            
-                Gizmos.DrawWireSphere(_playerCheckTransform.position + (Vector3)(Vector2.right * _config.MaxCheckDistance), 0.3f);
+                Gizmos.DrawWireSphere(_playerCheckTransform.position + (Vector3)(_handlerTransform.right * _config.CloseActionDistance), 0.3f); 
+                Gizmos.DrawWireSphere(_playerCheckTransform.position + (Vector3)(_handlerTransform.right * _config.MinCheckDistance), 0.3f);            
+                Gizmos.DrawWireSphere(_playerCheckTransform.position + (Vector3)(_handlerTransform.right * _config.MaxCheckDistance), 0.3f);
 
                 if (_showRangeLabels)
                 {
-                    Handles.Label(_playerCheckTransform.position + (Vector3)(Vector2.right * _config.CloseActionDistance + _labelOffset), "CloseAction");
-                    Handles.Label(_playerCheckTransform.position + (Vector3)(Vector2.right * _config.MinCheckDistance + _labelOffset), "MinRange");
-                    Handles.Label(_playerCheckTransform.position + (Vector3)(Vector2.right * _config.MaxCheckDistance + _labelOffset), "MaxRange");
+                    Handles.Label(_playerCheckTransform.position + (Vector3)((Vector2)_handlerTransform.right * _config.CloseActionDistance + _labelOffset), "CloseAction");
+                    Handles.Label(_playerCheckTransform.position + (Vector3)((Vector2)_handlerTransform.right * _config.MinCheckDistance + _labelOffset), "MinRange");
+                    Handles.Label(_playerCheckTransform.position + (Vector3)((Vector2)_handlerTransform.right * _config.MaxCheckDistance + _labelOffset), "MaxRange");
                 }
             }
         }

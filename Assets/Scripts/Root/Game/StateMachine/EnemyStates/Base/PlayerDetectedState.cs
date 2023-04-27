@@ -41,13 +41,12 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void Exit()
         {
             base.Exit();
+            animator.StopAnimation();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            core.Physic.SetVelocityX(0f);
 
             if (Time.time >= startTime + data.LongRangeActionTime)
             {
@@ -55,6 +54,12 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
             }
         }
 
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+            DoChecks();
+            core.Physic.SetVelocityX(0f);
+        }
 
         protected override void DoChecks()
         {

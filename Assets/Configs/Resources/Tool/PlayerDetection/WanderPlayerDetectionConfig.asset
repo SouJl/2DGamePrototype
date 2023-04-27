@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe8cd3eff29e0348ab1bc013f7ce74f, type: 3}
   m_Name: WanderPlayerDetectionConfig
   m_EditorClassIdentifier: 
-  <MinCheckDistance>k__BackingField: 2
-  <MaxCheckDistance>k__BackingField: 3
-  <CloseActionDistance>k__BackingField: 1
+  <MinCheckDistance>k__BackingField: 4
+  <MaxCheckDistance>k__BackingField: 5
+  <CloseActionDistance>k__BackingField: 1.5
+  <LongRangeActionTime>k__BackingField: 1.5
   <PlaterMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 256

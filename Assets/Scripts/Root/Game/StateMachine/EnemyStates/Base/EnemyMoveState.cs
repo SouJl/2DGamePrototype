@@ -7,8 +7,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
 {
     internal class EnemyMoveState : EnemyGroundState
     {
-        protected bool isDetectingLedge;
-
         public EnemyMoveState(
             IStateHandler stateHandler,
             IEnemyCore core,

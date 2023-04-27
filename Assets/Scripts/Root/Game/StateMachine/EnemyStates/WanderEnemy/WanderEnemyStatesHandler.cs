@@ -3,6 +3,7 @@ using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
 using System.Collections.Generic;
 using Root.PixelGame.Game.Enemy;
+using Root.PixelGame.Game.Weapon;
 
 namespace Root.PixelGame.Game.StateMachines.Enemy
 {
@@ -11,12 +12,14 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         private readonly IEnemyCore _core;
         private readonly IEnemyData _data;
         private readonly IAnimatorController _animator;
+        private readonly IWeapon _weapon;
 
 
         public WanderEnemyStatesHandler(
             IEnemyCore core,
             IEnemyData data,
-            IAnimatorController animator) : base()
+            IAnimatorController animator,
+            IWeapon weapon) : base()
         {
             _core
               = core ?? throw new ArgumentNullException(nameof(core));
@@ -24,6 +27,8 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
                 = data ?? throw new ArgumentNullException(nameof(data));
             _animator
                 = animator ?? throw new ArgumentNullException(nameof(animator));
+            _weapon 
+                = weapon ?? throw new ArgumentNullException(nameof(weapon));
         }
 
         protected override IDictionary<StateType, IState> CreateStates()
@@ -32,8 +37,13 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
 
             states[StateType.IdleState] = new WanderEnemyIdleState(this, _core, _data, _animator);
             states[StateType.MoveState] = new WanderEnemyMoveState(this, _core, _data, _animator);
+            states[StateType.ChargeState] = new WanderEnemyChargeState(this, _core, _data, _animator);
+
+            states[StateType.LookForPlayerState] = new WanderEnemyLookForPlayerState(this, _core, _data, _animator);
+            states[StateType.PlayerDetected] = new WanderEnemyPlayerDetectedState(this, _animator, _core);
+            states[StateType.MeleeAttackState] = new EnemyMeleeAtackState(this, _core, _animator, _weapon);
+
             states[StateType.TakeDamage] = new EnemyTakeDamageState(this, _core, _data, _animator);
-            states[StateType.PrimaryAtackState] = new EnemyAtackState(this, _core, _data, _animator);
 
             return states;
         }

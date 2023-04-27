@@ -34,6 +34,7 @@ namespace Root.PixelGame.Animation
 
         public void StartAnimation(AnimationType state)
         {
+            IsAnimationEnd = false;
             float animationSpeed = _animationData.AnimationSpeed;
             IAnimation animationConfig
                 = _animationData.AnimationConfigs.ToList().Find(anim => anim.State == state);

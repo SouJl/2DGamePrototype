@@ -16,6 +16,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void Enter()
         {
             base.Enter();
+            animator.StartAnimation(AnimationType.PlayerDetected);
         }
 
         public override void Exit()
@@ -38,12 +39,12 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
                 ChangeState(StateType.ChargeState);
                 return;
             }
-            else if (!isPlayerInMaxRange)
+            if (!isPlayerInMaxRange)
             {
                 ChangeState(StateType.LookForPlayerState);
                 return;
             }
-            else if (!isGround)
+            if (!isGround)
             {
                 core.Flip();
                 ChangeState(StateType.MoveState);

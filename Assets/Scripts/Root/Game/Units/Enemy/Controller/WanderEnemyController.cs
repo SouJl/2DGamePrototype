@@ -24,14 +24,11 @@ namespace Root.PixelGame.Game.Enemy
         {
             _weapon
                = weapon ?? throw new ArgumentNullException(nameof(weapon));
-
-            _weapon.WeaponActive += ChangeToAttack;
         }
 
         public override void Execute()
         {
             base.Execute();
-            _weapon.Attack();
         }
 
         public override void FixedExecute()
@@ -67,7 +64,7 @@ namespace Root.PixelGame.Game.Enemy
         {
             WanderEnemyView pursuerView = view as WanderEnemyView;
             _core = CreateCore(pursuerView.Core, pursuerView.GroundCheck, pursuerView.WallCheck);
-            _stateHandler = new WanderEnemyStatesHandler(_core, data, _animator);
+            _stateHandler = new WanderEnemyStatesHandler(_core, data, _animator, _weapon);
         }
 
         private IEnemyCore CreateCore(IEnemyCoreComponent coreComponent, Transform groundCheck, Transform wallCheck)
@@ -78,12 +75,6 @@ namespace Root.PixelGame.Game.Enemy
             IMove mover = new PhysicsMover(physic, data);
             IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
             return new WanderEnemyCore(coreComponent.Transform, physic, playerDetection, mover, rotator, slopeAnaliser, groundCheck, wallCheck);
-        }
-
-
-        private void ChangeToAttack()
-        {
-            _stateHandler.ChangeState(StateType.PrimaryAtackState);
         }
     }
 }

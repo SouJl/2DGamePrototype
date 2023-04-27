@@ -18,5 +18,8 @@
 
         //For items
         InUse       = 31,
+        LookForPlayer = 32,
+        PlayerDetected = 33,
+        Charge = 34,
     }
 }

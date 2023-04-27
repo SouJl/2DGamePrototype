@@ -9,6 +9,8 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         protected bool isGrounded;
         protected bool isTouchingWall;
         protected bool isPlayerInMinRange;
+        protected float _xAxisInput;
+        protected float _yAxisInput;
 
         public EnemyGroundState(
             IStateHandler stateHandler,
@@ -24,13 +26,24 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
             base.Enter();
             DoChecks();
         }
- 
+
         public override void Exit()
         {
             base.Exit();
             isGrounded = false;
             isTouchingWall = false;
+            _xAxisInput = 0f;
+            _yAxisInput = 0f;
         }
+
+        public override void InputData()
+        {
+            base.InputData();
+            _xAxisInput = core.Physic.CurrentVelocity.x;
+            _yAxisInput = core.Physic.CurrentVelocity.y;
+        }
+
+
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();

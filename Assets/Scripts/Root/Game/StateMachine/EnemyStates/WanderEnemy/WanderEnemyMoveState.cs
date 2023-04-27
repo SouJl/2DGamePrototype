@@ -54,8 +54,5 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
                 core.Physic.SetVelocityY(newVel.y);
             }
         }
-
-        
-
     }
 }

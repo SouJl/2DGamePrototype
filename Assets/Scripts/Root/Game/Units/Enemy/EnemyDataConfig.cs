@@ -13,6 +13,9 @@ namespace Root.PixelGame.Game.Enemy
         float ChargeSpeed { get; }
         float ChargeTime { get; }
 
+        int AmountOfTurns { get; }
+        float TimeBetweenTurns { get; }
+
         int CostForDefeat { get; }
     }
 
@@ -29,11 +32,13 @@ namespace Root.PixelGame.Game.Enemy
         [field: SerializeField] public float MaxIdleTime { get; private set; } = 2f;
 
         [field: SerializeField] public float ChargeSpeed { get; private set; } = 5f;
-
         [field: SerializeField] public float ChargeTime { get; private set; } = 2f;
+
+        [field: SerializeField] public int AmountOfTurns { get; private set; } = 2;
+        [field: SerializeField] public float TimeBetweenTurns { get; private set; } = 0.75f;
 
         [field: SerializeField] public int CostForDefeat { get; private set; } = 10;
 
-  
+    
     }
 }

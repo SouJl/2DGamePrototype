@@ -14,10 +14,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         
         protected bool isExitingState;
         protected bool isAnimationEnd;
-
-        protected float _xAxisInput;
-        protected float _yAxisInput;
-        
+     
         protected readonly float deltaTime;
         protected readonly float fixedTime;
 
@@ -50,17 +47,12 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
             base.Exit();
             isExitingState = true;
             isAnimationEnd = false;
-
-            _xAxisInput = 0;
-            _xAxisInput = 0;
             animator.StopAnimation();
         }
 
         public override void InputData()
         {
             base.InputData();
-            _xAxisInput = core.Physic.CurrentVelocity.x;
-            _xAxisInput = core.Physic.CurrentVelocity.y;
         }
 
         public override void LogicUpdate()

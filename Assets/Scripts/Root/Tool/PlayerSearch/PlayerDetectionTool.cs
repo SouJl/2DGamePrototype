@@ -10,7 +10,7 @@ namespace Root.PixelGame.Tool.PlayerSearch
 
         bool CheckPlayerInMinRange();
         bool CheckPlayerInMaxRange();
-        bool CheckPlayerInCloseAction();
+        bool CheckPlayerInCloseRangeAction();
     }
 
     internal class PlayerDetectionTool : IPlayerDetection
@@ -32,7 +32,7 @@ namespace Root.PixelGame.Tool.PlayerSearch
 
         public IPlayerDetectionData Data => _data;
 
-        public bool CheckPlayerInCloseAction()
+        public bool CheckPlayerInCloseRangeAction()
         {
             return Physics2D.Raycast(_playerCheck.position, _handler.right, _data.CloseActionDistance, _data.PlaterMask);
         }

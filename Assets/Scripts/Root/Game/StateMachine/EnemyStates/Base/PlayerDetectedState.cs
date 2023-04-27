@@ -60,7 +60,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
             isPlayerInMinRange = core.PlayerDetection.CheckPlayerInMinRange(); 
             isPlayerInMaxRange = core.PlayerDetection.CheckPlayerInMaxRange();
-            performCloseRangeAction = core.PlayerDetection.CheckPlayerInCloseAction();
+            performCloseRangeAction = core.PlayerDetection.CheckPlayerInCloseRangeAction();
             isGround = core.GroundCheck.CheckGround();
         }
     }

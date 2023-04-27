@@ -12,6 +12,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
 
         }
+
         public override void Enter()
         {
             base.Enter();

@@ -16,6 +16,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void Enter()
         {
             base.Enter();
+            DoChecks();
             animator.StartAnimation(AnimationType.PlayerDetected);
         }
 
@@ -47,9 +48,14 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
             if (!isGround)
             {
                 core.Flip();
-                ChangeState(StateType.MoveState);
+                ChangeState(StateType.IdleState);
                 return;
             }
+        }
+
+        protected override void DoChecks()
+        {
+            base.DoChecks();
         }
     }
 }

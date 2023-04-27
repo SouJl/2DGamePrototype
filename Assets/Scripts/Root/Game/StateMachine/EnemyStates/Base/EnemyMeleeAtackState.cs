@@ -6,8 +6,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
 {
     internal class EnemyMeleeAtackState : AttackState
     {
-        private bool _isAttack;
-
         public EnemyMeleeAtackState(
             IStateHandler stateHandler, 
             IEnemyCore core, 
@@ -19,30 +17,25 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void Enter()
         {
             base.Enter();
-            _isAttack = false;
-            weapon.WeaponActive += ExecuteAttack;
+            animator.StartAnimation(AnimationType.Attack1);
             weapon.Attack();
         }
 
         public override void Exit()
         {
             base.Exit();
-            weapon.WeaponActive -= ExecuteAttack;
         }
 
         public override void InputData()
         {
             base.InputData();
-            
-            if(!_isAttack)
-                weapon.Attack();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();   
 
-            if (_isAttack && isAnimationEnd)
+            if (isAnimationEnd)
             {
                 if (isPlayerInMinRange)
                 {
@@ -50,7 +43,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
                 }
                 else
                 {
-                    ChangeState(StateType.IdleState);
+                    ChangeState(StateType.LookForPlayerState);
                 }
             }
         }
@@ -63,12 +56,6 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         protected override void DoChecks()
         {
             base.DoChecks();
-        }
-
-        private void ExecuteAttack() 
-        {
-            _isAttack = true;
-            animator.StartAnimation(AnimationType.Attack1);
         }
     }
 }

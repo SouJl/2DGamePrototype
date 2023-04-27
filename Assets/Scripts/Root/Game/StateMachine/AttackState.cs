@@ -50,6 +50,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            animator.Update();
         }
 
         public override void PhysicsUpdate()

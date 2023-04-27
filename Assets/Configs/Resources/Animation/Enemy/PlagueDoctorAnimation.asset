@@ -63,7 +63,7 @@ MonoBehaviour:
     - {fileID: -1510260593, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
     - {fileID: 783791528, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
     - {fileID: -610521609, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}
-  - <Loop>k__BackingField: 1
+  - <Loop>k__BackingField: 0
     <State>k__BackingField: 12
     _sprites:
     - {fileID: 1670357983, guid: c5d83f8c8fe90f443b2b8499b0fd2739, type: 3}

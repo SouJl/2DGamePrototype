@@ -20,7 +20,7 @@ namespace Root.PixelGame.Animation
             {
                 while (Counter > Sprites.Count)
                 {
-                    Counter -= Sprites.Count;
+                    Counter -= Sprites.Count; 
                 }
             }
             else if (Counter > Sprites.Count)

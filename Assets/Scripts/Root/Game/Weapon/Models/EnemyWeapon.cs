@@ -28,7 +28,7 @@ namespace Root.PixelGame.Game.Weapon
 
         public override void Attack()
         {
-            if (_lastTimeHit > _timeBetweenHit)
+            /*if (_lastTimeHit > _timeBetweenHit)
             {
                 _view.CheckTouchDamage();
                 _lastTimeHit = 0;
@@ -36,7 +36,8 @@ namespace Root.PixelGame.Game.Weapon
             else
             {
                 _lastTimeHit += Time.deltaTime;
-            }
+            }*/
+            _view.CheckTouchDamage();
         }
 
         public override void DealDamage(IDamageable damageableObject)

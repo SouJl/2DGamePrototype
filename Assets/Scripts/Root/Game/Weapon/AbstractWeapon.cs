@@ -10,6 +10,7 @@ namespace Root.PixelGame.Game.Weapon
         void Attack();
 
         void DealDamage(IDamageable damageableObject);
+        void DealKnockback(IKnockbackable knockbackableObject);
     }
     internal abstract class AbstractWeapon : IWeapon
     {
@@ -18,6 +19,7 @@ namespace Root.PixelGame.Game.Weapon
         public abstract void Attack();
 
         public abstract void DealDamage(IDamageable damageableObject);
+        public abstract void DealKnockback(IKnockbackable knockbackableObject);
 
         protected IWeaponData LoadWeaponData(string path) 
             => ResourceLoader.LoadObject<WeaponData>(path);

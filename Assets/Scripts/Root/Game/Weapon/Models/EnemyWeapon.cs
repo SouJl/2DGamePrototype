@@ -36,5 +36,12 @@ namespace Root.PixelGame.Game.Weapon
         {
             damageableObject.Damage(_data.Attacks[_attackIndex].Damage);
         }
+
+        public override void DealKnockback(IKnockbackable knockbackableObject)
+        {
+           /* knockbackableObject.Knockback(
+                _data.Attacks[_attackIndex].KnockbackAngle,
+                _data.Attacks[_attackIndex].KnockbackStrength);*/
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169d5293a22e1d547adc2a1e6d0f66ac, type: 3}
   m_Name: PlayerAnimationDataConfig
   m_EditorClassIdentifier: 
-  _animationSpeed: 12
+  _animationSpeed: 10
   _spriteAnimationConfigs:
   - <Loop>k__BackingField: 1
     <State>k__BackingField: 0

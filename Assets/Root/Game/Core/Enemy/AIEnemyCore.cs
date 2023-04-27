@@ -1,4 +1,5 @@
 ﻿using Root.PixelGame.Game.AI;
+using Root.PixelGame.Tool.PlayerSearch;
 using System;
 using UnityEngine;
 
@@ -11,9 +12,10 @@ namespace Root.PixelGame.Game.Core
         public AIEnemyCore(
             Transform transform, 
             IPhysicModel physic, 
+            IPlayerDetection playerDetection, 
             IMove mover, 
-            IRotate rotator, 
-            IAIBehaviour aIBehaviour) : base(transform, physic, mover, rotator)
+            IRotate rotator,
+            IAIBehaviour aIBehaviour) : base(transform, physic, playerDetection, mover, rotator)
         {
             ChangeAI(aIBehaviour);
         }
@@ -36,11 +38,6 @@ namespace Root.PixelGame.Game.Core
         public override void Rotate(float time)
         {
             rotator.Rotate();
-        }
-
-        public override bool CheckPlayerInRange()
-        {
-            return false;
         }
     }
 }

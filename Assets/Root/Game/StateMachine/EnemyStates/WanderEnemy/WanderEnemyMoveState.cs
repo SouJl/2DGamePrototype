@@ -26,7 +26,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
             base.LogicUpdate();
 
-            if (isPlayerInRange)
+            if (isPlayerInMinRange)
             {
                 ChangeState(StateType.PlayerDetected);
                 return;

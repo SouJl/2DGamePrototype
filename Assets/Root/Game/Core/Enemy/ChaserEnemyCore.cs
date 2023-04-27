@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Root.PixelGame.Tool.PlayerSearch;
+using UnityEngine;
 
 namespace Root.PixelGame.Game.Core
 {
@@ -7,20 +8,15 @@ namespace Root.PixelGame.Game.Core
         public ChaserEnemyCore(
             Transform transform, 
             IPhysicModel physic, 
+            IPlayerDetection playerDetection, 
             IMove mover, 
-            IRotate rotator) : base(transform, physic, mover, rotator)
+            IRotate rotator) : base(transform, physic, playerDetection, mover, rotator)
         {
-
         }
 
         public override void Rotate(float time)
         {
             rotator.Rotate();
-        }
-
-        public override bool CheckPlayerInRange()
-        {
-            return false;
         }
     }
 }

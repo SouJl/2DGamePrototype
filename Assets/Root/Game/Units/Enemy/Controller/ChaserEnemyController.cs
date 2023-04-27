@@ -6,6 +6,7 @@ using Root.PixelGame.Game.AI.Model;
 using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.StateMachines;
 using Root.PixelGame.Tool;
+using Root.PixelGame.Tool.PlayerSearch;
 using System;
 using UnityEngine;
 
@@ -110,9 +111,10 @@ namespace Root.PixelGame.Game.Enemy
         private IEnemyCore CreateCore(IEnemyCoreComponent coreComponent)
         {
             IPhysicModel physic = new PhysicModel(coreComponent.Rigidbody);
+            IPlayerDetection playerDetection = new PlayerDetectionTool(coreComponent.PlayerDetection);
             IMove mover = new PhysicsMover(physic, data);
             IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
-            return new ChaserEnemyCore(coreComponent.Transform, physic, mover, rotator);
+            return new ChaserEnemyCore(coreComponent.Transform, physic, playerDetection, mover, rotator);
         }
         private IAIBehaviour CreateAI(IAIComponent aIViewComponent)
         {

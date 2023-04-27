@@ -1,4 +1,5 @@
 ﻿using Root.PixelGame.Tool;
+using Root.PixelGame.Tool.PlayerSearch;
 using System;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Root.PixelGame.Game.Core
 
         Transform Transform { get; }
         IPhysicModel Physic { get; }
+        IPlayerDetection PlayerDetection { get; }
         IGroundCheck GroundCheck { get; }
         IWallCheck WallCheck { get; }
         ISlopeAnaliser SlopeAnaliser { get; }
@@ -21,8 +23,6 @@ namespace Root.PixelGame.Game.Core
         void UpdateCoreData(float time);
         void Move(float time);
         void Rotate(float time);
-
-        bool CheckPlayerInRange();
         void SetFlipAfterIdle(bool isFlip);
     }
 
@@ -33,12 +33,13 @@ namespace Root.PixelGame.Game.Core
         protected readonly IRotate rotator;
 
         public IPhysicModel Physic { get; private set; }
+        public IPlayerDetection PlayerDetection { get; protected set; }
 
         public IGroundCheck GroundCheck { get; protected set; }
 
         public IWallCheck WallCheck { get; protected set; }
         public ISlopeAnaliser SlopeAnaliser { get; protected set; }
-
+       
         public int FacingDirection { get; private set; }
 
         public bool FlipAfterIdle { get; private set; }
@@ -48,6 +49,7 @@ namespace Root.PixelGame.Game.Core
         public EnemyCore(
             Transform transform,
             IPhysicModel physic,
+            IPlayerDetection playerDetection,
             IMove mover, 
             IRotate rotator) 
         {
@@ -55,6 +57,10 @@ namespace Root.PixelGame.Game.Core
 
             Physic
                 = physic ?? throw new ArgumentNullException(nameof(physic));
+
+            PlayerDetection
+               = playerDetection ?? throw new ArgumentNullException(nameof(playerDetection));
+
             this.mover 
                 = mover ?? throw new ArgumentNullException(nameof(mover));
             this.rotator
@@ -68,8 +74,6 @@ namespace Root.PixelGame.Game.Core
         public virtual void Move(float time) { }
 
         public virtual void Rotate(float time) { }
-
-        public abstract bool CheckPlayerInRange();
         
         public virtual void Flip()
         {

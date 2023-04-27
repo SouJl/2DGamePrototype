@@ -1,4 +1,5 @@
 ﻿using Root.PixelGame.Tool;
+using Root.PixelGame.Tool.PlayerSearch;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Core
@@ -13,18 +14,20 @@ namespace Root.PixelGame.Game.Core
 
         public IPhysicModel Physic { get; }
 
+        public IPlayerDetection PlayerDetection { get; }
+
         public IGroundCheck GroundCheck { get; }
 
         public IWallCheck WallCheck { get; }
 
         public ISlopeAnaliser SlopeAnaliser { get; }
+
         public int FacingDirection { get; }
 
         public bool FlipAfterIdle { get; }
 
-        public Transform Transform => throw new System.NotImplementedException();
+        public Transform Transform { get; }
 
-        public bool CheckPlayerInRange() { return false; }
 
         public void Flip() { }
 
@@ -32,10 +35,7 @@ namespace Root.PixelGame.Game.Core
 
         public void Rotate(float time) { }
 
-        public void SetFlipAfterIdle(bool isFlip)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void SetFlipAfterIdle(bool isFlip) { }
 
         public void UpdateCoreData(float time) { }
     }

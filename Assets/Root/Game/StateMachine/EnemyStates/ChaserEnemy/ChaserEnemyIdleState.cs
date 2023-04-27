@@ -11,7 +11,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
     {
         protected readonly IAIBehaviour _aIBehaviour;
 
-        private bool isPlayerInRange;
+        private bool isPlayerInMinRange;
         private bool isIdleTimeOver;
         private float idleTime;
 
@@ -49,7 +49,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
                 isIdleTimeOver = true;
             }
 
-            if (isPlayerInRange)
+            if (isPlayerInMinRange)
             {
                 ChangeState(StateType.PlayerDetected);
                 return;
@@ -70,7 +70,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         protected override void DoChecks()
         {
             base.DoChecks();
-            isPlayerInRange = core.CheckPlayerInRange();
+            isPlayerInMinRange = core.PlayerDetection.CheckPlayerInMinRange();
         }
 
         private void SetRandomIdleTime()

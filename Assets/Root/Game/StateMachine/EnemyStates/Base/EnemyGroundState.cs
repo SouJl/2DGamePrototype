@@ -8,7 +8,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
     {
         protected bool isGrounded;
         protected bool isTouchingWall;
-        protected bool isPlayerInRange;
+        protected bool isPlayerInMinRange;
 
         public EnemyGroundState(
             IStateHandler stateHandler,
@@ -41,7 +41,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
             base.DoChecks();
             isGrounded = core.GroundCheck.CheckGround();
             isTouchingWall = core.WallCheck.CheckWallFront(core.FacingDirection);
-            isPlayerInRange = core.CheckPlayerInRange();
+            isPlayerInMinRange = core.PlayerDetection.CheckPlayerInMinRange();
         }
     }
 }

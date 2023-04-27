@@ -1,4 +1,5 @@
 ﻿using Root.PixelGame.Tool;
+using Root.PixelGame.Tool.PlayerSearch;
 using System;
 using UnityEngine;
 
@@ -6,31 +7,21 @@ namespace Root.PixelGame.Game.Core
 {
     internal class WanderEnemyCore : EnemyCore
     {
-        private readonly float _speed;
-
         public WanderEnemyCore(
-            Transform transform,
-            IPhysicModel physic,
-            IMove mover,
+            Transform transform, 
+            IPhysicModel physic, 
+            IPlayerDetection playerDetection, 
+            IMove mover, 
             IRotate rotator,
             ISlopeAnaliser slopeAnaliser,
             Transform groundCheck,
-            Transform wallCheck,
-            float speed) : base(transform, physic, mover, rotator)
+            Transform wallCheck) : base(transform, physic, playerDetection, mover, rotator)
         {
-            _speed = speed;
-            
-            SlopeAnaliser 
-                = slopeAnaliser ?? throw new ArgumentNullException(nameof(slopeAnaliser));
-            
+            SlopeAnaliser
+              = slopeAnaliser ?? throw new ArgumentNullException(nameof(slopeAnaliser));
+
             GroundCheck = new EnemyGroundCheckModel(groundCheck);
             WallCheck = new WallCheckModel(wallCheck);
-        }
-
-
-        public override bool CheckPlayerInRange()
-        {
-            return false;
         }
     }
 }

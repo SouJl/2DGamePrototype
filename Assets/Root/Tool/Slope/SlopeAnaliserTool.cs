@@ -14,7 +14,7 @@ namespace Root.PixelGame.Tool
 
     internal class SlopeAnaliserTool : ISlopeAnaliser
     {
-        private readonly string configPath = @"Slope/SlopeAnaliseConfig";
+        private readonly string configPath = @"Tool/Slope/SlopeAnaliseConfig";
 
         private readonly Rigidbody2D _rigidbody;
         private readonly Vector2 _colliderSize;

@@ -7,6 +7,7 @@ using Root.PixelGame.Game.StateMachines.Enemy;
 using Root.PixelGame.Tool;
 using System;
 using UnityEngine;
+using Root.PixelGame.Tool.PlayerSearch;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -72,10 +73,11 @@ namespace Root.PixelGame.Game.Enemy
         private IEnemyCore CreateCore(IEnemyCoreComponent coreComponent, Transform groundCheck, Transform wallCheck)
         {
             IPhysicModel physic = new PhysicModel(coreComponent.Rigidbody);
+            IPlayerDetection playerDetection = new PlayerDetectionTool(coreComponent.PlayerDetection);
             ISlopeAnaliser slopeAnaliser = new SlopeAnaliserTool(coreComponent.Rigidbody, coreComponent.Collider);
             IMove mover = new PhysicsMover(physic, data);
             IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
-            return new WanderEnemyCore(coreComponent.Transform, physic, mover, rotator, slopeAnaliser, groundCheck, wallCheck, data.Speed);
+            return new WanderEnemyCore(coreComponent.Transform, physic, playerDetection, mover, rotator, slopeAnaliser, groundCheck, wallCheck);
         }
 
 

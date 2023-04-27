@@ -40,7 +40,7 @@ namespace Root.PixelGame.Game.Core
             IMove mover = new PhysicsMover(physic, _data);
             IRotate rotator = new ScaleRotator(coreComponent.Transform, physic);
             IAIBehaviour aI = aIFactory.CreateAIBehavior(coreComponent.AIViewComponent);
-            return new AIEnemyCore(coreComponent.Transform, physic, mover, rotator, aI);
+            return new AIEnemyCore(coreComponent.Transform, physic, null, mover, rotator, aI);
         }
     }
 }

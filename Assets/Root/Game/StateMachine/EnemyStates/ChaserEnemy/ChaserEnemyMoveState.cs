@@ -10,7 +10,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
     {
         protected readonly IAIBehaviour _aIBehaviour;
 
-        private bool isPlayerInRange;
+        private bool isPlayerInMinRange;
         
         public ChaserEnemyMoveState(
             IStateHandler stateHandler, 
@@ -41,7 +41,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         {
             base.LogicUpdate();
             
-            if (isPlayerInRange)
+            if (isPlayerInMinRange)
             {
                 ChangeState(StateType.PlayerDetected);
                 return;
@@ -66,7 +66,7 @@ namespace Root.PixelGame.Game.StateMachines.Enemy
         protected override void DoChecks()
         {
             base.DoChecks();
-            isPlayerInRange = core.CheckPlayerInRange();
+            isPlayerInMinRange = core.PlayerDetection.CheckPlayerInMinRange();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Root.PixelGame.Game.StateMachines
             states[StateType.WallGrabState] = new PlayerWallGrabState(this, _core, _data, _animator);
             states[StateType.LedgeState] = new PlayerLedgeState(this, _core, _data, _animator);
             states[StateType.ClimbState] = new PlayerClimbState(this, _core, _data, _animator);
-            states[StateType.PrimaryAtackState] = new PlayerAttackState(this, _core, _data, _animator, _weapon);
+            states[StateType.MeleeAttackState] = new PlayerMeleeAttackState(this, _core, _data, _animator, _weapon);
             states[StateType.TakeDamage] = new PlayerHitState(this, _core, _data, _animator);
 
             return states;

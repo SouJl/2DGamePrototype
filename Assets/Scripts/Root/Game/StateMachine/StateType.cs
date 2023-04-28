@@ -15,8 +15,6 @@
         LedgeState,
         ClimbState,
 
-        PrimaryAtackState,
-        SecondaryAtackState,
         TakeDamage,
         PlayerDetected,
 

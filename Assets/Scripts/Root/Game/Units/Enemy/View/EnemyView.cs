@@ -36,9 +36,13 @@ namespace Root.PixelGame.Game.Enemy
 
         public override void Damage(float amount)
         {
-            _controller.TakeDamage(amount);
+            _controller.Damage(amount);
         }
 
+        public override void Knockback(Vector2 angle, float strength, int direction)
+        {
+            _controller.Knockback(angle, strength, direction);
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

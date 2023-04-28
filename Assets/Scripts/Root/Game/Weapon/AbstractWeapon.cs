@@ -6,21 +6,26 @@ namespace Root.PixelGame.Game.Weapon
 {
     internal interface IWeapon
     {
-        Action WeaponActive { get; set; }
-        void Attack();
+        IAttackData CurrentAttack { get; }
 
-        void DealDamage(IDamageable damageableObject);
-        void DealKnockback(IKnockbackable knockbackableObject);
+        Action<IDamageable> OnDamage { get; set; }
+        Action<IKnockbackable> OnKnockBack { get; set; }
+      
+        Action WeaponActive { get; set; }
+        
+        void Attack();
     }
+
     internal abstract class AbstractWeapon : IWeapon
     {
+        public Action<IDamageable> OnDamage { get; set; }
+        public Action<IKnockbackable> OnKnockBack { get; set; }
         public Action WeaponActive { get; set; }
 
+        public abstract IAttackData CurrentAttack { get; }
+
         public abstract void Attack();
-
-        public abstract void DealDamage(IDamageable damageableObject);
-        public abstract void DealKnockback(IKnockbackable knockbackableObject);
-
+  
         protected IWeaponData LoadWeaponData(string path) 
             => ResourceLoader.LoadObject<WeaponData>(path);
     }

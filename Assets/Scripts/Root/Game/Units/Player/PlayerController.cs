@@ -11,13 +11,11 @@ using UnityEngine;
 
 namespace Root.PixelGame.Game
 {
-    internal interface IPlayerController
+    internal interface IPlayerController : IDamageable, IKnockbackable
     {
         void OnLevelContact(Collider2D collider);
 
-        void TakeDamage(float amount);
         void AddPoints(int amount);
-     
     }
 
     internal class PlayerController : BaseController, IPlayerController
@@ -85,12 +83,6 @@ namespace Root.PixelGame.Game
             }
         }
 
-        public void TakeDamage(float amount)
-        {
-            _healthController.HealthModel.DecreaseHealth(amount);
-            _stateHandler.ChangeState(StateType.TakeDamage);
-        }
-
         public void AddPoints(int amount)
         {
             _coinsController.CoinsModel.Increase(amount);
@@ -110,5 +102,14 @@ namespace Root.PixelGame.Game
 
             return core;
         }
+
+        public void Damage(float amount)
+        {
+            _healthController.HealthModel.DecreaseHealth(amount);
+            _stateHandler.ChangeState(StateType.TakeDamage);
+        }
+
+        public void Knockback(Vector2 angle, float strength, int direction) 
+            => _core.Physic.SetVelocity(strength, angle, direction);
     }
 }

@@ -49,7 +49,7 @@ namespace Root.PixelGame.Game.StateMachines
             base.LogicUpdate();
             if (_isAttack)
             {
-                ChangeState(StateType.PrimaryAtackState);
+                ChangeState(StateType.MeleeAttackState);
                 return;
             }
             if (_isJump)

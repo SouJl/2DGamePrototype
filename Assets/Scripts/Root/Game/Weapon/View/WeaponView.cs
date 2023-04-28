@@ -42,11 +42,20 @@ namespace Root.PixelGame.Game.Weapon
             if (hit != null)
             {
                 IDamageable damageableObject = hit.gameObject.GetComponent<UnitView>();
+                
                 if(damageableObject != null)
                 {
                     _weapon.WeaponActive?.Invoke();
-                    _weapon.DealDamage(damageableObject);
-                }         
+                    _weapon.OnDamage?.Invoke(damageableObject);
+                }
+
+                IKnockbackable knockbackable = hit.gameObject.GetComponent<UnitView>();
+                
+                if (knockbackable != null)
+                {
+                    _weapon.WeaponActive?.Invoke();
+                    _weapon.OnKnockBack?.Invoke(knockbackable);
+                }
             }
         }
 

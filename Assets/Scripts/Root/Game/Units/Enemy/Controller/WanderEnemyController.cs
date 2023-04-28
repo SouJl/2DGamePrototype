@@ -41,11 +41,16 @@ namespace Root.PixelGame.Game.Enemy
 
         }
 
-        public override void TakeDamage(float amount)
+        public override void Damage(float amount)
         {
             model.Health.DecreaseHealth(amount);
 
             _stateHandler.ChangeState(StateType.TakeDamage);
+        }
+
+        public override void Knockback(Vector2 angle, float strength, int direction)
+        {
+            _core.Physic.SetVelocity(strength, angle, direction);
         }
 
         protected override void CreateAnimatorController(IEnemyView view)

@@ -33,7 +33,7 @@ namespace Root.PixelGame.Game.StateMachines
             states[StateType.IdleState] = new EnemyIdleState(this, _core,  _data, _animator);
             states[StateType.MoveState] = new EnemyMoveState(this, _core, _data, _animator);
             states[StateType.TakeDamage] = new EnemyTakeDamageState(this, _core, _data, _animator);
-            states[StateType.PrimaryAtackState] = new EnemyAtackState(this, _core, _data, _animator);
+            states[StateType.MeleeAttackState] = new EnemyAtackState(this, _core, _data, _animator);
 
             return states;
         }

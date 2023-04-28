@@ -6,12 +6,15 @@ using System;
 
 namespace Root.PixelGame.Game.StateMachines
 {
-    internal class PlayerAttackState : PlayerAbilityState
+    internal class PlayerMeleeAttackState : PlayerAbilityState
     {
         private readonly IWeapon _weapon;
         private readonly float _attackMoveOffset = 1.5f;
 
-        public PlayerAttackState(
+        private bool _isDamageDealed;
+        private bool _isKnockDealed;
+        
+        public PlayerMeleeAttackState(
             IStateHandler stateHandler, 
             IPlayerCore playerCore, 
             IPlayerData playerData, 
@@ -25,8 +28,15 @@ namespace Root.PixelGame.Game.StateMachines
         public override void Enter()
         {
             base.Enter();
-            Attack();
+            _isDamageDealed = false;
+            _isKnockDealed = false;
+            _weapon.OnDamage += DealDamage;
+            _weapon.OnKnockBack += DealKnockback;
+            _weapon.Attack();
+            playerCore.Physic.SetVelocityX(_attackMoveOffset * playerCore.FacingDirection);
         }
+
+
 
         public override void Exit()
         {
@@ -44,9 +54,7 @@ namespace Root.PixelGame.Game.StateMachines
             
             if (isAnimationEnd)
             {
-                playerCore.Physic.SetVelocityX(0f);
                 ChangeState(StateType.IdleState);
-                _weapon.WeaponActive?.Invoke();
             }
         }
 
@@ -60,11 +68,27 @@ namespace Root.PixelGame.Game.StateMachines
             base.DoChecks();
         }
 
-        private void Attack()
+        private void DealDamage(IDamageable damageable)
         {
-            playerCore.Physic.SetVelocityX(_attackMoveOffset * playerCore.FacingDirection);
-            _weapon.Attack();
-            _weapon.WeaponActive?.Invoke();
+            if (!_isDamageDealed)
+            {
+                damageable.Damage(_weapon.CurrentAttack.Damage);
+                _isDamageDealed = true;
+            }
+
+        }
+
+        private void DealKnockback(IKnockbackable knockbackable)
+        {
+            if (!_isKnockDealed)
+            {
+                knockbackable.Knockback(
+                    _weapon.CurrentAttack.KnockbackAngle,
+                    _weapon.CurrentAttack.KnockbackStrength,
+                    playerCore.FacingDirection);
+                _isKnockDealed = true;
+            }
+
         }
     }
 }

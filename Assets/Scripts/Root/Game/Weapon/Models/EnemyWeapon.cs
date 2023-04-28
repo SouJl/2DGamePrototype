@@ -1,5 +1,4 @@
-﻿using Root.PixelGame.Game.Core;
-using System;
+﻿using System;
 
 namespace Root.PixelGame.Game.Weapon
 {
@@ -9,8 +8,8 @@ namespace Root.PixelGame.Game.Weapon
         private readonly IWeaponView _view;
         private readonly IWeaponData _data;
 
-
         private int _attackIndex;
+        public override IAttackData CurrentAttack => _data.Attacks[_attackIndex];
 
         public EnemyWeapon(
             IWeaponView view)
@@ -23,6 +22,7 @@ namespace Root.PixelGame.Game.Weapon
             view.Init(this);
         }
 
+    
         public override void Attack()
         {
             if (_attackIndex + 1 > _data.Attacks.Count)
@@ -30,18 +30,6 @@ namespace Root.PixelGame.Game.Weapon
 
             _view.CheckTouchDamage();
             _attackIndex++;
-        }
-
-        public override void DealDamage(IDamageable damageableObject)
-        {
-            damageableObject.Damage(_data.Attacks[_attackIndex].Damage);
-        }
-
-        public override void DealKnockback(IKnockbackable knockbackableObject)
-        {
-           /* knockbackableObject.Knockback(
-                _data.Attacks[_attackIndex].KnockbackAngle,
-                _data.Attacks[_attackIndex].KnockbackStrength);*/
         }
     }
 }

@@ -15,5 +15,5 @@ MonoBehaviour:
   _attacks:
   - <AttackName>k__BackingField: Attack1
     <Damage>k__BackingField: 25
-    <KnockbackStrength>k__BackingField: 10
+    <KnockbackStrength>k__BackingField: 3
     <KnockbackAngle>k__BackingField: {x: 1, y: 1}

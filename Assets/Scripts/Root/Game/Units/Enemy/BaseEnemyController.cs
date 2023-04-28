@@ -1,11 +1,12 @@
 ﻿using Root.PixelGame.Animation;
+using Root.PixelGame.Game.Core;
 using Root.PixelGame.Game.StateMachines;
 using System;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.Enemy
 {
-    internal interface IEnemyController : IExecute
+    internal interface IEnemyController : IExecute, IDamageable, IKnockbackable
     {
         IEnemyView View { get; }
         IEnemyModel Model { get; }
@@ -13,8 +14,6 @@ namespace Root.PixelGame.Game.Enemy
         void InitController();
         void DenitController();
         void OnCollisionContact(Collider2D collision);
-
-        void TakeDamage(float amount);
     }
 
     internal abstract class BaseEnemyController : BaseController, IEnemyController
@@ -67,14 +66,14 @@ namespace Root.PixelGame.Game.Enemy
         {
             _stateHandler.FixedExecute();
         }
-        public abstract void TakeDamage(float amount);
+        public abstract void Damage(float amount);
+
+        public abstract void Knockback(Vector2 angle, float strength, int direction);
 
         public virtual void OnCollisionContact(Collider2D collision) { }
 
         protected abstract void CreateAnimatorController(IEnemyView view);
 
-        protected abstract void CreateStatesHandler(IEnemyView view);
-
-        
+        protected abstract void CreateStatesHandler(IEnemyView view);   
     }
 }

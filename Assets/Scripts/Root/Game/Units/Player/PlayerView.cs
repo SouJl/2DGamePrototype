@@ -50,12 +50,20 @@ namespace Root.PixelGame.Game
         {
             if (_playerController == null) return;
 
-            _playerController.TakeDamage(amount);
+            _playerController.Damage(amount);
+        }
+        public override void Knockback(Vector2 angle, float strength, int direction)
+        {
+            if (_playerController == null) return;
+
+            _playerController.Knockback(angle, strength, direction);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             _playerController.OnLevelContact(collision);
         }
+
+       
     }
 }

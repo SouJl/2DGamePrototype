@@ -15,7 +15,8 @@ namespace Root.PixelGame.Game.Weapon
             = new AnimationType[] { AnimationType.Attack1, AnimationType.Attack2 };
 
         private int _attackIndex;
-        
+        public override IAttackData CurrentAttack => _data.Attacks[_attackIndex];
+
         public Sword(
             IWeaponView view, 
             IAnimatorController animator)
@@ -37,16 +38,6 @@ namespace Root.PixelGame.Game.Weapon
             _view.CheckTouchDamage();
             _animator.StartAnimation(_attackAnimations[_attackIndex]);
             _attackIndex++;
-        }
-
-        public override void DealDamage(IDamageable damageableObject)
-        {
-            damageableObject.Damage(_data.Attacks[_attackIndex].Damage);
-        }
-
-        public override void DealKnockback(IKnockbackable knockbackableObject)
-        {
-            throw new NotImplementedException();
         }
     }
 }

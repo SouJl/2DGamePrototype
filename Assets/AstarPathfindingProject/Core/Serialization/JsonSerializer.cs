@@ -176,7 +176,7 @@ namespace Pathfinding.Serialization {
 		private SerializeSettings settings;
 
 		/// <summary>
-		/// Root GameObject used for deserialization.
+		/// PixelGame GameObject used for deserialization.
 		/// This should be the GameObject which holds the AstarPath component.
 		/// Important when deserializing when the component is on a prefab.
 		/// </summary>

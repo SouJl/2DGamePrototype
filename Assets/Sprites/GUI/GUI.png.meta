@@ -113,6 +113,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -410,6 +422,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GUI_14
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 209
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 3, z: 2, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c0ef25628fd45428d8f651505984ab
+      internalID: -1652810113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_15
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 177
+        width: 30
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 3, z: 2, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3c167a91472654bb68eba3d159f792
+      internalID: -2108149022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_16
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 209
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 4, z: 3, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3b82c790a64314cbe55cb610829725
+      internalID: 1416062854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_17
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 177
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 3, y: 4, z: 3, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f1049e5d55ac648ac66f7bf671e77b
+      internalID: 169814609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -427,11 +523,15 @@ TextureImporter:
       GUI_3: -863475778
       GUI_2: -897923016
       GUI_11: -1333026620
+      GUI_15: -2108149022
       GUI_13: -1489224581
       GUI_1: -1988455457
       GUI_12: 396684155
       GUI_9: 1661919408
+      GUI_14: -1652810113
       GUI_6: 2115713246
+      GUI_17: 169814609
+      GUI_16: 1416062854
       GUI_7: 1863295765
       GUI_8: 565809991
       GUI_10: 667118635

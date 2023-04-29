@@ -31,7 +31,8 @@ namespace Root.PixelGame.Game.Core
         public IGroundCheck GroundCheck { get; private set; }
         public IWallCheck WallCheck { get; private set; }
         public ILedgeCheck LedgeCheck { get; private set; }
-        public int FacingDirection { get; private set; }
+
+        public int FacingDirection { get; private set; } = 1;
 
         public int WallJumpDirection { get; private set; }
 
@@ -63,8 +64,8 @@ namespace Root.PixelGame.Game.Core
 
             LedgeCheck
              = ledgeCheck ?? throw new ArgumentNullException(nameof(ledgeCheck));
-            
-            FacingDirection = 1;
+
+            CheckFlip(-1);
         }
 
         public void CheckFlip(float xInpunt)

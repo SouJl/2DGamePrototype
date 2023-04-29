@@ -2,6 +2,7 @@
 using PixelGame.Game;
 using PixelGame.Game.Enemy;
 using PixelGame.Game.Items;
+using PixelGame.Game.Machines;
 using PixelGame.Game.UI;
 using PixelGame.Game.Weapon;
 using PixelGame.Tool.Audio;
@@ -18,15 +19,19 @@ namespace PixelGame
         [SerializeField] private AnimationDataConfig _playerAnimationConfig;
         [SerializeField] private EnemyView[] _enemyViews;
         [SerializeField] private CoinView[] _coins;
+        [SerializeField] private ElevatorView _elevatorView;
+
 
         private PlayerController _playerController;
-        private EnemiesHandler _enemiesHandler; 
+        private EnemiesHandler _enemiesHandler;
+        private ElevatorController _elevatorController;
 
         private void Awake()
         {
             CreatePlayer();
             _enemiesHandler = new EnemiesHandler(_playerView.Transform, _playerController.AddPoints, _enemyViews);
-
+            _elevatorController = new ElevatorController(_elevatorView);
+            
             AudioManager.Instance.PlayMusic("MainTheme");
             AudioManager.Instance.PlayeAmbient("WaterDrips");
         }
@@ -42,13 +47,14 @@ namespace PixelGame
         private void Update()
         {
             _playerController.Execute();
-            _enemiesHandler.Execute();
+            _enemiesHandler.Execute(); 
         }
 
         private void FixedUpdate()
         {
             _playerController.FixedExecute();
             _enemiesHandler.FixedExecute();
+            _elevatorController.FixedExecute();
         }
     }
 }

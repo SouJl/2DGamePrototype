@@ -1,4 +1,5 @@
 ﻿using PixelGame.Game.UI;
+using PixelGame.Tool.Audio;
 using System;
 using System.Collections.Generic;
 
@@ -34,6 +35,7 @@ namespace PixelGame.Game.Items
         public void CoinObtained(ICoinView coin)
         {
             var coinIndex = _coinViews.IndexOf(coin);
+            AudioManager.Instance.PlaySFX(SFXAudioType.Game, "CoinPickup");
             _coinViews[coinIndex].SetActive(false);
         }
     }

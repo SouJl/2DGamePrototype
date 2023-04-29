@@ -1,5 +1,5 @@
+using Root.PixelGame.Tool;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 internal class MenuManager : MonoBehaviour
@@ -26,7 +26,7 @@ internal class MenuManager : MonoBehaviour
 
     private void StartGame()
     {
-        SceneManager.LoadScene(GameSceneIndex);
+        GameSceneLoader.Instance.LoadScene(GameSceneIndex);
     }
 
     private void OpenSettingMenu()

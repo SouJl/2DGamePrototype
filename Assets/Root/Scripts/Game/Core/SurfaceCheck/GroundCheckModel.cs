@@ -10,7 +10,7 @@ namespace PixelGame.Game.Core
 
     internal class GroundCheckModel : IGroundCheck
     {
-        private readonly string _configPath = @"Player/GroundCheckConfig";
+        private readonly string _configPath = @"Configs/Player/GroundCheckConfig";
 
         private readonly Transform _groundCheck;
         private readonly ISurfaceCheckConfig config;

@@ -21,7 +21,7 @@ namespace PixelGame.Game
 
     internal class PlayerController : BaseController, IPlayerController
     {
-        private readonly string _dataConfig = @"Player/PlayerData";
+        private readonly string _dataConfig = @"Configs/Player/PlayerData";
         
         private readonly IPlayerView _view;
         private readonly IAnimatorController _animator;

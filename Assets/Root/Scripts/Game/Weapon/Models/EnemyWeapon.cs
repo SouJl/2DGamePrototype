@@ -4,7 +4,7 @@ namespace PixelGame.Game.Weapon
 {
     internal class EnemyWeapon : AbstractWeapon
     {
-        private readonly string _dataPath = @"Weapon/BatScratch";
+        private readonly string _dataPath = @"Configs/Weapon/BatScratch";
         private readonly IWeaponView _view;
         private readonly IWeaponData _data;
 

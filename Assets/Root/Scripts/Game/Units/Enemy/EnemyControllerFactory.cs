@@ -11,11 +11,11 @@ namespace PixelGame.Game.Enemy
 
     internal class EnemyControllerFactory : IEnemyControllerFactory
     {
-        private readonly string StalkerEnemyDataPath = @"Enemy/PursuerEnemyData";
-        private readonly string PatrolEnemyDataPath = @"Enemy/PatrolEnemyData";
-        private readonly string ChaserEnemyDataPath = @"Enemy/ChaserEnemyData";
-        private readonly string ProtectorEnemyDataPath = @"Enemy/ProtectorEnemyData";
-        private readonly string StrandingEnemyDataPath = @"Enemy/StrandingEnemyData";
+        private readonly string StalkerEnemyDataPath = @"Configs/Enemy/PursuerEnemyData";
+        private readonly string PatrolEnemyDataPath = @"Configs/Enemy/PatrolEnemyData";
+        private readonly string ChaserEnemyDataPath = @"Configs/Enemy/ChaserEnemyData";
+        private readonly string ProtectorEnemyDataPath = @"Configs/Enemy/ProtectorEnemyData";
+        private readonly string StrandingEnemyDataPath = @"Configs/Enemy/StrandingEnemyData";
 
         private readonly Transform playerTransform;
 

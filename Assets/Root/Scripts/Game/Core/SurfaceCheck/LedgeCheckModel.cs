@@ -14,7 +14,7 @@ namespace PixelGame.Game.Core
 
     internal class LedgeCheckModel: ILedgeCheck
     {
-        private readonly string _configPath = @"Player/LedgeCheckConfig";
+        private readonly string _configPath = @"Configs/Player/LedgeCheckConfig";
 
         private readonly Transform _wallCheck;
         private readonly Transform _ledgeCheck;

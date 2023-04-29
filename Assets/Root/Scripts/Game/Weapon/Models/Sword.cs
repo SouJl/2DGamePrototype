@@ -6,7 +6,7 @@ namespace PixelGame.Game.Weapon
 {
     internal class Sword : AbstractWeapon
     {
-        private readonly string _dataPath = @"Weapon/Sword";
+        private readonly string _dataPath = @"Configs/Weapon/Sword";
         private readonly IWeaponView _view;
         private readonly IAnimatorController _animator;
         private readonly IWeaponData _data;

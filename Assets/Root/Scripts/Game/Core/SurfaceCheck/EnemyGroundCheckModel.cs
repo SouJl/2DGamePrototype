@@ -6,7 +6,7 @@ namespace PixelGame.Game.Core
 {
     internal class EnemyGroundCheckModel : IGroundCheck
     {
-        private readonly string _configPath = @"Enemy/EnemyGroundCheckConfig";
+        private readonly string _configPath = @"Configs/Enemy/EnemyGroundCheckConfig";
 
         private readonly Transform _groundCheck;
         private readonly ISurfaceCheckConfig config;

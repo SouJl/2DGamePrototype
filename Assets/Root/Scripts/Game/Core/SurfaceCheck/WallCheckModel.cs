@@ -12,7 +12,7 @@ namespace PixelGame.Game.Core
     internal class WallCheckModel : IWallCheck
     {
 
-        private readonly string _configPath = @"Player/WallCheckConfig";
+        private readonly string _configPath = @"Configs/Player/WallCheckConfig";
 
         private readonly Transform _wallCheck;
         private readonly ISurfaceCheckConfig config;

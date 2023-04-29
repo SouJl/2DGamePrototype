@@ -43,23 +43,12 @@ namespace PixelGame
         {
             _playerController.Execute();
             _enemiesHandler.Execute();
-
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                GameExit();
-            }
-
         }
 
         private void FixedUpdate()
         {
             _playerController.FixedExecute();
             _enemiesHandler.FixedExecute();
-        }
-
-        private void GameExit()
-        {
-            Application.Quit();
         }
     }
 }

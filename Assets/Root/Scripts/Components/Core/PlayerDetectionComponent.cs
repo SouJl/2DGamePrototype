@@ -33,7 +33,7 @@ namespace PixelGame.Components.Core
             _handlerTransform = gameObject.transform;
         }
 
-
+#if UNITY_EDITOR
         public virtual void OnDrawGizmos()
         {
             if (_showRangeDistance && (_config && _playerCheckTransform))
@@ -52,5 +52,7 @@ namespace PixelGame.Components.Core
                 }
             }
         }
+#endif
+
     }
 }

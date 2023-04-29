@@ -8,6 +8,7 @@ using Root.PixelGame.Tool;
 using System;
 using UnityEngine;
 using Root.PixelGame.Tool.PlayerSearch;
+using Root.PixelGame.Tool.Audio;
 
 namespace Root.PixelGame.Game.Enemy
 {
@@ -44,7 +45,7 @@ namespace Root.PixelGame.Game.Enemy
         public override void Damage(float amount)
         {
             model.Health.DecreaseHealth(amount);
-
+            AudioManager.Instance.PlaySFX(SFXAudioType.Enemy, "EnemyHit");
             _stateHandler.ChangeState(StateType.TakeDamage);
         }
 

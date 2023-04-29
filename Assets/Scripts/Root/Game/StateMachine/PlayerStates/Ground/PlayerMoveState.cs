@@ -50,7 +50,7 @@ namespace Root.PixelGame.Game.StateMachines
             if (_isFall) ChangeState(StateType.FallState);
 
             if(!AudioManager.Instance.PlayerSFX.isPlaying)
-                AudioManager.Instance.PlayPlayerSFX("PlayerWalk");
+                AudioManager.Instance.PlaySFX(SFXAudioType.Player, "PlayerWalk");
         }
 
         public override void PhysicsUpdate()

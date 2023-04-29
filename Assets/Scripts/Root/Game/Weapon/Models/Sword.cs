@@ -1,5 +1,4 @@
 ﻿using Root.PixelGame.Animation;
-using Root.PixelGame.Game.Core;
 using Root.PixelGame.Tool.Audio;
 using System;
 
@@ -44,7 +43,7 @@ namespace Root.PixelGame.Game.Weapon
 
 
         private void PlaySound() 
-            => AudioManager.Instance.PlayGameSFX(CurrentAttack.AttackName);
+            => AudioManager.Instance.PlaySFX(SFXAudioType.Player, CurrentAttack.AttackName);
 
     }
 }

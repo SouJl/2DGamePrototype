@@ -8,6 +8,7 @@ using Root.PixelGame.Game.StateMachines;
 using Root.PixelGame.Tool;
 using System;
 using UnityEngine;
+using Root.PixelGame.Tool.Audio;
 
 namespace Root.PixelGame.Game
 {
@@ -106,6 +107,7 @@ namespace Root.PixelGame.Game
         public void Damage(float amount)
         {
             _healthController.HealthModel.DecreaseHealth(amount);
+            AudioManager.Instance.PlaySFX(SFXAudioType.Player, "PlayerHit");
             _stateHandler.ChangeState(StateType.TakeDamage);
         }
 

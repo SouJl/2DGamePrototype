@@ -1,4 +1,5 @@
 ﻿using PixelGame.Animation;
+using PixelGame.Components;
 using PixelGame.Components.AI;
 using PixelGame.Components.Core;
 using PixelGame.Game.AI;

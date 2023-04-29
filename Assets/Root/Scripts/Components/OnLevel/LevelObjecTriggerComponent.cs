@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PixelGame.Game.Enemy
+namespace PixelGame.Components
 {
     internal interface ILevelObjectTrigger
     {

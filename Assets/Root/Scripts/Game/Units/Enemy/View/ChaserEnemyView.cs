@@ -1,4 +1,5 @@
-﻿using PixelGame.Components.Core;
+﻿using PixelGame.Components;
+using PixelGame.Components.Core;
 using UnityEngine;
 
 namespace PixelGame.Game.Enemy

@@ -4,6 +4,7 @@ using Root.PixelGame.Game.Enemy;
 using Root.PixelGame.Game.Items;
 using Root.PixelGame.Game.UI;
 using Root.PixelGame.Game.Weapon;
+using Root.PixelGame.Tool.Audio;
 using UnityEngine;
 
 namespace Root.PixelGame
@@ -25,6 +26,9 @@ namespace Root.PixelGame
         {
             CreatePlayer();
             _enemiesHandler = new EnemiesHandler(_playerView.Transform, _playerController.AddPoints, _enemyViews);
+
+            AudioManager.Instance.PlayMusic("MainTheme");
+            AudioManager.Instance.PlayeAmbient("WaterDrips");
         }
 
         private void CreatePlayer()

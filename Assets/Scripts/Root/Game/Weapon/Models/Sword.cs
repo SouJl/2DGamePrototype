@@ -1,5 +1,6 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Tool.Audio;
 using System;
 
 namespace Root.PixelGame.Game.Weapon
@@ -37,7 +38,13 @@ namespace Root.PixelGame.Game.Weapon
 
             _view.CheckTouchDamage();
             _animator.StartAnimation(_attackAnimations[_attackIndex]);
+            PlaySound();
             _attackIndex++;
         }
+
+
+        private void PlaySound() 
+            => AudioManager.Instance.PlayGameSFX(CurrentAttack.AttackName);
+
     }
 }

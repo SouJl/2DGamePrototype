@@ -1,6 +1,7 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Tool.Audio;
 
 namespace Root.PixelGame.Game.StateMachines
 {
@@ -45,6 +46,7 @@ namespace Root.PixelGame.Game.StateMachines
         {
             animator.StartAnimation(AnimationType.InAir);
             playerCore.Physic.SetVelocityY(playerData.JumpForce);
+            AudioManager.Instance.PlayPlayerSFX("PlayerJump");
             isAbilityDone = true;
         }
     }

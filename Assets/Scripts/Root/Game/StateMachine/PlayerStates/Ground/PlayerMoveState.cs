@@ -1,6 +1,7 @@
 ﻿using Root.PixelGame.Animation;
 using Root.PixelGame.Game;
 using Root.PixelGame.Game.Core;
+using Root.PixelGame.Tool.Audio;
 using UnityEngine;
 
 namespace Root.PixelGame.Game.StateMachines
@@ -47,6 +48,9 @@ namespace Root.PixelGame.Game.StateMachines
             if (_isStay) ChangeState(StateType.IdleState);
             if (_isWallSlide) ChangeState(StateType.WallSlideState);
             if (_isFall) ChangeState(StateType.FallState);
+
+            if(!AudioManager.Instance.PlayerSFX.isPlaying)
+                AudioManager.Instance.PlayPlayerSFX("PlayerWalk");
         }
 
         public override void PhysicsUpdate()

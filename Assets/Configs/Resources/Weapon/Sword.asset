@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   _attacks:
-  - <AttackName>k__BackingField: Attack1
+  - <AttackName>k__BackingField: SwordAttack1
     <Damage>k__BackingField: 50
     <KnockbackStrength>k__BackingField: 3
     <KnockbackAngle>k__BackingField: {x: 1, y: 1}
-  - <AttackName>k__BackingField: Attack2
+  - <AttackName>k__BackingField: SwordAttack2
     <Damage>k__BackingField: 75
     <KnockbackStrength>k__BackingField: 5
     <KnockbackAngle>k__BackingField: {x: 1, y: 1}

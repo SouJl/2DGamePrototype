@@ -23,11 +23,11 @@ TagManager:
   - 
   - Player
   - Enemy
-  - LevelContacts
   - Projectiles
   - Items
   - Ground
   - Obstacle
+  - Platform
   - Weapon
   - 
   - 

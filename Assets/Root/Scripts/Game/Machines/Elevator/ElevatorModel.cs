@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PixelGame.Game.Machines
 {
@@ -14,6 +15,7 @@ namespace PixelGame.Game.Machines
 
         void UpdatePosition(float time);
     }
+
     internal class ElevatorModel : IElevator
     {
         private enum ElevatorState
@@ -23,28 +25,25 @@ namespace PixelGame.Game.Machines
             onWork
         }
 
-        private Rigidbody2D _transform;
-        private float _speed;
-        private Vector2 _upperPos;
-        private Vector2 _lowerPos;
-        private float _waitTime;
+        private readonly IElevatorView _view;
+        private readonly IElevatorData _data;
+
+
+        private ElevatorState _state;
+        private float _timerCounter;
+        private Vector2 _stopPos;
 
         public Vector2 Direction { get; private set; } = Vector2.up;
         public bool IsWork { get; private set; }
 
-        private ElevatorState _state;
-
-        private float _timerCounter;
-        private Vector2 _stopPos;
-
-
-        public ElevatorModel(Rigidbody2D transform, float speed, Vector2 upperPos, Vector2 lowerPos, float waitTime)
+        public ElevatorModel(
+            IElevatorView view, 
+            IElevatorData data)
         {
-            _transform = transform;
-            _speed = speed;
-            _upperPos = upperPos;
-            _lowerPos = lowerPos;
-            _waitTime = waitTime;
+            _view 
+                = view ?? throw new ArgumentNullException(nameof(view));
+            _data
+                = data ?? throw new ArgumentNullException(nameof(data));
         }
 
         public void UpdatePosition(float time)
@@ -55,20 +54,20 @@ namespace PixelGame.Game.Machines
                     break;
                 case ElevatorState.onWork:
                     {
-                        if (_transform.position.y <= _lowerPos.y)
+                        if (_view.MachineTransfrom.position.y <= _view.LowerPos.y)
                         {
                             Direction = Vector2.up;
-                            _stopPos = _lowerPos;
+                            _stopPos = _view.LowerPos;
                             if (IsWork)
                             {
                                 Stop();
                                 return;
                             }
                         }
-                        else if (_transform.position.y >= _upperPos.y)
+                        else if (_view.MachineTransfrom.position.y >= _view.UpperPos.y)
                         {
                             Direction = Vector2.down;
-                            _stopPos = _upperPos;
+                            _stopPos = _view.UpperPos;
 
                             if (IsWork)
                             {
@@ -78,13 +77,13 @@ namespace PixelGame.Game.Machines
                         }
 
                         IsWork = true;
-                        _transform.velocity = Direction * _speed;
+                        _view.Rigidbody.velocity = Direction * _data.Speed;
 
                         return;
                     }
                 case ElevatorState.onEnd:
                     {
-                        if (_timerCounter < _waitTime)
+                        if (_timerCounter < _data.WaitTime)
                         {
                             _timerCounter += time;
                         }
@@ -94,7 +93,7 @@ namespace PixelGame.Game.Machines
                             Start();
                         }
 
-                        _transform.velocity = Vector2.zero;
+                        _view.Rigidbody.velocity = Vector2.zero;
 
                         return;
                     }
@@ -109,7 +108,7 @@ namespace PixelGame.Game.Machines
         public void Stop()
         {
             IsWork = false;
-            _transform.position = _stopPos;
+            _view.MachineTransfrom.position = _stopPos;
             _state = ElevatorState.onEnd;
         }
     }

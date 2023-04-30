@@ -2,26 +2,30 @@
 
 namespace PixelGame.Game.Machines
 {
-    internal interface IElevatorView
+    internal interface IElevatorView :IMachineView
     {
-
+        Vector2 UpperPos { get; }
+        Vector2 LowerPos { get; }
     }
 
-    internal class ElevatorView :MonoBehaviour, IElevatorView
+    [RequireComponent(typeof(BoxCollider2D))]
+    internal class ElevatorView : MachineView, IElevatorView
     {
         [Header("Elevator Settings")]
-        [SerializeField] private float _speed = 3f;
-        [SerializeField] private float _waitTime = 2f;
         [SerializeField] private Vector2 _upperPos;
         [SerializeField] private Vector2 _lowerPos;
-        [SerializeField] private Rigidbody2D _rigid;
 
-        public float Speed => _speed;
-        public float WaitTime => _waitTime;
         public Vector2 UpperPos => _upperPos;
         public Vector2 LowerPos => _lowerPos;
 
-        public Rigidbody2D Rigidbody => _rigid;
+        public override Collider2D Collider => _collider;
+
+        protected override  void OnValidate()
+        {
+            base.OnValidate();
+            _collider = gameObject.GetComponent<BoxCollider2D>();
+        }
+
 
         private void OnDrawGizmos()
         {

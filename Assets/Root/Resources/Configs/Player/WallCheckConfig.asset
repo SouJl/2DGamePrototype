@@ -15,4 +15,4 @@ MonoBehaviour:
   <CheckDistance>k__BackingField: 0.65
   <CheckLayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 20480

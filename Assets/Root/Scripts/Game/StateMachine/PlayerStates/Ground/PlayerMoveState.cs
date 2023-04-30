@@ -25,6 +25,7 @@ namespace PixelGame.Game.StateMachines
             base.Enter();
             _isWallSlide = false;
             animator.StartAnimation(AnimationType.Run);
+            playerCore.Physic.ChangePhysicsMaterial(_noneFriction);
         }
 
         public override void Exit()
@@ -75,11 +76,6 @@ namespace PixelGame.Game.StateMachines
         protected override void DoChecks()
         {
             base.DoChecks();
-            if (!playerCore.SlopeAnaliser.IsOnSlope && 
-                !playerCore.SlopeAnaliser.CanWalkOnSlope)
-            {
-                playerCore.Physic.ChangePhysicsMaterial(_noneFriction);
-            }
         }
 
     }

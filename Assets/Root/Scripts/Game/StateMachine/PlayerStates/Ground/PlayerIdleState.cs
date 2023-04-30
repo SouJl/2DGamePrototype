@@ -23,6 +23,7 @@ namespace PixelGame.Game.StateMachines
             base.Enter();
             playerCore.Physic.SetVelocityX(0f);
             animator.StartAnimation(AnimationType.Idle);
+            playerCore.Physic.ChangePhysicsMaterial(_fullFriction);
         }
 
         public override void Exit()
@@ -50,7 +51,6 @@ namespace PixelGame.Game.StateMachines
         {
             base.PhysicsUpdate();
 
-            playerCore.Physic.ChangePhysicsMaterial(_fullFriction);
         }
 
 

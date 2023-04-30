@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e18fe2f20d10d841ac291a4586c9b5f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  <Health>k__BackingField: 200
   <Speed>k__BackingField: 5
   <MoveThresh>k__BackingField: 0.01
-  <JumpForce>k__BackingField: 5.5
+  <JumpForce>k__BackingField: 6
   <JumpThreshold>k__BackingField: 0.2
   <WallJumpForce>k__BackingField: 7
   <WallJumpTime>k__BackingField: 0.5
@@ -22,7 +23,7 @@ MonoBehaviour:
   <FlyThreshold>k__BackingField: 0.2
   <FallThreshold>k__BackingField: 0.1
   <WallSlideSpeed>k__BackingField: 2
-  <StartOffset>k__BackingField: {x: -0.1, y: 0.8}
+  <StartOffset>k__BackingField: {x: -0.1, y: 0.9}
   <StopOffset>k__BackingField: {x: 0.5, y: 0.8}
   <ClimbSmooth>k__BackingField: 0.2
   <CrouchMovementVelocity>k__BackingField: 5

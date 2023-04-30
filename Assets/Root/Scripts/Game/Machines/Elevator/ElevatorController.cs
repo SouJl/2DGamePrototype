@@ -1,27 +1,27 @@
-﻿
+﻿using PixelGame.Tool;
+using System;
 using UnityEngine;
 
 namespace PixelGame.Game.Machines
 {
     internal class ElevatorController : BaseController
     {
-        private IElevator _elevator;
+        private readonly string _dataPath = @"Configs/Machine/ElevatorConfig";
+        private readonly IElevatorView _view;
+        private readonly IElevatorData _data;
+        private readonly IElevator _model;
 
-        private ElevatorView  _view;
 
-        public ElevatorController(ElevatorView view)
+        public ElevatorController(IElevatorView view)
         {
-            _view = view;
-            
-            _elevator 
-                = new ElevatorModel(
-                    _view.Rigidbody, 
-                    _view.Speed,
-                    _view.UpperPos,
-                    _view.LowerPos,
-                    _view.WaitTime);
+            _view
+                = view ?? throw new ArgumentNullException(nameof(view));
 
-            _elevator.Start();
+            _data = LoadData(_dataPath);
+
+            _model = new ElevatorModel(_view, _data);
+
+            _model.Start();
         }
 
         public override void Execute()
@@ -31,7 +31,11 @@ namespace PixelGame.Game.Machines
 
         public override void FixedExecute()
         {
-            _elevator.UpdatePosition(Time.fixedDeltaTime);
+            _model.UpdatePosition(Time.fixedDeltaTime);
         }
+
+        private IElevatorData LoadData(string path)
+            => ResourceLoader.LoadObject<ElevatorConfig>(path);
+
     }
 }

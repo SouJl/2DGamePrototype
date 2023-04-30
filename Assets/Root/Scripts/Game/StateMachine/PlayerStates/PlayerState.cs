@@ -38,8 +38,8 @@ namespace PixelGame.Game.StateMachines
             this.animator
                 = animator ?? throw new ArgumentNullException(nameof(animator));
 
-            _fullFriction = Resources.Load<PhysicsMaterial2D>("Materail/FullFrictionMaterial");
-            _noneFriction = Resources.Load<PhysicsMaterial2D>("Materail/ZeroFrictionMaterial");
+            _fullFriction = Resources.Load<PhysicsMaterial2D>(@"Materials/FullFrictionMaterial");
+            _noneFriction = Resources.Load<PhysicsMaterial2D>(@"Materials/ZeroFrictionMaterial");
         }
 
         public override void Enter()

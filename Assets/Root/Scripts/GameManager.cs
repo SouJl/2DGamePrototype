@@ -40,8 +40,6 @@ namespace PixelGame
 
             _deathZones.OnDeathZoneContact += RestartGame;
             _gameEnd.TriggerEnter += GameEnd;
-
-
         }
 
         private void Start()

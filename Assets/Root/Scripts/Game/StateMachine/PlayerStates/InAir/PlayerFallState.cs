@@ -66,9 +66,11 @@ namespace PixelGame.Game.StateMachines
 
             if (Mathf.Abs(_xAxisInput) > playerData.MoveThresh)
             {
-                playerCore.CheckFlip(_xAxisInput);
-
-                playerCore.Physic.SetVelocityX(_xAxisInput * playerData.Speed);
+                if (!_isTouchingWall && !_isTouchingLedge)
+                {
+                    playerCore.CheckFlip(_xAxisInput);
+                }
+                playerCore.Physic.SetVelocityX(_xAxisInput * playerData.InAirSpeed);
             }
         }
 

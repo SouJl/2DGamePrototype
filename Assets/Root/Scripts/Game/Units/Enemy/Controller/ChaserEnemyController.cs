@@ -6,6 +6,7 @@ using PixelGame.Game.AI;
 using PixelGame.Game.AI.Model;
 using PixelGame.Game.Core;
 using PixelGame.Game.StateMachines;
+using PixelGame.Game.Weapon;
 using PixelGame.Tool;
 using PixelGame.Tool.Audio;
 using PixelGame.Tool.PlayerSearch;
@@ -16,21 +17,26 @@ namespace PixelGame.Game.Enemy
 {
     internal class ChaserEnemyController : BaseEnemyController
     {
+        private readonly IWeapon _weapon;
         private readonly ITargetSelector _targetSelector;
         private readonly ILevelObjectTrigger _playerLocator;
         private readonly float _chaseBreakDistance;
 
         private IEnemyCore _core;
-
+        private bool _isChase;
 
         public ChaserEnemyController(
             IEnemyView view,
             IEnemyData data,
             IEnemyModel model,
+            IWeapon weapon,
             ITargetSelector targetSelector,
             ILevelObjectTrigger playerLocator,
             float chaseBreakDistance) : base(view, data, model) 
         {
+            _weapon
+               = weapon ?? throw new ArgumentNullException(nameof(weapon));
+
             _targetSelector
                = targetSelector ?? throw new ArgumentNullException(nameof(targetSelector));
             _playerLocator 
@@ -51,7 +57,7 @@ namespace PixelGame.Game.Enemy
         {
             base.FixedExecute();
 
-            /*if (_isChase)
+            if (_isChase)
             {
                 var distance = Vector2.Distance(model.SelfTransform.position, _targetSelector.CurrentTarget.position);
 
@@ -61,7 +67,7 @@ namespace PixelGame.Game.Enemy
                     _targetSelector.ChangeTarget(default);
                     _isChase = false;
                 }
-            }*/
+            }
         }
 
         public override void OnCollisionContact(Collider2D collision) 
@@ -83,14 +89,14 @@ namespace PixelGame.Game.Enemy
 
         private void OnLocatorContact(Collider2D collision)
         {
-            /*if(collision.gameObject.tag == "Player")
+            if(collision.gameObject.tag == "Player")
             {
                 if (_isChase == true) return;
 
-                _stateHandler.ChangeState(StateType.InAction);
+                _stateHandler.ChangeState(StateType.MeleeAttackState);
                 _isChase = true;
                 _targetSelector.ChangeTarget(collision.gameObject.transform);
-            }*/
+            }
         }
 
         protected override void CreateAnimatorController(IEnemyView view)
@@ -105,7 +111,7 @@ namespace PixelGame.Game.Enemy
             ChaserEnemyView chaserView = view as ChaserEnemyView;
             _core = CreateCore(chaserView.ChaseAICore);
             IAIBehaviour aiBeahaviour = CreateAI(chaserView.ChaseAICore.AIViewComponent);
-            _stateHandler = new ChaserEnemyStatesHandler(_core, aiBeahaviour, data, _animator);
+            _stateHandler = new ChaserEnemyStatesHandler(_core, data, _animator, _weapon, aiBeahaviour);
         }
 
 
@@ -117,6 +123,7 @@ namespace PixelGame.Game.Enemy
             IRotate rotator = new SelfRotator(coreComponent.Transform, physic);
             return new ChaserEnemyCore(coreComponent.Transform, physic, playerDetection, mover, rotator);
         }
+
         private IAIBehaviour CreateAI(IAIComponent aIViewComponent)
         {
             PatrolAIComponent patrolAI = aIViewComponent as PatrolAIComponent;

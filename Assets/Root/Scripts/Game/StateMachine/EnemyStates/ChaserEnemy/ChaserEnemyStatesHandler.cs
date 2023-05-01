@@ -5,6 +5,7 @@ using PixelGame.Game.StateMachines.Enemy;
 using System.Collections.Generic;
 using PixelGame.Game.Enemy;
 using PixelGame.Game.AI;
+using PixelGame.Game.Weapon;
 
 namespace PixelGame.Game.StateMachines
 {
@@ -14,21 +15,25 @@ namespace PixelGame.Game.StateMachines
         private readonly IAIBehaviour _aIBehavior;
         private readonly IEnemyData _data;
         private readonly IAnimatorController _animator;
+        private readonly IWeapon _weapon;
 
         public ChaserEnemyStatesHandler(
             IEnemyCore core, 
-            IAIBehaviour aIBehavior,
             IEnemyData data,
-            IAnimatorController animator) : base()
+            IAnimatorController animator,
+            IWeapon weapon,
+            IAIBehaviour aIBehavior) : base()
         {
             _core
               = core ?? throw new ArgumentNullException(nameof(core));
-            _aIBehavior
-              = aIBehavior ?? throw new ArgumentNullException(nameof(aIBehavior));
             _data 
                 = data ?? throw new ArgumentNullException(nameof(data));
             _animator
                 = animator ?? throw new ArgumentNullException(nameof(animator));
+            _weapon 
+                = weapon ?? throw new ArgumentNullException(nameof(weapon));
+            _aIBehavior 
+                = aIBehavior ?? throw new ArgumentNullException(nameof(aIBehavior));
         }
 
         protected override IDictionary<StateType, IState> CreateStates()
@@ -38,6 +43,7 @@ namespace PixelGame.Game.StateMachines
             states[StateType.IdleState] = new ChaserEnemyIdleState(this, _core, _data, _animator, _aIBehavior);
             states[StateType.MoveState] = new ChaserEnemyMoveState(this, _core, _data, _animator, _aIBehavior);
             states[StateType.TakeDamage] = new EnemyTakeDamageState(this, _core, _data, _animator);
+            states[StateType.MeleeAttackState] = new EnemyMeleeAtackState(this, _core, _animator, _weapon);
 
             return states;
         }

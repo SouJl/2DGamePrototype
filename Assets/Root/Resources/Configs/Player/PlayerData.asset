@@ -17,6 +17,7 @@ MonoBehaviour:
   <MoveThresh>k__BackingField: 0.01
   <JumpForce>k__BackingField: 6
   <JumpThreshold>k__BackingField: 0.2
+  <InAirSpeed>k__BackingField: 4
   <WallJumpForce>k__BackingField: 7
   <WallJumpTime>k__BackingField: 0.5
   <WallJumpAngle>k__BackingField: {x: 1.2, y: 2}

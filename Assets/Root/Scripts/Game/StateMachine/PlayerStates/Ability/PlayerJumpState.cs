@@ -1,5 +1,4 @@
 ﻿using PixelGame.Animation;
-using PixelGame.Game;
 using PixelGame.Game.Core;
 using PixelGame.Tool.Audio;
 
@@ -7,6 +6,9 @@ namespace PixelGame.Game.StateMachines
 {
     internal class PlayerJumpState : PlayerAbilityState
     {
+        private bool _isTouchingWall;
+        private bool _isTouchingLedge;
+
         public PlayerJumpState(
             IStateHandler stateHandler,
             IPlayerCore playerCore,
@@ -18,6 +20,8 @@ namespace PixelGame.Game.StateMachines
         public override void Enter()
         {
             base.Enter();
+            _isTouchingWall = false;
+            _isTouchingLedge = false;
             Jump();
         }
 
@@ -34,6 +38,11 @@ namespace PixelGame.Game.StateMachines
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            if (_isTouchingWall && !_isTouchingLedge)
+            {
+                ChangeState(StateType.LedgeState);
+                return;
+            }
         }
 
         public override void PhysicsUpdate()
@@ -49,5 +58,18 @@ namespace PixelGame.Game.StateMachines
             AudioManager.Instance.PlaySFX(SFXAudioType.Player, "PlayerJump");
             isAbilityDone = true;
         }
+
+        protected override void DoChecks()
+        {
+            base.DoChecks();
+            _isTouchingWall = playerCore.WallCheck.CheckWallFront(playerCore.FacingDirection);
+
+            _isTouchingLedge = playerCore.LedgeCheck.CheckLedgeTouch(playerCore.FacingDirection);
+            if (_isTouchingWall && !_isTouchingLedge)
+            {
+                playerCore.LedgeCheck.LedgePosition = playerCore.CurrentPosition;
+            }
+        }
+
     }
 }

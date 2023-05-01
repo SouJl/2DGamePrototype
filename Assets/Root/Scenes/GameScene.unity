@@ -15212,6 +15212,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &987152301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 987152302}
+  - component: {fileID: 987152303}
+  m_Layer: 9
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &987152302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987152301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.43, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2961868201485811794}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987152303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987152301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8690d6e5fee915b489b47c3ef2bd7f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _touchDamageCheck: {fileID: 987152302}
+  _touchDamageWidth: 0.6
+  _touchDamageHeight: 1.2
+  _whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1009629680
 GameObject:
   m_ObjectHideFlags: 0
@@ -16686,7 +16736,7 @@ SpriteRenderer:
   m_SortingLayerID: 1617027905
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 270829633, guid: c5188b3ecb2f8bd4a8fe329395a9b14f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16694,7 +16744,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1151796170
@@ -16972,7 +17022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189508887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.87, y: 0, z: 0}
+  m_LocalPosition: {x: 0.76, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16992,8 +17042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _touchDamageCheck: {fileID: 1189508888}
-  _touchDamageWidth: 1.8
-  _touchDamageHeight: 1.2
+  _touchDamageWidth: 2
+  _touchDamageHeight: 2
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
@@ -87465,7 +87515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756035428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.221167, y: 1.5633717, z: -10}
+  m_LocalPosition: {x: 16.581167, y: 4.073372, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87643,7 +87693,13 @@ MonoBehaviour:
   playerCoinsUI: {fileID: 609474643}
   _gameEndUI: {fileID: 1936635518}
   _playerAnimationConfig: {fileID: 11400000, guid: 04c6b0d175d211d4a80deb9ecb0b7670, type: 2}
-  _enemyViews: []
+  _enemyViews:
+  - {fileID: 1251580020}
+  - {fileID: 95854762}
+  - {fileID: 636828973}
+  - {fileID: 620943633}
+  - {fileID: 192450224}
+  - {fileID: 2961868201485811787}
   _coins:
   - {fileID: 4215291372017549878}
   - {fileID: 2145343944}
@@ -105561,7 +105617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792976917877997078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.48, y: 2.62, z: -0.5855026}
+  m_LocalPosition: {x: 5.84, y: 5.13, z: -0.5855026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -105739,6 +105795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation: {fileID: 1099274491}
+  _weapon: {fileID: 987152303}
   _chaseAICore: {fileID: 2961868201485811790}
   _targetLocator: {fileID: 2961868200885240944}
   _chaseBreakDistance: 5
@@ -105802,7 +105859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2961868201485811794
 Transform:
   m_ObjectHideFlags: 0
@@ -105818,6 +105875,7 @@ Transform:
   - {fileID: 1099274490}
   - {fileID: 2961868200885240951}
   - {fileID: 865322762}
+  - {fileID: 987152302}
   m_Father: {fileID: 133746220}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

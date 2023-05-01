@@ -14,7 +14,6 @@ namespace PixelGame.Game.StateMachines.Enemy
         private readonly IAnimatorController _animator;
         private readonly IWeapon _weapon;
 
-
         public WanderEnemyStatesHandler(
             IEnemyCore core,
             IEnemyData data,

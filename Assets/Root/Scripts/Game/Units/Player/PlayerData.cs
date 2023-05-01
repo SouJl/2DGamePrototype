@@ -8,6 +8,8 @@ namespace PixelGame.Game
         float Speed { get; }
         float MoveThresh { get; }
         float JumpForce { get; }
+        float InAirSpeed { get; }
+
         float JumpThreshold { get; }
         float WallJumpForce { get; }
         float WallJumpTime { get; }
@@ -35,6 +37,7 @@ namespace PixelGame.Game
         [field: Header("Jump Settings")]
         [field: SerializeField] public float JumpForce { get; private set; } = 10f;
         [field: SerializeField] public float JumpThreshold { get; private set; } = 0.2f;
+        [field: SerializeField] public float InAirSpeed { get; private set; } = 2f;
 
         [field: Header("Wall Jump Settings")]
         [field: SerializeField] public float WallJumpForce { get; private set; } = 20f;
@@ -60,6 +63,6 @@ namespace PixelGame.Game
         [field: SerializeField] public float CrouchColliderHeight { get; private set; } = 0.8f;
         [field: SerializeField] public float StandColliderHeight { get; private set; } = 1.6f;
 
-        
+
     }
 }

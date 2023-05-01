@@ -44,8 +44,8 @@ namespace PixelGame.Game.Enemy
                         IEnemyData data = LoadData(ChaserEnemyDataPath);
                         IEnemyModel model = new ChaserEnemyModel(chaserEnemy.EnemyTransform, data);                       
                         ITargetSelector targetSelector = new DynamicTargetSelector();
-                        
-                        return new ChaserEnemyController(chaserEnemy, data, model, targetSelector, chaserEnemy.TargetLocator, chaserEnemy.ChaseBreakDistance);
+                        IWeapon weapon = new EnemyWeapon(chaserEnemy.Weapon);
+                        return new ChaserEnemyController(chaserEnemy, data, model, weapon, targetSelector, chaserEnemy.TargetLocator, chaserEnemy.ChaseBreakDistance);
                     }
                 case PatrolEnemyView patrolEnemy:
                     {

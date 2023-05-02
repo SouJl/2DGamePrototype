@@ -9,6 +9,7 @@ using PixelGame.Game.Weapon;
 using PixelGame.Tool;
 using PixelGame.Tool.Audio;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace PixelGame
@@ -74,10 +75,23 @@ namespace PixelGame
             GameSceneLoader.Instance.LoadScene(1);
         }
 
+
         private void GameEnd(Collider2D collider)
         {
-            if(collider.gameObject.tag == "Player")
+            if(collider.gameObject.tag == "Player") 
+            {
                 _gameEndUI.ShowGameEndText();
-        }     
+                StartCoroutine(GameExitCoroutine());
+            }
+               
+        }
+
+        IEnumerator GameExitCoroutine()
+        {
+            yield return new WaitForSeconds(2f);
+            GameSceneLoader.Instance.LoadScene(0);
+            AudioManager.Instance.Music.Stop();
+            AudioManager.Instance.Ambient.Stop();
+        }
     }
 }

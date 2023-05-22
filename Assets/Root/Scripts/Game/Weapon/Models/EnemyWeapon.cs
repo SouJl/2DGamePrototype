@@ -1,35 +1,24 @@
-﻿using System;
-
-namespace PixelGame.Game.Weapon
+﻿namespace PixelGame.Game.Weapon
 {
     internal class EnemyWeapon : AbstractWeapon
     {
-        private readonly string _dataPath = @"Configs/Weapon/BatScratch";
-        private readonly IWeaponView _view;
-        private readonly IWeaponData _data;
+        public override IAttackData CurrentAttack => Data.Attacks[AttackIndex];
 
-        private int _attackIndex;
-        public override IAttackData CurrentAttack => _data.Attacks[_attackIndex];
-
-        public EnemyWeapon(
-            IWeaponView view)
-        {
-            _view 
-                = view ?? throw new ArgumentNullException(nameof(view));
-            
-            _data = LoadWeaponData(_dataPath);
-            
-            view.Init(this);
-        }
-
+        public EnemyWeapon(IWeaponView view) : base(view) { }
     
         public override void Attack()
         {
-            if (_attackIndex + 1 > _data.Attacks.Count)
-                _attackIndex = 0;
+            if (AttackIndex + 1 > Data.Attacks.Count)
+                AttackIndex = 0;
 
-            _view.CheckTouchDamage();
-            _attackIndex++;
+            View.CheckTouchDamage();
+            AttackIndex++;
+        }
+
+        protected override void Init()
+        {
+            AttackIndex = 0;
+            View.Init(this);
         }
     }
 }

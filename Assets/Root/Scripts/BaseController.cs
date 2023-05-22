@@ -1,14 +1,8 @@
-﻿using UnityEngine;
+﻿using PixelGame.Tool;
+using UnityEngine;
 
 namespace PixelGame
 {
-    internal interface IExecute
-    {
-        void Execute();
-
-        void FixedExecute();
-    }
-
     internal abstract class BaseController : IExecute
     {
         protected readonly float deltaTime;

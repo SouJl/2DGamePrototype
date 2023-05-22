@@ -5,45 +5,45 @@ using System;
 namespace PixelGame.Game.Weapon
 {
     internal class Sword : AbstractWeapon
-    {
-        private readonly string _dataPath = @"Configs/Weapon/Sword";
-        private readonly IWeaponView _view;
+    {     
         private readonly IAnimatorController _animator;
-        private readonly IWeaponData _data;
 
-        private readonly AnimationType[] _attackAnimations
-            = new AnimationType[] { AnimationType.Attack1, AnimationType.Attack2 };
+        private readonly AnimationType[] _attackAnimations = new AnimationType[] 
+        {
+            AnimationType.Attack1, 
+            AnimationType.Attack2 
+        };
 
-        private int _attackIndex;
-        public override IAttackData CurrentAttack => _data.Attacks[_attackIndex];
+        public override IAttackData CurrentAttack => Data.Attacks[AttackIndex];
 
         public Sword(
             IWeaponView view, 
-            IAnimatorController animator)
+            IAnimatorController animator) : base(view)
         {
-            _view
-               = view ?? throw new ArgumentNullException(nameof(view));
-
-            _animator = animator;
-            _data = LoadWeaponData(_dataPath);
-
-            view.Init(this);
+            _animator 
+                = animator ?? throw new ArgumentNullException(nameof(animator));
         }
 
         public override void Attack()
         {
-            if (_attackIndex + 1 > _data.Attacks.Count)
-                _attackIndex = 0;
+            if (AttackIndex + 1 > Data.Attacks.Count)
+                AttackIndex = 0;
 
-            _view.CheckTouchDamage();
-            _animator.StartAnimation(_attackAnimations[_attackIndex]);
+            View.CheckTouchDamage();
+            _animator.StartAnimation(_attackAnimations[AttackIndex]);
+
             PlaySound();
-            _attackIndex++;
+
+            AttackIndex++;
         }
 
+        protected override void Init()
+        {
+            AttackIndex = 0;
+            View.Init(this);
+        }
 
         private void PlaySound() 
-            => AudioManager.Instance.PlaySFX(SFXAudioType.Player, CurrentAttack.AttackName);
-
+            => AudioManager.Instance.PlaySFX(SFXAudioType.Player, CurrentAttack.AttackName);      
     }
 }

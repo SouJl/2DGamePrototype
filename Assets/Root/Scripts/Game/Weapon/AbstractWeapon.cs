@@ -1,5 +1,4 @@
 ﻿using PixelGame.Game.Core;
-using PixelGame.Tool;
 using System;
 
 namespace PixelGame.Game.Weapon
@@ -18,15 +17,29 @@ namespace PixelGame.Game.Weapon
 
     internal abstract class AbstractWeapon : IWeapon
     {
+        protected readonly IWeaponView View;
+        protected readonly IWeaponData Data;
+
+        protected int AttackIndex;
+
         public Action<IDamageable> OnDamage { get; set; }
         public Action<IKnockbackable> OnKnockBack { get; set; }
         public Action WeaponActive { get; set; }
 
         public abstract IAttackData CurrentAttack { get; }
 
+        public AbstractWeapon(IWeaponView view) 
+        {
+            View 
+                = view ?? throw new ArgumentNullException(nameof(view));
+            Data 
+                = view.WeaponData ?? throw new ArgumentNullException(nameof(view.WeaponData));
+
+            Init();
+        }
+
+        protected abstract void Init();
+
         public abstract void Attack();
-  
-        protected IWeaponData LoadWeaponData(string path) 
-            => ResourceLoader.LoadObject<WeaponData>(path);
     }
 }

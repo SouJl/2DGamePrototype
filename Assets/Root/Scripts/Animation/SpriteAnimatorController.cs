@@ -21,7 +21,9 @@ namespace PixelGame.Animation
 
         public bool IsAnimationEnd { get; private set; }
 
-        public SpriteAnimatorController(SpriteRenderer spriteRenderer, IAnimationData animationData)
+        public SpriteAnimatorController(
+            SpriteRenderer spriteRenderer, 
+            IAnimationData animationData)
         {
             _spriteRenderer
                 = spriteRenderer ?? throw new ArgumentNullException(nameof(spriteRenderer));

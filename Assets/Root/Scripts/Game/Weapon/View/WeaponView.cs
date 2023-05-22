@@ -6,6 +6,7 @@ namespace PixelGame.Game.Weapon
 {
     internal interface IWeaponView
     {
+        IWeaponData WeaponData { get; }
         void Init(IWeapon weapon);
         void CheckTouchDamage();
     }
@@ -17,9 +18,13 @@ namespace PixelGame.Game.Weapon
         [SerializeField] private float _touchDamageHeight;
         [SerializeField] private LayerMask _whatIsPlayer;
 
-        private Vector2 touchDamageBotLeft, touchDamageTopRight;
+        [Header("Weapon Config")]
+        [SerializeField] private WeaponData _weaponData;
 
+        private Vector2 touchDamageBotLeft, touchDamageTopRight;
         private IWeapon _weapon;
+
+        public IWeaponData WeaponData => _weaponData;
 
         public void Init(IWeapon weapon)
         {

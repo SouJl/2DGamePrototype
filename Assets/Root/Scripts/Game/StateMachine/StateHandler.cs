@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PixelGame.Tool;
+using System;
 using System.Collections.Generic;
 
 namespace PixelGame.Game.StateMachines
 {
-    internal interface IStateHandler :IExecute
+    internal interface IStateHandler : IExecute
     {
         void Init();
         void ChangeState(StateType stateType);
